@@ -65,17 +65,37 @@ def fetch(mode, limit, no_text):
 
 
 @cli.command()
-@click.option("--limit", default=0, type=int, help="Máximo de artículos a ingestar (0=todos)")
-@click.option("--reprocess", is_flag=True, default=False, help="Reprocesar artículos ya ingestados")
+@click.option("--limit", default=5, type=int,
+              help="Artículos a preparar por sesión (recomendado: 5-10 para no saturar contexto)")
+@click.option("--reprocess", is_flag=True, default=False,
+              help="Incluir artículos ya ingestados")
 def ingest(limit, reprocess):
-    """Procesar artículos con Claude y actualizar páginas del wiki."""
-    from ingest import run_ingest
-    console.print(Panel(
-        f"Límite: {'∞' if not limit else limit} | Reprocesar: {'Sí' if reprocess else 'No'}",
-        title="[bold magenta]Ingest — Actualización del Wiki[/bold magenta]",
-    ))
-    count = run_ingest(limit=limit, reprocess=reprocess)
-    console.print(f"\n[bold green]✓ {count} artículos ingestados[/bold green]")
+    """
+    Preparar artículos para que Claude Code los ingesteal wiki (sin API key).
+
+    Genera pending_ingest.md con los artículos a procesar.
+    Claude Code lee ese archivo y actualiza el wiki directamente.
+    """
+    from ingest import run_prepare
+    run_prepare(limit=limit, reprocess=reprocess)
+
+
+@cli.command("mark-ingested")
+@click.argument("url_or_slug")
+def mark_ingested(url_or_slug):
+    """Marcar un artículo como ingestado en processed.json."""
+    from ingest import mark_ingested as _mark
+    _mark(url_or_slug)
+
+
+@cli.command("mark-all-ingested")
+@click.option("--limit", default=0, type=int,
+              help="Número de artículos a marcar (0 = todos los pendientes)")
+def mark_all_ingested(limit):
+    """Marcar artículos pendientes como ingestados (después de que Claude los procesó)."""
+    from ingest import mark_all_ingested as _mark_all
+    count = _mark_all(limit=limit)
+    console.print(f"[bold green]✓ {count} artículos marcados como ingestados[/bold green]")
 
 
 @cli.command()

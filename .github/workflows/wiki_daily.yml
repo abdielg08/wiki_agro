@@ -1,92 +1,72 @@
-name: Wiki Agropecuario — Actualización Diaria
+name: Wiki Agropecuario — Fetch Diario
 
-# Ejecuta diariamente a las 11:00 UTC (6:00 AM hora de Panamá)
-# También se puede disparar manualmente desde GitHub Actions
+# Descarga artículos nuevos todos los días.
+# El INGEST (actualizar wiki) lo hace Claude Code en sesión Pro — sin API key.
 on:
   schedule:
-    - cron: "0 11 * * *"
+    - cron: "0 11 * * *"   # 6:00 AM hora Panamá
   workflow_dispatch:
     inputs:
       fetch_limit:
-        description: "Máximo artículos GDELT a descargar (0 = sin límite)"
-        default: "100"
+        description: "Máximo artículos a descargar (0 = sin límite)"
+        default: "150"
         required: false
-      ingest_limit:
-        description: "Artículos a ingestar con Claude (controla costo API)"
-        default: "15"
+      fetch_mode:
+        description: "Modo de descarga"
+        type: choice
+        options: [gdelt, worldbank, all]
+        default: "gdelt"
         required: false
 
-# Evita ejecuciones paralelas que causen conflictos en el commit
 concurrency:
-  group: wiki-update
+  group: wiki-fetch
   cancel-in-progress: false
 
 permissions:
   contents: write
 
 jobs:
-  update-wiki:
-    name: Fetch (GDELT) → Ingest (Claude) → Commit
+  fetch:
+    name: "Fetch artículos → Commit a sources/"
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 30
 
     steps:
-      - name: Checkout repositorio
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 1
 
-      - name: Configurar Python 3.11
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
           cache: "pip"
 
-      - name: Instalar dependencias
-        run: pip install -r requirements.txt
+      - run: pip install -r requirements.txt
 
-      # ── FETCH: GDELT (funciona desde cloud, sin bloqueos 403) ──
-      # GDELT descarga artículos de prensa panameña indexados globalmente
-      # Solo artículos de la semana actual para la rutina diaria
-      - name: Fetch — GDELT artículos recientes
+      # GDELT y WorldBank funcionan desde cloud (IPs de GitHub Actions no bloqueadas)
+      - name: Fetch artículos nuevos
         run: |
           python wiki_agro.py fetch \
-            --mode gdelt \
-            --limit "${{ github.event.inputs.fetch_limit || '100' }}" \
+            --mode "${{ github.event.inputs.fetch_mode || 'gdelt' }}" \
+            --limit "${{ github.event.inputs.fetch_limit || '150' }}" \
             --no-text
         continue-on-error: true
 
-      # ── FETCH: World Bank API (también funciona desde cloud) ──
-      - name: Fetch — World Bank Panama Agriculture
-        run: |
-          python wiki_agro.py fetch --mode worldbank --no-text
-        continue-on-error: true
-
-      # ── INGEST: procesar con Claude y actualizar wiki ──
-      - name: Ingest — actualizar wiki con Claude
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: |
-          python wiki_agro.py ingest \
-            --limit "${{ github.event.inputs.ingest_limit || '15' }}"
-
-      # ── STATS ──
-      - name: Estadísticas del wiki
+      - name: Estadísticas
         run: python wiki_agro.py stats
         continue-on-error: true
 
-      # ── COMMIT: guardar wiki actualizado ──
-      - name: Commit y push de actualizaciones
+      # Solo guarda sources/ — el wiki lo actualiza Claude en sesión Pro
+      - name: Commit artículos nuevos
         run: |
           git config user.name "wiki-agro-bot"
           git config user.email "wiki-agro-bot@users.noreply.github.com"
-          git add wiki/ sources/
+          git add sources/
           if ! git diff --staged --quiet; then
-            PAGES=$(git diff --staged --name-only | grep "^wiki/" | wc -l)
             ARTICLES=$(git diff --staged --name-only | grep "sources/articles" | wc -l)
-            git commit -m "chore(wiki): auto-update — ${PAGES} páginas wiki, ${ARTICLES} artículos [skip ci]"
+            git commit -m "chore(sources): ${ARTICLES} artículos nuevos descargados [skip ci]"
             git push
           else
-            echo "ℹ Sin cambios nuevos en esta ejecución"
+            echo "ℹ Sin artículos nuevos"
           fi

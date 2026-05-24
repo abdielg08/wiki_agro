@@ -119,7 +119,31 @@ Luego secciones en markdown:
 
 ## Operaciones del LLM
 
-### INGEST (al procesar un artículo nuevo)
+### INGEST — Flujo principal (sesión Claude Code, sin API key)
+
+**Cuándo usar**: El usuario dice "ingesta los artículos", "procesa las noticias",
+o "actualiza el wiki". También cuando existe el archivo `pending_ingest.md`.
+
+**Pasos**:
+1. Ejecutar `python wiki_agro.py ingest --limit 5` para generar `pending_ingest.md`
+2. Leer `pending_ingest.md` (contiene los artículos a procesar con contexto)
+3. Para cada artículo en el archivo:
+   a. Extraer: resumen, entidades, temas, hechos clave con fechas y valores
+   b. Crear `wiki/summaries/{YYYYMMDD}_{fuente}_{slug}.md`
+   c. Actualizar hasta 3 páginas de `wiki/topics/` relevantes
+   d. Actualizar hasta 2 páginas de `wiki/entities/` si aplica
+   e. Agregar entrada en `wiki/index.md` bajo "## Artículos procesados"
+   f. Agregar entrada en `wiki/log.md`
+4. Ejecutar `python wiki_agro.py mark-all-ingested --limit 5`
+5. Hacer commit: `git add wiki/ sources/ && git commit -m "wiki: ingest N artículos"`
+
+**Reglas de escritura de páginas**:
+- Formato frontmatter YAML obligatorio (ver sección "Formato de Páginas Wiki")
+- Si la página ya existe: agregar hechos nuevos sin borrar los existentes
+- Si no existe: crearla con estructura completa (ver secciones estándar)
+- Priorizar hechos con fechas y fuentes citadas explícitamente
+
+### INGEST — Flujo alternativo (con Anthropic API key, GitHub Actions)
 1. Leer el artículo crudo de `sources/articles/`
 2. Extraer: resumen, entidades, temas, hechos clave con fechas
 3. Crear `wiki/summaries/{slug}.md` con el resumen del artículo
