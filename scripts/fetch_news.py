@@ -319,7 +319,12 @@ def _gdelt_query_string(terms: list[str]) -> str:
     return " OR ".join(f'"{t}"' if " " in t else t for t in terms)
 
 
-def fetch_gdelt_batch(query: str, start_date: str, end_date: str, max_records: int = 250) -> list[dict]:
+def fetch_gdelt_batch(query: str, start_date: str, end_date: str, max_records: int = 250) -> list[dict] | None:
+    """
+    Fetch one GDELT window.
+    Returns list of articles on success (may be empty), None on network/HTTP error.
+    Only call mark-complete when result is not None.
+    """
     params = {
         "query": f"{query} sourcecountry:PA",
         "mode": "artlist",
@@ -332,11 +337,11 @@ def fetch_gdelt_batch(query: str, start_date: str, end_date: str, max_records: i
     }
     resp = _get(GDELT_URL, params=params, timeout=30)
     if resp is None:
-        return []
+        return None  # network error — do NOT mark window as complete
     try:
         data = resp.json()
     except Exception:
-        return []
+        return None
     articles = []
     for item in data.get("articles", []):
         url = item.get("url", "")
@@ -392,12 +397,19 @@ def fetch_gdelt_historical(config: dict, processed: dict) -> Iterator[dict]:
             f" → [cyan]{next_q.strftime('%Y-%m-%d')}[/cyan]"
         )
         batch = fetch_gdelt_batch(query, current.strftime("%Y-%m-%d"), next_q.strftime("%Y-%m-%d"))
-        console.print(f"    → {len(batch)} artículos")
 
+        if batch is None:
+            # Network error — skip window WITHOUT marking complete so it's retried next run
+            console.print(f"    [yellow]→ error de red, se reintentará en próxima ejecución[/yellow]")
+            current = next_q + timedelta(days=1)
+            time.sleep(REQUEST_DELAY)
+            continue
+
+        console.print(f"    → {len(batch)} artículos")
         for article in batch:
             yield article
 
-        # Mark window as complete
+        # Mark window as complete only on successful HTTP response (even if 0 results)
         completed_windows.add(window_key)
         processed["_gdelt_windows"] = list(completed_windows)
 
