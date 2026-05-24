@@ -24,18 +24,19 @@ from rich.markdown import Markdown
 sys.path.insert(0, str(Path(__file__).parent))
 from core import (
     console, load_processed, save_processed, load_article,
-    load_wiki_index, append_log, SOURCES_DIR, WIKI_DIR, ROOT
+    load_wiki_index, append_log, article_entries, SOURCES_DIR, WIKI_DIR, ROOT
 )
 
 
 def find_pending(limit: int = 0, reprocess: bool = False) -> list[tuple[Path, dict]]:
     """Return list of (path, article) for articles not yet ingested."""
     processed = load_processed()
+    articles = article_entries(processed)
     pending = []
     for path in sorted(SOURCES_DIR.glob("*.json")):
         article = load_article(path)
         url = article.get("url", "")
-        meta = processed.get(url, {})
+        meta = articles.get(url, {})
         if not meta.get("ingested") or reprocess:
             has_text = bool(article.get("full_text") or article.get("summary_raw"))
             if has_text:
@@ -138,11 +139,12 @@ def mark_ingested(url_or_slug: str) -> bool:
 def mark_all_ingested(limit: int = 0) -> int:
     """Mark the first `limit` pending articles as ingested (after Claude processed them)."""
     processed = load_processed()
+    articles = article_entries(processed)
     pending = find_pending(limit=limit)
     count = 0
     for _, article in pending:
         url = article.get("url", "")
-        if url in processed:
+        if url in articles:
             processed[url]["ingested"] = True
             processed[url]["ingested_at"] = datetime.now().isoformat()
             count += 1

@@ -131,8 +131,10 @@ def stats():
     from core import load_processed, WIKI_DIR, SOURCES_DIR
 
     processed = load_processed()
-    total_articles = len(processed)
-    ingested = sum(1 for v in processed.values() if v.get("ingested"))
+    # Filter out internal metadata keys (prefixed with _)
+    articles = {k: v for k, v in processed.items() if not k.startswith("_") and isinstance(v, dict)}
+    total_articles = len(articles)
+    ingested = sum(1 for v in articles.values() if v.get("ingested"))
     pending = total_articles - ingested
 
     wiki_pages = list((WIKI_DIR).rglob("*.md"))
@@ -142,7 +144,7 @@ def stats():
 
     # Source breakdown
     sources: dict[str, int] = {}
-    for meta in processed.values():
+    for meta in articles.values():
         src = meta.get("source", "unknown")
         sources[src] = sources.get(src, 0) + 1
 

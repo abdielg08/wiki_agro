@@ -25,11 +25,16 @@ def load_config() -> dict:
 
 
 def load_processed() -> dict:
-    """Return dict of url -> metadata for processed articles."""
+    """Return dict of url -> metadata for processed articles (including _meta keys)."""
     if PROCESSED_FILE.exists():
         with open(PROCESSED_FILE) as f:
             return json.load(f)
     return {}
+
+
+def article_entries(processed: dict) -> dict:
+    """Return only the URL→metadata entries, excluding internal _meta keys."""
+    return {k: v for k, v in processed.items() if not k.startswith("_") and isinstance(v, dict)}
 
 
 def save_processed(processed: dict) -> None:
