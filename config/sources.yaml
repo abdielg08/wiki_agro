@@ -1,5 +1,5 @@
 # Fuentes de noticias agropecuarias para Panamá
-# Niveles de confianza: 1=oficial, 2=internacional, 3=nacional, 4=internacional_cobertura
+# trust_level: 1=oficial, 2=internacional, 3=nacional, 4=internacional_cobertura
 
 sources:
 
@@ -8,7 +8,6 @@ sources:
       full_name: "Ministerio de Desarrollo Agropecuario de Panamá"
       url: "https://www.mida.gob.pa"
       rss: null
-      news_path: "/noticias"
       trust_level: 1
       language: "es"
       country: "PA"
@@ -17,7 +16,6 @@ sources:
       full_name: "Instituto de Investigación Agropecuaria de Panamá"
       url: "https://www.idiap.gob.pa"
       rss: null
-      news_path: "/noticias"
       trust_level: 1
       language: "es"
       country: "PA"
@@ -25,6 +23,14 @@ sources:
     - name: "BDA"
       full_name: "Banco de Desarrollo Agropecuario"
       url: "https://www.bda.gob.pa"
+      rss: null
+      trust_level: 1
+      language: "es"
+      country: "PA"
+
+    - name: "Contraloria"
+      full_name: "Contraloría General de la República de Panamá"
+      url: "https://www.contraloria.gob.pa"
       rss: null
       trust_level: 1
       language: "es"
@@ -38,27 +44,83 @@ sources:
       trust_level: 2
       language: "es"
       country: "INT"
-      query_params:
-        country_filter: "panama"
+      search_filter: "panama"
+
+    - name: "OIRSA"
+      full_name: "Organismo Internacional Regional de Sanidad Agropecuaria"
+      url: "https://www.oirsa.org"
+      rss: null
+      scrape_url: "https://www.oirsa.org/contenido/news"
+      trust_level: 2
+      language: "es"
+      country: "INT"
+      # Alerta fitosanitaria y zoosanitaria en Centroamérica y el Caribe
+
+    - name: "FAO_Panama"
+      full_name: "FAO — Oficina Subregional para Mesoamérica"
+      url: "https://www.fao.org/mesoamerica/es/"
+      rss: "https://www.fao.org/mesoamerica/es/rss/noticias.xml"
+      trust_level: 2
+      language: "es"
+      country: "INT"
 
     - name: "FAO_LAC"
       full_name: "FAO América Latina y el Caribe"
       url: "https://www.fao.org/americas/es/"
+      rss: "https://www.fao.org/americas/noticias/es/rss"
+      trust_level: 2
+      language: "es"
+      country: "INT"
+
+    - name: "BancoMundial"
+      full_name: "Banco Mundial — Panamá"
+      url: "https://www.bancomundial.org/es/country/panama"
+      rss: null
+      # Uses World Bank API: https://search.worldbank.org/api/v2/news
+      api_url: "https://search.worldbank.org/api/v2/news"
+      api_params:
+        qterm: "panama agricultura agropecuario"
+        lang_exact: "Spanish"
+        format: "json"
+        rows: 50
+      trust_level: 2
+      language: "es"
+      country: "INT"
+
+    - name: "BID"
+      full_name: "Banco Interamericano de Desarrollo — Panamá"
+      url: "https://www.iadb.org/es/pais/panama"
       rss: null
       trust_level: 2
       language: "es"
       country: "INT"
 
+    - name: "CEPAL"
+      full_name: "Comisión Económica para América Latina y el Caribe"
+      url: "https://www.cepal.org/es/areas-de-trabajo/agricultura"
+      rss: "https://www.cepal.org/cgi-bin/getRSSAll.asp?lang=es&tipo=Noticias"
+      trust_level: 2
+      language: "es"
+      country: "INT"
+
   national_media:
-    - name: "La Prensa"
-      full_name: "La Prensa de Panamá"
+    - name: "LaPrensaEco"
+      full_name: "La Prensa — Economía y Agropecuario"
+      url: "https://www.prensa.com"
+      rss: "https://www.prensa.com/economia/feed/"
+      trust_level: 3
+      language: "es"
+      country: "PA"
+
+    - name: "LaPrensaGeneral"
+      full_name: "La Prensa de Panamá — General"
       url: "https://www.prensa.com"
       rss: "https://www.prensa.com/feed/"
       trust_level: 3
       language: "es"
       country: "PA"
 
-    - name: "Panama America"
+    - name: "PanamaAmerica"
       full_name: "Panamá América"
       url: "https://www.panamaamerica.com.pa"
       rss: "https://www.panamaamerica.com.pa/feed"
@@ -66,7 +128,7 @@ sources:
       language: "es"
       country: "PA"
 
-    - name: "TVN Noticias"
+    - name: "TVNNoticias"
       full_name: "TVN-2 Noticias"
       url: "https://www.tvn-2.com"
       rss: "https://www.tvn-2.com/feed"
@@ -74,7 +136,7 @@ sources:
       language: "es"
       country: "PA"
 
-    - name: "La Estrella"
+    - name: "LaEstrella"
       full_name: "La Estrella de Panamá"
       url: "https://www.laestrella.com.pa"
       rss: "https://www.laestrella.com.pa/feed"
@@ -82,16 +144,58 @@ sources:
       language: "es"
       country: "PA"
 
-    - name: "El Siglo"
-      full_name: "El Siglo Panamá"
-      url: "https://www.elsiglo.com.pa"
-      rss: null
+    - name: "ElCapital"
+      full_name: "El Capital Financiero"
+      url: "https://elcapitalfinanciero.com"
+      rss: "https://elcapitalfinanciero.com/feed/"
       trust_level: 3
       language: "es"
       country: "PA"
 
+# Búsquedas web dirigidas (DuckDuckGo, sin API key)
+# Usadas para obtener artículos de sitios sin RSS público
+web_searches:
+  - name: "prensa_agro"
+    site: "prensa.com"
+    query: "agropecuario OR agricultura OR ganadería OR MIDA OR cosecha Panamá"
+    max_results: 20
+
+  - name: "oirsa_alertas"
+    site: "oirsa.org"
+    query: "Panamá sanidad animal vegetal alerta"
+    max_results: 15
+
+  - name: "mida_noticias"
+    site: "mida.gob.pa"
+    query: "producción agrícola cosecha productores"
+    max_results: 15
+
+  - name: "idiap_investigacion"
+    site: "idiap.gob.pa"
+    query: "variedad semilla investigación agropecuaria"
+    max_results: 10
+
+  - name: "bda_credito"
+    site: "bda.gob.pa"
+    query: "crédito préstamo agricultores financiamiento"
+    max_results: 10
+
+  - name: "fao_panama"
+    site: "fao.org"
+    query: "Panama alimentación agricultura seguridad alimentaria"
+    max_results: 15
+
+  - name: "banco_mundial_pa"
+    site: "bancomundial.org"
+    query: "Panama agricultura desarrollo rural"
+    max_results: 10
+
+  - name: "iica_panama"
+    site: "iica.int"
+    query: "Panamá agropecuario cooperación técnica"
+    max_results: 15
+
 # Términos de búsqueda para filtrar noticias agrícolas
-# Se usarán como filtros en RSS y búsquedas GDELT
 search_terms:
   primary:
     - "agropecuario"
@@ -106,7 +210,6 @@ search_terms:
     - "plátano"
     - "ganadero"
     - "agricultor"
-    - "campo"
     - "producción agrícola"
     - "seguridad alimentaria"
     - "precios agropecuarios"
@@ -121,8 +224,17 @@ search_terms:
     - "IDIAP"
     - "BDA"
     - "ANAGAN"
+    - "OIRSA"
+    - "sanidad animal"
+    - "sanidad vegetal"
+    - "gusano cogollero"
+    - "Sigatoka"
+    - "Fusarium"
+    - "riego"
+    - "semillas"
 
 # Configuración de GDELT (base de datos global de noticias, gratuita)
+# Usado principalmente para el crawl histórico inicial
 gdelt:
   api_url: "https://api.gdeltproject.org/api/v2/doc/doc"
   max_records: 250
@@ -132,7 +244,7 @@ gdelt:
     start: "2015-01-01"
     end: "2025-12-31"
 
-# Configuración de años a cubrir
+# Años de cobertura objetivo
 coverage:
   start_year: 2015
   end_year: 2025

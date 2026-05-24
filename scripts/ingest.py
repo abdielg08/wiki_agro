@@ -135,9 +135,28 @@ Retorna un objeto JSON con exactamente esta estructura:
 """
 
 
-def call_claude_ingest(client: anthropic.Anthropic, article: dict, wiki_context: str, claude_md: str) -> dict | None:
+def _try_download_text(article: dict, path: Path) -> dict:
+    """Download full text on the fly if article only has a title (e.g. GDELT)."""
+    from fetch_news import extract_full_text
+    import time
+    console.print("  [dim]Descargando texto completo...[/dim]")
+    text = extract_full_text(article["url"])
+    if text:
+        article["full_text"] = text
+        # Persist so we don't re-download
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(article, f, ensure_ascii=False, indent=2)
+    time.sleep(1.5)
+    return article
+
+
+def call_claude_ingest(client: anthropic.Anthropic, article: dict, wiki_context: str, claude_md: str, path: Path = None) -> dict | None:
     """Call Claude to extract knowledge from article. Returns parsed JSON or None."""
     text = article.get("full_text") or article.get("summary_raw") or ""
+    # For GDELT articles with only a title, try to fetch the full text
+    if not text.strip() and path is not None:
+        article = _try_download_text(article, path)
+        text = article.get("full_text") or ""
     if not text.strip():
         return None
 
@@ -222,7 +241,7 @@ def ingest_article(path: Path, client: anthropic.Anthropic, claude_md: str, proc
     keywords = title.lower().split()[:5]
     wiki_ctx = load_relevant_wiki_pages(keywords, [])
 
-    result = call_claude_ingest(client, article, wiki_ctx, claude_md)
+    result = call_claude_ingest(client, article, wiki_ctx, claude_md, path=path)
     if result is None:
         console.print("  [yellow]Skipped (no result)[/yellow]")
         return False

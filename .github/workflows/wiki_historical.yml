@@ -1,0 +1,81 @@
+name: Wiki Agropecuario — Crawl Histórico 2015–2025
+
+# Solo ejecución manual — proceso de una sola vez para poblar el wiki
+# con 10 años de noticias agropecuarias de Panamá via GDELT
+on:
+  workflow_dispatch:
+    inputs:
+      gdelt_limit:
+        description: "Artículos GDELT a descargar (0 = todos, ~8000 artículos, 6+ horas)"
+        default: "2000"
+        required: false
+      ingest_limit:
+        description: "Artículos a ingestar con Claude después del crawl (0 = ninguno)"
+        default: "50"
+        required: false
+
+concurrency:
+  group: wiki-historical
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  historical-crawl:
+    name: "Crawl Histórico GDELT 2015–2025"
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - run: pip install -r requirements.txt
+
+      # GDELT cubre ventanas trimestrales: 2015-Q1 hasta 2025-Q4
+      # Las ventanas ya descargadas se saltan automáticamente
+      - name: GDELT — crawl histórico 2015–2025
+        run: |
+          python wiki_agro.py fetch \
+            --mode gdelt \
+            --limit "${{ github.event.inputs.gdelt_limit || '2000' }}" \
+            --no-text
+        continue-on-error: true
+
+      - name: World Bank — proyectos y noticias históricas
+        run: python wiki_agro.py fetch --mode worldbank --no-text
+        continue-on-error: true
+
+      - name: Estadísticas después del crawl
+        run: python wiki_agro.py stats
+
+      # Ingest opcional para arrancar el wiki con contenido
+      - name: Ingest — procesar artículos con Claude
+        if: ${{ github.event.inputs.ingest_limit != '0' }}
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          python wiki_agro.py ingest \
+            --limit "${{ github.event.inputs.ingest_limit }}"
+
+      - name: Commit y push
+        run: |
+          git config user.name "wiki-agro-bot"
+          git config user.email "wiki-agro-bot@users.noreply.github.com"
+          git add sources/ wiki/
+          if ! git diff --staged --quiet; then
+            ARTICLES=$(git diff --staged --name-only | grep "sources/articles" | wc -l)
+            PAGES=$(git diff --staged --name-only | grep "^wiki/" | wc -l)
+            git commit -m "chore(wiki): crawl histórico — ${ARTICLES} artículos, ${PAGES} páginas wiki [skip ci]"
+            git push
+          else
+            echo "ℹ Sin cambios"
+          fi

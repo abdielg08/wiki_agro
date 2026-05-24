@@ -44,8 +44,12 @@ def cli():
 
 
 @cli.command()
-@click.option("--mode", default="all", type=click.Choice(["rss", "gdelt", "all"]),
-              help="Fuente de noticias: rss (reciente), gdelt (histórico 2015-2025), all (ambas)")
+@click.option("--mode", default="daily",
+              type=click.Choice(["daily", "rss", "web", "gdelt", "worldbank", "all"]),
+              help=(
+                  "daily=RSS+web (rutina diaria), rss=solo RSS, web=solo DDG, "
+                  "gdelt=crawl histórico 2015-2025, worldbank=Banco Mundial, all=todo"
+              ))
 @click.option("--limit", default=0, type=int, help="Máximo de artículos a guardar (0=ilimitado)")
 @click.option("--no-text", is_flag=True, default=False, help="No descargar texto completo")
 def fetch(mode, limit, no_text):
