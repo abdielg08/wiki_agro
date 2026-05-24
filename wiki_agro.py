@@ -104,18 +104,58 @@ def fetch_historical(years, mode, domain, limit):
 
 @cli.command()
 @click.option("--limit", default=5, type=int,
-              help="Artículos a preparar por sesión (recomendado: 5-10 para no saturar contexto)")
+              help="Artículos a preparar por sesión (recomendado: 5-10)")
 @click.option("--reprocess", is_flag=True, default=False,
               help="Incluir artículos ya ingestados")
-def ingest(limit, reprocess):
+@click.option("--strategy", default="score",
+              type=click.Choice(["score", "recent", "oldest", "source"]),
+              help="Orden de prioridad: score=más relevante, recent=más nuevo, oldest=más antiguo")
+@click.option("--year", default=None,
+              help="Filtrar por año o rango: 2020 o 2018-2021")
+@click.option("--source", default=None,
+              help="Filtrar por fuente: MIDA, LaPrensaEco, FAO, etc.")
+def ingest(limit, reprocess, strategy, year, source):
     """
-    Preparar artículos para que Claude Code los ingesteal wiki (sin API key).
+    Preparar artículos para que Claude Code los ingeste al wiki (sin API key).
 
-    Genera pending_ingest.md con los artículos a procesar.
-    Claude Code lee ese archivo y actualiza el wiki directamente.
+    Selecciona los artículos más valiosos primero (por score de relevancia).
+    Genera pending_ingest.md con el lote a procesar.
+
+    Ejemplos:
+      wiki_agro.py ingest --limit 5               # top 5 por score
+      wiki_agro.py ingest --strategy oldest        # llenar el historial
+      wiki_agro.py ingest --year 2020              # solo artículos de 2020
+      wiki_agro.py ingest --source MIDA --limit 3  # solo artículos del MIDA
     """
     from ingest import run_prepare
-    run_prepare(limit=limit, reprocess=reprocess)
+    run_prepare(limit=limit, reprocess=reprocess, strategy=strategy,
+                year_filter=year, source_filter=source)
+
+
+@cli.command()
+@click.option("--top", default=20, type=int, help="Mostrar top N artículos")
+@click.option("--year", default=None, help="Filtrar por año o rango: 2020 o 2018-2021")
+@click.option("--source", default=None, help="Filtrar por fuente")
+def queue(top, year, source):
+    """
+    Ver el estado de la cola de ingesta: qué hay pendiente y por qué prioridad.
+
+    Muestra distribución por fuente, año y top artículos por score de relevancia.
+    """
+    from ingest import find_pending
+    from prioritize import prioritize, print_priority_report
+
+    all_pending = find_pending(limit=0)
+    if not all_pending:
+        console.print("[bold green]✓ Cola vacía — todos los artículos han sido ingestados.[/bold green]")
+        return
+    # Apply filters for report
+    filtered = [(p, a) for p, a in all_pending
+                if (not year or a.get("date", "")[:4] == year[:4] if year and "-" not in year
+                    else not year or (len(year) == 9 and
+                                      int(year[:4]) <= int(a.get("date","9999")[:4]) <= int(year[5:])))
+                and (not source or a.get("source") == source)]
+    print_priority_report(filtered if (year or source) else all_pending, top_n=top)
 
 
 @cli.command("mark-ingested")

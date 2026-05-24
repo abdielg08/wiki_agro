@@ -60,12 +60,28 @@ def format_article_for_claude(path: Path, article: dict, index: int, total: int)
     )
 
 
-def run_prepare(limit: int = 5, reprocess: bool = False) -> int:
+def run_prepare(
+    limit: int = 5,
+    reprocess: bool = False,
+    strategy: str = "score",
+    year_filter: str | None = None,
+    source_filter: str | None = None,
+) -> int:
     """
     Print a structured prompt for Claude Code to process pending articles.
+    Selects articles by priority (highest score first by default).
     Returns number of articles ready to process.
     """
-    pending = find_pending(limit=limit, reprocess=reprocess)
+    from prioritize import prioritize
+
+    all_pending = find_pending(limit=0, reprocess=reprocess)
+    scored = prioritize(
+        all_pending,
+        strategy=strategy,
+        year_filter=year_filter,
+        source_filter=source_filter,
+    )
+    pending = [(path, article) for path, article, _ in scored[:limit]]
 
     if not pending:
         console.print("[bold green]✓ No hay artículos pendientes de ingesta.[/bold green]")
