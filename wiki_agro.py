@@ -64,6 +64,44 @@ def fetch(mode, limit, no_text):
     console.print(f"\n[bold green]✓ {saved} artículos guardados[/bold green]")
 
 
+@cli.command("fetch-historical")
+@click.option("--years", default="2010-2025",
+              help="Rango de años: 2010-2025, 2015-2020, etc.")
+@click.option("--mode", default="all",
+              type=click.Choice(["all", "gdelt", "cdx", "sitemap", "fao", "worldbank"]),
+              help="gdelt=GDELT API, cdx=Wayback Machine, sitemap=WordPress sitemaps, fao=FAO docs, worldbank=BM proyectos")
+@click.option("--domain", default=None,
+              help="Restringir CDX/sitemap a un dominio, e.g. www.prensa.com")
+@click.option("--limit", default=0, type=int,
+              help="Máximo artículos a guardar (0=sin límite)")
+def fetch_historical(years, mode, domain, limit):
+    """
+    Crawl histórico masivo — 15 años de noticias agropecuarias de Panamá.
+
+    Fuentes: GDELT (2011+), Wayback Machine CDX, Sitemaps WordPress,
+    FAO OpenKnowledge, World Bank Projects API.
+
+    Ejemplos:
+      python wiki_agro.py fetch-historical --years 2010-2025
+      python wiki_agro.py fetch-historical --years 2015-2020 --mode gdelt --limit 500
+      python wiki_agro.py fetch-historical --mode cdx --domain www.prensa.com --years 2010-2024
+      python wiki_agro.py fetch-historical --mode sitemap --domain www.tvn-2.com
+    """
+    from fetch_historical import run_historical_fetch
+    try:
+        start_y, end_y = (int(y) for y in years.split("-"))
+    except ValueError:
+        console.print("[red]Error: formato de años debe ser YYYY-YYYY, e.g. 2010-2025[/red]")
+        return
+    console.print(Panel(
+        f"Años: [bold]{start_y}–{end_y}[/bold] | Modo: [bold]{mode}[/bold] | "
+        f"Dominio: {domain or 'todos'} | Límite: {'∞' if not limit else limit}",
+        title="[bold cyan]Fetch Histórico — 15 Años[/bold cyan]",
+    ))
+    saved = run_historical_fetch(start_y, end_y, mode=mode, domain=domain, limit=limit)
+    console.print(f"\n[bold green]✓ {saved} artículos históricos guardados[/bold green]")
+
+
 @cli.command()
 @click.option("--limit", default=5, type=int,
               help="Artículos a preparar por sesión (recomendado: 5-10 para no saturar contexto)")
