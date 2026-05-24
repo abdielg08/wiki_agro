@@ -27,7 +27,7 @@ article_count: 0
 | Página | Descripción |
 |--------|-------------|
 | [arroz.md](topics/arroz.md) | Producción, precios, variedades y retos del arroz panameño |
-| [maiz.md](topics/maiz.md) | Maíz: producción, subsidios, mercado interno |
+| [maiz.md](topics/maiz.md) | Maíz: producción, gusano cogollero 2018, manejo integrado de plagas |
 | [platano_banano.md](topics/platano_banano.md) | Exportaciones, plagas (Sigatoka, Fusarium TR4) |
 | [cafe_cacao.md](topics/cafe_cacao.md) | Café de altura Chiriquí, cacao fino de aroma |
 | [cana_azucar.md](topics/cana_azucar.md) | Ingenios azucareros, producción nacional |
@@ -48,7 +48,7 @@ article_count: 0
 | [seguridad_alimentaria.md](topics/seguridad_alimentaria.md) | Autoabastecimiento, pobreza rural, déficit |
 | [plagas_enfermedades.md](topics/plagas_enfermedades.md) | Gusano cogollero, roya del café, enfermedades |
 | [precios_mercados.md](topics/precios_mercados.md) | Volatilidad de precios, importaciones vs. producción local |
-| [credito_financiamiento.md](topics/credito_financiamiento.md) | BDA, crédito agrícola, seguros, acceso a capital |
+| [credito_financiamiento.md](topics/credito_financiamiento.md) | BDA, crédito agrícola, récord B/. 320M pandemia, digitalización |
 | [tecnologia_innovacion.md](topics/tecnologia_innovacion.md) | Agricultura de precisión, semillas mejoradas, IDIAP |
 | [agua_riego.md](topics/agua_riego.md) | Sistemas de riego, gestión hídrica, sequía |
 | [comercio_exterior.md](topics/comercio_exterior.md) | TLC, exportaciones, competitividad |
@@ -56,7 +56,7 @@ article_count: 0
 ### Políticas y Gobernanza
 | Página | Descripción |
 |--------|-------------|
-| [politicas_agropecuarias.md](topics/politicas_agropecuarias.md) | Leyes, planes de gobierno, presupuesto |
+| [politicas_agropecuarias.md](topics/politicas_agropecuarias.md) | Leyes, Plan Mulino B/. 850M 2024-2029, planes de gobierno |
 | [subsidios_programas.md](topics/subsidios_programas.md) | Plan de Semillas, Agroalimentos, programas de apoyo |
 
 ### Regiones Agrícolas
@@ -90,8 +90,15 @@ article_count: 0
 
 ## Artículos procesados
 
-*(Se agregarán automáticamente durante la ingesta)*
+| Fecha | Fuente | Título | Resumen |
+|-------|--------|--------|---------|
+| 2023-09-15 | MIDA | [Producción arroz cae 18%](summaries/20230915_mida_produccion-arroz-panama-2023.md) | 230K TM vs 280K; El Niño + costos |
+| 2018-06-20 | La Prensa | [Crisis gusano cogollero 2018](summaries/20180620_laprensaeco_gusano-cogollero-crisis-maiz-2018.md) | B/. 15M pérdidas, 35K ha afectadas |
+| 2016-03-01 | TVN | [Sequía El Niño 2015-2016 Azuero](summaries/20160301_tvnnoticias_sequia-azuero-nino-2015-2016.md) | B/. 80M pérdidas, 15K bovinos muertos |
+| 2022-04-10 | IICA | [Vigilancia Fusarium TR4 bananeras](summaries/20220410_iica_platano-banano-exportaciones-fusarium.md) | 56M cajas, US$ 500M en riesgo |
+| 2021-08-15 | BDA | [Crédito pandemia 2020-2021](summaries/20210815_bda_credito-agropecuario-pandemia-2020-2021.md) | B/. 320M, 28K productores |
+| 2024-03-05 | MIDA | [Plan Agropecuario Mulino 2024-2029](summaries/20240305_mida_politica-agropecuaria-mulino-2024.md) | B/. 850M, meta 80% autoabastecimiento |
 
 ---
 
-*Última actualización del índice: 2025-05-24*
+*Última actualización del índice: 2026-05-24*

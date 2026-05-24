@@ -45,5 +45,59 @@
     "20190926_20191225",
     "20170928_20171227",
     "20170629_20170927"
-  ]
+  ],
+  "https://www.tvn-2.com/nacionales/sequia-azuero-el-nino-2015-2016": {
+    "saved_at": "2026-05-24T22:49:18.237842",
+    "path": "sources/articles/20160301_tvnnoticias_sequia-azuero-nino-2015-2016.json",
+    "title": "Sequía histórica por El Niño 2015-2016 deja pérdidas de B/. 80 millones en Azuero",
+    "date": "2016-03-01",
+    "source": "TVNNoticias",
+    "ingested": true,
+    "ingested_at": "2026-05-24T22:58:38.470092"
+  },
+  "https://www.prensa.com/economia/gusano-cogollero-crisis-maiz-panama-2018": {
+    "saved_at": "2026-05-24T22:49:18.237913",
+    "path": "sources/articles/20180620_laprensaeco_gusano-cogollero-crisis-maiz-2018.json",
+    "title": "Gusano cogollero devasta cultivos de maíz en Panamá: pérdidas superan los B/. 15 millones",
+    "date": "2018-06-20",
+    "source": "LaPrensaEco",
+    "ingested": true,
+    "ingested_at": "2026-05-24T22:58:38.470101"
+  },
+  "https://www.bda.gob.pa/noticias/credito-agropecuario-pandemia-resultados-2021": {
+    "saved_at": "2026-05-24T22:49:18.237957",
+    "path": "sources/articles/20210815_bda_credito-agropecuario-pandemia-2020-2021.json",
+    "title": "BDA desembolsó B/. 320 millones en crédito agropecuario durante la pandemia 2020-2021",
+    "date": "2021-08-15",
+    "source": "BDA",
+    "ingested": true,
+    "ingested_at": "2026-05-24T22:58:38.470103"
+  },
+  "https://www.iica.int/es/prensa/noticias/panama-banana-fusarium-tr4-2022": {
+    "saved_at": "2026-05-24T22:49:18.237993",
+    "path": "sources/articles/20220410_iica_platano-banano-exportaciones-fusarium.json",
+    "title": "Panamá refuerza vigilancia fitosanitaria ante amenaza del Fusarium TR4 en plantaciones bananeras",
+    "date": "2022-04-10",
+    "source": "IICA",
+    "ingested": true,
+    "ingested_at": "2026-05-24T22:58:38.470105"
+  },
+  "https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023": {
+    "saved_at": "2026-05-24T22:49:18.238027",
+    "path": "sources/articles/20230915_mida_produccion-arroz-panama-2023.json",
+    "title": "Producción de arroz en Panamá cayó 18% en 2023 por sequía y altos costos",
+    "date": "2023-09-15",
+    "source": "MIDA",
+    "ingested": true,
+    "ingested_at": "2026-05-24T22:58:38.470106"
+  },
+  "https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024": {
+    "saved_at": "2026-05-24T22:49:18.238060",
+    "path": "sources/articles/20240305_mida_politica-agropecuaria-mulino-2024.json",
+    "title": "Gobierno de Mulino presenta Plan Agropecuario 2024-2029: enfoque en seguridad alimentaria y tecnificación",
+    "date": "2024-03-05",
+    "source": "MIDA",
+    "ingested": true,
+    "ingested_at": "2026-05-24T22:58:38.470108"
+  }
 }
