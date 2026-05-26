@@ -1,0 +1,83 @@
+name: Wiki Agropecuario — Crawl Histórico 15 Años
+
+# Solo ejecución manual — proceso que puede tardar horas o días
+# según el límite configurado. Las ventanas completadas se saltan
+# automáticamente en ejecuciones futuras.
+on:
+  workflow_dispatch:
+    inputs:
+      years:
+        description: "Rango de años (e.g. 2010-2025, 2015-2020)"
+        default: "2010-2025"
+        required: true
+      mode:
+        description: "Fuente de datos"
+        type: choice
+        options:
+          - all          # GDELT + CDX + Sitemaps + FAO + WorldBank
+          - gdelt        # GDELT DocSearch API (mejor cobertura general)
+          - cdx          # Wayback Machine por dominio
+          - sitemap      # Sitemaps WordPress de medios nacionales
+          - fao          # FAO OpenKnowledge documentos
+          - worldbank    # World Bank Projects API
+        default: "gdelt"
+        required: true
+      domain:
+        description: "Filtrar a un dominio específico (solo para cdx/sitemap)"
+        default: ""
+        required: false
+      limit:
+        description: "Máximo artículos a guardar (0 = sin límite)"
+        default: "2000"
+        required: false
+
+concurrency:
+  group: wiki-historical
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  historical-crawl:
+    name: "Crawl Histórico (${{ github.event.inputs.mode }} | ${{ github.event.inputs.years }})"
+    runs-on: ubuntu-latest
+    timeout-minutes: 360   # 6 horas máximo por run
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - run: pip install -r requirements.txt
+
+      - name: Crawl histórico
+        run: |
+          python wiki_agro.py fetch-historical \
+            --years "${{ github.event.inputs.years }}" \
+            --mode "${{ github.event.inputs.mode }}" \
+            ${{ github.event.inputs.domain && format('--domain "{0}"', github.event.inputs.domain) || '' }} \
+            --limit "${{ github.event.inputs.limit || '2000' }}"
+        continue-on-error: true
+
+      - name: Estadísticas finales
+        run: python wiki_agro.py stats
+
+      - name: Commit artículos descargados
+        run: |
+          git config user.name "wiki-agro-bot"
+          git config user.email "wiki-agro-bot@users.noreply.github.com"
+          git add sources/
+          if ! git diff --staged --quiet; then
+            ARTICLES=$(git diff --staged --name-only | grep "sources/articles" | wc -l)
+            git commit -m "chore(sources): crawl histórico ${{ github.event.inputs.years }} (${{ github.event.inputs.mode }}) — ${ARTICLES} artículos [skip ci]"
+            git push
+          else
+            echo "ℹ Sin artículos nuevos"
+          fi

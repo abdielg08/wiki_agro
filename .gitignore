@@ -1,0 +1,17 @@
+.env
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+.DS_Store
+
+# Archivo temporal de ingest — generado por `wiki_agro.py ingest`
+pending_ingest.md
+
+# Sources can grow large; optionally ignore for large deployments
+# sources/articles/*.json

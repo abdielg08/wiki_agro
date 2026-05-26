@@ -1,0 +1,72 @@
+name: Wiki Agropecuario — Fetch Diario
+
+# Descarga artículos nuevos todos los días.
+# El INGEST (actualizar wiki) lo hace Claude Code en sesión Pro — sin API key.
+on:
+  schedule:
+    - cron: "0 11 * * *"   # 6:00 AM hora Panamá
+  workflow_dispatch:
+    inputs:
+      fetch_limit:
+        description: "Máximo artículos a descargar (0 = sin límite)"
+        default: "150"
+        required: false
+      fetch_mode:
+        description: "Modo de descarga"
+        type: choice
+        options: [gdelt, worldbank, all]
+        default: "gdelt"
+        required: false
+
+concurrency:
+  group: wiki-fetch
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    name: "Fetch artículos → Commit a sources/"
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - run: pip install -r requirements.txt
+
+      # GDELT y WorldBank funcionan desde cloud (IPs de GitHub Actions no bloqueadas)
+      - name: Fetch artículos nuevos
+        run: |
+          python wiki_agro.py fetch \
+            --mode "${{ github.event.inputs.fetch_mode || 'gdelt' }}" \
+            --limit "${{ github.event.inputs.fetch_limit || '150' }}" \
+            --no-text
+        continue-on-error: true
+
+      - name: Estadísticas
+        run: python wiki_agro.py stats
+        continue-on-error: true
+
+      # Solo guarda sources/ — el wiki lo actualiza Claude en sesión Pro
+      - name: Commit artículos nuevos
+        run: |
+          git config user.name "wiki-agro-bot"
+          git config user.email "wiki-agro-bot@users.noreply.github.com"
+          git add sources/
+          if ! git diff --staged --quiet; then
+            ARTICLES=$(git diff --staged --name-only | grep "sources/articles" | wc -l)
+            git commit -m "chore(sources): ${ARTICLES} artículos nuevos descargados [skip ci]"
+            git push
+          else
+            echo "ℹ Sin artículos nuevos"
+          fi
