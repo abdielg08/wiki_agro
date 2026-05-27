@@ -14,8 +14,8 @@ on:
       fetch_mode:
         description: "Modo de descarga"
         type: choice
-        options: [gdelt, worldbank, all]
-        default: "gdelt"
+        options: [rss, gdelt, worldbank, all]
+        default: "rss"
         required: false
 
 concurrency:
@@ -48,7 +48,7 @@ jobs:
       - name: Fetch artículos nuevos
         run: |
           python wiki_agro.py fetch \
-            --mode "${{ github.event.inputs.fetch_mode || 'gdelt' }}" \
+            --mode "${{ github.event.inputs.fetch_mode || 'rss' }}" \
             --limit "${{ github.event.inputs.fetch_limit || '150' }}" \
             --no-text
         continue-on-error: true
