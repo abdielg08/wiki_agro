@@ -42,3 +42,9 @@ INGEST: 6 artículos semilla procesados (sesión Claude Code — metodología Ka
 
 ## 2026-05-24 22:58
 INGEST: 6 artículos marcados como ingestados por sesión Claude Code
+
+## 2026-05-27 00:00
+MAINTENANCE: Verificación automática de artículos pendientes
+  Sin artículos pendientes — 6/6 artículos ya ingestados
+  Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
+  Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
