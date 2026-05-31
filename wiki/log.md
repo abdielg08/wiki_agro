@@ -48,3 +48,18 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-05-31 00:00
+INGEST: 3 artículos evaluados — RECHAZADOS (fuera de dominio)
+  Motivo: Los 3 artículos corresponden a Malaysia's MIDA (Malaysian Investment Development Authority),
+    no al MIDA de Panamá (Ministerio de Desarrollo Agropecuario). Fueron scraped erróneamente
+    por coincidencia del acrónimo "MIDA". Fuente real: thestar.com.my (Malasia), no prensa.com (Panamá).
+  Artículos descartados:
+    - 20260422_prensacom: "Malaysia should reform, recalibrate response to global changes" [thestar.com.my]
+    - 20260113_prensacom: "MIDA sees broader investment pipeline beyond data centres in 2026" [thestar.com.my]
+    - 20251203_prensacom: "Mida welcomes Tengku Zafrul's appointment as chairman" [thestar.com.my]
+  Acción: Marcados como ingestados para limpiar la cola; sin páginas wiki creadas.
+  Estado wiki: 19 páginas (8 topics, 3 entities, 6 summaries, 2 overview) — sin cambios.
+
+## 2026-05-31 08:02
+INGEST: 3 artículos marcados como ingestados por sesión Claude Code
