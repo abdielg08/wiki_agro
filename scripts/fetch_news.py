@@ -228,10 +228,15 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
             console.print(f"  [yellow]DDG error: {e}[/yellow]")
             return
 
+    skipped_domain = 0
     for r in results:
         url = r.get("url") or r.get("href", "")
         title = r.get("title", "")
         if not url or not title:
+            continue
+        # DDG ignores site: operator occasionally — enforce the domain ourselves
+        if site and site not in url:
+            skipped_domain += 1
             continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
@@ -254,6 +259,8 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
             "summary_raw": body[:1000],
             "full_text": None,
         }
+    if skipped_domain:
+        console.print(f"    [dim]→ {skipped_domain} resultado(s) descartado(s) por dominio incorrecto[/dim]")
     time.sleep(REQUEST_DELAY)
 
 
@@ -453,12 +460,38 @@ def run_fetch(
     processed = load_processed()
     saved = 0
 
+    # Build a set of allowed source domains from the config for fast lookup
+    _allowed_domains: set[str] = set()
+    for group in config.get("sources", {}).values():
+        for src in group:
+            src_url = src.get("url", "")
+            if src_url:
+                from urllib.parse import urlparse
+                host = urlparse(src_url).netloc.lstrip("www.")
+                if host:
+                    _allowed_domains.add(host)
+    for ws in config.get("web_searches", []):
+        if ws.get("site"):
+            _allowed_domains.add(ws["site"].lstrip("www."))
+
+    def _domain_allowed(url: str) -> bool:
+        """Return True if the URL's domain is in the configured sources list."""
+        if not _allowed_domains:
+            return True
+        from urllib.parse import urlparse
+        host = urlparse(url).netloc.lstrip("www.")
+        return any(host == d or host.endswith("." + d) for d in _allowed_domains)
+
     def _save(art: dict) -> bool:
         nonlocal saved
         url = art.get("url", "")
         if not url:
             return False
         if skip_duplicates and url in processed:
+            return False
+        # Reject articles whose URL domain is not in the configured source list
+        if not _domain_allowed(url):
+            console.print(f"  [dim]Skip (dominio no autorizado): {url[:70]}[/dim]")
             return False
         if extract_text and not art.get("full_text"):
             art = enrich_with_fulltext(art)
