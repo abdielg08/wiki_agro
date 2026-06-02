@@ -48,3 +48,17 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-02 00:00
+INGEST: 3 artículos revisados — descartados por irrelevancia geográfica
+  Artículos descartados (no corresponden al sector agropecuario panameño):
+    - 20260422_prensacom_malaysia-should-reform-recalibrate → MIDA = Malaysian Investment Development Authority (Malasia), no Panamá
+    - 20260113_prensacom_mida-sees-broader-investment-pipeline → MIDA Malasia, inversiones tecnológicas y centros de datos
+    - 20251203_prensacom_mida-welcomes-tengku-zafrul → MIDA Malasia, nombramiento directivo
+  Diagnóstico: el scraper descargó artículos de thestar.com.my (Malasia) al detectar la sigla "MIDA",
+    confundiéndola con el Ministerio de Desarrollo Agropecuario de Panamá.
+  Acción: marcados como ingestados sin crear páginas wiki; no aplican al ámbito de este wiki.
+  Estado del wiki: sin cambios — 19 páginas, 6 resúmenes, 6 artículos válidos procesados.
+
+## 2026-06-02 09:10
+INGEST: 3 artículos marcados como ingestados por sesión Claude Code
