@@ -48,3 +48,18 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-03 00:00
+INGEST: 3 artículos examinados — rechazados por irrelevancia temática
+  Los 3 artículos pendientes provenían de prensa.com pero tratan sobre la
+  MIDA de Malasia (Malaysian Investment Development Authority), no sobre el
+  sector agropecuario de Panamá. No se crearon páginas wiki.
+  Artículos descartados:
+    - 20260422_prensacom: "Malaysia should reform..." (thestar.com.my, 2026-04-22)
+    - 20260113_prensacom: "MIDA sees broader investment pipeline..." (thestar.com.my, 2026-01-13)
+    - 20251203_prensacom: "Mida welcomes Tengku Zafrul's appointment..." (thestar.com.my, 2025-12-03)
+  Acción: marcados como ingestados para limpiar la cola; sin cambios al wiki.
+  Recomendación: revisar filtros del scraper para excluir contenido de thestar.com.my.
+
+## 2026-06-03 08:02
+INGEST: 3 artículos marcados como ingestados por sesión Claude Code
