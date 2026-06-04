@@ -48,3 +48,15 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-04 00:00
+INGEST: 3 artículos procesados — FALSOS POSITIVOS (MIDA Malasia ≠ MIDA Panamá)
+  Artículos marcados como ingestados sin actualizar topics/entities:
+    - 20251203_prensacom_malaysia-mida-chairman-2025 → summary creado (fuera de alcance)
+    - 20260113_prensacom_malaysia-mida-investment-2026 → summary creado (fuera de alcance)
+    - 20260422_prensacom_malaysia-mida-reform-2026 → summary creado (fuera de alcance)
+  Causa: el scraper capturó artículos de thestar.com.my sobre la Malaysian Investment
+         Development Authority (sigla "MIDA"), confundiéndola con el MIDA panameño.
+  Acción recomendada: ajustar filtro de fuentes para excluir thestar.com.my o
+                      requerir geocontexto "Panamá" en artículos con sigla "MIDA".
+  Total páginas wiki: 22 (8 topics, 3 entities, 9 summaries, 2 overview)

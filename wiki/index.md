@@ -98,7 +98,10 @@ article_count: 0
 | 2022-04-10 | IICA | [Vigilancia Fusarium TR4 bananeras](summaries/20220410_iica_platano-banano-exportaciones-fusarium.md) | 56M cajas, US$ 500M en riesgo |
 | 2021-08-15 | BDA | [Crédito pandemia 2020-2021](summaries/20210815_bda_credito-agropecuario-pandemia-2020-2021.md) | B/. 320M, 28K productores |
 | 2024-03-05 | MIDA | [Plan Agropecuario Mulino 2024-2029](summaries/20240305_mida_politica-agropecuaria-mulino-2024.md) | B/. 850M, meta 80% autoabastecimiento |
+| 2025-12-03 | prensa.com | [MIDA Malasia — nuevo presidente (fuera de alcance)](summaries/20251203_prensacom_malaysia-mida-chairman-2025.md) | Falso positivo: MIDA Malasia, no Panamá |
+| 2026-01-13 | prensa.com | [MIDA Malasia — inversiones 2026 (fuera de alcance)](summaries/20260113_prensacom_malaysia-mida-investment-2026.md) | Falso positivo: MIDA Malasia, no Panamá |
+| 2026-04-22 | prensa.com | [MIDA Malasia — reforma comercial (fuera de alcance)](summaries/20260422_prensacom_malaysia-mida-reform-2026.md) | Falso positivo: MIDA Malasia, no Panamá |
 
 ---
 
-*Última actualización del índice: 2026-05-24*
+*Última actualización del índice: 2026-06-04*
