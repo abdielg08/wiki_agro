@@ -123,5 +123,13 @@
     "date": "2026-04-22",
     "source": "prensa.com",
     "ingested": false
+  },
+  "https://www.fox13now.com/news/local-news/box-elder-county/mida-violated-state-law-in-approval-process-of-box-elder-county-data-center-group-claims": {
+    "saved_at": "2026-06-04T13:54:27.115663",
+    "path": "/home/runner/work/wiki_agro/wiki_agro/sources/articles/20260526_prensacom_news-local-news-box-elder-county-mida-violated-state-law-in.json",
+    "title": "MIDA violated state law in approval process of Box Elder County data center, group claims",
+    "date": "2026-05-26",
+    "source": "prensa.com",
+    "ingested": false
   }
 }
