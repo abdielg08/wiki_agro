@@ -48,3 +48,22 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-06 00:00
+INGEST: 4 artículos evaluados — RECHAZADOS por irrelevancia temática
+  Motivo: Los 4 artículos de fuente "prensa.com" hacen referencia a "MIDA" pero corresponden
+  a la Malaysian Investment Development Authority (Malasia) y a una entidad regulatoria de
+  Utah (EE.UU.), no al Ministerio de Desarrollo Agropecuario de Panamá.
+  Contenido fuera de alcance: política de inversiones de Malasia, centros de datos en EE.UU.
+  Acción: artículos marcados como ingestados sin crear páginas wiki; no contaminan el corpus.
+  Artículos descartados:
+    - 20260526_prensacom_news-local-news-box-elder-county-mida-violated-state-law (Utah, EE.UU.)
+    - 20260422_prensacom_malaysia-should-reform-recalibrate (Tengku Zafrul, MIDA Malasia)
+    - 20260113_prensacom_mida-sees-broader-investment-pipeline (MIDA Malasia, inversiones 2026)
+    - 20251203_prensacom_mida-welcomes-tengku-zafrul-appointment (MIDA Malasia, nombramientos)
+  Recomendación: revisar los criterios de recolección de fuentes en el scraper para
+  filtrar por geolocalización (Panamá) y sector (agropecuario) antes de encolar artículos.
+  Total páginas wiki sin cambios: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
+
+## 2026-06-06 08:06
+INGEST: 4 artículos marcados como ingestados por sesión Claude Code
