@@ -106,7 +106,8 @@
     "title": "Mida welcomes Tengku Zafrul's appointment as chairman",
     "date": "2025-12-03",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-06-07T08:03:21.140798"
   },
   "https://www.thestar.com.my/business/business-news/2026/01/13/mida-sees-broader-investment-pipeline-beyond-data-centres-in-2026": {
     "saved_at": "2026-05-30T12:01:27.208195",
@@ -114,7 +115,8 @@
     "title": "MIDA sees broader investment pipeline beyond data centres in 2026",
     "date": "2026-01-13",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-06-07T08:03:21.140806"
   },
   "https://www.thestar.com.my/business/business-news/2026/04/22/malaysia-should-reform-recalibrate-response-to-global-changes-says-tengku-zafrul": {
     "saved_at": "2026-05-30T12:01:27.208950",
@@ -122,7 +124,8 @@
     "title": "Malaysia should reform, recalibrate response to global changes, says Tengku Zafrul",
     "date": "2026-04-22",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-06-07T08:03:21.140808"
   },
   "https://www.fox13now.com/news/local-news/box-elder-county/mida-violated-state-law-in-approval-process-of-box-elder-county-data-center-group-claims": {
     "saved_at": "2026-06-04T13:54:27.115663",
@@ -130,6 +133,7 @@
     "title": "MIDA violated state law in approval process of Box Elder County data center, group claims",
     "date": "2026-05-26",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-06-07T08:03:21.140809"
   }
 }

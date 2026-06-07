@@ -48,3 +48,20 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-07 00:00
+INGEST: 4 artículos pendientes evaluados — RECHAZADOS por irrelevancia geográfica/temática
+  Artículos descartados (falsos positivos del scraper por coincidencia de keyword "MIDA"):
+    - 20260526_prensacom_news-local-news-box-elder-county-mida-violated-state-law-in
+      Razón: Trata de una agencia de condado de Utah, EE.UU. — sin relación con agro panameño
+    - 20260422_prensacom_business-business-news-2026-04-22-malaysia-should-reform-rec
+      Razón: MIDA = Malaysian Investment Development Authority (Malasia) — institución distinta
+    - 20260113_prensacom_business-business-news-2026-01-13-mida-sees-broader-investme
+      Razón: MIDA = Malaysian Investment Development Authority (Malasia) — institución distinta
+    - 20251203_prensacom_business-business-news-2025-12-03-mida-welcomes-tengku-zafru
+      Razón: MIDA = Malaysian Investment Development Authority (Malasia) — institución distinta
+  Acción: marcados como ingestados para evitar re-procesamiento futuro
+  Recomendación: ajustar scraper para filtrar por country=PA y domain de fuentes panameñas
+
+## 2026-06-07 08:03
+INGEST: 4 artículos marcados como ingestados por sesión Claude Code
