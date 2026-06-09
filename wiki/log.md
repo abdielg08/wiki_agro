@@ -48,3 +48,23 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-09 00:00
+INGEST: 5 artículos revisados — DESCARTADOS por irrelevancia (no corresponden al sector agropecuario panameño)
+  Artículos descartados:
+    - 20260526_prensacom_news-local-news-box-elder-county-mida-violated-state-law-in.json
+      Motivo: Artículo sobre agencia MIDA de Utah, EE.UU. (data center); no relacionado con Panamá
+    - 20260422_prensacom_business-business-news-2026-04-22-malaysia-should-reform-rec.json
+      Motivo: Artículo sobre MIDA de Malasia (Malaysian Investment Development Authority); no relacionado con Panamá
+    - 20260113_prensacom_business-business-news-2026-01-13-mida-sees-broader-investme.json
+      Motivo: Artículo sobre MIDA de Malasia — inversiones 2026; no relacionado con Panamá
+    - 20251203_prensacom_business-business-news-2025-12-03-mida-welcomes-tengku-zafru.json
+      Motivo: Artículo sobre MIDA de Malasia — nombramiento de presidente; no relacionado con Panamá
+    - 20260603_prensacom_ext-en-development-topics.json
+      Motivo: Página genérica de temas de desarrollo del Banco Mundial; sin contenido agropecuario panameño
+  Nota: El scraper capturó falsos positivos al buscar "MIDA" — coincidencias con la agencia malaya y la agencia de Utah
+  Acción: Artículos marcados como ingestados sin crear páginas wiki
+  Total páginas wiki: 19 (sin cambios)
+
+## 2026-06-09 08:03
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code
