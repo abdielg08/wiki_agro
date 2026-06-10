@@ -106,7 +106,9 @@
     "title": "Mida welcomes Tengku Zafrul's appointment as chairman",
     "date": "2025-12-03",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "skipped": true,
+    "skip_reason": "falso positivo: fuente malasia (thestar.com.my), no relacionado con Panama"
   },
   "https://www.thestar.com.my/business/business-news/2026/01/13/mida-sees-broader-investment-pipeline-beyond-data-centres-in-2026": {
     "saved_at": "2026-05-30T12:01:27.208195",
@@ -114,7 +116,9 @@
     "title": "MIDA sees broader investment pipeline beyond data centres in 2026",
     "date": "2026-01-13",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "skipped": true,
+    "skip_reason": "falso positivo: fuente malasia (thestar.com.my), MIDA = Malaysian Investment Development Authority"
   },
   "https://www.thestar.com.my/business/business-news/2026/04/22/malaysia-should-reform-recalibrate-response-to-global-changes-says-tengku-zafrul": {
     "saved_at": "2026-05-30T12:01:27.208950",
@@ -122,7 +126,9 @@
     "title": "Malaysia should reform, recalibrate response to global changes, says Tengku Zafrul",
     "date": "2026-04-22",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "skipped": true,
+    "skip_reason": "falso positivo: fuente malasia (thestar.com.my), sin relacion con Panama"
   },
   "https://www.fox13now.com/news/local-news/box-elder-county/mida-violated-state-law-in-approval-process-of-box-elder-county-data-center-group-claims": {
     "saved_at": "2026-06-04T13:54:27.115663",
@@ -130,7 +136,9 @@
     "title": "MIDA violated state law in approval process of Box Elder County data center, group claims",
     "date": "2026-05-26",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "skipped": true,
+    "skip_reason": "falso positivo: fox13now.com (Utah, EEUU), sin relacion con Panama"
   },
   "https://www.worldbank.org/ext/en/development-topics": {
     "saved_at": "2026-06-08T14:43:01.400687",
@@ -138,6 +146,8 @@
     "title": "Development Topics",
     "date": "2026-06-03",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "skipped": true,
+    "skip_reason": "falso positivo: pagina generica de worldbank.org, sin contenido agropecuario Panama"
   }
 }
