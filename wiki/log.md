@@ -48,3 +48,21 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-11 — Ingesta automática (sesión Claude Code)
+INGEST: 5 artículos procesados — todos descartados por irrelevancia
+  Artículos recibidos desde scraper de prensa.com:
+    - 20251203_prensacom_mida-malaysia-nuevo-presidente → summary creado (no relevante)
+    - 20260113_prensacom_mida-malaysia-inversiones-2026 → summary creado (no relevante)
+    - 20260422_prensacom_malaysia-reforma-comercio-global → summary creado (no relevante)
+    - 20260526_prensacom_box-elder-datacenter-utah → summary creado (no relevante)
+    - 20260603_prensacom_worldbank-development-topics → summary creado (no relevante)
+  Causa: Los artículos fueron capturados por coincidencia del término "MIDA" con la
+  Malaysian Investment Development Authority (Malasia) y una entidad de Utah (EE.UU.),
+  no con el Ministerio de Desarrollo Agropecuario de Panamá. Todos tienen texto vacío.
+  Páginas de topics/entities actualizadas: ninguna (sin contenido agropecuario panameño)
+  Summaries creados: 5 (marcados como no relevantes)
+  Acción recomendada: Revisar filtros del scraper para evitar falsos positivos de "MIDA".
+
+## 2026-06-11 08:09
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code
