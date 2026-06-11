@@ -139,5 +139,13 @@
     "date": "2026-06-03",
     "source": "prensa.com",
     "ingested": false
+  },
+  "https://www.thestar.com.my/business/business-news/2025/12/18/i-bhd039s-first-ai-experience-centre-opens-at-i-city": {
+    "saved_at": "2026-06-11T14:31:45.817248",
+    "path": "/home/runner/work/wiki_agro/wiki_agro/sources/articles/20251218_prensacom_business-business-news-2025-12-18-i-bhd039s-first-ai-experie.json",
+    "title": "I-Bhd's first AI experience centre opens at i-City",
+    "date": "2025-12-18",
+    "source": "prensa.com",
+    "ingested": false
   }
 }
