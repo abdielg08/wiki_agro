@@ -48,3 +48,20 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-12 00:00
+INGEST: 5 artículos revisados — RECHAZADOS (falsos positivos, contenido irrelevante)
+  Motivo: El scraper capturó artículos sobre "MIDA" (Malaysian Investment Development Authority,
+    Malasia) y un centro de datos en Utah (EE.UU.), no el MIDA panameño (Ministerio de Desarrollo
+    Agropecuario). Ninguno de los 5 artículos contiene información sobre el sector agropecuario
+    de Panamá.
+  Artículos rechazados (marcados como ingestados para limpiar la cola):
+    - 20260526_prensacom: "MIDA violated state law..." — Utah data center, EE.UU.
+    - 20260422_prensacom: "Malaysia should reform..." — MIDA Malasia, comercio global
+    - 20260113_prensacom: "MIDA sees broader investment pipeline..." — MIDA Malasia, inversiones
+    - 20251203_prensacom: "Mida welcomes Tengku Zafrul's appointment..." — MIDA Malasia
+    - 20251218_prensacom: "I-Bhd's first AI experience centre..." — empresa tecnológica malasia
+    - 20260603_prensacom: "Development Topics" — página índice genérica del Banco Mundial (Bangladesh)
+  Acción: Sin cambios al wiki. Se recomienda revisar las palabras clave del scraper para
+    excluir referencias a MIDA Malasia, filtrar fuentes no panameñas, y agregar filtros de país.
+  Estado wiki: Sin cambios — 19 páginas, 6 artículos válidos ingestados
