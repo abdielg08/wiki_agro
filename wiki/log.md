@@ -48,3 +48,26 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-14 00:00
+INGEST: 5 artículos evaluados — RECHAZADOS (fuera de alcance)
+  Razón: Falsos positivos del scraper — artículos sobre MIDA Malasia (Malaysian Investment
+  Development Authority) y centros de datos en Utah, EE.UU. Sin relación con el sector
+  agropecuario panameño.
+  Artículos rechazados:
+    - 20260422_prensacom_malaysia-reform-recalibrate (prensa.com vía thestar.com.my) — MIDA Malasia
+    - 20260526_prensacom_mida-violated-state-law-box-elder (prensa.com vía fox13now.com) — Utah data center
+    - 20260113_prensacom_mida-sees-broader-investment-pipeline (prensa.com vía thestar.com.my) — MIDA Malasia
+    - 20251203_prensacom_mida-welcomes-tengku-zafrul (prensa.com vía thestar.com.my) — MIDA Malasia
+    - 20251218_prensacom_i-bhd-ai-experience-centre (prensa.com vía thestar.com.my) — AI center Malasia
+  Acción: Marcados como ingestados sin crear páginas wiki (no relevantes para Panamá).
+  Recomendación: Revisar configuración del scraper para excluir fuentes thestar.com.my y fox13now.com;
+  filtrar por menciones explícitas de "Panamá" o "agropecuario" en el texto.
+  Artículo adicional rechazado (lote siguiente):
+    - 20260603_prensacom_ext-en-development-topics (worldbank.org) — página genérica sin contenido de Panamá
+
+## 2026-06-14 08:07
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code
+
+## 2026-06-14 08:07
+INGEST: 1 artículos marcados como ingestados por sesión Claude Code
