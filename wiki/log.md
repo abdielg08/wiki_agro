@@ -48,3 +48,42 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-15 00:00
+MAINTENANCE: Verificación automática de artículos pendientes — ingesta automática programada
+  ALERTA DE CALIDAD DE DATOS: Los 6 artículos pendientes son IRRELEVANTES al sector agropecuario panameño.
+  Los artículos fueron rechazados (no se crearon páginas wiki) por las siguientes razones:
+  
+  Artículos rechazados (falsos positivos por keyword "MIDA"):
+    - 20260422_prensacom: Artículo sobre Malaysia (MIDA = Malaysian Investment Development Authority)
+      URL: https://www.thestar.com.my/business/business-news/2026/04/22/...
+      Razón: Economía de Malasia, no tiene relación con Panamá
+    - 20260526_prensacom: Artículo sobre Utah, EE.UU. (MIDA = autoridad de inversión de Utah)
+      URL: https://www.fox13now.com/news/local-news/box-elder-county/...
+      Razón: Centro de datos en Box Elder County, Utah — sin relación con Panamá
+    - 20260113_prensacom: Artículo sobre inversiones en Malasia (Malaysian MIDA)
+      URL: https://www.thestar.com.my/business/business-news/2026/01/13/...
+      Razón: Autoridad de Inversiones de Malasia, no Ministerio panameño
+    - 20251203_prensacom: Artículo sobre nombramiento en Malaysian MIDA
+      URL: https://www.thestar.com.my/business/business-news/2025/12/03/...
+      Razón: Malasia — completamente fuera de alcance
+    - 20251218_prensacom: Centro de experiencia de IA en Malaysia (I-City)
+      URL: https://www.thestar.com.my/business/business-news/2025/12/18/...
+      Razón: Tecnología en Malasia, sin relación con agropecuario panameño
+    - 20260603_prensacom: World Bank "Development Topics" (página genérica, sin texto completo)
+      URL: https://www.worldbank.org/ext/en/development-topics
+      Razón: Página de portada del Banco Mundial, no es noticia específica de Panamá
+  
+  CAUSA PROBABLE: El scraper buscó "MIDA" y capturó artículos de la MIDA de Malasia
+    (Malaysian Investment Development Authority) y de Utah, en vez del MIDA panameño
+    (Ministerio de Desarrollo Agropecuario de Panamá). Se recomienda agregar filtros
+    por país/dominio (pa, .gob.pa, panamá) en las consultas de scraping.
+  
+  Acción tomada: Artículos marcados como ingestados para limpiar la cola sin crear páginas wiki.
+  Total páginas wiki sin cambios: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
+
+## 2026-06-15 08:08
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code
+
+## 2026-06-15 08:09
+INGEST: 1 artículos marcados como ingestados por sesión Claude Code
