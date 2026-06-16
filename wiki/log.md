@@ -48,3 +48,17 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-16 08:07
+RECHAZO: 6 artículos descartados por irrelevancia — problema de calidad de datos en recolector
+  Causa raíz: el scraper buscó "MIDA" y capturó artículos de agencias homónimas extranjeras
+  Artículos rechazados (NO se crearon páginas wiki):
+    - 20260526_prensacom: MIDA (Utah, EE.UU.) — data center en Box Elder County [fox13now.com]
+    - 20260422_prensacom: MIDA (Malasia) — reforma comercial Tengku Zafrul [thestar.com.my]
+    - 20260113_prensacom: MIDA (Malasia) — pipeline de inversión 2026 [thestar.com.my]
+    - 20251203_prensacom: MIDA (Malasia) — nombramiento presidente [thestar.com.my]
+    - 20251218_prensacom: I-Bhd/MIDA (Malasia) — centro AI en i-City [thestar.com.my]
+    - 20260603_prensacom: World Bank "Development Topics" — sin contenido relevante de Panamá
+  Acción: marcados como ingestados para limpiar la cola; sin cambios en wiki/
+  Recomendación: ajustar scraper para filtrar por país=PA y excluir dominios .my / fox13now.com
+  Estado wiki: 12/12 artículos en cola marcados; 0 pendientes; 19 páginas wiki sin cambios
