@@ -48,3 +48,23 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-17 00:00
+MAINTENANCE: Verificación automática — ingesta programada
+  Artículos pendientes detectados: 6
+  Resultado: 0 páginas creadas/actualizadas — todos los artículos son FALSOS POSITIVOS
+  Problema identificado: colisión de acrónimo "MIDA"
+    - MIDA Panamá = Ministerio de Desarrollo Agropecuario (relevante para este wiki)
+    - MIDA Malasia = Malaysian Investment Development Authority (irrelevante)
+  Artículos descartados (marcados como ingestados sin crear páginas wiki):
+    - 20251203_prensacom: "Mida welcomes Tengku Zafrul's appointment as chairman" [Malasia]
+    - 20251218_prensacom: "I-Bhd's first AI experience centre opens at i-City" [Malasia]
+    - 20260113_prensacom: "MIDA sees broader investment pipeline beyond data centres in 2026" [Malasia]
+    - 20260422_prensacom: "Malaysia should reform, recalibrate response to global changes" [Malasia]
+    - 20260526_prensacom: "MIDA violated state law in Box Elder County data center" [Utah, EE.UU.]
+    - 20260603_prensacom: "Development Topics" [World Bank — página genérica sin contenido]
+  Acción recomendada: actualizar filtros de scraping para excluir fuentes no panameñas
+  Total páginas wiki sin cambios: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
+
+## 2026-06-17 08:07
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code
