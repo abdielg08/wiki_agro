@@ -48,3 +48,28 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-18 00:00
+INGEST: 6 artículos pendientes rechazados — falsos positivos de scraping (irrelevantes)
+  PROBLEMA DE CALIDAD DE DATOS: 6 artículos en cola no corresponden al sector agropecuario panameño.
+  Artículos rechazados (marcados como ingestados para limpiar cola):
+    - 20260526_prensacom_news-local-news-box-elder-county-mida-violated-state-law-in.json
+      → Sobre MIDA de Utah (EE.UU.) y un centro de datos en Box Elder County. IRRELEVANTE.
+    - 20260422_prensacom_business-business-news-2026-04-22-malaysia-should-reform-rec.json
+      → Sobre reformas económicas de Malasia (MIDA = Malaysian Investment Development Authority). IRRELEVANTE.
+    - 20260113_prensacom_business-business-news-2026-01-13-mida-sees-broader-investme.json
+      → Sobre inversiones de MIDA Malasia en 2026. IRRELEVANTE.
+    - 20251203_prensacom_business-business-news-2025-12-03-mida-welcomes-tengku-zafru.json
+      → Sobre nuevo presidente de MIDA Malasia. IRRELEVANTE.
+    - 20251218_prensacom_business-business-news-2025-12-18-i-bhd039s-first-ai-experie.json
+      → Sobre centro de experiencia AI en Malasia (I-City). IRRELEVANTE.
+    - 20260603_prensacom_ext-en-development-topics.json
+      → Página genérica del Banco Mundial (Development Topics). IRRELEVANTE.
+  Causa probable: scraper de prensa.com capturó artículos con keyword "MIDA" sin discriminar
+    entre MIDA Panamá (Ministerio de Desarrollo Agropecuario) y otras entidades homónimas.
+  Acción requerida: Revisar y ajustar criterios de scraping para excluir fuentes no panameñas
+    (thestar.com.my, fox13now.com) y mejorar filtro por país/región.
+  Total páginas wiki sin cambios: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
+
+## 2026-06-18 08:05
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code
