@@ -48,3 +48,24 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-19 00:00
+INGEST: 5 artículos revisados — RECHAZADOS por irrelevancia al sector agropecuario panameño
+  PROBLEMA DE CALIDAD DE DATOS: El scraper captó artículos sobre la sigla "MIDA" que no corresponde
+  al Ministerio de Desarrollo Agropecuario de Panamá sino a:
+    - Malaysian Investment Development Authority (MIDA de Malasia)
+    - Un organismo estadounidense en Utah (Box Elder County data center)
+  Artículos rechazados (sin contenido wiki creado):
+    - 20260526_prensacom_...box-elder-county-mida... → Agencia Utah/EEUU, data center, irrelevante
+    - 20260422_prensacom_...malaysia-should-reform... → MIDA Malasia, reforma económica, irrelevante
+    - 20260113_prensacom_...mida-sees-broader-investme... → MIDA Malasia, inversiones, irrelevante
+    - 20251203_prensacom_...mida-welcomes-tengku-zafrul... → MIDA Malasia, nombramiento, irrelevante
+    - 20251218_prensacom_...i-bhd-first-ai-experience... → Centro IA Malasia, irrelevante
+  Acción tomada: artículos marcados como ingestados para no reaparecer en colas futuras
+  RECOMENDACIÓN: Revisar y mejorar el scraper para filtrar solo contenido de Panamá
+    Sugerencia: filtrar por dominio (.pa, prensa.com, panamaamerica.com.pa, tvn-2.com)
+    o por palabras clave geográficas ("Panamá", "panameño", "MIDA Panamá")
+  Total páginas wiki sin cambios: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
+
+## 2026-06-19 08:05
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code
