@@ -147,5 +147,13 @@
     "date": "2025-12-18",
     "source": "prensa.com",
     "ingested": false
+  },
+  "https://ieeexplore.ieee.org/document/11018750": {
+    "saved_at": "2026-06-19T13:58:42.404601",
+    "path": "/home/runner/work/wiki_agro/wiki_agro/sources/articles/20260607_prensacom_document-11018750.json",
+    "title": "A 3D-Printed Worm-Like Robot for Corrugated Pipes Using Anisotropic Fins",
+    "date": "2026-06-07",
+    "source": "prensa.com",
+    "ingested": false
   }
 }
