@@ -48,3 +48,27 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-20 00:00
+INGEST (automático): 5 artículos evaluados — RECHAZADOS por irrelevancia temática
+  PROBLEMA DE CALIDAD DE DATOS: El recolector de fuentes capturó artículos falsos positivos.
+  Los 5 artículos eran sobre la MIDA de Malasia (Malaysian Investment Development Authority),
+  NO sobre el MIDA panameño (Ministerio de Desarrollo Agropecuario), y sobre centros de datos
+  en Utah, EE.UU. Ninguno es relevante para el sector agropecuario panameño.
+  Artículos descartados (marcados como ingestados sin procesar):
+    - 20260526_prensacom_news-local-news-box-elder-county-mida-violated-state-law-in.json
+      → "MIDA violated state law in approval process of Box Elder County data center" (Utah, EE.UU.)
+    - 20260422_prensacom_business-business-news-2026-04-22-malaysia-should-reform-rec.json
+      → "Malaysia should reform, recalibrate response to global changes" (MIDA Malasia)
+    - 20260113_prensacom_business-business-news-2026-01-13-mida-sees-broader-investme.json
+      → "MIDA sees broader investment pipeline beyond data centres in 2026" (MIDA Malasia)
+    - 20251203_prensacom_business-business-news-2025-12-03-mida-welcomes-tengku-zafru.json
+      → "Mida welcomes Tengku Zafrul's appointment as chairman" (MIDA Malasia)
+    - 20251218_prensacom_business-business-news-2025-12-18-i-bhd039s-first-ai-experie.json
+      → "I-Bhd's first AI experience centre opens at i-City" (Malasia)
+  ACCIÓN RECOMENDADA: Revisar y ajustar los criterios de recolección de fuentes para
+  filtrar artículos no relacionados con Panamá y el sector agropecuario.
+  Estado wiki: sin cambios — 19 páginas, 6 artículos válidos procesados.
+
+## 2026-06-20 08:05
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code
