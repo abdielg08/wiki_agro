@@ -48,3 +48,27 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-22 00:00
+MAINTENANCE: Ingesta automática — 7 artículos revisados, 0 procesados al wiki
+  ALERTA: Todos los artículos pendientes son IRRELEVANTES para el Wiki Agropecuario de Panamá.
+  Artículos rechazados (descartados sin crear contenido wiki):
+    - 20251203_prensacom: "Mida welcomes Tengku Zafrul's appointment" → MIDA Malasia, no relacionado
+    - 20251218_prensacom: "I-Bhd's first AI experience centre opens at i-City" → sector tech Malasia, no relacionado
+    - 20260113_prensacom: "MIDA sees broader investment pipeline beyond data centres" → MIDA Malasia, no relacionado
+    - 20260422_prensacom: "Malaysia should reform, recalibrate response to global changes" → política económica Malasia, no relacionado
+    - 20260526_prensacom: "MIDA violated state law in Box Elder County data center" → Utah/MIDA Utah, no relacionado
+    - 20260603_prensacom: "Development Topics" → página índice Banco Mundial, sin contenido sustantivo
+    - 20260607_prensacom: "3D-Printed Worm-Like Robot for Corrugated Pipes" → paper IEEE robótica, no relacionado
+  CAUSA PROBABLE: El scraper recuperó artículos de prensa.com que contienen "MIDA" pero refieren a
+    la Malaysian Investment Development Authority (MIDA Malasia), no al Ministerio de Desarrollo
+    Agropecuario de Panamá (MIDA Panamá). El scraper necesita filtros geográficos y temáticos más estrictos.
+  ACCIÓN: Artículos marcados como ingestados para limpiar la cola. No se creó contenido wiki.
+  RECOMENDACIÓN: Revisar y corregir la lógica de scraping en wiki_agro.py para filtrar por país=PA
+    y temas agropecuarios antes de ingresar artículos a la cola.
+
+## 2026-06-22 08:06
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code
+
+## 2026-06-22 08:06
+INGEST: 2 artículos marcados como ingestados por sesión Claude Code
