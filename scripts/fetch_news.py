@@ -427,8 +427,9 @@ def fetch_gdelt_batch(query: str, start_date: str, end_date: str, max_records: i
 
 def fetch_gdelt_historical(config: dict, processed: dict) -> Iterator[dict]:
     """
-    Iterate GDELT over quarterly windows (2015–2025).
+    Iterate GDELT over quarterly windows (2015–today).
     Skips windows already marked complete in processed["_gdelt_windows"].
+    Never queries future dates — GDELT only indexes published articles.
     """
     cfg = config.get("gdelt", {})
     terms = config.get("search_terms", {}).get("primary", [])
@@ -437,7 +438,9 @@ def fetch_gdelt_historical(config: dict, processed: dict) -> Iterator[dict]:
     completed_windows: set[str] = set(processed.get("_gdelt_windows", []))
 
     start = datetime.strptime(cfg.get("date_range", {}).get("start", "2015-01-01"), "%Y-%m-%d")
-    end = datetime.strptime(cfg.get("date_range", {}).get("end", "2025-12-31"), "%Y-%m-%d")
+    # Never query beyond yesterday — GDELT doesn't have future articles
+    config_end = datetime.strptime(cfg.get("date_range", {}).get("end", "2025-12-31"), "%Y-%m-%d")
+    end = min(config_end, datetime.utcnow() - timedelta(days=1))
 
     current = start
     while current < end:
@@ -459,7 +462,7 @@ def fetch_gdelt_historical(config: dict, processed: dict) -> Iterator[dict]:
             # Network error — skip window WITHOUT marking complete so it's retried next run
             console.print(f"    [yellow]→ error de red, se reintentará en próxima ejecución[/yellow]")
             current = next_q + timedelta(days=1)
-            time.sleep(REQUEST_DELAY)
+            time.sleep(REQUEST_DELAY * 3)  # longer pause after error before next window
             continue
 
         console.print(f"    → {len(batch)} artículos")
@@ -471,7 +474,7 @@ def fetch_gdelt_historical(config: dict, processed: dict) -> Iterator[dict]:
         processed["_gdelt_windows"] = list(completed_windows)
 
         current = next_q + timedelta(days=1)
-        time.sleep(REQUEST_DELAY)
+        time.sleep(REQUEST_DELAY * 2)  # polite pause between GDELT windows
 
 
 # ─── FULL TEXT ENRICHMENT ────────────────────────────────────────────────────
