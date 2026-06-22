@@ -2,8 +2,26 @@
 
 ## Propósito
 Este wiki documenta noticias, tendencias, retos y oportunidades del sector
-agropecuario panameño de los últimos 10 años (2015–2025), construido y
-mantenido por un LLM siguiendo la metodología Karpathy.
+agropecuario panameño desde 2015 hasta hoy, construido y mantenido por un LLM
+siguiendo la metodología Karpathy.
+
+---
+
+## MÉTRICAS DEL SISTEMA (Definición de Éxito)
+
+```
+Cobertura objetivo : 2015-02-19 → hoy (límite real de GDELT API v2)
+Tasa falsos positivos : 0% — innegociable
+Artículos ingestados / día : ~15 (3 routines × 5 artículos)
+Avance medible : al menos 1 artículo nuevo en wiki/ por día hábil
+```
+
+**El sistema falla** (y la routine debe diagnosticarlo) si:
+- 3 días consecutivos sin nuevos artículos en `sources/articles/`
+- Cualquier artículo marcado `ingested: false` lleva más de 1 día sin procesarse
+- El comando `python wiki_agro.py stats` muestra `Pendientes > 0`
+
+**Archivo de seguimiento**: `wiki/metrics.md` — la routine lo actualiza en cada sesión.
 
 ---
 
@@ -18,6 +36,7 @@ wiki_agro/
 ├── wiki/                   ← DOMINIO DEL LLM (crea y mantiene)
 │   ├── index.md            ← Catálogo maestro de todas las páginas
 │   ├── log.md              ← Log cronológico de actividad (append-only)
+│   ├── metrics.md          ← Dashboard de métricas (routine lo actualiza)
 │   ├── topics/             ← Páginas de temas/conceptos
 │   ├── entities/           ← Páginas de entidades (orgs, lugares, cultivos)
 │   └── summaries/          ← Resúmenes individuales de artículos
@@ -110,7 +129,7 @@ related: [page1.md, page2.md]
 Luego secciones en markdown:
 - **Resumen** (1-2 párrafos)
 - **Hechos Clave** (bullets con fechas y fuentes)
-- **Tendencias** (evolución en los 10 años)
+- **Tendencias** (evolución en el período cubierto)
 - **Retos** (problemas identificados)
 - **Referencias** (artículos fuente)
 - **Ver también** (links a páginas relacionadas)
@@ -119,38 +138,61 @@ Luego secciones en markdown:
 
 ## Operaciones del LLM
 
-### INGEST — Flujo principal (sesión Claude Code, sin API key)
+### ROUTINE — Flujo de la routine diaria (3 veces/día, 5 artículos cada una)
 
-**Cuándo usar**: El usuario dice "ingesta los artículos", "procesa las noticias",
-o "actualiza el wiki". También cuando existe el archivo `pending_ingest.md`.
+**Este es el flujo principal de las Claude Code Routines.**
 
-**Pasos**:
-1. Ejecutar `python wiki_agro.py ingest --limit 5` para generar `pending_ingest.md`
-2. Leer `pending_ingest.md` (contiene los artículos a procesar con contexto)
-3. Para cada artículo en el archivo:
-   a. Extraer: resumen, entidades, temas, hechos clave con fechas y valores
-   b. Crear `wiki/summaries/{YYYYMMDD}_{fuente}_{slug}.md`
-   c. Actualizar hasta 3 páginas de `wiki/topics/` relevantes
-   d. Actualizar hasta 2 páginas de `wiki/entities/` si aplica
-   e. Agregar entrada en `wiki/index.md` bajo "## Artículos procesados"
-   f. Agregar entrada en `wiki/log.md`
-4. Ejecutar `python wiki_agro.py mark-all-ingested --limit 5`
-5. Hacer commit: `git add wiki/ sources/ && git commit -m "wiki: ingest N artículos"`
+**Paso 1 — Diagnóstico** (siempre primero):
+```bash
+python wiki_agro.py stats
+```
+Leer el output. Si `Pendientes de ingesta = 0`, ir a Paso 4 (diagnóstico avanzado).
 
-**Reglas de escritura de páginas**:
-- Formato frontmatter YAML obligatorio (ver sección "Formato de Páginas Wiki")
-- Si la página ya existe: agregar hechos nuevos sin borrar los existentes
-- Si no existe: crearla con estructura completa (ver secciones estándar)
-- Priorizar hechos con fechas y fuentes citadas explícitamente
+**Paso 2 — Ingesta** (si hay pendientes):
+```bash
+python wiki_agro.py ingest --limit 5
+```
+Leer `pending_ingest.md`. Para cada artículo:
+  a. Extraer: resumen, entidades, temas, hechos clave con fechas y valores
+  b. Crear `wiki/summaries/{YYYYMMDD}_{fuente}_{slug}.md`
+  c. Actualizar hasta 3 páginas de `wiki/topics/` relevantes
+  d. Actualizar hasta 2 páginas de `wiki/entities/` si aplica
+  e. Agregar entrada en `wiki/index.md` bajo "## Artículos procesados"
+  f. Agregar entrada en `wiki/log.md`
 
-### INGEST — Flujo alternativo (con Anthropic API key, GitHub Actions)
-1. Leer el artículo crudo de `sources/articles/`
-2. Extraer: resumen, entidades, temas, hechos clave con fechas
-3. Crear `wiki/summaries/{slug}.md` con el resumen del artículo
-4. Actualizar páginas de topics relevantes (máx 5 páginas por artículo)
-5. Actualizar páginas de entities mencionadas (máx 3 por artículo)
-6. Actualizar `wiki/index.md` con nuevas páginas creadas
-7. Agregar entrada a `wiki/log.md`
+**Paso 3 — Marcar ingestados**:
+```bash
+python wiki_agro.py mark-all-ingested --limit 5
+```
+
+**Paso 4 — Diagnóstico avanzado** (si Pendientes = 0):
+
+Leer la sección `## Estado del Fetch` de `wiki/metrics.md`.
+
+Si `días_sin_nuevos >= 1`: el fetch automático (GitHub Actions) no está trayendo artículos.
+Esto es un problema que puede tener varias causas — revisar en este orden:
+1. ¿GitHub Actions corrió hoy? Revisar la fecha del último commit en `sources/`.
+2. ¿Hay ventanas GDELT nuevas disponibles? Contar `_gdelt_windows` en `sources/processed.json`.
+   - Si hay menos de 45 ventanas completadas: GDELT está siendo bloqueado o hay timeout.
+   - Si hay 45+ ventanas completadas: el rango de fechas está agotado (necesita expansión).
+3. ¿Las fuentes RSS devuelven artículos? IICA y La Prensa son las únicas activas.
+
+Documentar el diagnóstico en `wiki/log.md` con fecha y descripción del problema.
+
+**Paso 5 — Actualizar métricas**:
+
+Actualizar `wiki/metrics.md` con las cifras actuales (ver formato en sección MÉTRICAS).
+
+**Paso 6 — Commit**:
+```bash
+git add wiki/ sources/processed.json
+git commit -m "wiki: ingest N artículos | pendientes: M | ventanas: V"
+git push
+```
+
+### INGEST — Flujo manual (sesión Claude Code interactiva)
+
+Igual que ROUTINE pasos 1-6, pero sin límite de 5 artículos si el usuario lo solicita.
 
 ### QUERY (al responder una pregunta)
 1. Leer `wiki/index.md` para orientarse
@@ -216,9 +258,13 @@ Ejemplo: `La producción de arroz cayó un 15% [MIDA, 2023](https://mida.gob.pa/
 ## Reglas Críticas
 
 1. **NUNCA modificar archivos en `sources/`** — son la fuente de verdad inmutable
+   (excepción: `processed.json` — solo la routine puede actualizarlo via `mark-all-ingested`)
 2. **SIEMPRE actualizar `wiki/log.md`** al hacer cualquier cambio al wiki
 3. **SIEMPRE actualizar `wiki/index.md`** al crear una página nueva
-4. **Usar fechas precisas** cuando estén disponibles (YYYY-MM-DD)
-5. **Cross-referenciar agresivamente** — si mencionas "MIDA" en un topic, agrega link a `entities/mida.md`
-6. **Conflictos de información**: registrar ambas versiones con sus fuentes, no omitir
-7. **Máximo 800 palabras** por página de wiki (excepto overviews que pueden tener 1500)
+4. **SIEMPRE actualizar `wiki/metrics.md`** al final de cada sesión de routine
+5. **Usar fechas precisas** cuando estén disponibles (YYYY-MM-DD)
+6. **Cross-referenciar agresivamente** — si mencionas "MIDA" en un topic, agrega link a `entities/mida.md`
+7. **Conflictos de información**: registrar ambas versiones con sus fuentes, no omitir
+8. **Máximo 800 palabras** por página de wiki (excepto overviews que pueden tener 1500)
+9. **Falsos positivos**: si un artículo en `pending_ingest.md` NO es sobre agro panameño,
+   NO ingestarlo — documentar en `wiki/log.md` y notificar al usuario.
