@@ -1,51 +1,5 @@
 {
-  "_gdelt_windows": [
-    "20211223_20220323",
-    "20161229_20170329",
-    "20151231_20160330",
-    "20150402_20150701",
-    "20200326_20200624",
-    "20241219_20250319",
-    "20150702_20150930",
-    "20160331_20160629",
-    "20170330_20170628",
-    "20220324_20220622",
-    "20240620_20240918",
-    "20180927_20181226",
-    "20190328_20190626",
-    "20171228_20180328",
-    "20250320_20250618",
-    "20160929_20161228",
-    "20200924_20201223",
-    "20210624_20210922",
-    "20150101_20150401",
-    "20181227_20190327",
-    "20220623_20220921",
-    "20200625_20200923",
-    "20201224_20210324",
-    "20210923_20211222",
-    "20210325_20210623",
-    "20220922_20221221",
-    "20240919_20241218",
-    "20250918_20251217",
-    "20250619_20250917",
-    "20180628_20180926",
-    "20240321_20240619",
-    "20221222_20230322",
-    "20231221_20240320",
-    "20230921_20231220",
-    "20251218_20251231",
-    "20230622_20230920",
-    "20190627_20190925",
-    "20151001_20151230",
-    "20180329_20180627",
-    "20160630_20160928",
-    "20191226_20200325",
-    "20230323_20230621",
-    "20190926_20191225",
-    "20170928_20171227",
-    "20170629_20170927"
-  ],
+  "_gdelt_windows": [],
   "https://www.tvn-2.com/nacionales/sequia-azuero-el-nino-2015-2016": {
     "saved_at": "2026-05-24T22:49:18.237842",
     "path": "sources/articles/20160301_tvnnoticias_sequia-azuero-nino-2015-2016.json",
@@ -106,7 +60,9 @@
     "title": "Mida welcomes Tengku Zafrul's appointment as chairman",
     "date": "2025-12-03",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "skipped": true,
+    "skip_reason": "falso positivo: fuente malasia (thestar.com.my), no relacionado con Panama"
   },
   "https://www.thestar.com.my/business/business-news/2026/01/13/mida-sees-broader-investment-pipeline-beyond-data-centres-in-2026": {
     "saved_at": "2026-05-30T12:01:27.208195",
@@ -114,7 +70,9 @@
     "title": "MIDA sees broader investment pipeline beyond data centres in 2026",
     "date": "2026-01-13",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "skipped": true,
+    "skip_reason": "falso positivo: fuente malasia (thestar.com.my), MIDA = Malaysian Investment Development Authority"
   },
   "https://www.thestar.com.my/business/business-news/2026/04/22/malaysia-should-reform-recalibrate-response-to-global-changes-says-tengku-zafrul": {
     "saved_at": "2026-05-30T12:01:27.208950",
@@ -122,7 +80,9 @@
     "title": "Malaysia should reform, recalibrate response to global changes, says Tengku Zafrul",
     "date": "2026-04-22",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "skipped": true,
+    "skip_reason": "falso positivo: fuente malasia (thestar.com.my), sin relacion con Panama"
   },
   "https://www.fox13now.com/news/local-news/box-elder-county/mida-violated-state-law-in-approval-process-of-box-elder-county-data-center-group-claims": {
     "saved_at": "2026-06-04T13:54:27.115663",
@@ -130,7 +90,9 @@
     "title": "MIDA violated state law in approval process of Box Elder County data center, group claims",
     "date": "2026-05-26",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "skipped": true,
+    "skip_reason": "falso positivo: fox13now.com (Utah, EEUU), sin relacion con Panama"
   },
   "https://www.worldbank.org/ext/en/development-topics": {
     "saved_at": "2026-06-08T14:43:01.400687",
@@ -138,7 +100,9 @@
     "title": "Development Topics",
     "date": "2026-06-03",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "skipped": true,
+    "skip_reason": "falso positivo: pagina generica de worldbank.org, sin contenido agropecuario Panama"
   },
   "https://www.thestar.com.my/business/business-news/2025/12/18/i-bhd039s-first-ai-experience-centre-opens-at-i-city": {
     "saved_at": "2026-06-11T14:31:45.817248",
@@ -146,7 +110,9 @@
     "title": "I-Bhd's first AI experience centre opens at i-City",
     "date": "2025-12-18",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "skipped": true,
+    "skip_reason": "falso positivo: fuente malasia (thestar.com.my), centro de IA Malasia"
   },
   "https://ieeexplore.ieee.org/document/11018750": {
     "saved_at": "2026-06-19T13:58:42.404601",
@@ -154,6 +120,8 @@
     "title": "A 3D-Printed Worm-Like Robot for Corrugated Pipes Using Anisotropic Fins",
     "date": "2026-06-07",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "skipped": true,
+    "skip_reason": "falso positivo: ieeexplore.ieee.org, articulo de robotica sin relacion con agro Panama"
   }
 }

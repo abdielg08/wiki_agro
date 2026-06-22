@@ -40,6 +40,46 @@ HEADERS = {
 }
 REQUEST_DELAY = 1.5  # seconds between requests to be polite
 
+# Domains/TLDs that are definitively NOT Panama — used to reject false positives
+_NON_PA_TLDS = frozenset({
+    ".my", ".com.my", ".gov.my",          # Malaysia
+    ".com.au", ".gov.au", ".net.au",      # Australia
+    ".co.uk", ".gov.uk", ".org.uk",       # UK
+    ".com.sg", ".gov.sg",                  # Singapore
+    ".co.nz",                              # New Zealand
+    ".co.za", ".gov.za",                   # South Africa
+    ".co.in", ".gov.in",                   # India
+})
+
+# At least one of these must appear in the article title or URL for RSS/GDELT.
+# Only unambiguous geographic/national terms — no acronyms (MIDA matches Malaysia too).
+_PANAMA_TERMS = frozenset({
+    "panama", "panamá", "panameño", "panameña", "panameños", "panameñas",
+    "chiriquí", "chiriqui", "veraguas", "azuero", "coclé", "cocle",
+    "herrera", "colón", "colon", "bocas del toro", "darién", "darien",
+    "istmo", "canal de panamá", "canal de panama",
+})
+
+
+def _url_domain(url: str) -> str:
+    """Extract the hostname from a URL (e.g. 'www.thestar.com.my')."""
+    try:
+        return url.lower().split("/")[2]
+    except IndexError:
+        return ""
+
+
+def _is_blocked_domain(url: str) -> bool:
+    """True if the URL's domain ends with a known non-Panama TLD."""
+    domain = _url_domain(url)
+    return any(domain.endswith(tld) for tld in _NON_PA_TLDS)
+
+
+def _is_panama_related(title: str, url: str = "") -> bool:
+    """True if the title or URL contains at least one Panama-related term."""
+    text = (title + " " + url).lower()
+    return any(term in text for term in _PANAMA_TERMS)
+
 
 def _get(url: str, timeout: int = 20, retries: int = 2, **kwargs) -> requests.Response | None:
     for attempt in range(retries + 1):
@@ -176,8 +216,14 @@ def fetch_rss(source: dict, config: dict) -> Iterator[dict]:
         title = entry.get("title", "")
         if not url or not title:
             continue
+        # Reject articles from blocked (non-Panama) domains
+        if _is_blocked_domain(url):
+            continue
         summary = entry.get("summary", "")
         if not is_agro_relevant(title, summary, config):
+            continue
+        # Require at least one Panama-related term in title or URL
+        if not _is_panama_related(title, url):
             continue
         yield {
             "url": url,
@@ -316,7 +362,9 @@ GDELT_URL = "https://api.gdeltproject.org/api/v2/doc/doc"
 
 
 def _gdelt_query_string(terms: list[str]) -> str:
-    return " OR ".join(f'"{t}"' if " " in t else t for t in terms)
+    terms_part = " OR ".join(f'"{t}"' if " " in t else t for t in terms)
+    # AND-require Panama mention to avoid false positives (e.g. "MIDA" matching Malaysia)
+    return f"({terms_part}) (Panama OR Panamá OR panameño OR panameña OR Chiriquí OR Veraguas OR Azuero)"
 
 
 def fetch_gdelt_batch(query: str, start_date: str, end_date: str, max_records: int = 250) -> list[dict] | None:
@@ -348,6 +396,15 @@ def fetch_gdelt_batch(query: str, start_date: str, end_date: str, max_records: i
         title = item.get("title", "")
         if not url or not title:
             continue
+
+        # Reject URLs from known non-Panama domains
+        if _is_blocked_domain(url):
+            continue
+
+        # Require at least one Panama term in title or URL
+        if not _is_panama_related(title, url):
+            continue
+
         date_raw = item.get("seendate", "")
         try:
             date = datetime.strptime(date_raw[:8], "%Y%m%d").strftime("%Y-%m-%d")
@@ -370,8 +427,9 @@ def fetch_gdelt_batch(query: str, start_date: str, end_date: str, max_records: i
 
 def fetch_gdelt_historical(config: dict, processed: dict) -> Iterator[dict]:
     """
-    Iterate GDELT over quarterly windows (2015–2025).
+    Iterate GDELT over quarterly windows (2015–today).
     Skips windows already marked complete in processed["_gdelt_windows"].
+    Never queries future dates — GDELT only indexes published articles.
     """
     cfg = config.get("gdelt", {})
     terms = config.get("search_terms", {}).get("primary", [])
@@ -380,7 +438,9 @@ def fetch_gdelt_historical(config: dict, processed: dict) -> Iterator[dict]:
     completed_windows: set[str] = set(processed.get("_gdelt_windows", []))
 
     start = datetime.strptime(cfg.get("date_range", {}).get("start", "2015-01-01"), "%Y-%m-%d")
-    end = datetime.strptime(cfg.get("date_range", {}).get("end", "2025-12-31"), "%Y-%m-%d")
+    # Never query beyond yesterday — GDELT doesn't have future articles
+    config_end = datetime.strptime(cfg.get("date_range", {}).get("end", "2025-12-31"), "%Y-%m-%d")
+    end = min(config_end, datetime.utcnow() - timedelta(days=1))
 
     current = start
     while current < end:
@@ -402,7 +462,7 @@ def fetch_gdelt_historical(config: dict, processed: dict) -> Iterator[dict]:
             # Network error — skip window WITHOUT marking complete so it's retried next run
             console.print(f"    [yellow]→ error de red, se reintentará en próxima ejecución[/yellow]")
             current = next_q + timedelta(days=1)
-            time.sleep(REQUEST_DELAY)
+            time.sleep(REQUEST_DELAY * 3)  # longer pause after error before next window
             continue
 
         console.print(f"    → {len(batch)} artículos")
@@ -414,7 +474,7 @@ def fetch_gdelt_historical(config: dict, processed: dict) -> Iterator[dict]:
         processed["_gdelt_windows"] = list(completed_windows)
 
         current = next_q + timedelta(days=1)
-        time.sleep(REQUEST_DELAY)
+        time.sleep(REQUEST_DELAY * 2)  # polite pause between GDELT windows
 
 
 # ─── FULL TEXT ENRICHMENT ────────────────────────────────────────────────────
