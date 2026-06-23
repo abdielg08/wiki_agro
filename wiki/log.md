@@ -48,3 +48,35 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-23 16:00
+DIAGNÓSTICO: Routine diaria — 0 artículos pendientes, 0 artículos nuevos hoy
+
+  Estado actual:
+    Artículos en sources/: 13 total (6 reales ingestados + 7 falsos positivos descartados)
+    Páginas wiki/: 20 (8 topics, 3 entities, 6 summaries, 3 overview)
+    Pendientes de ingesta: 0
+
+  GitHub Actions (2026-06-23 13:37–14:02 UTC) — corrió correctamente, 0 artículos nuevos:
+    RSS IICA (iica.int/es/rss/noticias): 0 entradas
+    RSS La Prensa (prensa.com/feed/): 0 entradas
+    DDG búsquedas (MIDA, IDIAP, BDA, FAO, IICA, Banco Mundial): todas sin resultados
+    GDELT 2015→2026 (~46 ventanas intentadas):
+      ~50% bloqueadas con 403/429 (rate-limiting)
+      ~50% completadas con 0 artículos relevantes encontrados
+      Total artículos nuevos: 0
+
+  Causas identificadas (en orden de impacto):
+    1. GDELT rate-limiting: API v2 gratuita bloquea con 403/429 en ~50% de solicitudes.
+       Las ventanas bloqueadas se reintentarán en próximas corridas pero el patrón es persistente.
+    2. GDELT sin contenido para agro panameño: incluso ventanas exitosas devuelven 0 artículos.
+       El índice GDELT tiene escasa cobertura de medios panameños en español sobre agricultura.
+    3. DDG anti-bot: todas las búsquedas site:mida.gob.pa, site:idiap.gob.pa, etc. retornan
+       "No results found" — posiblemente bloqueo de IP del runner de GitHub Actions.
+    4. RSS vacíos: feeds de IICA y La Prensa no devuelven entradas agropecuarias hoy.
+
+  Ventanas GDELT en processed.json: 21 completadas (de ~46 total 2015→2026)
+
+  Recomendación: el backfill histórico real requiere una estrategia alternativa a GDELT/DDG.
+  Opciones: scraping directo de mida.gob.pa, uso de Google News RSS, o curación manual.
+  Documentado para revisión del operador.
