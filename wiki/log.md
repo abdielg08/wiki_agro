@@ -2,7 +2,7 @@
 title: Log de Actividad del Wiki
 type: overview
 tags: [log, actividad]
-last_updated: 2025-05-24
+last_updated: 2026-06-23
 ---
 
 # Log de Actividad
@@ -48,3 +48,40 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-23 08:30
+DIAGNOSTIC: Routine diaria — pendientes = 0, diagnóstico del pipeline
+
+  Estado del fetch:
+  - GitHub Actions corrió el 2026-06-22T15:47Z (run #27) → success pero 0 artículos nuevos
+  - Último artículo real en sources/: 20260607_prensacom_document-11018750.json (robot IEEE, falso positivo, 2026-06-19)
+  - 4 días consecutivos sin artículos nuevos reales en sources/articles/
+  - Hoy (2026-06-23) Actions aún no ha corrido (cron 11:00 UTC)
+
+  Falsos positivos acumulados: 7 (todos de "MIDA" malayo u off-topic):
+    - thestar.com.my: "MIDA welcomes Tengku Zafrul" (Malaysia Investment Dev Authority)
+    - thestar.com.my: "MIDA sees broader investment pipeline beyond data centres"
+    - reuters.com: "Malaysia should reform, recalibrate"
+    - news.bbc.co.uk: "MIDA violated state law in Box Elder County" (Utah, EE.UU.)
+    - worldbank.org: "Development Topics" (página genérica sin contenido Panamá)
+    - prensa.com feed: "I-Bhd's first AI experience centre opens at i-City" (Malasia)
+    - ieeexplore.ieee.org: "3D-Printed Worm-Like Robot for Corrugated Pipes" (paper académico)
+
+  Causa raíz del problema de falsos positivos:
+    - El término "MIDA" en búsquedas DDG/RSS coincide con Malaysian Investment
+      Development Authority además del MIDA panameño
+    - Los filtros _is_panama_related() y is_agro_relevant() no están rechazando
+      todos los casos (URLs de .my y .com sin mención de Panamá pasan el filtro)
+    - La búsqueda DDG "site:prensa.com agropecuario OR MIDA" devuelve resultados
+      de otros dominios (thestar.com.my, etc.) — el filtro site: de DDG no es estricto
+
+  Estado GDELT (backfill histórico):
+    - _gdelt_windows: [] — el backfill 2015→hoy NO ha comenzado
+    - El fix aplicado el 2026-06-22 (limitar end date a now-1d) es correcto pero
+      no ha producido artículos aún (Actions corrió una vez después del fix con 0 resultados)
+    - La próxima corrida de Actions (~11:00 UTC hoy) será la primera prueba real del fix
+
+  Acción tomada:
+    - Actualización de wiki/log.md y wiki/metrics.md con diagnóstico
+    - Ningún artículo nuevo ingestado (0 pendientes válidos)
+    - Se requiere monitoreo del resultado de Actions de hoy para validar el fix GDELT

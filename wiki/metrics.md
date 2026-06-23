@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-06-23
 ---
 
 # Dashboard de Métricas
@@ -17,23 +17,35 @@ last_updated: 2026-06-22
 | Artículos en sources/ | 13 | ↑ continuo |
 | Artículos reales ingestados | 6 | = total sin falsos positivos |
 | Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Ventanas GDELT completadas | 0 / ~46 estimadas | 46 (2015→hoy) |
+| Días sin artículos nuevos | 4 (desde 2026-06-19) | máx 3 antes de diagnosticar |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions : 2026-06-22T15:47Z (run #27 de 27 totales)
+Resultado              : success — 0 artículos nuevos (no commit a sources/)
+Último artículo en sources/ : 20260607_prensacom_document-11018750.json (2026-06-19, falso positivo)
+Días sin artículos nuevos   : 4 (⚠ supera umbral de 3 → ALERTA)
+Corrida de hoy (2026-06-23) : Aún no ha corrido (cron 11:00 UTC)
+
+Causa raíz del problema     : 
+  1. "MIDA" como término de búsqueda en DDG captura Malaysian Investment Dev Authority
+  2. El filtro site:prensa.com de DDG no es estricto → retorna thestar.com.my, etc.
+  3. _is_panama_related() no rechaza URLs sin dominio .pa explícito cuando el título
+     tampoco menciona "Panamá" o "panameño"
+  4. GDELT backfill: _gdelt_windows=[] — aún no ha procesado ninguna ventana histórica
+     El fix (limitar end a now-1d) es correcto pero needs validation en próxima corrida
+
+Fix aplicado (2026-06-22) : fetch_gdelt_historical() limita end a datetime.utcnow()-1d
+                             Ventanas GDELT reseteadas a [] para backfill real
+Estado post-fix            : Una corrida post-fix (2026-06-22) produjo 0 artículos
+                             → el fix no rompió nada pero GDELT tampoco entregó artículos aún
+Próximos pasos             : Monitorear corrida de hoy; si sigue en 0 → revisar fetch_gdelt_historical
 ```
 
 ---
@@ -67,6 +79,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-06-23 | 0 | 0 | Diagnóstico pipeline: 4 días sin artículos nuevos, GDELT sin iniciar |
 
 ---
 
