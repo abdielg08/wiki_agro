@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-06-24
 ---
 
 # Dashboard de Métricas
@@ -17,23 +17,28 @@ last_updated: 2026-06-22
 | Artículos en sources/ | 13 | ↑ continuo |
 | Artículos reales ingestados | 6 | = total sin falsos positivos |
 | Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Ventanas GDELT completadas | 21 / ~46 estimadas | 46 (2015→hoy) |
+| Días sin artículo real nuevo | >30 (desde semilla 2026-05-24) | máx 3 antes de diagnosticar |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions : 2026-06-19 (último artículo guardado; Actions corre ~diario)
+Resultado              : Sigue funcionando — pero TODOS los artículos recientes son falsos positivos
+Causa raíz             : RSS de prensa.com retorna artículos de thestar.com.my (Malasia),
+                         fox13now.com (Utah EEUU), ieeexplore.ieee.org (IEEE), worldbank.org
+                         porque el keyword "MIDA" coincide con Malaysian Investment Dev. Authority
+                         (no con el MIDA de Panamá).
+Falsos positivos Jun   : 3 (thestar.com.my), 1 (fox13now), 1 (worldbank), 1 (thestar.com.my), 1 (IEEE)
+Artículos reales recibidos: 0 (desde semilla del 2026-05-24)
+Estado GDELT windows   : 21 completadas (2018-Q1 a 2026-Q2), pero 0 artículos reales producidos
+Acción requerida       : Mejorar filtros de dominio en script fetch para excluir dominios
+                         no-panameños: thestar.com.my, fox13now.com, ieeexplore.ieee.org, etc.
+                         Revisar queries GDELT para Panama agriculture específicamente.
 ```
 
 ---
@@ -42,22 +47,26 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 
 | Período | Ventanas | Artículos | Estado |
 |---------|----------|-----------|--------|
-| 2015 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2016 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2017 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2018 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2019 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2020 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2021 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2022 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2023 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2024 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2025 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2026 Q1-Q2 | 0/2 | ? | Pendiente |
-| **TOTAL** | **0/46** | **0** | **Backfill no iniciado** |
+| 2015 Q1-Q4 | 0/4 | 0 | Pendiente |
+| 2016 Q1-Q4 | 0/4 | 0 | Pendiente (semilla: 1 artículo TVN manual) |
+| 2017 Q1-Q4 | 0/4 | 0 | Pendiente |
+| 2018 Q1-Q4 | 3/4 | 0 reales | Ventanas completadas, 0 agro PA |
+| 2019 Q1-Q4 | 3/4 | 0 reales | Ventanas completadas, 0 agro PA |
+| 2020 Q1-Q4 | 2/4 | 0 reales | Ventanas completadas, 0 agro PA |
+| 2021 Q1-Q4 | 3/4 | 0 reales | Ventanas completadas, 0 agro PA |
+| 2022 Q1-Q4 | 2/4 | 0 reales | Ventanas completadas, 0 agro PA |
+| 2023 Q1-Q4 | 3/4 | 0 reales | Ventanas completadas, 0 agro PA |
+| 2024 Q1-Q4 | 2/4 | 0 reales | Ventanas completadas, 0 agro PA |
+| 2025 Q1-Q4 | 1/4 | 0 reales | Ventanas completadas, 0 agro PA |
+| 2026 Q1-Q2 | 2/2 | 0 reales | Ventanas completadas, 0 agro PA |
+| **TOTAL** | **21/46** | **0 reales** | **GDELT activo pero sin artículos reales** |
 
-> Una vez que Actions corra con el código corregido, actualizar esta tabla con los datos reales.
-> El rendimiento real de GDELT (artículos/trimestre) determinará la duración del backfill.
+> PROBLEMA: GDELT/RSS está completando ventanas pero no produce artículos de agro panameño.
+> Los 13 artículos en sources/ son semilla manual (6 reales) + falsos positivos (7).
+> Acción requerida: revisar queries y filtros del script fetch.
+
+> Ventanas completadas (de processed.json _gdelt_windows):
+> 20180329-20260617 — 21 ventanas de ~3 meses cada una.
 
 ---
 
@@ -67,6 +76,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-06-24 | 0 | 0 | Diagnóstico: GDELT 21/46 ventanas completadas, 0 artículos reales producidos. RSS con ruido de fuentes no-panameñas. |
 
 ---
 

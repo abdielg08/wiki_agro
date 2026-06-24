@@ -48,3 +48,50 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-05-30 00:00
+FALSO_POSITIVO (x3): GitHub Actions fetch detectó 3 artículos de thestar.com.my (Malasia)
+  - "Mida welcomes Tengku Zafrul's appointment as chairman" — MIDA Malaysia, no Panamá
+  - "MIDA sees broader investment pipeline beyond data centres in 2026" — MIDA Malaysia
+  - "Malaysia should reform, recalibrate response to global changes" — Malasia
+  CAUSA: prensa.com RSS retorna resultados por keyword "MIDA" que coincide con Malaysian
+         Investment Development Authority. No relacionados con agro panameño.
+  ACCIÓN: Marcados como skipped=True en processed.json, no incorporados al wiki.
+
+## 2026-06-04 00:00
+FALSO_POSITIVO (x1): GitHub Actions fetch detectó artículo de fox13now.com (Utah, EEUU)
+  - "MIDA violated state law in approval process of Box Elder County data center" — Utah
+  CAUSA: Mismo problema keyword "MIDA" en RSS feed prensa.com.
+  ACCIÓN: Marcado como skipped=True.
+
+## 2026-06-08 00:00
+FALSO_POSITIVO (x1): GitHub Actions fetch detectó artículo genérico de worldbank.org
+  - "Development Topics" — página general del Banco Mundial, Bangladesh photo
+  CAUSA: RSS/GDELT retornó URL genérica sin contenido específico de Panamá.
+  ACCIÓN: Marcado como skipped=True.
+
+## 2026-06-11 00:00
+FALSO_POSITIVO (x1): GitHub Actions fetch detectó artículo de thestar.com.my (Malasia)
+  - "I-Bhd's first AI experience centre opens at i-City" — IA Malasia, no Panamá
+  ACCIÓN: Marcado como skipped=True.
+
+## 2026-06-19 00:00
+FALSO_POSITIVO (x1): GitHub Actions fetch detectó artículo de ieeexplore.ieee.org
+  - "A 3D-Printed Worm-Like Robot for Corrugated Pipes Using Anisotropic Fins" — Robótica
+  CAUSA: Menciona "agricultural drainage" pero es paper técnico de IEEE, sin relación con agro PA.
+  ACCIÓN: Marcado como skipped=True.
+
+## 2026-06-24 00:00
+DIAGNOSTIC: Routine de diagnóstico avanzado (Pendientes=0)
+  Estado: 0 artículos pendientes | 6 artículos reales ingestados | 7 falsos positivos acumulados
+  GDELT windows completadas: 21 (vs 0 reportado en métricas del 2026-06-22 — actualizado)
+  Ventanas GDELT cubiertas: 2018-Q1 → 2026-Q2 (con gaps 2015-2017 y 2019-parcial)
+  Último artículo fetched: 2026-06-19 (ieeexplore.ieee.org — falso positivo)
+  Días sin artículo real de agro panameño: >30 días (último real: semilla 2026-05-24)
+  DIAGNÓSTICO RAÍZ:
+    1. El RSS de prensa.com retorna artículos no-panameños por keyword "MIDA" (≡ Malasia/EEUU)
+    2. Las 21 ventanas GDELT completadas no produjeron artículos reales de agro panameño
+    3. El sistema de fetch funciona (Actions corre), pero las fuentes tienen demasiado ruido
+  RECOMENDACIÓN: Revisar configuración de filtros en el script de fetch para excluir
+    dominios no-panameños (thestar.com.my, fox13now.com, ieeexplore.ieee.org, etc.)
+  PÁGINAS WIKI: 20 total (8 topics, 3 entities, 6 summaries, 3 overview)
