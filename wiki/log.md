@@ -48,3 +48,38 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-22 00:00
+AUDIT: Revisión completa de falsos positivos en sources/articles/
+  Problema identificado: 7 artículos de prensa.com eran sobre Malaysia (MIDA=Malaysian
+    Investment Development Authority), Box Elder County (EEUU) e IEEE, no sobre Panamá.
+  Falsos positivos eliminados: thestar.com.my (×3), fox13now.com (×1), worldbank.org (×1),
+    ieeexplore.ieee.org (×1), thestar.com.my (×1)
+  Fix aplicado: filtro _NON_PA_TLDS y _is_panama_related() mejorado
+  GDELT windows reseteadas a [] para iniciar backfill real desde 2015
+  Estado post-fix: Pendiente validación en próxima corrida de Actions
+
+## 2026-06-24 10:00
+DIAGNÓSTICO: Revisión de 2 días sin artículos nuevos
+  Actions corrió hoy 2026-06-24 13:26 UTC y ayer 2026-06-23 14:02 UTC → 0 artículos ambos días
+  Causa raíz identificada:
+    1. RSS IICA (iica.int/es/rss/noticias): 0 entradas en el feed — feed vacío o bloqueando bots
+    2. RSS La Prensa (prensa.com/feed/): 0 entradas en el feed — mismo problema
+    3. DuckDuckGo: todos los searches retornan "No results found" excepto prensa_agro
+       → prensa_agro SÍ retorna resultados pero se filtran por _is_panama_related() (títulos
+         de prensa.com no mencionan "Panama" porque es un diario local)
+    4. GDELT con sourcecountry:PA: filtro demasiado restrictivo
+       → Excluye artículos de IICA (Costa Rica), FAO (Italia), La Prensa (dominio .com),
+         prensa.com, tvn-2.com, etc.
+       → Solo acepta dominios .gob.pa — muy poca cobertura
+       → 32 ventanas marcadas como completas devolvieron 0 artículos por este filtro
+       → 9 ventanas de 2015-2016 obtienen 403/timeout intermitentes (rate limit GDELT)
+  Fix aplicado (commit hoy):
+    - fetch_news.py: eliminado "sourcecountry:PA" del query GDELT
+    - fetch_news.py: eliminado "sourcelang:spa" del query GDELT
+    - fetch_news.py: agregado _KNOWN_PA_DOMAINS para bypass del check de término
+      geográfico en artículos de dominios panameños conocidos (prensa.com, tvn-2.com, etc.)
+    - fetch_news.py: manejo gracioso de DDG "No results found" (ya no se loguea como error)
+    - sources/processed.json: 32 ventanas GDELT reseteadas para re-consulta sin filtros
+      restrictivos (próxima corrida de Actions las procesará con código corregido)
+  Próxima acción: monitorear Actions de mañana (~06:00 PA) para ver si GDELT retorna artículos

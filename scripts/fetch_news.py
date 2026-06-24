@@ -51,6 +51,26 @@ _NON_PA_TLDS = frozenset({
     ".co.in", ".gov.in",                   # India
 })
 
+# Confirmed Panama / Panama-agro specific domains — articles from these are
+# inherently Panama-related; bypass the _is_panama_related() title check.
+_KNOWN_PA_DOMAINS = frozenset({
+    "prensa.com", "www.prensa.com",
+    "panamaamerica.com.pa", "www.panamaamerica.com.pa",
+    "tvn-2.com", "www.tvn-2.com",
+    "laestrella.com.pa", "www.laestrella.com.pa",
+    "elsiglo.com.pa", "www.elsiglo.com.pa",
+    "mida.gob.pa", "www.mida.gob.pa",
+    "idiap.gob.pa", "www.idiap.gob.pa",
+    "bda.gob.pa", "www.bda.gob.pa",
+    "arap.gob.pa", "www.arap.gob.pa",
+    "contraloria.gob.pa", "www.contraloria.gob.pa",
+    "mef.gob.pa", "www.mef.gob.pa",
+    "elcapitalfinanciero.com", "www.elcapitalfinanciero.com",
+    "epasa.com", "www.epasa.com",
+    "critica.com.pa", "www.critica.com.pa",
+    "panama.com", "www.panama.com",
+})
+
 # At least one of these must appear in the article title or URL for RSS/GDELT.
 # Only unambiguous geographic/national terms — no acronyms (MIDA matches Malaysia too).
 _PANAMA_TERMS = frozenset({
@@ -75,8 +95,15 @@ def _is_blocked_domain(url: str) -> bool:
     return any(domain.endswith(tld) for tld in _NON_PA_TLDS)
 
 
+def _is_known_pa_domain(url: str) -> bool:
+    """True if the URL is from a confirmed Panama news/gov domain."""
+    return _url_domain(url) in _KNOWN_PA_DOMAINS
+
+
 def _is_panama_related(title: str, url: str = "") -> bool:
-    """True if the title or URL contains at least one Panama-related term."""
+    """True if: known PA domain OR title/URL contains a Panama geographic term."""
+    if _is_known_pa_domain(url):
+        return True
     text = (title + " " + url).lower()
     return any(term in text for term in _PANAMA_TERMS)
 
@@ -261,14 +288,19 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         with DDGS() as ddgs:
             results = list(ddgs.news(full_query, max_results=max_results))
     except Exception as e:
-        if "403" in str(e) or "Ratelimit" in str(e):
+        err_str = str(e)
+        if "No results found" in err_str:
+            console.print(f"  [dim]DDG sin resultados: {name}[/dim]")
+            return
+        if "403" in err_str or "Ratelimit" in err_str or "timed out" in err_str.lower():
             console.print(f"  [yellow]DDG rate limited — espera 30s...[/yellow]")
             time.sleep(30)
             try:
                 with DDGS() as ddgs:
                     results = list(ddgs.news(full_query, max_results=max_results))
-            except Exception:
-                console.print(f"  [yellow]DDG skip: {name}[/yellow]")
+            except Exception as e2:
+                if "No results found" not in str(e2):
+                    console.print(f"  [yellow]DDG skip: {name}[/yellow]")
                 return
         else:
             console.print(f"  [yellow]DDG error: {e}[/yellow]")
@@ -372,13 +404,18 @@ def fetch_gdelt_batch(query: str, start_date: str, end_date: str, max_records: i
     Fetch one GDELT window.
     Returns list of articles on success (may be empty), None on network/HTTP error.
     Only call mark-complete when result is not None.
+
+    NOTE: sourcecountry:PA is intentionally omitted — it rejects legitimate articles
+    from IICA (Costa Rica), FAO (Italy), La Prensa (prensa.com is .com not .pa), etc.
+    Geographic relevance is enforced by the Panama terms in the query string itself.
+    sourcelang is also omitted so English-language sources (Reuters, FAO, World Bank)
+    covering Panama agro are included.
     """
     params = {
-        "query": f"{query} sourcecountry:PA",
+        "query": query,
         "mode": "artlist",
         "maxrecords": max_records,
         "format": "json",
-        "sourcelang": "spa",
         "startdatetime": start_date.replace("-", "") + "000000",
         "enddatetime": end_date.replace("-", "") + "235959",
         "sort": "DateDesc",

@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-06-24
 ---
 
 # Dashboard de Métricas
@@ -17,23 +17,29 @@ last_updated: 2026-06-22
 | Artículos en sources/ | 13 | ↑ continuo |
 | Artículos reales ingestados | 6 | = total sin falsos positivos |
 | Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Ventanas GDELT completadas | 0 / 47 | 47 (2015→hoy) |
+| Días sin artículos nuevos | 3 | máx 3 antes de diagnosticar |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions  : 2026-06-24 13:26 UTC
+Resultado               : 0 artículos nuevos (3er día consecutivo)
+Causa raíz identificada : sourcecountry:PA en GDELT — excluye La Prensa, IICA, FAO
+                          RSS IICA y La Prensa devuelven 0 entradas (bloqueo de bots)
+                          DDG "No results found" en todos los searches excepto prensa_agro
+                          prensa_agro SÍ retorna resultados pero _is_panama_related() los
+                          filtra porque títulos locales no mencionan "Panama"
+Fix aplicado (2026-06-24):
+  - GDELT: eliminado sourcecountry:PA y sourcelang:spa del query
+  - GDELT: 32 ventanas reseteadas para re-consulta con código corregido
+  - _KNOWN_PA_DOMAINS: prensa.com, tvn-2.com, mida.gob.pa etc. bypass el filtro geográfico
+  - DDG "No results found" ahora logueado como dim (sin error)
+Estado                  : Pendiente — próxima corrida Actions mañana ~11:00 UTC
 ```
 
 ---
@@ -67,6 +73,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-06-24 | 0 | 0 | Diagnóstico: sourcecountry:PA era causa raíz de 0 artículos; fix aplicado |
 
 ---
 
