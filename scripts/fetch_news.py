@@ -401,9 +401,11 @@ def fetch_gdelt_batch(query: str, start_date: str, end_date: str, max_records: i
         if _is_blocked_domain(url):
             continue
 
-        # Require at least one Panama term in title or URL
-        if not _is_panama_related(title, url):
-            continue
+        # Note: _is_panama_related() is intentionally NOT applied here.
+        # GDELT already filters by sourcecountry:PA (Panamanian sources) and
+        # the query requires Panama/agro terms in the body. Requiring "Panama"
+        # in the *title* excludes legitimate local articles like
+        # "MIDA presenta programa de semillas" from mida.gob.pa.
 
         date_raw = item.get("seendate", "")
         try:

@@ -2,7 +2,7 @@
 title: Log de Actividad del Wiki
 type: overview
 tags: [log, actividad]
-last_updated: 2025-05-24
+last_updated: 2026-06-24
 ---
 
 # Log de Actividad
@@ -48,3 +48,34 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-24 00:00
+DIAGNÓSTICO: Routine sin artículos pendientes — investigación de causa raíz
+  Stats: 13 artículos totales | 6 reales ingestados | 7 falsos positivos | 0 pendientes
+  Último Actions run: 2026-06-23 → 0 artículos nuevos
+  Hoy (2026-06-24): Actions aún no ha corrido (programado a las 11:00 UTC)
+
+  CAUSA RAÍZ IDENTIFICADA — Bug en fetch_gdelt_batch():
+    - 21 ventanas GDELT completadas (2018-2026) → 0 artículos guardados
+    - El filtro _is_panama_related(title, url) requería "Panama" en el TÍTULO
+    - Artículos legítimos como "MIDA presenta semillas certificadas" de mida.gob.pa
+      NO pasaban el filtro porque no mencionan "Panamá" en el título (es implícito)
+    - El filtro es correcto para RSS (fuentes mixtas), incorrecto para GDELT
+      porque GDELT ya filtra por sourcecountry:PA (fuentes panameñas)
+
+  FIX APLICADO — scripts/fetch_news.py:
+    - Eliminado el chequeo _is_panama_related() de fetch_gdelt_batch()
+    - Justificación: GDELT query ya incluye sourcecountry:PA + términos agro en español
+    - El filtro _is_blocked_domain() (rechaza .my, .com.au, etc.) se mantiene
+    - Próxima corrida Actions deberá traer artículos GDELT reales de Panamá
+
+  FALSOS POSITIVOS acumulados (7): todos de RSS prensa.com/feed antes del fix Jun-22
+    - 3× thestar.com.my (MIDA malasia)
+    - 1× fox13now.com (MIDA Utah, EEUU)
+    - 1× worldbank.org/ext/development-topics (página genérica)
+    - 1× thestar.com.my (centro IA Malasia)
+    - 1× ieeexplore.ieee.org (robot vermiforme)
+
+  PENDIENTE: Ventanas GDELT 2015-2017 aún no completadas — backfill incompleto
+    Ventanas completadas: 21/~46 (2018-2026 parcial)
+    Ventanas faltantes: 2015 Q1-Q4, 2016 Q1-Q4, 2017 Q1-Q4 + varios trimestres 2018-2026
