@@ -401,9 +401,11 @@ def fetch_gdelt_batch(query: str, start_date: str, end_date: str, max_records: i
         if _is_blocked_domain(url):
             continue
 
-        # Require at least one Panama term in title or URL
-        if not _is_panama_related(title, url):
-            continue
+        # Note: _is_panama_related() NOT applied here — the GDELT query already
+        # requires Panama geography terms in the article content AND sourcecountry:PA
+        # restricts to Panamanian news sources. Applying title-only Panama check
+        # would drop valid articles whose titles don't mention "Panama" explicitly
+        # (e.g. "Productores de arroz reportan pérdidas por sequía").
 
         date_raw = item.get("seendate", "")
         try:
@@ -418,7 +420,9 @@ def fetch_gdelt_batch(query: str, start_date: str, end_date: str, max_records: i
             "trust_level": 3,
             "language": "es",
             "country": "PA",
-            "summary_raw": "",
+            # Use title as summary_raw fallback so _save() doesn't reject the article.
+            # GDELT artlist mode returns no snippet; title is the only content available.
+            "summary_raw": title,
             "full_text": None,
             "gdelt": True,
         })

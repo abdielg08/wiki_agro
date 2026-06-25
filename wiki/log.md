@@ -48,3 +48,35 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-25 (sesión Claude Code — routine diagnóstico)
+DIAGNÓSTICO: Pendientes = 0, 13 artículos en sources/ (6 reales + 7 falsos positivos ya marcados)
+  GitHub Actions corrió: 2026-06-23 y 2026-06-24 → 0 artículos nuevos en ambas corridas
+  Artículos nuevos hoy (Jun 25): 0 (Actions aún no corrió, scheduled 11:00 UTC)
+  Ventanas GDELT completadas: 32 (rango cubierto: 2017-04 → 2026-06)
+  Ventanas GDELT pendientes: ~14 (rango 2015-01 → 2017-03, posibles errores de red)
+
+BUGS ENCONTRADOS Y CORREGIDOS (scripts/fetch_news.py):
+
+  Bug 1 — CRÍTICO (0 artículos GDELT guardados):
+    El modo artlist de GDELT retorna solo título/URL/fecha, sin texto ni resumen.
+    fetch_gdelt_batch() asignaba summary_raw="" (cadena vacía = falsy).
+    _save() rechaza artículos donde not full_text AND not summary_raw → TODOS los
+    artículos GDELT se descartaban silenciosamente, explicando las corridas con 0 nuevos.
+    FIX: summary_raw = title (usar título como contenido mínimo para pasar el check).
+
+  Bug 2 — SOBRE-FILTRADO (artículos válidos rechazados):
+    fetch_gdelt_batch() aplicaba _is_panama_related() al título del artículo, pero
+    el GDELT query ya incluye términos geográficos de Panamá en el contenido + sourcecountry:PA.
+    Artículos con títulos sin "Panamá" explícito (ej: "Productores reportan pérdidas")
+    eran descartados aunque el contenido del artículo sí mencionara Panamá.
+    FIX: se eliminó el check _is_panama_related() del path GDELT; el query y _is_blocked_domain()
+    son suficientes filtros geográficos.
+
+  Impacto esperado: próxima corrida de GitHub Actions debería guardar artículos de GDELT
+  para las ventanas 2017-2026 ya completadas (en realidad no — ventanas ya marcadas como
+  completadas se saltarán). Los ~14 windows 2015-2017 pendientes sí se re-procesarán
+  con el fix aplicado.
+
+  NOTA: En este entorno de ejecución remota, GDELT y RSS están bloqueados por proxy (403).
+  Los fixes solo tienen efecto en GitHub Actions donde las IPs no están bloqueadas.
