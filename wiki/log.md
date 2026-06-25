@@ -48,3 +48,19 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-25 00:00
+DIAGNÓSTICO: 0 artículos nuevos en los últimos 6 días (2026-06-19 → 2026-06-25)
+  Estado GitHub Actions: corrió recientemente (últimos 3 commits dicen "0 artículos nuevos descargados")
+  Ventanas GDELT completadas: 36 de ~46 estimadas
+  Artículos en sources/: 13 (6 reales + 7 falsos positivos)
+  Pendientes de ingesta: 0
+  Páginas wiki: 20 (8 topics, 3 entities, 6 summaries, 2 overview)
+  Problema identificado: GDELT trae artículos de "MIDA Malaysia" (Malaysian Investment Development Authority)
+    y contenidos no relacionados con agro panameño (IEEE robotica, Fox13 Utah, worldbank genérico).
+    Los queries actuales no filtran suficientemente por contexto geográfico Panamá.
+    Las ventanas GDELT restantes (~10) probablemente producirán el mismo patrón.
+  Último artículo real (no falso positivo) incorporado: 2026-05-24 (semilla manual)
+  Último artículo descargado (falso positivo): 2026-06-19 (IEEE ieeexplore.ieee.org)
+  Acción recomendada: mejorar queries GDELT/RSS añadiendo filtros geográficos estrictos de Panamá
+    + términos agrícolas específicos (ej: "agricultura Panama", "MIDA Panama" en lugar de solo "MIDA")
