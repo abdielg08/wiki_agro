@@ -48,3 +48,40 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-26 00:00
+ROUTINE — Diagnóstico sesión diaria (0 pendientes)
+
+Estado:
+  - Artículos en sources/: 13 | Ingestados: 13 | Pendientes: 0
+  - Páginas wiki: 20 (8 topics, 3 entities, 6 summaries, 3 overview)
+  - Ventanas GDELT completadas: 36 / ~46 estimadas
+
+ALERTA — 3 días consecutivos con 0 artículos nuevos (Jun 23, 24, 25)
+  Condición de falla activada: "3 días sin nuevos artículos en sources/articles/"
+
+Diagnóstico:
+  - GitHub Actions SÍ está corriendo diariamente (último commit: 2026-06-25 13:20 UTC)
+  - El fetch diario usa modo "all": RSS → DDG → WorldBank → GDELT
+  - Causa principal: GDELT backfill casi completado (36/46 ventanas). Las ventanas
+    restantes cubren 2015-2016 donde GDELT v2 tiene escasa cobertura de medios
+    panameños en español. Es probable que estas ventanas retornen 0 artículos.
+  - El filtro _is_panama_related() y _is_blocked_domain() están funcionando
+    correctamente — bloquean falsos positivos de Malaysia MIDA, IEEE, etc.
+  - RSS IICA y La Prensa: no están devolviendo artículos agro panameños nuevos
+    en los últimos días (temporada baja de noticias / feeds vacíos)
+  - DDG web search: posiblemente rate-limitado o retornando artículos ya vistos
+
+Estado del falso positivo acumulado: 7 total
+  Todos correctamente identificados y marcados ingested=True sin crear páginas wiki.
+  Ningún falso positivo nuevo en esta sesión.
+
+Artículos nuevos en sources/ hoy (Jun 26): 0 nuevos reales
+  (Los archivos con timestamp hoy son re-creaciones de artículos ya conocidos)
+
+Acción recomendada:
+  - Esperar que GDELT complete las ventanas restantes (2015-2016). Dada la escasez
+    de cobertura panameña en ese período, es posible que muchas retornen 0 artículos.
+  - Considerar activar el modo CDX Wayback Machine para La Prensa y TVN (2015-2016)
+    via scripts/fetch_historical.py para complementar GDELT con archivos de prensa.
+  - El sistema de fetch está sano; el problema es disponibilidad de contenido histórico.
