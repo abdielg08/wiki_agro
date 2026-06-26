@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-06-26
 ---
 
 # Dashboard de Métricas
@@ -17,23 +17,26 @@ last_updated: 2026-06-22
 | Artículos en sources/ | 13 | ↑ continuo |
 | Artículos reales ingestados | 6 | = total sin falsos positivos |
 | Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Páginas en wiki/ | 20 | ↑ continuo |
+| Cobertura temporal | 2017-2026 (real GDELT) | 2015 → hoy |
+| Ventanas GDELT completadas | 36 / ~46 estimadas | 46 (2015→hoy) |
+| Días sin artículos nuevos | 1 (hoy 0 artículos) | máx 3 antes de diagnosticar |
+| Yield GDELT (calidad) | 6/13 = 46% | >80% |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions : 2026-06-26
+Resultado              : 0 artículos nuevos (commit 4c2d15b)
+Ventanas completadas   : 36 (incluyendo 20260618_20260624, cobertura hasta ayer)
+Causa baja calidad     : GDELT retorna artículos de MIDA Malasia, IEEE robotics, World Bank
+                         genérico — el término "MIDA" matchea la agencia malaya no la panameña
+Problema de cobertura  : ventanas desde 20170330; faltan 2015 y 2016
+Fix recomendado        : refinar query GDELT con "Panamá" AND (maíz OR arroz OR ganadería
+                         OR agropecuario) para filtrar resultados no panameños
+Estado                 : Actions funcional pero yield bajo (54% falsos positivos)
 ```
 
 ---
@@ -42,22 +45,23 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 
 | Período | Ventanas | Artículos | Estado |
 |---------|----------|-----------|--------|
-| 2015 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2016 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2017 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2018 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2019 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2020 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2021 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2022 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2023 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2024 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2025 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2026 Q1-Q2 | 0/2 | ? | Pendiente |
-| **TOTAL** | **0/46** | **0** | **Backfill no iniciado** |
+| 2015 Q1-Q4 | 0/4 | 0 | Pendiente (no hay ventanas desde 2015) |
+| 2016 Q1-Q4 | 0/4 | 0 | Pendiente (no hay ventanas desde 2016) |
+| 2017 Q2-Q4 | 1/3 | ? | Parcial (20170330_20170628 completada) |
+| 2018 Q1-Q4 | 4/4 | ? | Completado |
+| 2019 Q1-Q4 | 4/4 | ? | Completado |
+| 2020 Q1-Q4 | 4/4 | ? | Completado |
+| 2021 Q1-Q4 | 4/4 | ? | Completado |
+| 2022 Q1-Q4 | 4/4 | ? | Completado |
+| 2023 Q1-Q4 | 4/4 | ? | Completado |
+| 2024 Q1-Q4 | 4/4 | ? | Completado |
+| 2025 Q1-Q4 | 4/4 | ? | Completado |
+| 2026 Q1-Q2+ | 4/2 | ? | Completado (hasta 20260624) |
+| **TOTAL** | **36/46** | **13 descargados / 6 reales** | **En progreso** |
 
-> Una vez que Actions corra con el código corregido, actualizar esta tabla con los datos reales.
-> El rendimiento real de GDELT (artículos/trimestre) determinará la duración del backfill.
+> GDELT ha procesado 36 ventanas (2017-2026). Faltan ventanas de 2015-2016 y posiblemente
+> algunos trimestres de 2017. El rendimiento real es bajo (54% falsos positivos) por
+> ambigüedad del término "MIDA".
 
 ---
 
@@ -67,6 +71,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-06-26 | 0 | 0 | Diagnóstico: 36 ventanas GDELT completadas, yield 46%, 0 artículos nuevos hoy |
 
 ---
 

@@ -48,3 +48,17 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-26 00:00
+DIAGNOSTICO: Routine diaria — pendientes = 0, diagnóstico avanzado ejecutado
+  Estado: 13 artículos en sources/, 13 ingestados (6 reales + 7 falsos positivos), 0 pendientes
+  GitHub Actions: corrió hoy (commit 4c2d15b) — resultado: 0 artículos nuevos descargados
+  Ventanas GDELT completadas: 36 (actualización significativa vs. 0 reportado el 2026-06-22)
+  Última ventana GDELT: 20260618_20260624 (cobertura hasta 2026-06-24)
+  Cobertura temporal real: 2017-2026 (ventanas desde 20170330 en adelante; falta 2015-2016)
+  Yield GDELT: 6 artículos reales de 13 descargados (tasa falsos positivos: 54%)
+  Causa baja calidad: GDELT devuelve artículos sobre MIDA Malasia, IEEE robotics, World Bank
+    genérico — el término "MIDA" matchea la agencia malaya, no el MIDA panameño
+  Páginas wiki: 20 (8 topics, 3 entities, 6 summaries, 2 overview + 1 index)
+  Acción recomendada: refinar query GDELT para incluir "Panamá" + términos agrícolas específicos
+    (maíz, arroz, ganadería, MIDA Panamá) y excluir malaysia/MIDA malayo
