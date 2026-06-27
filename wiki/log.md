@@ -48,3 +48,24 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-27 00:00
+ROUTINE: Sesión de routine — diagnóstico y falso positivo
+  Stats: 14 descargados, 13 ingestados, 1 pendiente
+  FALSO POSITIVO detectado y RECHAZADO:
+    - Archivo: 20260624_prensacom_en-n2096157.json
+    - Título: "'Reef Saudi', a Successful Program Based on Rain-Fed Agriculture"
+    - URL: https://www.spa.gov.sa/en/N2096157
+    - Razón de rechazo: Artículo sobre programa agrícola de Arabia Saudita (Riyadh) —
+      NO tiene relación con la agropecuaria panameña. Fuente: Saudi Press Agency (SPA).
+    - Acción: marcado como procesado sin crear contenido wiki.
+  DIAGNÓSTICO DEL FETCH:
+    - Último artículo nuevo en sources/: 2026-06-24 (hace 3 días)
+    - 0 artículos llegaron hoy (2026-06-27)
+    - Total artículos reales (no falsos positivos): 6 (todos de semilla manual)
+    - Falsos positivos acumulados: 8 (7 previos + 1 hoy — todos vía fetch prensa.com)
+    - GitHub Actions: no se han detectado artículos nuevos de fuentes reales
+  Total páginas wiki: 20 (8 topics, 3 entities, 6 summaries, 2 overview + 1 nuevo)
+
+## 2026-06-27 00:08
+INGEST: 1 artículos marcados como ingestados por sesión Claude Code

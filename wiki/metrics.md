@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-06-27
 ---
 
 # Dashboard de Métricas
@@ -14,10 +14,10 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
+| Artículos en sources/ | 14 | ↑ continuo |
 | Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Falsos positivos acumulados | 8 | **+1 hoy (Reef Saudi — Arabia Saudita)** |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
 | Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
 | Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
@@ -27,13 +27,16 @@ last_updated: 2026-06-22
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
+Última corrida Actions : 2026-06-21 (sin cambio desde entonces)
+Resultado              : 0 artículos nuevos reales
 Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
                          RSS IICA y La Prensa devolvieron 0 entradas ese día
 Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
                          Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Estado 2026-06-27      : Artículos que llegan vía fetch son falsos positivos (prensa.com
+                         devuelve contenido no-panameño). Último artículo en sources/ fue
+                         2026-06-24 (hace 3 días). Backfill GDELT aún no produce resultados.
+                         ALERTA: 3 días consecutivos sin artículos nuevos reales.
 ```
 
 ---
@@ -67,6 +70,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-06-27 | 0 | 0 | 1 falso positivo detectado (Reef Saudi/Arabia Saudita) — rechazado |
 
 ---
 
