@@ -48,3 +48,45 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-27 00:00
+ROUTINE: Sesión de ingesta — 4 artículos pendientes, todos FALSOS POSITIVOS
+  Artículos evaluados: 4
+  Artículos reales ingestados: 0
+  Falsos positivos detectados: 4
+
+  FALSO POSITIVO 1: "Timeline: How the Kevin O'Leary data center plan came to be"
+    URL: https://www.sltrib.com/news/2026/05/19/kevin-oleary-data-center-timeline/
+    Fuente: Salt Lake Tribune (sltrib.com) vía prensa.com — 2026-05-19
+    Razón: Artículo sobre data centers en Utah (EE.UU.). El "MIDA" mencionado es la
+    "Military Installation Development Authority" del estado de Utah, no el Ministerio
+    de Desarrollo Agropecuario de Panamá. Sin relación con agropecuaria panameña.
+
+  FALSO POSITIVO 2: "Box Elder data center opponents hope for a vote"
+    URL: https://www.sltrib.com/news/2026/05/27/box-elder-data-center-opponents/
+    Fuente: Salt Lake Tribune (sltrib.com) vía prensa.com — 2026-05-27
+    Razón: Artículo sobre oposición ciudadana a data centers en Box Elder County, Utah.
+    Misma confusión de MIDA (Utah) vs MIDA (Panamá). Sin relevancia agropecuaria panameña.
+
+  FALSO POSITIVO 3: "Utah Gov. Cox issues order to protect Great Salt Lake, air quality from data centers"
+    URL: https://www.sltrib.com/news/environment/2026/05/29/utah-governor-issues-order-protect/
+    Fuente: Salt Lake Tribune (sltrib.com) vía prensa.com — 2026-05-29
+    Razón: Orden ejecutiva del gobernador de Utah sobre calidad del aire y el Gran Lago
+    Salado en relación a data centers. Sin relación con agropecuaria panameña.
+
+  FALSO POSITIVO 4: "'Reef Saudi', a Successful Program Based on Rain-Fed Agriculture"
+    URL: https://www.spa.gov.sa/en/N2096157
+    Fuente: Saudi Press Agency (spa.gov.sa) vía prensa.com — 2026-06-24
+    Razón: Artículo sobre el programa agrícola "Reef Saudi" en Arabia Saudita (trigo y
+    cebada de secano). Aunque es agropecuario, es de Arabia Saudita, no de Panamá.
+
+  DIAGNÓSTICO DE FALSOS POSITIVOS SISTEMÁTICOS:
+    El fetch automático (prensa.com vía GDELT) está capturando artículos que mencionan
+    "MIDA" en contextos no panameños (Utah, Malasia) y artículos agrícolas de otros países.
+    El filtro de relevancia geográfica para Panamá no está funcionando correctamente.
+    Artículos nuevos llegados hoy (2026-06-27): 0 artículos genuinamente agropecuarios panameños.
+    Total falsos positivos acumulados en esta sesión: 4
+    Total falsos positivos acumulados histórico: 11 (7 anteriores + 4 de hoy)
+
+## 2026-06-27 16:06
+INGEST: 4 artículos marcados como ingestados por sesión Claude Code
