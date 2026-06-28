@@ -48,3 +48,30 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-28 00:00
+FALSOS POSITIVOS: 4 artículos rechazados — ninguno es sobre agropecuaria panameña
+  Stats previos: 17 descargados, 13 ingestados, 4 pendientes
+  Artículos rechazados:
+    1. "Timeline: How the Kevin O'Leary data center plan came to be" (sltrib.com, 2026-05-19)
+       Razón: Trata sobre un centro de datos hyperscale en Utah, USA. "MIDA" en el texto
+       se refiere a una junta de Utah, NO al Ministerio de Desarrollo Agropecuario de Panamá.
+    2. "Box Elder data center opponents hope for a vote — but are ready for a legal fight"
+       (sltrib.com, 2026-05-27)
+       Razón: Trata sobre la oposición ciudadana a un centro de datos en Box Elder County, Utah.
+       No tiene relación con agropecuaria panameña.
+    3. "Utah Gov. Cox issues order to protect Great Salt Lake, air quality from data centers"
+       (sltrib.com, 2026-05-29)
+       Razón: Trata sobre una orden ejecutiva del gobernador de Utah sobre calidad del aire
+       y el Gran Lago Salado. No tiene relación con agropecuaria panameña.
+    4. "'Reef Saudi', a Successful Program Based on Rain-Fed Agriculture" (spa.gov.sa, 2026-06-24)
+       Razón: Trata sobre el programa agrícola "Reef Saudi" en Arabia Saudita (trigo y cebada
+       bajo secano). No es sobre Panamá.
+  Causa raíz: El feed de prensa.com está trayendo artículos de fuentes externas (Salt Lake
+  Tribune, agencia saudita) que mencionan "MIDA" o "agriculture" pero no son panameñas.
+  Acción: Artículos marcados como procesados para evitar reaparecer. Falsos positivos
+  acumulados: 11 (7 anteriores + 4 de hoy). Se requiere mejora en el filtrado de fuentes.
+  Total páginas wiki sin cambios: 20 (8 topics, 3 entities, 6 summaries, 3 overview)
+
+## 2026-06-28 08:05
+INGEST: 4 artículos marcados como ingestados por sesión Claude Code
