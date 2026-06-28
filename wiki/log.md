@@ -48,3 +48,47 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-28 — Routine
+FALSOS POSITIVOS: 4 artículos detectados como no-agropecuarios panameños. NO ingestados.
+
+  1. FALSO POSITIVO — 20260519_prensacom_news-2026-05-19-kevin-oleary-data-center-timeline.json
+     URL: https://www.sltrib.com/news/2026/05/19/kevin-oleary-data-center-timeline/
+     Motivo: Artículo del Salt Lake Tribune (Utah, EE.UU.) sobre un plan de data center
+             de Kevin O'Leary. El "MIDA" mencionado es la "Military Installation
+             Development Authority" de Utah, NO el Ministerio de Desarrollo Agropecuario
+             de Panamá. Sin relación con agricultura panameña.
+
+  2. FALSO POSITIVO — 20260527_prensacom_news-2026-05-27-box-elder-data-center-opponents.json
+     URL: https://www.sltrib.com/news/2026/05/27/box-elder-data-center-opponents/
+     Motivo: Artículo del Salt Lake Tribune (Utah, EE.UU.) sobre oponentes a un data center
+             en Box Elder County. Ídem: "MIDA" = Utah board. No tiene relación con
+             el sector agropecuario panameño.
+
+  3. FALSO POSITIVO — 20260529_prensacom_news-environment-2026-05-29-utah-governor-issues-order-prote.json
+     URL: https://www.sltrib.com/news/environment/2026/05/29/utah-governor-issues-order-protect/
+     Motivo: Artículo del Salt Lake Tribune sobre orden ejecutiva del gobernador de Utah
+             para proteger el Gran Lago Salado de los data centers. El "MIDA" es el
+             mismo board de Utah. Cero relación con Panamá o agricultura.
+
+  4. FALSO POSITIVO — 20260624_prensacom_en-n2096157.json
+     URL: https://www.spa.gov.sa/en/N2096157
+     Fuente real: Saudi Press Agency (Arabia Saudita)
+     Motivo: Nota sobre el programa "Reef Saudi" de agricultura de secano en Arabia
+             Saudita (trigo, cebada). No es sobre Panamá ni sobre agro panameño.
+
+  Patrón identificado: el fetcher sigue capturando artículos de Utah que mencionan
+  "MIDA" (Military Installation Development Authority), confundiéndolo con el MIDA
+  panameño. También captura artículos internacionales de agricultura no panameña.
+  Recomendación: filtrar URLs de sltrib.com y spa.gov.sa en el fetcher.
+
+DIAGNÓSTICO — Estado del fetch hoy (2026-06-28):
+  Artículos nuevos en sources/ hoy: varios (llegaron con el fetch de GitHub Actions)
+  Todos fueron falsos positivos — el fetch sigue trayendo artículos irrelevantes.
+  Falsos positivos acumulados totales: 11 (7 anteriores + 4 de hoy)
+  GitHub Actions corrió hoy: SÍ (archivos con timestamp Jun 28 en sources/articles/)
+  Ventanas GDELT completadas: 0/46 (backfill no iniciado)
+  RSS IICA / La Prensa: sin artículos nuevos reales hoy
+
+## 2026-06-28 16:06
+INGEST: 4 artículos marcados como ingestados por sesión Claude Code
