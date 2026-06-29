@@ -48,3 +48,40 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-29 00:00
+FALSOS POSITIVOS: 4 artículos pendientes rechazados — ninguno es sobre agricultura panameña
+  Artículo 1 — RECHAZADO: "Timeline: How the Kevin O'Leary data center plan came to be"
+    URL: https://www.sltrib.com/news/2026/05/19/kevin-oleary-data-center-timeline/
+    Fuente: Salt Lake Tribune (Utah, EE.UU.)
+    Motivo: Trata sobre un proyecto de data center en Utah. "MIDA" en el texto refiere a
+            "Military Installation Development Authority" de Utah, NO al MIDA panameño.
+            Sin relación alguna con agricultura de Panamá.
+
+  Artículo 2 — RECHAZADO: "Box Elder data center opponents hope for a vote"
+    URL: https://www.sltrib.com/news/2026/05/27/box-elder-data-center-opponents/
+    Fuente: Salt Lake Tribune (Utah, EE.UU.)
+    Motivo: Mismo contexto Utah/data centers. No es agro panameño.
+
+  Artículo 3 — RECHAZADO: "Utah Gov. Cox issues order to protect Great Salt Lake, air quality from data centers"
+    URL: https://www.sltrib.com/news/environment/2026/05/29/utah-governor-issues-order-protect/
+    Fuente: Salt Lake Tribune (Utah, EE.UU.)
+    Motivo: Orden ejecutiva del gobernador de Utah sobre calidad del aire y el Gran Lago Salado.
+            Menciona "MIDA" en contexto Utah. No es agro panameño.
+
+  Artículo 4 — RECHAZADO: "'Reef Saudi', a Successful Program Based on Rain-Fed Agriculture"
+    URL: https://www.spa.gov.sa/en/N2096157
+    Fuente: Saudi Press Agency (Arabia Saudita)
+    Motivo: Describe programa agrícola de Arabia Saudita (trigo y cebada en zonas de secano).
+            Aunque es agricultura, NO es sobre Panamá. Falso positivo geográfico.
+
+  DIAGNÓSTICO: El fetch automático (GitHub Actions) continúa captando artículos que contienen
+  palabras clave como "MIDA" pero en contextos ajenos al agro panameño (Utah, Malasia, Arabia Saudita).
+  El filtro geográfico de la pipeline de GDELT/RSS requiere mejora para descartar estos resultados.
+
+  Artículos reales ingestados hoy: 0
+  Falsos positivos acumulados: 11 (7 anteriores + 4 esta sesión)
+  Total páginas wiki: 20 (sin cambios — no hubo ingesta real)
+
+## 2026-06-29 00:10
+INGEST: 4 artículos marcados como ingestados por sesión Claude Code
