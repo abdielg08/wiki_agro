@@ -48,3 +48,48 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-29 00:00
+FALSOS POSITIVOS: 5 artículos rechazados — ninguno es sobre agropecuaria de Panamá
+  Artículo 1/5: "Kevin O'Leary data center timeline" [prensa.com, 2026-05-19]
+    URL: https://www.sltrib.com/news/2026/05/19/kevin-oleary-data-center-timeline/
+    Razón: Trata sobre un proyecto de centro de datos (data center) en Utah, EE.UU.
+    La mención de "MIDA" en el texto refiere al Utah Inland Port Authority o similar, NO al MIDA panameño.
+    → NO INGESTADO
+
+  Artículo 2/5: "Box Elder data center opponents" [prensa.com, 2026-05-27]
+    URL: https://www.sltrib.com/news/2026/05/27/box-elder-data-center-opponents/
+    Razón: Trata sobre oposición ciudadana a un data center en Box Elder County, Utah, EE.UU.
+    → NO INGESTADO
+
+  Artículo 3/5: "Utah Gov. Cox issues order to protect Great Salt Lake from data centers" [prensa.com, 2026-05-29]
+    URL: https://www.sltrib.com/news/environment/2026/05/29/utah-governor-issues-order-protect/
+    Razón: Trata sobre política ambiental en Utah, EE.UU. relacionada con centros de datos e impacto en el Great Salt Lake.
+    → NO INGESTADO
+
+  Artículo 4/5: "New York Farm Bureau" [prensa.com, 2026-06-17]
+    URL: https://www.nyfb.org/
+    Razón: Es la página institucional del New York Farm Bureau, organización agrícola de Nueva York, EE.UU.
+    No tiene ninguna relación con Panamá.
+    → NO INGESTADO
+
+  Artículo 5/5: "Reef Saudi — Rain-Fed Agriculture" [prensa.com, 2026-06-24]
+    URL: https://www.spa.gov.sa/en/N2096157
+    Razón: Trata sobre el programa de agricultura de secano "Reef Saudi" en Arabia Saudita.
+    No tiene relación con Panamá.
+    → NO INGESTADO
+
+  Total sesión: 0 artículos reales ingestados | 5 falsos positivos registrados
+  Falsos positivos acumulados: 12 (7 anteriores + 5 esta sesión)
+  Causa raíz probable: el fetch de prensa.com captura artículos de Salt Lake Tribune y SPA News Arabia
+    que mencionan términos como "MIDA" o "agriculture" pero no son panameños.
+    Requiere mejora del filtro de relevancia geográfica en el script de fetch.
+
+DIAGNÓSTICO DEL FETCH (Paso 5):
+  Artículos en sources/ hoy: 18 (sin nuevos desde sesión anterior)
+  GitHub Actions: no se observan artículos nuevos hoy (2026-06-29)
+  Estado del backfill GDELT: 0 ventanas completadas — pendiente de validación
+  Páginas wiki: 20 (sin cambios — 0 artículos reales procesados esta sesión)
+
+## 2026-06-29 16:08
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code
