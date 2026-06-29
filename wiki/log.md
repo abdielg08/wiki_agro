@@ -48,3 +48,36 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-29 00:00
+ROUTINE: Sesión de routine — diagnóstico y procesamiento de pendientes
+  Stats: 17 artículos descargados, 13 ingestados, 4 pendientes → todos FALSOS POSITIVOS
+  Artículos nuevos hoy (2026-06-29): 0
+
+FALSO POSITIVO x4 — No ingestados (fuera de scope: agro de Panamá):
+  1. 20260519_prensacom_news-2026-05-19-kevin-oleary-data-center-timeline.json
+     URL: https://www.sltrib.com/news/2026/05/19/kevin-oleary-data-center-timeline/
+     Razón: Artículo sobre data centers en Utah, EEUU (Salt Lake Tribune). "MIDA" refiere a entidad de Utah, no MIDA panameño.
+  2. 20260527_prensacom_news-2026-05-27-box-elder-data-center-opponents.json
+     URL: https://www.sltrib.com/news/2026/05/27/box-elder-data-center-opponents/
+     Razón: Artículo sobre data centers en Box Elder County, Utah. Sin relación con agro panameño.
+  3. 20260529_prensacom_news-environment-2026-05-29-utah-governor-issues-order-prote.json
+     URL: https://www.sltrib.com/news/environment/2026/05/29/utah-governor-issues-order-protect/
+     Razón: Artículo sobre Great Salt Lake y regulación de data centers en Utah, EEUU.
+  4. 20260624_prensacom_en-n2096157.json
+     URL: https://www.spa.gov.sa/en/N2096157
+     Razón: Artículo sobre programa agrícola "Reef Saudi" en Arabia Saudita. No es agro de Panamá.
+
+  Acción: Marcados como procesados sin crear contenido wiki. Falsos positivos acumulados: 11.
+
+DIAGNÓSTICO — Fetch sin artículos nuevos hoy:
+  El fetch de GitHub Actions no trajo nuevos artículos el 2026-06-29.
+  Causa probable: GDELT sigue sin ventanas disponibles en el rango configurado;
+  RSS IICA y La Prensa sin entradas relevantes.
+  Último artículo real en sources/: 20240305 (semilla).
+  Último artículo en sources/ por fecha: 20260624 (falso positivo de spa.gov.sa).
+  Recomendación: revisar configuración del fetch para filtrar dominios no-panameños
+  (sltrib.com, spa.gov.sa son fuentes ajenas al agro de Panamá).
+
+## 2026-06-29 08:08
+INGEST: 4 artículos marcados como ingestados por sesión Claude Code
