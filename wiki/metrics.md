@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-06-30
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,31 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
+| Artículos en sources/ | 18 | ↑ continuo |
 | Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Falsos positivos acumulados | 12 | **0 nuevos** |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
 | Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Días sin artículos nuevos | 1 (último: Jun 29) | máx 3 antes de diagnosticar |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions : 2026-06-29 (archivos en sources/ con fecha Jun 29)
+Resultado              : 5 artículos fetched — todos falsos positivos
+Causa identificada     : El fetch está capturando páginas de EE.UU./Arabia Saudita/Malasia
+                         que mencionan "MIDA" (Utah Military Installation Development Authority,
+                         Malaysia Investment Development Authority) o "Farm Bureau" genérico.
+                         El filtro geográfico/temático de GDELT no discrimina suficientemente
+                         el contenido agropecuario panameño real.
+Diagnóstico 2026-06-30 : 0 artículos nuevos llegaron HOY. 5 pendientes eran todos falsos
+                         positivos y han sido descartados. El backfill GDELT real (2015→hoy)
+                         no ha iniciado — todas las ventanas GDELT siguen en 0/46.
+Acción requerida       : Mejorar filtros de búsqueda GDELT para garantizar contenido Panama-
+                         específico. Revisar keywords y dominio .pa en los queries de fetch.
 ```
 
 ---
@@ -67,6 +72,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-06-30 | 0 (5 falsos positivos descartados) | 0 | 5 artículos de Utah/NYFB/Arabia Saudita — no agro PA |
 
 ---
 

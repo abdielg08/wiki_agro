@@ -48,3 +48,32 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-30 00:00
+FALSOS POSITIVOS: 5 artículos descartados — ninguno trata sobre agropecuaria panameña
+  Criterio: 0% tasa de falsos positivos innegociable
+  Artículos rechazados:
+    1. "Timeline: How the Kevin O'Leary data center plan came to be" (sltrib.com, 2026-05-19)
+       Razón: Noticia sobre centros de datos en Utah, EE.UU. El "MIDA" es la
+       "Military Installation Development Authority" de Utah, sin relación con
+       el Ministerio de Desarrollo Agropecuario de Panamá.
+    2. "Box Elder data center opponents hope for a vote" (sltrib.com, 2026-05-27)
+       Razón: Disputa legal sobre centros de datos en Box Elder County, Utah.
+       No tiene contenido agropecuario ni relación con Panamá.
+    3. "Utah Gov. Cox issues order to protect Great Salt Lake, air quality from data centers"
+       (sltrib.com, 2026-05-29)
+       Razón: Orden ejecutiva del gobernador de Utah sobre calidad del aire y
+       el Gran Lago Salado. Sin relación con Panamá ni agropecuaria.
+    4. "New York Farm Bureau" (nyfb.org, 2026-06-17)
+       Razón: Página principal de la organización gremial agrícola de Nueva York.
+       No contiene información sobre Panamá.
+    5. "'Reef Saudi', a Successful Program Based on Rain-Fed Agriculture" (spa.gov.sa, 2026-06-24)
+       Razón: Programa de agricultura de secano de Arabia Saudita. No es Panamá.
+  Acción: Artículos marcados como procesados para limpiar la cola. Sin páginas wiki creadas.
+  Diagnóstico fetch: 0 artículos nuevos llegaron hoy (2026-06-30). Último fetch: Jun 29.
+    El fetch de GitHub Actions no trajo artículos sobre agropecuaria panameña real.
+    El sistema de búsqueda GDELT/RSS está captando noticias fuera de alcance geográfico.
+  Total falsos positivos acumulados: 12 (7 anteriores + 5 de esta sesión)
+
+## 2026-06-30 08:07
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code
