@@ -48,3 +48,50 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-30 00:00
+ROUTINE: Sesión de ingesta — 5 artículos pendientes revisados, todos FALSOS POSITIVOS
+  Artículos evaluados: 5 | Ingestados: 0 | Falsos positivos: 5
+
+  FALSO POSITIVO #1: "Timeline: How the Kevin O'Leary data center plan came to be"
+    Archivo: 20260519_prensacom_news-2026-05-19-kevin-oleary-data-center-timeline.json
+    URL: https://www.sltrib.com/news/2026/05/19/kevin-oleary-data-center-timeline/
+    Razón: Artículo sobre centros de datos en Utah, EEUU. La mención de "MIDA" refiere
+           al Utah Inland Port Authority (no al Ministerio de Desarrollo Agropecuario de Panamá).
+           Completamente ajeno al sector agropecuario panameño.
+
+  FALSO POSITIVO #2: "Box Elder data center opponents hope for a vote"
+    Archivo: 20260527_prensacom_news-2026-05-27-box-elder-data-center-opponents.json
+    URL: https://www.sltrib.com/news/2026/05/27/box-elder-data-center-opponents/
+    Razón: Artículo sobre oposición a centros de datos en Box Elder County, Utah, EEUU.
+           Sin relación alguna con agricultura panameña.
+
+  FALSO POSITIVO #3: "Utah Gov. Cox issues order to protect Great Salt Lake from data centers"
+    Archivo: 20260529_prensacom_news-environment-2026-05-29-utah-governor-issues-order-prote.json
+    URL: https://www.sltrib.com/news/environment/2026/05/29/utah-governor-issues-order-protect/
+    Razón: Artículo sobre política ambiental de Utah respecto a calidad del aire y centros de datos.
+           Sin relación con agropecuaria panameña.
+
+  FALSO POSITIVO #4: "New York Farm Bureau"
+    Archivo: 20260617_prensacom_.json
+    URL: https://www.nyfb.org/
+    Razón: Página web del New York Farm Bureau (organización agrícola de Nueva York, EEUU).
+           No es un artículo de noticias y no es sobre Panamá.
+
+  FALSO POSITIVO #5: "'Reef Saudi', a Successful Program Based on Rain-Fed Agriculture"
+    Archivo: 20260624_prensacom_en-n2096157.json
+    URL: https://www.spa.gov.sa/en/N2096157
+    Razón: Artículo de la agencia de noticias saudita sobre programa agrícola de Arabia Saudita.
+           No tiene relación con el sector agropecuario panameño.
+
+  Diagnóstico: El fetch de GitHub Actions sigue trayendo artículos sin relación con Panamá.
+    La fuente "prensa.com" en processed.json captura URLs de Salt Lake Tribune (sltrib.com),
+    New York Farm Bureau (nyfb.org) y agencias sauditas (spa.gov.sa) — todas ajenas al tema.
+    Acción recomendada: revisar el filtro de búsqueda GDELT/RSS que determina qué URLs
+    se asocian a "prensa.com"; posiblemente el keyword filter está usando "MIDA" genéricamente.
+  
+  Falsos positivos acumulados totales: 12 (7 previos + 5 esta sesión)
+  Páginas wiki sin cambio: 20 (8 topics, 3 entities, 6 summaries, 3 overview)
+
+## 2026-06-30 00:07
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code
