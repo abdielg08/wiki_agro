@@ -48,3 +48,26 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-06-30 00:00
+FALSOS POSITIVOS: 5 artículos rechazados en routine — no son sobre agro panameño
+  1. FALSO POSITIVO — "Timeline: How the Kevin O'Leary data center plan came to be" (prensa.com, 2026-05-19)
+     URL: https://www.sltrib.com/news/2026/05/19/kevin-oleary-data-center-timeline/
+     Razón: Artículo sobre un proyecto de data center en Utah, USA. Menciona "MIDA" como una junta estatal de Utah (≠ MIDA de Panamá). Sin relación con agricultura panameña.
+  2. FALSO POSITIVO — "Box Elder data center opponents hope for a vote" (prensa.com, 2026-05-27)
+     URL: https://www.sltrib.com/news/2026/05/27/box-elder-data-center-opponents/
+     Razón: Artículo sobre oposición ciudadana a data center en Box Elder County, Utah, USA. No tiene relación con agro de Panamá.
+  3. FALSO POSITIVO — "Utah Gov. Cox issues order to protect Great Salt Lake, air quality from data centers" (prensa.com, 2026-05-29)
+     URL: https://www.sltrib.com/news/environment/2026/05/29/utah-governor-issues-order-protect/
+     Razón: Artículo sobre regulación medioambiental de data centers en Utah, USA. No tiene relación con agro de Panamá.
+  4. FALSO POSITIVO — "New York Farm Bureau" (prensa.com, 2026-06-17)
+     URL: https://www.nyfb.org/
+     Razón: Página principal del New York Farm Bureau (organización agropecuaria de Nueva York, USA). No es sobre Panamá.
+  5. FALSO POSITIVO — "'Reef Saudi', a Successful Program Based on Rain-Fed Agriculture" (prensa.com, 2026-06-24)
+     URL: https://www.spa.gov.sa/en/N2096157
+     Razón: Artículo sobre programa de agricultura bajo lluvia en Arabia Saudita. No tiene relación con Panamá.
+  Acción: Todos marcados como ingestados para limpiar la cola. No se crearon summaries.
+  DIAGNÓSTICO: El fetch automático está trayendo artículos no relacionados con Panamá desde Salt Lake Tribune y otras fuentes no panameñas. Revisar filtros de keywords en el script de fetch GDELT/RSS.
+
+## 2026-06-30 16:06
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code
