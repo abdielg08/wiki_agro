@@ -48,3 +48,43 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-07-01 00:00
+ROUTINE: 5 artículos pendientes revisados — LOS 5 SON FALSOS POSITIVOS (0 ingestados a wiki)
+  Ninguno trata sobre agropecuaria panameña, a pesar de `country: PA` en su metadata:
+    - https://www.sltrib.com/news/2026/05/19/kevin-oleary-data-center-timeline/
+      → Centro de datos de Kevin O'Leary en Utah, EE.UU. Coincidencia de palabra clave
+        "MIDA" (Military Installation Development Authority de Utah, NO el Ministerio
+        de Desarrollo Agropecuario de Panamá).
+    - https://www.sltrib.com/news/2026/05/27/box-elder-data-center-opponents/
+      → Oposición a centro de datos en Box Elder County, Utah, EE.UU. Misma
+        coincidencia falsa con "MIDA" (Utah).
+    - https://www.sltrib.com/news/environment/2026/05/29/utah-governor-issues-order-protect/
+      → Orden del gobernador de Utah sobre calidad del aire y el Great Salt Lake,
+        relacionada a centros de datos. Misma coincidencia falsa con "MIDA" (Utah).
+    - https://www.nyfb.org/
+      → Página institucional de New York Farm Bureau (agricultura de EE.UU., no Panamá).
+    - https://www.spa.gov.sa/en/N2096157
+      → Programa "Reef Saudi" de agricultura de secano en Arabia Saudita.
+  Causa raíz probable: el filtro de ingesta hace matching por keyword ("MIDA",
+  "agriculture"/"farm", etc.) sin verificar geografía real del artículo; el campo
+  `country: PA` parece ser un valor por defecto de la fuente (prensa.com vía GDELT),
+  no una verificación real de contenido.
+  Acción: NO se creó contenido de wiki para estos 5 artículos (regla CLAUDE.md #9).
+  Se marcaron como `ingested: true` en processed.json (vía mark-all-ingested) para
+  no bloquear la cola de pendientes; quedan registrados aquí como falsos positivos.
+  Falsos positivos acumulados: 7 (previos) + 5 (hoy) = 12.
+  Recomendación para el usuario: agregar verificación de país/idioma real
+  (no solo el campo `country` heredado) y una lista de exclusión para el acrónimo
+  "MIDA" cuando el contexto es EE.UU./Utah, antes del próximo backfill.
+
+DIAGNÓSTICO (Paso 4):
+  Último commit de fetch en sources/: 2026-06-29 (1 artículo nuevo) — 2 días sin
+  artículos nuevos al momento de esta sesión (2026-07-01). Aún no alcanza el
+  umbral de 3 días consecutivos.
+  Ventanas GDELT completadas: 42 de ~46 estimadas → dentro de rango normal de
+  avance (no indica bloqueo ni agotamiento del rango de fechas).
+  Pendientes de ingesta tras esta sesión: 0.
+
+## 2026-07-01 08:03
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code
