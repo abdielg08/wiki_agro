@@ -2,7 +2,7 @@
 title: Log de Actividad del Wiki
 type: overview
 tags: [log, actividad]
-last_updated: 2025-05-24
+last_updated: 2026-07-01
 ---
 
 # Log de Actividad
@@ -48,3 +48,37 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-07-01 16:03
+INGEST: 5 artículos pendientes revisados — 5/5 FALSOS POSITIVOS (0 ingestados)
+  Ninguno de los 5 trata sobre agro panameño. NO se crearon páginas de wiki.
+  Detalle:
+    - `20260519_prensacom_...kevin-oleary-data-center-timeline.json` — Timeline de un
+      centro de datos de Kevin O'Leary en Utah, EE.UU. Menciona "MIDA" pero se refiere
+      a la Military Installation Development Authority de Utah, no al Ministerio de
+      Desarrollo Agropecuario de Panamá.
+    - `20260527_prensacom_...box-elder-data-center-opponents.json` — Oposición vecinal
+      a un centro de datos en Box Elder County, Utah. Mismo falso "MIDA" de Utah.
+    - `20260529_prensacom_...utah-governor-issues-order-prote.json` — Orden ejecutiva
+      del gobernador de Utah sobre el Great Salt Lake y calidad del aire. Mismo falso
+      "MIDA" de Utah.
+    - `20260617_prensacom_.json` — Página institucional del New York Farm Bureau
+      (gremio agrícola de EE.UU., sin relación con Panamá).
+    - `20260624_prensacom_en-n2096157.json` — Programa "Reef Saudi" de agricultura de
+      secano en Arabia Saudita (fuente: Saudi Press Agency).
+  Causa raíz: la consulta GDELT (`fetch_historical.py`, `_AGRO_QUERY`) incluye el
+  acrónimo "MIDA" sin desambiguar — coincide con la Malaysian Investment Development
+  Authority (falsos positivos previos, ver metrics.md) y con la Utah Military
+  Installation Development Authority (estos 5 nuevos). Además, GDELT etiquetó el
+  `source`/`country` de los 5 artículos como `prensa.com`/`PA` pese a que las URLs
+  reales son sltrib.com, nyfb.org y spa.gov.sa — el filtro `sourcecountry:PA` de
+  GDELT no garantiza que el contenido sea sobre Panamá.
+  Acción: los 5 se marcan como ingestados (procesados, no reales) via
+  `mark-all-ingested` para vaciar la cola; no se creó contenido de wiki.
+  Recomendación para el usuario: filtrar `_AGRO_QUERY` en `fetch_historical.py` para
+  excluir el acrónimo suelto "MIDA" (igual que ya se hizo en `fetch_news.py`, ver
+  comentario "no acronyms (MIDA matches Malaysia too)"), o validar `country`/`source`
+  contra la URL real antes de aceptar un resultado de GDELT.
+
+## 2026-07-01 16:03
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code
