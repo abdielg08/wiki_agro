@@ -289,11 +289,17 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         body = r.get("body") or r.get("excerpt", "")
         if not is_agro_relevant(title, body, config):
             continue
+        # DDG's site: qualifier is not strictly enforced by the news API —
+        # reject results that actually landed outside Panama-related domains/terms.
+        if _is_blocked_domain(url):
+            continue
+        if not _is_panama_related(title, url):
+            continue
         yield {
             "url": url,
             "title": title,
             "date": pub_date,
-            "source": site or name,
+            "source": _url_domain(url) or site or name,
             "trust_level": 3,
             "language": "es",
             "country": "PA",
