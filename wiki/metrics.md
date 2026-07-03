@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-07-03
 ---
 
 # Dashboard de Métricas
@@ -14,50 +14,58 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
+| Artículos en sources/ | 19 | ↑ continuo |
 | Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Falsos positivos acumulados | 13 (7 previos + 6 el 2026-07-03) | **0 nuevos** |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Ventanas GDELT completadas | 37 reales / ~45 estimadas (+7 parciales del período actual) | 45 (2015→hoy) |
+| Días sin artículos nuevos | 1 (hoy, 2026-07-03) | máx 3 antes de diagnosticar |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions : 2026-07-03 (run 28661759040) — SUCCESS
+Resultado               : 0 artículos nuevos guardados hoy
+Backfill GDELT          : ESTANCADO en 2017-03-30. Las 9 ventanas del rango
+                          2015-01-01 → 2017-03-29 fallan TODAS, cada corrida,
+                          con "error de red" (timeout) o "GET blocked (403/429)"
+                          en api.gdeltproject.org. Como nunca se marcan completas,
+                          se reintentan desde cero cada día y vuelven a fallar —
+                          el backfill de 2015-2017 no avanza.
+RSS                     : IICA y LaPrensaGeneral → 0 entradas hoy
+Búsqueda DDG            : 7/8 queries devuelven "No results found" (mida.gob.pa,
+                          idiap.gob.pa, bda.gob.pa, fao.org, bancomundial.org,
+                          iica.int, oirsa.org) — solo prensa_agro devuelve resultados
+Falsos positivos        : los 6 detectados hoy (Utah "MIDA"/data centers, NY Farm
+                          Bureau, "Reef Saudi") vienen de la query GDELT genérica
+                          de agricultura sin filtro geográfico Panamá — el JSON
+                          fuente los etiqueta `country: PA` incorrectamente
+Diagnóstico completo    : ver wiki/log.md, entrada 2026-07-03 16:10
 ```
 
 ---
 
 ## Progreso del Backfill GDELT (2015 → hoy)
 
-| Período | Ventanas | Artículos | Estado |
-|---------|----------|-----------|--------|
-| 2015 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2016 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2017 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2018 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2019 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2020 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2021 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2022 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2023 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2024 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2025 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2026 Q1-Q2 | 0/2 | ? | Pendiente |
-| **TOTAL** | **0/46** | **0** | **Backfill no iniciado** |
+| Período | Ventanas | Estado |
+|---------|----------|--------|
+| 2015 Q1-Q4 | 0/4 | **Bloqueado — GDELT 403/429 cada corrida** |
+| 2016 Q1-Q4 | 0/4 | **Bloqueado — GDELT 403/429 cada corrida** |
+| 2017 Q1 (parcial, hasta 03-29) | 0/1 | **Bloqueado — GDELT 403/429 cada corrida** |
+| 2017 Q2-Q4 → 2026 Q2 (2017-03-30 → 2026-06-17) | 37/37 | ✓ Completo |
+| 2026-06-18 → hoy | ventana viva (se re-abre cada día) | En curso |
+| **TOTAL histórico (2015-02 → 2017-03-29)** | **0/9** | **Estancado — ver diagnóstico 2026-07-03** |
+| **TOTAL resto (2017-03-30 → hoy)** | **37/37 + ventana viva** | **Completo / al día** |
 
-> Una vez que Actions corra con el código corregido, actualizar esta tabla con los datos reales.
-> El rendimiento real de GDELT (artículos/trimestre) determinará la duración del backfill.
+> Diagnóstico 2026-07-03: el tramo 2015-01-01 → 2017-03-29 (9 ventanas) falla en
+> el 100% de las corridas de GitHub Actions con timeout o "GET blocked (403/429)"
+> de api.gdeltproject.org. No se marcan como completas nunca, por lo que se
+> reintentan (y fallan) todos los días sin progreso. Requiere intervención en
+> `scripts/fetch_news.py` (backoff/estrategia distinta para ese rango) — fuera del
+> alcance de esta sesión de routine. Ver wiki/log.md 2026-07-03 16:10.
 
 ---
 
@@ -67,6 +75,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-07-03 | 0 (6 revisados, 6/6 falsos positivos) | 0 | Diagnóstico: backfill GDELT 2015-2017 estancado por bloqueo 403/429 (ver log) |
 
 ---
 
