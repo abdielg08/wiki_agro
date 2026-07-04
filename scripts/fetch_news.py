@@ -19,6 +19,7 @@ import xml.etree.ElementTree as ET
 from bs4 import BeautifulSoup
 from dateutil import parser as dateparser
 from rich.console import Console
+from urllib.parse import urlsplit
 
 sys.path.insert(0, str(Path(__file__).parent))
 from core import (
@@ -274,11 +275,21 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
             console.print(f"  [yellow]DDG error: {e}[/yellow]")
             return
 
+    site_host = site.lower().removeprefix("www.") if site else ""
+
     for r in results:
         url = r.get("url") or r.get("href", "")
         title = r.get("title", "")
         if not url or not title:
             continue
+        if site_host:
+            result_host = urlsplit(url).netloc.lower().removeprefix("www.")
+            if result_host != site_host and not result_host.endswith("." + site_host):
+                # El motor de búsqueda no siempre respeta "site:" — descarta
+                # resultados de otros dominios para evitar falsos positivos
+                # (p.ej. "MIDA" coincide con agencias de EE.UU./Malasia, no Panamá).
+                console.print(f"  [dim]DDG descartado (dominio no coincide): {result_host}[/dim]")
+                continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:

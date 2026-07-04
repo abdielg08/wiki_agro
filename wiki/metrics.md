@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-07-04
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,35 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
+| Artículos en sources/ | 19 | ↑ continuo |
 | Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Falsos positivos acumulados | 13 | **0 nuevos** |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Ventanas GDELT completadas | 44 / ~45 estimadas | 45 (2015→hoy) |
+| Días sin artículos nuevos reales | **41** (desde 2026-05-24, la semilla) | máx 3 antes de diagnosticar |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions : 2026-07-03 (corre diario sin interrupciones)
+Resultado              : cron funcionando, pero calidad comprometida
+Causa identificada     : scripts/fetch_news.py::fetch_ddg_search() no valida que
+                         la URL resultado pertenezca al dominio `site:` solicitado.
+                         DuckDuckGo News no respeta site: de forma estricta, y el
+                         término "MIDA" (búsqueda "prensa_agro") colisiona con
+                         Military Installation Development Authority (Utah, EE.UU.)
+                         y Malaysian Investment Development Authority (Malasia).
+                         Resultado: 6 falsos positivos nuevos esta sesión
+                         (sltrib.com x4, nyfb.org, spa.gov.sa) sobre 6 pendientes
+                         — 0% de contenido real de Panamá en el lote.
+Fix aplicado            : fetch_ddg_search() ahora descarta resultados cuyo netloc
+                         no coincide con el `site` configurado (urllib.parse.urlsplit),
+                         antes de pasar por is_agro_relevant(). Ver wiki/log.md
+                         2026-07-04 08:10 para el detalle completo.
+Estado post-fix         : Pendiente validación en próxima corrida Actions (07-05+)
 ```
 
 ---
@@ -67,6 +76,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-07-04 | 0 | 0 | 6/6 pendientes eran falsos positivos (bug DDG site: sin validar dominio) — fix aplicado en fetch_news.py |
 
 ---
 
