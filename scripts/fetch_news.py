@@ -279,6 +279,16 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         title = r.get("title", "")
         if not url or not title:
             continue
+        # DDG's "site:" operator is not reliably enforced by the backend —
+        # verify the result actually comes from the requested domain, otherwise
+        # keyword collisions (e.g. "MIDA" matching Utah's Military Installation
+        # Development Authority) leak in off-domain false positives.
+        if site:
+            result_domain = _url_domain(url)
+            if not (result_domain == site or result_domain.endswith("." + site)):
+                continue
+        if _is_blocked_domain(url):
+            continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:
