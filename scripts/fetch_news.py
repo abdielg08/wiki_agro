@@ -279,6 +279,15 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         title = r.get("title", "")
         if not url or not title:
             continue
+        # DDGS's `site:` operator is not always honored — verify the result
+        # actually comes from the intended domain before trusting it (and
+        # before labeling it with that domain as "source"). Otherwise
+        # off-site matches (e.g. Utah's "MIDA" = Military Installation
+        # Development Authority) get mislabeled as Panama sources.
+        if site and site not in _url_domain(url):
+            continue
+        if _is_blocked_domain(url):
+            continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:
@@ -288,6 +297,10 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
                 pass
         body = r.get("body") or r.get("excerpt", "")
         if not is_agro_relevant(title, body, config):
+            continue
+        # Require an unambiguous Panama term when the query relies on
+        # acronyms that collide with non-Panama entities (e.g. "MIDA").
+        if not _is_panama_related(title, url) and "panam" not in body.lower():
             continue
         yield {
             "url": url,
