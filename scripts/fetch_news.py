@@ -279,6 +279,12 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         title = r.get("title", "")
         if not url or not title:
             continue
+        # DDG's "site:" filter is not reliably enforced — verify the result
+        # actually came from the requested domain before trusting it.
+        if site and site not in _url_domain(url):
+            continue
+        if _is_blocked_domain(url):
+            continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:
@@ -288,6 +294,10 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
                 pass
         body = r.get("body") or r.get("excerpt", "")
         if not is_agro_relevant(title, body, config):
+            continue
+        # Require at least one Panama-related term — generic terms like "MIDA"
+        # or "agricultura" alone match unrelated foreign news.
+        if not _is_panama_related(title + " " + body, url):
             continue
         yield {
             "url": url,
@@ -341,6 +351,8 @@ def fetch_world_bank(source: dict, config: dict) -> Iterator[dict]:
                 pass
         abstract = doc.get("abstracts", "")
         if not is_agro_relevant(title, abstract, config):
+            continue
+        if not _is_panama_related(title + " " + str(abstract), url):
             continue
         yield {
             "url": url,
