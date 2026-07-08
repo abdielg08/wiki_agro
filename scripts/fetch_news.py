@@ -241,6 +241,13 @@ def fetch_rss(source: dict, config: dict) -> Iterator[dict]:
 
 # ─── 2. DUCKDUCKGO WEB SEARCH ────────────────────────────────────────────────
 
+# Domains that are exclusively Panamanian by nature — a result from these
+# domains doesn't need an extra "Panama" mention in the title/URL. Everything
+# else searched via DDG (oirsa.org, fao.org, iica.int, bancomundial.org)
+# covers many countries and must pass _is_panama_related too.
+_DEFINITELY_PA_SITES = frozenset({"prensa.com", "mida.gob.pa", "idiap.gob.pa", "bda.gob.pa"})
+
+
 def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
     """Yield articles from a DuckDuckGo news search (no API key needed)."""
     try:
@@ -279,6 +286,17 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         title = r.get("title", "")
         if not url or not title:
             continue
+        # DDG's site: operator is not strictly enforced — reject results that
+        # landed on a different domain or a known non-Panama TLD.
+        if _is_blocked_domain(url):
+            continue
+        if site and site not in _url_domain(url):
+            continue
+        body = r.get("body") or r.get("excerpt", "")
+        if not is_agro_relevant(title, body, config):
+            continue
+        if site not in _DEFINITELY_PA_SITES and not _is_panama_related(title, url):
+            continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:
@@ -286,9 +304,6 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
                 pub_date = dateparser.parse(str(date_raw)).strftime("%Y-%m-%d")
             except Exception:
                 pass
-        body = r.get("body") or r.get("excerpt", "")
-        if not is_agro_relevant(title, body, config):
-            continue
         yield {
             "url": url,
             "title": title,

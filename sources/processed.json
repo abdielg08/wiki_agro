@@ -176,7 +176,8 @@
     "title": "'Reef Saudi', a Successful Program Based on Rain-Fed Agriculture",
     "date": "2026-06-24",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-07-08T00:03:56.132053"
   },
   "https://www.sltrib.com/news/2026/05/19/kevin-oleary-data-center-timeline/": {
     "saved_at": "2026-06-27T12:05:20.042626",
@@ -184,7 +185,8 @@
     "title": "Timeline: How the Kevin O’Leary data center plan came to be, and what’s happened since",
     "date": "2026-05-19",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-07-08T00:03:51.588491"
   },
   "https://www.sltrib.com/news/environment/2026/05/29/utah-governor-issues-order-protect/": {
     "saved_at": "2026-06-27T12:05:20.043697",
@@ -192,7 +194,8 @@
     "title": "Utah Gov. Cox issues order to protect Great Salt Lake, air quality from data centers",
     "date": "2026-05-29",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-07-08T00:03:55.826250"
   },
   "https://www.sltrib.com/news/2026/05/27/box-elder-data-center-opponents/": {
     "saved_at": "2026-06-27T12:05:20.044648",
@@ -200,7 +203,8 @@
     "title": "Box Elder data center opponents hope for a vote — but are ready for a legal fight",
     "date": "2026-05-27",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-07-08T00:03:55.662178"
   },
   "https://www.nyfb.org/": {
     "saved_at": "2026-06-29T14:42:54.312073",
@@ -208,7 +212,8 @@
     "title": "New York Farm Bureau",
     "date": "2026-06-17",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-07-08T00:04:09.902964"
   },
   "https://www.sltrib.com/news/environment/2025/06/12/utah-nuclear-energy-state/": {
     "saved_at": "2026-07-02T12:53:53.066448",
@@ -216,6 +221,7 @@
     "title": "Utah wants to process uranium on the Wasatch Front for nuclear energy. Here’s where.",
     "date": "2025-06-13",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-07-08T00:03:55.978843"
   }
 }
