@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-07-08
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,30 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
+| Artículos en sources/ | 19 | ↑ continuo |
 | Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Falsos positivos acumulados | 13 | **0 nuevos publicados en wiki** |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Ventanas GDELT completadas | 45 / ~45 estimadas | 45 (2015→hoy) — **rango agotado** |
+| Días sin artículos nuevos (git) | 4 (desde 2026-07-04) | ⚠️ excede máx 3 |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida con commit registrado : 2026-07-04 12:08 UTC ("0 artículos nuevos")
+Días sin NINGÚN commit de Actions    : 4 (07-05, 07-06, 07-07, 07-08) ⚠️ FALLA
+Ventanas GDELT completadas           : 45 → rango de fechas agotado (backfill
+                                        histórico necesita expansión de ventanas)
+Causa más probable                   : el workflow de Actions dejó de ejecutarse
+                                        por completo (no es solo "0 artículos");
+                                        no se puede confirmar RSS IICA/La Prensa
+                                        desde esta sesión interactiva
+Acción pendiente (usuario)           : revisar pestaña Actions del repo en GitHub
+                                        para confirmar si el cron sigue activo
+Diagnóstico completo                 : ver wiki/log.md, entrada 2026-07-08 08:45
 ```
 
 ---
@@ -67,6 +71,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-07-08 | 0 (6 falsos positivos rechazados) | 0 | Colisión de acrónimo "MIDA" (Utah/Malasia) + 1 art. no-Panamá. Fix de 2 bugs en `mark_ingested`/`mark_all_ingested` (ver log.md). GDELT en 45/45 ventanas — backfill agotado. Actions sin commits desde 2026-07-04. |
 
 ---
 
