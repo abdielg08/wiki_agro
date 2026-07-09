@@ -19,6 +19,7 @@ import xml.etree.ElementTree as ET
 from bs4 import BeautifulSoup
 from dateutil import parser as dateparser
 from rich.console import Console
+from urllib.parse import urlparse
 
 sys.path.insert(0, str(Path(__file__).parent))
 from core import (
@@ -279,6 +280,14 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         title = r.get("title", "")
         if not url or not title:
             continue
+        # DDG's news vertical does not reliably honor the "site:" operator —
+        # it can return results from unrelated domains. Enforce it ourselves,
+        # since a mismatched domain means the DDG result body/keyword match
+        # (e.g. "MIDA", "cultivo") is coincidental, not about Panama's agro sector.
+        if site:
+            netloc = urlparse(url).netloc.lower().removeprefix("www.")
+            if netloc != site.lower().removeprefix("www.") and not netloc.endswith("." + site.lower().removeprefix("www.")):
+                continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:
