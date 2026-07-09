@@ -27,6 +27,8 @@ from core import (
     load_wiki_index, append_log, article_entries, SOURCES_DIR, WIKI_DIR, ROOT
 )
 
+LAST_BATCH_FILE = ROOT / "sources" / ".last_ingest_batch.json"
+
 
 def find_pending(limit: int = 0, reprocess: bool = False) -> list[tuple[Path, dict]]:
     """Return list of (path, article) for articles not yet ingested."""
@@ -128,6 +130,15 @@ def run_prepare(
     ingest_file = ROOT / "pending_ingest.md"
     ingest_file.write_text(full_prompt, encoding="utf-8")
 
+    # Persist exactly which URLs were shown, so `mark-all-ingested` marks this
+    # same batch instead of recomputing pending order independently (which can
+    # diverge from the score/strategy-based order used here and silently mark
+    # unreviewed articles as ingested).
+    LAST_BATCH_FILE.write_text(
+        json.dumps([article.get("url", "") for _, article in pending], ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
     console.print(Panel(
         f"[bold]{len(pending)} artículos listos para ingestar.[/bold]\n\n"
         f"El prompt ha sido guardado en [cyan]pending_ingest.md[/cyan]\n\n"
@@ -141,7 +152,7 @@ def run_prepare(
 def mark_ingested(url_or_slug: str) -> bool:
     """Mark an article as ingested in processed.json."""
     processed = load_processed()
-    for url, meta in processed.items():
+    for url, meta in article_entries(processed).items():
         if url == url_or_slug or url_or_slug in meta.get("path", ""):
             meta["ingested"] = True
             meta["ingested_at"] = datetime.now().isoformat()
@@ -153,18 +164,39 @@ def mark_ingested(url_or_slug: str) -> bool:
 
 
 def mark_all_ingested(limit: int = 0) -> int:
-    """Mark the first `limit` pending articles as ingested (after Claude processed them)."""
+    """Mark the last `ingest`-selected batch as ingested (after Claude processed it).
+
+    Uses the batch persisted by `run_prepare` (the exact articles shown to
+    Claude in pending_ingest.md) rather than recomputing pending order, since
+    `find_pending`'s file-sorted order can differ from the score/strategy
+    order `ingest` used to build the batch — marking the wrong articles as
+    ingested without review. Falls back to file order only if no batch file
+    exists (e.g. older workflow, or `ingest` was never run this session).
+    """
     processed = load_processed()
     articles = article_entries(processed)
-    pending = find_pending(limit=limit)
+
+    batch_urls = None
+    if LAST_BATCH_FILE.exists():
+        try:
+            batch_urls = json.loads(LAST_BATCH_FILE.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            batch_urls = None
+
+    if batch_urls is not None:
+        urls = batch_urls if not limit else batch_urls[:limit]
+    else:
+        urls = [article.get("url", "") for _, article in find_pending(limit=limit)]
+
     count = 0
-    for _, article in pending:
-        url = article.get("url", "")
-        if url in articles:
+    for url in urls:
+        if url in articles and not articles[url].get("ingested"):
             processed[url]["ingested"] = True
             processed[url]["ingested_at"] = datetime.now().isoformat()
             count += 1
     save_processed(processed)
+    if batch_urls is not None:
+        LAST_BATCH_FILE.unlink(missing_ok=True)
     append_log(
         f"INGEST: {count} artículos marcados como ingestados por sesión Claude Code"
     )
