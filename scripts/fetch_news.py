@@ -286,8 +286,15 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
                 pub_date = dateparser.parse(str(date_raw)).strftime("%Y-%m-%d")
             except Exception:
                 pass
+        # Reject articles from blocked (non-Panama) domains
+        if _is_blocked_domain(url):
+            continue
         body = r.get("body") or r.get("excerpt", "")
         if not is_agro_relevant(title, body, config):
+            continue
+        # Require at least one Panama-related term in title or URL
+        # (sector acronyms like MIDA also match unrelated foreign entities)
+        if not _is_panama_related(title, url):
             continue
         yield {
             "url": url,

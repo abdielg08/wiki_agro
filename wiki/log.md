@@ -2,7 +2,7 @@
 title: Log de Actividad del Wiki
 type: overview
 tags: [log, actividad]
-last_updated: 2025-05-24
+last_updated: 2026-07-11
 ---
 
 # Log de Actividad
@@ -48,3 +48,32 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-07-11 00:00
+ROUTINE: 7 artículos pendientes revisados — **7/7 falsos positivos, 0 ingestados**
+  Falsos positivos detectados (marcados como procesados, NO agregados al wiki):
+    - sltrib.com/.../kevin-oleary-data-center-timeline (Utah, EE.UU. — "MIDA" = Military
+      Installation Development Authority de Utah, no el MIDA panameño)
+    - sltrib.com/.../box-elder-data-center-opponents (Utah, EE.UU. — mismo caso de MIDA)
+    - sltrib.com/.../utah-governor-issues-order-protect (Utah, EE.UU. — mismo caso de MIDA)
+    - sltrib.com/.../utah-nuclear-energy-state (Utah, EE.UU. — mismo caso de MIDA)
+    - spa.gov.sa/en/N2096157 "Reef Saudi" (agricultura de secano en Arabia Saudita, no Panamá)
+    - whc.unesco.org/en/list/1506 "The Persian Qanat" (sistema de riego histórico de Irán)
+    - nyfb.org "New York Farm Bureau" (gremio agrícola de Nueva York, EE.UU.)
+  Causa raíz identificada: `fetch_ddg_search()` en `scripts/fetch_news.py` nunca aplicaba
+  los filtros `_is_blocked_domain()` / `_is_panama_related()` que sí protegen a `fetch_rss()`
+  y `fetch_gdelt_batch()` (agregados en el fix del 2026-06-22, PR #20). La búsqueda DDG solo
+  validaba `is_agro_relevant()` (términos sectoriales como "MIDA", "riego", "agricultura"),
+  que hacen falso match con entidades homónimas fuera de Panamá (MIDA de Utah) o con
+  agricultura de otros países.
+  Fix aplicado: se agregaron ambos filtros a `fetch_ddg_search()` en scripts/fetch_news.py,
+  igual que en fetch_rss()/fetch_gdelt_batch(). Commit en esta sesión.
+  Resultado: Pendientes de ingesta = 0. Artículos reales en wiki sin cambios (20 descargados,
+  20 procesados, 0 nuevas páginas — todo el backlog pendiente era ruido).
+  Bug adicional corregido: `mark_ingested()` en scripts/ingest.py lanzaba AttributeError al
+  iterar sobre `processed.json` porque no excluía la clave interna `_gdelt_windows` (una
+  lista, no un dict de artículo). Ahora usa `article_entries()` como `mark_all_ingested()`.
+  Diagnóstico de backfill: 48 ventanas GDELT completadas (≥45 estimadas) → el rango de
+  fechas configurado está agotado; considerar expandir cobertura o fuentes adicionales.
+  Última descarga de artículos nuevos: 2026-07-10 (1 artículo) — 1 día sin nuevos, dentro
+  del umbral de 3 días.
