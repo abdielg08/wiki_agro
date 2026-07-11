@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-07-11
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,41 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
+| Artículos en sources/ | 20 | ↑ continuo |
 | Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Falsos positivos acumulados | 14 | **0 nuevos** (bug de origen corregido hoy) |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
 | Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Días sin artículos nuevos reales | ≥48 (desde 2026-06-22) | máx 3 antes de diagnosticar |
+| Pendientes de ingesta | 0 | 0 |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions : 2026-07-10 (chore(sources): 1 artículo nuevo)
+Resultado              : 1 artículo descargado — era falso positivo (Persian Qanat, UNESCO/Irán)
+Causa raíz identificada: fetch_ddg_search() en scripts/fetch_news.py buscaba
+                         "site:prensa.com ... MIDA ... agricultura" vía DuckDuckGo
+                         News, pero el operador site: de DDG no se respeta de forma
+                         confiable → devuelve noticias globales que matchean
+                         términos ambiguos ("MIDA" = Utah/Malasia, "agricultura"
+                         = cualquier país). A diferencia de fetch_rss() y
+                         fetch_gdelt_batch() en el mismo archivo, fetch_ddg_search()
+                         NO tenía los filtros _is_blocked_domain()/_is_panama_related().
+                         Esto explica que 7/7 artículos pendientes de esta sesión
+                         (y 7/7 de la sesión 2026-06-22) fueran falsos positivos.
+Fix aplicado (hoy)     : fetch_ddg_search() ahora aplica _is_blocked_domain() y
+                         _is_panama_related() antes de aceptar un resultado.
+                         fetch_historical.py (fetch_gdelt_window, aún sin usar en
+                         producción) recibió el mismo fix + AND-requerimiento de
+                         mención de Panamá en la query GDELT.
+                         ingest.py: mark_ingested() ya no crashea con la clave
+                         interna _gdelt_windows.
+Estado post-fix        : Pendiente validar en la próxima corrida de Actions
+                         (mañana) que ya no lleguen falsos positivos de DDG.
 ```
 
 ---
@@ -67,6 +82,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-07-11 | 0 (7 falsos positivos descartados) | 0 | Causa raíz encontrada y corregida: fetch_ddg_search() sin filtro Panamá |
 
 ---
 

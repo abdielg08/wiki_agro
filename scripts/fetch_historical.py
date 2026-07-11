@@ -35,7 +35,10 @@ from core import (
     console, load_config, load_processed, save_processed,
     save_article, ROOT
 )
-from fetch_news import _get, HEADERS, REQUEST_DELAY, is_agro_relevant
+from fetch_news import (
+    _get, HEADERS, REQUEST_DELAY, is_agro_relevant,
+    _is_blocked_domain, _is_panama_related,
+)
 
 PROGRESS_FILE = ROOT / "sources" / "historical_progress.json"
 
@@ -66,11 +69,17 @@ _AGRO_QUERY = (
     "OR cultivo OR arroz OR maiz OR platano OR ganadero"
 )
 
+# AND-require a Panama mention — bare acronyms like "MIDA" also match
+# Malaysia's Investment Development Authority and Utah's Military
+# Installation Development Authority, and GDELT's sourcecountry:PA
+# filter alone is not reliable enough to exclude them.
+_PANAMA_QUERY_SUFFIX = "(Panama OR Panamá OR panameño OR panameña OR Chiriquí OR Veraguas OR Azuero)"
+
 
 def fetch_gdelt_window(start: str, end: str, query: str = _AGRO_QUERY) -> list[dict] | None:
     """Fetch one quarterly window from GDELT. Returns None on network error."""
     params = {
-        "query": f"({query}) sourcecountry:PA",
+        "query": f"({query}) {_PANAMA_QUERY_SUFFIX} sourcecountry:PA",
         "mode": "artlist",
         "maxrecords": 250,
         "format": "json",
@@ -91,6 +100,10 @@ def fetch_gdelt_window(start: str, end: str, query: str = _AGRO_QUERY) -> list[d
         url = item.get("url", "")
         title = item.get("title", "")
         if not url or not title:
+            continue
+        if _is_blocked_domain(url):
+            continue
+        if not _is_panama_related(title, url):
             continue
         date_raw = item.get("seendate", "")
         try:

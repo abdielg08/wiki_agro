@@ -2,7 +2,7 @@
 title: Log de Actividad del Wiki
 type: overview
 tags: [log, actividad]
-last_updated: 2025-05-24
+last_updated: 2026-07-11
 ---
 
 # Log de Actividad
@@ -48,3 +48,57 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-07-11 08:00
+ROUTINE: 7 pendientes revisados — 0 ingestados, 7 falsos positivos (0 páginas nuevas)
+  Ninguno de los 7 artículos pendientes trataba de agro panameño. NO se ingestó ninguno:
+    - https://www.sltrib.com/news/2026/05/19/kevin-oleary-data-center-timeline/
+      → Centro de datos en Utah. Coincidencia por acrónimo "MIDA" = Military
+        Installation Development Authority (Utah), no Ministerio de Desarrollo
+        Agropecuario de Panamá.
+    - https://www.sltrib.com/news/2026/05/27/box-elder-data-center-opponents/
+      → Mismo caso: oposición a centro de datos en Box Elder County, Utah (MIDA-Utah).
+    - https://www.sltrib.com/news/environment/2026/05/29/utah-governor-issues-order-protect/
+      → Orden del gobernador de Utah sobre calidad de aire/agua vs. centros de datos
+        (MIDA-Utah).
+    - https://www.sltrib.com/news/environment/2025/06/12/utah-nuclear-energy-state/
+      → Acuerdo de procesamiento de uranio en Utah (Utah National Guard + MIDA-Utah).
+    - https://www.nyfb.org/
+      → Página institucional de "New York Farm Bureau" (agricultura de EE.UU.,
+        no Panamá).
+    - https://whc.unesco.org/en/list/1506
+      → "The Persian Qanat" — sistema de riego histórico de Irán (UNESCO), sin
+        relación con Panamá.
+    - https://www.spa.gov.sa/en/N2096157
+      → Programa "Reef Saudi" de agricultura de secano en Arabia Saudita, sin
+        relación con Panamá.
+  Los 7 se marcaron `ingested: true` en sources/processed.json (vía mark-ingested)
+  para sacarlos de la cola de pendientes sin crear contenido de wiki — igual que
+  los 7 falsos positivos ya documentados en la sesión 2026-06-22.
+
+DIAGNÓSTICO DE CAUSA RAÍZ: los 7 casos vienen de `fetch_ddg_search()` en
+scripts/fetch_news.py (búsqueda "prensa_agro": `site:prensa.com agropecuario OR
+agricultura OR ganadería OR MIDA OR cosecha Panamá` vía DuckDuckGo News). El
+operador `site:` de DDG no se respeta de forma confiable y la búsqueda devuelve
+resultados globales que matchean términos ambiguos como "MIDA" o "agricultura"
+sin relación real con Panamá. A diferencia de `fetch_rss()` y `fetch_gdelt_batch()`
+en el mismo archivo, `fetch_ddg_search()` NO aplicaba los filtros
+`_is_blocked_domain()` / `_is_panama_related()` ya existentes en el código.
+
+FIX APLICADO (scripts/fetch_news.py):
+  - fetch_ddg_search() ahora aplica _is_blocked_domain() y _is_panama_related()
+    antes de aceptar un resultado, igual que fetch_rss() y fetch_gdelt_batch().
+FIX APLICADO (scripts/fetch_historical.py — mismo bug, backfill aún no usado):
+  - fetch_gdelt_window() ahora exige mención de Panamá en la query GDELT
+    (_PANAMA_QUERY_SUFFIX) y filtra por _is_blocked_domain()/_is_panama_related()
+    en los resultados, igual que fetch_gdelt_batch() en fetch_news.py.
+FIX APLICADO (scripts/ingest.py):
+  - mark_ingested() fallaba con AttributeError al iterar processed.json porque
+    no saltaba la clave interna `_gdelt_windows` (lista, no dict). Se agregó
+    `isinstance(meta, dict)` guard.
+
+Pendientes tras esta sesión: 0/20. Artículos reales ingestados con contenido de
+wiki: 6 (sin cambios — 0 artículos nuevos y relevantes esta sesión).
+
+## 2026-07-11 08:05
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code
