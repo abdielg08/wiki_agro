@@ -279,6 +279,13 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         title = r.get("title", "")
         if not url or not title:
             continue
+        # DDG's news backend does not reliably honor the `site:` operator —
+        # it can return results from unrelated domains worldwide. Verify the
+        # result actually comes from the requested site before trusting it.
+        if site and site.lower() not in _url_domain(url):
+            continue
+        if _is_blocked_domain(url):
+            continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:
