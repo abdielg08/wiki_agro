@@ -48,3 +48,40 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-07-12 00:00
+ROUTINE: 7 pendientes revisados — 7/7 FALSOS POSITIVOS (0 ingestados al wiki)
+  Ninguno de los 7 artículos pendientes trata sobre el agro panameño:
+    1. "Timeline: Kevin O'Leary data center plan" (sltrib.com) — MIDA = Military
+       Installation Development Authority de Utah, EE.UU., no el Ministerio de
+       Desarrollo Agropecuario de Panamá. Data centers, no agricultura.
+    2. "Box Elder data center opponents" (sltrib.com) — mismo MIDA de Utah.
+    3. "Utah Gov. Cox order to protect Great Salt Lake" (sltrib.com) — mismo
+       MIDA de Utah, calidad de aire/agua, no agro panameño.
+    4. "Utah wants to process uranium... nuclear energy" (sltrib.com) — mismo
+       MIDA de Utah, energía nuclear.
+    5. "'Reef Saudi', rain-fed agriculture program" (spa.gov.sa) — agricultura
+       de secano en Arabia Saudita, no de Panamá.
+    6. "The Persian Qanat" (whc.unesco.org) — sistema de riego histórico de
+       Irán, patrimonio UNESCO, no relacionado a Panamá.
+    7. "New York Farm Bureau" (nyfb.org) — organización agrícola de EE.UU.
+  DIAGNÓSTICO DE CAUSA RAÍZ: los 7 artículos fueron etiquetados con
+  source="prensa.com" pero sus URLs reales son de dominios completamente
+  distintos (sltrib.com, spa.gov.sa, whc.unesco.org, nyfb.org). El fetcher
+  `fetch_ddg_search()` en scripts/fetch_news.py usa la búsqueda DuckDuckGo
+  `site:prensa.com agropecuario OR ... OR MIDA OR cosecha Panamá`, pero DDG
+  no respeta el filtro `site:` de forma confiable, y esa función —a
+  diferencia de `fetch_rss()` y `fetch_gdelt_batch()`— NO aplicaba los
+  filtros `_is_blocked_domain()` / `_is_panama_related()`. El término
+  genérico "MIDA" (compartido con la agencia estatal de Utah) y "cosecha"/
+  "agricultura" hicieron match con contenido no panameño.
+  FIX APLICADO: se agregaron los mismos filtros `_is_blocked_domain()` y
+  `_is_panama_related()` a `fetch_ddg_search()`, y el campo `source` ahora
+  usa el dominio real de la URL en vez del nombre configurado del sitio
+  buscado. Commit incluido en esta sesión.
+  ACCIÓN: los 7 artículos se marcaron como ingestados (processed.json) para
+  vaciar la cola sin crear páginas de wiki para ellos — no aportan
+  información sobre agro panameño y no deben re-analizarse.
+
+## 2026-07-12 16:03
+INGEST: 7 artículos marcados como ingestados por sesión Claude Code

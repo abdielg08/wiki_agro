@@ -279,6 +279,12 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         title = r.get("title", "")
         if not url or not title:
             continue
+        # DDG's site: filter is not reliably honored — reject off-site results
+        # and results with no Panama-specific term (same guard as RSS/GDELT).
+        if _is_blocked_domain(url):
+            continue
+        if not _is_panama_related(title, url):
+            continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:
@@ -293,7 +299,7 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
             "url": url,
             "title": title,
             "date": pub_date,
-            "source": site or name,
+            "source": _url_domain(url) or site or name,
             "trust_level": 3,
             "language": "es",
             "country": "PA",
