@@ -287,7 +287,17 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
             except Exception:
                 pass
         body = r.get("body") or r.get("excerpt", "")
+        # Reject URLs from known non-Panama domains
+        if _is_blocked_domain(url):
+            continue
         if not is_agro_relevant(title, body, config):
+            continue
+        # Require at least one Panama-related term in title/URL/body — DDG's
+        # site: filter is not reliably honored and can return unrelated
+        # results (e.g. "MIDA" matching Utah's Military Installation
+        # Development Authority instead of Panama's Ministerio de
+        # Desarrollo Agropecuario).
+        if not _is_panama_related(title, url) and not _is_panama_related(body, ""):
             continue
         yield {
             "url": url,

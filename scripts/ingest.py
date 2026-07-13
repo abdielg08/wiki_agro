@@ -153,14 +153,34 @@ def mark_ingested(url_or_slug: str) -> bool:
 
 
 def mark_all_ingested(limit: int = 0) -> int:
-    """Mark the first `limit` pending articles as ingested (after Claude processed them)."""
+    """
+    Mark as ingested the exact articles Claude was shown in pending_ingest.md
+    (after Claude processed/reviewed them).
+
+    IMPORTANT: this reads the URLs directly out of pending_ingest.md rather
+    than recomputing `find_pending()`, because `ingest` selects articles via
+    `prioritize()` (score-ordered, filterable) while a plain `find_pending()`
+    call is filename-ordered — the two orderings can select *different*
+    articles. Recomputing here previously caused mark-all-ingested to mark
+    articles Claude never reviewed while leaving reviewed ones pending.
+    """
+    import re
+
+    ingest_file = ROOT / "pending_ingest.md"
+    if not ingest_file.exists():
+        console.print("[yellow]No existe pending_ingest.md — corre `ingest` primero.[/yellow]")
+        return 0
+
+    text = ingest_file.read_text(encoding="utf-8")
+    urls = re.findall(r"\*\*URL\*\*:\s*(\S+)", text)
+    if limit:
+        urls = urls[:limit]
+
     processed = load_processed()
     articles = article_entries(processed)
-    pending = find_pending(limit=limit)
     count = 0
-    for _, article in pending:
-        url = article.get("url", "")
-        if url in articles:
+    for url in urls:
+        if url in articles and not processed[url].get("ingested"):
             processed[url]["ingested"] = True
             processed[url]["ingested_at"] = datetime.now().isoformat()
             count += 1
