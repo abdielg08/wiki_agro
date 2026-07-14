@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-07-14
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,38 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
+| Artículos en sources/ | 20 | ↑ continuo |
 | Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Falsos positivos acumulados | 14 | **0 nuevos** desde el fix de esta sesión |
+| Pendientes de ingesta | 0 | 0 |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Ventanas GDELT completadas | 48 / ~46 estimadas | rango agotado — 0 artículos reales producidos |
+| Días sin artículos nuevos reales | 51 (desde 2026-05-24) | máx 3 antes de diagnosticar |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions  : 2026-07-14 (commit 88389fe, 1 artículo nuevo descargado)
+Resultado                : Actions SÍ corre y descarga regularmente (ver git log de sources/),
+                           pero el 100% de lo descargado bajo la fuente "prensa.com" (búsqueda
+                           web_searches.prensa_agro vía DuckDuckGo) ha sido falso positivo:
+                           14/14 histórico, 7/7 en esta sesión.
+Causa identificada       : fetch_ddg_search() usa `site:prensa.com` en la query de DDGS.news(),
+                           pero DuckDuckGo no respeta ese operador de forma confiable y devuelve
+                           resultados de dominios no relacionados (sltrib.com, thestar.com.my,
+                           fox13now.com, ieeexplore.ieee.org, worldbank.org, whc.unesco.org,
+                           spa.gov.sa, nyfb.org). is_agro_relevant() hace matching de substring
+                           contra "MIDA" sin contexto de país, dejando pasar agencias homónimas
+                           de EEUU (Military Installation Development Authority) y Malasia.
+                           GDELT: 48 ventanas completadas (rango 2015→hoy agotado) pero 0
+                           artículos reales producidos — nunca ha aportado contenido al wiki.
+Fix aplicado (2026-07-14): scripts/fetch_news.py::fetch_ddg_search() ahora valida que el
+                           dominio (netloc) de cada URL devuelta coincida con `site` antes de
+                           aceptarla; descarta silenciosamente lo que no coincide.
+Estado post-fix          : Pendiente validación en la próxima corrida de GitHub Actions.
 ```
 
 ---
@@ -67,6 +79,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-07-14 | 0 | 0 | 7/7 pendientes eran falsos positivos (Utah/Malasia/Arabia Saudita/EEUU/UNESCO); fix de raíz aplicado en fetch_ddg_search() (validación de dominio) |
 
 ---
 

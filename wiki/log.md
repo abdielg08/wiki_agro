@@ -48,3 +48,37 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-07-14 08:05
+INGEST: 7 artículos pendientes revisados — 7 falsos positivos (0 ingestados)
+  Falsos positivos detectados y marcados como skipped en processed.json:
+    - sltrib.com "Box Elder data center opponents..." → MIDA = Military Installation Development Authority (Utah), sin relación con Panamá
+    - sltrib.com "Utah Gov. Cox issues order to protect Great Salt Lake..." → agencia de Utah, sin relación con Panamá
+    - sltrib.com "Timeline: How the Kevin O'Leary data center plan..." → agencia de Utah, sin relación con Panamá
+    - sltrib.com "Utah wants to process uranium on the Wasatch Front..." → MIDA = agencia de Utah, sin relación con Panamá
+    - whc.unesco.org "The Persian Qanat" → sistema de riego de Irán, sin relación con Panamá
+    - nyfb.org "New York Farm Bureau" → agricultura de EEUU, sin relación con Panamá
+    - spa.gov.sa "'Reef Saudi'..." → agricultura de Arabia Saudita, sin relación con Panamá
+  Tasa de falsos positivos de la sesión: 100% (7/7) — 0 artículos nuevos al wiki
+
+DIAGNÓSTICO — causa raíz identificada:
+  Los 14/14 artículos jamás ingestados con fuente "prensa.com" (búsqueda web_searches.prensa_agro
+  vía DuckDuckGo en scripts/fetch_news.py::fetch_ddg_search) han resultado ser falsos positivos.
+  Causa: la consulta usa `site:prensa.com ...` pero DDGS.news() no respeta ese operador de forma
+  confiable — devuelve resultados de cualquier dominio. El código etiquetaba "source": site sin
+  verificar el dominio real de la URL devuelta, y el filtro is_agro_relevant() solo hace matching
+  de substring contra palabras clave ambiguas (p.ej. "MIDA" coincide con Military Installation
+  Development Authority de Utah y Malaysian Investment Development Authority, no solo el
+  Ministerio de Desarrollo Agropecuario de Panamá).
+  Adicionalmente: las 48 ventanas GDELT completadas (rango 2015→2026 agotado) no han producido
+  NINGÚN artículo real ingestado — todo el contenido real en el wiki (6 páginas) proviene de la
+  siembra manual inicial del 2026-05-24, no del fetch automatizado.
+
+FIX APLICADO:
+  scripts/fetch_news.py: fetch_ddg_search() ahora valida que el dominio (netloc) de cada URL
+  devuelta por DDGS coincida con el `site` configurado antes de aceptar el resultado; descarta
+  silenciosamente los que no coinciden. Esto debería eliminar la fuga de contenido internacional
+  no relacionado bajo la etiqueta "prensa.com" en corridas futuras de GitHub Actions.
+  Pendiente: validar en la próxima corrida automática que "prensa.com" deje de producir falsos
+  positivos. Si el volumen de artículos reales cae a ~0, ampliar search_terms o agregar más
+  dominios objetivo (paths de La Prensa, Panamá América, La Estrella).
