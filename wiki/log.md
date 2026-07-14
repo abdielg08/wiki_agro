@@ -48,3 +48,75 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-07-14 00:00
+INGEST: 5 artículos revisados — 5/5 FALSOS POSITIVOS, 0 ingestados al wiki
+  Ningún artículo se agregó a wiki/summaries/, topics/ ni entities/ — todos rechazados.
+
+  Artículos rechazados:
+    1. "MITI working on simplified NCM customised incentive mechanism..."
+       URL: paultan.org/2026/07/07/... | Fuente etiquetada: prensa.com | país real: Malasia
+       Motivo: menciona "MIDA" pero se refiere a Malaysian Investment Development
+       Authority (agencia de Malasia), no al Ministerio de Desarrollo Agropecuario de Panamá.
+       Artículo en inglés sobre incentivos industriales/comerciales de Malasia — 0% relación
+       con agro panameño.
+    2. "Box Elder data center opponents hope for a vote..."
+       URL: sltrib.com/news/2026/05/27/box-elder-data-center-opponents | país real: EE.UU. (Utah)
+       Motivo: "MIDA" = Military Installation Development Authority de Utah. Artículo sobre
+       oposición a un centro de datos de Kevin O'Leary. Sin relación con agro panameño.
+    3. "Utah Gov. Cox issues order to protect Great Salt Lake, air quality from data centers"
+       URL: sltrib.com/news/environment/2026/05/29/... | país real: EE.UU. (Utah)
+       Motivo: mismo caso — "MIDA" = agencia estatal de Utah. Tema: calidad de aire y
+       centros de datos. Sin relación con agro panameño.
+    4. "Timeline: How the Kevin O'Leary data center plan came to be..."
+       URL: sltrib.com/news/2026/05/19/kevin-oleary-data-center-timeline | país real: EE.UU. (Utah)
+       Motivo: mismo caso — "MIDA" = agencia estatal de Utah (board que aprobó el plan Stratos).
+    5. "Utah wants to process uranium on the Wasatch Front for nuclear energy..."
+       URL: sltrib.com/news/environment/2025/06/12/utah-nuclear-energy-state | país real: EE.UU. (Utah)
+       Motivo: "MIDA" = Military Installation Development Authority (Utah). Tema: energía
+       nuclear/uranio. Sin relación con agro panameño.
+
+  DIAGNÓSTICO DE CAUSA RAÍZ (bug sistémico, no son casos aislados):
+  Los 5 artículos — y de hecho los 8/8 pendientes en cola actualmente (`python wiki_agro.py queue`) —
+  vienen de la búsqueda web `web_searches: prensa_agro` en `config/sources.yaml`, que usa
+  DuckDuckGo (`ddgs.news()`) con la consulta `site:prensa.com agropecuario OR ... OR MIDA OR ...`.
+  Dos problemas combinados:
+    a. `ddgs.news()` NO respeta de forma confiable el operador `site:` — devuelve resultados
+       de dominios arbitrarios (paultan.org, sltrib.com) en vez de solo prensa.com.
+    b. `fetch_ddg_search()` en `scripts/fetch_news.py` etiqueta el `source`, `country="PA"` y
+       `language="es"` de forma FIJA según la config de búsqueda, sin verificar que la URL
+       real del resultado pertenezca al dominio esperado ni que el idioma/país coincidan.
+       Por eso artículos en inglés sobre Utah/Malasia terminan marcados como
+       `source: prensa.com`, `country: PA`, `language: es`.
+    c. `is_agro_relevant()` (scripts/fetch_news.py:123) solo hace un substring match de
+       términos como "MIDA" contra título+cuerpo, sin desambiguar significado ni exigir
+       coincidencia de país — cualquier "MIDA" en cualquier idioma/país pasa el filtro.
+
+  Impacto: 8/8 artículos en la cola de ingesta actual son falsos positivos (100%),
+  todos originados por esta búsqueda. Viola la métrica "Tasa de falsos positivos: 0%".
+
+  RECOMENDACIÓN (no aplicada en esta sesión — requiere cambio de código, se notifica
+  al usuario para autorización):
+    - Verificar que el dominio de la URL devuelta por ddgs coincida con `site` antes de aceptar
+      el resultado (o descartar si no coincide).
+    - Quitar "MIDA" como término aislado de `search_terms.primary` (o exigir co-ocurrencia con
+      "Panamá"/"panameñ" para evitar colisión con acrónimos homónimos de otros países).
+    - Restaurar/mantener el `country`/`language` reales del resultado en vez de forzar "PA"/"es".
+
+  Quedan 3 artículos más en la cola (`python wiki_agro.py queue`), con el mismo patrón
+  (Persian Qanat, New York Farm Bureau, "Reef Saudi") — se espera que también sean
+  falsos positivos por la misma causa raíz; se revisarán en la próxima sesión de ingesta.
+
+## 2026-07-14 00:05
+MAINTENANCE: Diagnóstico avanzado del fetch automático
+  GitHub Actions SÍ corrió hoy (commit 8c765c0, 2026-07-14): 1 artículo nuevo descargado.
+  Ese único artículo nuevo de hoy es el falso positivo #1 documentado arriba (MITI/Malasia) —
+  es decir, 0 artículos ÚTILES nuevos hoy pese a que el fetch funcionó.
+  Ventanas GDELT completadas: 48 (`_gdelt_windows` en sources/processed.json) — por encima
+  del umbral de 45 estimadas → el rango de fechas GDELT 2015-hoy está agotado y necesitaría
+  expansión/nueva estrategia de backfill si se quiere seguir creciendo por esa vía.
+  Fuentes RSS activas (IICA, La Prensa) no aportaron artículos nuevos hoy; el único ingreso
+  vino de la búsqueda DDG "prensa_agro", que es la fuente del bug de falsos positivos arriba.
+
+## 2026-07-14 19:33
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code

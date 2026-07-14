@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-07-14
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,37 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
+| Artículos en sources/ | 21 | ↑ continuo |
 | Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Falsos positivos acumulados | 12 | **0 nuevos** ⚠️ meta incumplida esta sesión |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Ventanas GDELT completadas | 48 / ~45 estimadas | 45 (2015→hoy) — **rango agotado** |
+| Días sin artículos nuevos ÚTILES | ≥52 (desde 2026-05-24) | máx 3 antes de diagnosticar |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions : 2026-07-14 (commit 8c765c0) — SÍ corrió, trajo 1 artículo nuevo
+Resultado              : 1 artículo nuevo, pero es FALSO POSITIVO (ver wiki/log.md 2026-07-14)
+                         → 0 artículos ÚTILES nuevos hoy
+Causa identificada     : Bug en web_searches.prensa_agro (config/sources.yaml) — ddgs.news()
+                         no respeta el operador site:prensa.com y devuelve resultados de
+                         dominios arbitrarios (paultan.org, sltrib.com); fetch_ddg_search()
+                         etiqueta country="PA"/language="es"/source=site sin verificar que
+                         la URL real pertenezca al dominio esperado. "MIDA" como término de
+                         búsqueda colisiona con acrónimos homónimos de otros países
+                         (Malaysian Investment Development Authority, Utah Military
+                         Installation Development Authority).
+                         Ventanas GDELT: 48/~45 completadas → rango de fechas agotado.
+                         RSS IICA y La Prensa no aportaron artículos nuevos hoy.
+Fix aplicado           : Ninguno esta sesión — requiere cambio de código en
+                         scripts/fetch_news.py (validar dominio real vs. site: esperado) y
+                         config/sources.yaml (ajustar search_terms). Se notifica al usuario.
+Estado post-fix        : Pendiente — 3 artículos más en cola con el mismo patrón
+                         (revisar en próxima sesión de ingesta)
 ```
 
 ---
@@ -67,6 +78,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-07-14 | 0 (5 revisados, 5/5 falsos positivos) | 3 | Bug identificado: DDG `site:` no filtra dominio real (ver log.md) |
 
 ---
 
