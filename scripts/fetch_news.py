@@ -12,6 +12,7 @@ import time
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Iterator
+from urllib.parse import urlparse
 
 import requests
 import trafilatura
@@ -278,6 +279,10 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         url = r.get("url") or r.get("href", "")
         title = r.get("title", "")
         if not url or not title:
+            continue
+        if site and site.lower() not in urlparse(url).netloc.lower():
+            # DDG's news search doesn't reliably honor "site:", so results
+            # from unrelated domains slip through — drop them explicitly.
             continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
