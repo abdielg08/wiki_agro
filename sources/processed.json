@@ -228,5 +228,13 @@
     "date": "2026-07-07",
     "source": "prensa.com",
     "ingested": false
+  },
+  "https://paultan.org/2026/07/07/miti-working-on-simplified-ncm-customised-incentive-mechanism-to-build-real-local-industrial-capabilities/": {
+    "saved_at": "2026-07-14T12:06:00.385283",
+    "path": "/home/runner/work/wiki_agro/wiki_agro/sources/articles/20260708_prensacom_2026-07-07-miti-working-on-simplified-ncm-customised-incenti.json",
+    "title": "MITI working on simplified NCM customised incentive mechanism to build real local industrial capabilities",
+    "date": "2026-07-08",
+    "source": "prensa.com",
+    "ingested": false
   }
 }
