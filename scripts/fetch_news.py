@@ -279,6 +279,12 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         title = r.get("title", "")
         if not url or not title:
             continue
+        # DDG's "site:" query is a hint, not an enforced filter — results can
+        # leak from unrelated domains that merely match an OR'd term (e.g.
+        # "MIDA" also matches Malaysia's investment authority or Utah's
+        # Military Installation Development Authority). Reject those.
+        if _is_blocked_domain(url):
+            continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:
@@ -288,6 +294,9 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
                 pass
         body = r.get("body") or r.get("excerpt", "")
         if not is_agro_relevant(title, body, config):
+            continue
+        # Require at least one Panama-related term in title, URL, or body
+        if not (_is_panama_related(title, url) or _is_panama_related(body)):
             continue
         yield {
             "url": url,
