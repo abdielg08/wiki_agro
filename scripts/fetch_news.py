@@ -12,6 +12,7 @@ import time
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Iterator
+from urllib.parse import urlparse
 
 import requests
 import trafilatura
@@ -279,6 +280,10 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         title = r.get("title", "")
         if not url or not title:
             continue
+        # DDG's site: operator is not reliably honored — verify the result
+        # actually comes from the requested domain before trusting it.
+        if site and site not in urlparse(url).netloc:
+            continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:
@@ -287,6 +292,11 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
             except Exception:
                 pass
         body = r.get("body") or r.get("excerpt", "")
+        # DDG news search returns global results for generic agro keywords
+        # (e.g. "MIDA", "cosecha") — require an explicit Panama mention too.
+        combined = (title + " " + body).lower()
+        if "panam" not in combined:
+            continue
         if not is_agro_relevant(title, body, config):
             continue
         yield {
