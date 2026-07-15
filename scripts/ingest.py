@@ -13,6 +13,7 @@ Para marcar un artículo como ingestado después de que Claude lo procese:
 """
 
 import json
+import re
 import sys
 from pathlib import Path
 from datetime import datetime
@@ -141,7 +142,7 @@ def run_prepare(
 def mark_ingested(url_or_slug: str) -> bool:
     """Mark an article as ingested in processed.json."""
     processed = load_processed()
-    for url, meta in processed.items():
+    for url, meta in article_entries(processed).items():
         if url == url_or_slug or url_or_slug in meta.get("path", ""):
             meta["ingested"] = True
             meta["ingested_at"] = datetime.now().isoformat()
@@ -153,13 +154,32 @@ def mark_ingested(url_or_slug: str) -> bool:
 
 
 def mark_all_ingested(limit: int = 0) -> int:
-    """Mark the first `limit` pending articles as ingested (after Claude processed them)."""
+    """Mark the articles from the last `ingest` batch as ingested (after Claude processed them).
+
+    Reads the exact URL list from pending_ingest.md's trailing `mark-ingested`
+    commands, since that reflects the score-prioritized selection Claude Code
+    actually reviewed. Falls back to plain file-order find_pending() only if
+    pending_ingest.md is missing — `ingest` uses score-based prioritization by
+    default, which can select a different set than file order, so reusing
+    find_pending() here would silently mark unreviewed articles as ingested.
+    """
     processed = load_processed()
     articles = article_entries(processed)
-    pending = find_pending(limit=limit)
+
+    pending_file = ROOT / "pending_ingest.md"
+    urls = []
+    if pending_file.exists():
+        text = pending_file.read_text(encoding="utf-8")
+        urls = re.findall(r"mark-ingested '([^']+)'", text)
+        if limit:
+            urls = urls[:limit]
+
+    if not urls:
+        pending = find_pending(limit=limit)
+        urls = [article.get("url", "") for _, article in pending]
+
     count = 0
-    for _, article in pending:
-        url = article.get("url", "")
+    for url in urls:
         if url in articles:
             processed[url]["ingested"] = True
             processed[url]["ingested_at"] = datetime.now().isoformat()
