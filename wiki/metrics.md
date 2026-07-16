@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-07-16
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,37 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
+| Artículos en sources/ | 22 | ↑ continuo |
 | Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Falsos positivos acumulados | 16 | **0 nuevos** |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Ventanas GDELT completadas | 49 / ~45 estimadas | 45 (2015→hoy) — **umbral superado** |
+| Días sin artículos reales nuevos en wiki/ | ~51 (desde 2026-05-26) | máx 3 antes de diagnosticar — **ALARMA** |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions  : 2026-07-15 (1 artículo descargado — falso positivo)
+Resultado sesión previa : 9/9 artículos pendientes eran falsos positivos, 0 ingestados
+Causa identificada      : fetch_ddg_search() (scripts/fetch_news.py) usaba site:prensa.com
+                          pero DDG News no respeta ese operador de forma confiable;
+                          devolvía resultados de dominios ajenos (Malasia, Utah EE.UU.,
+                          Irán, Nueva York, Arabia Saudita, IEEE) que solo coincidían por
+                          palabras clave genéricas ("MIDA", "agricultura"). Faltaban los
+                          chequeos _is_blocked_domain()/_is_panama_related() que sí tiene
+                          fetch_rss(). Los últimos 6 artículos "nuevos" (2026-06-27 →
+                          2026-07-15) fueron TODOS falsos positivos.
+Fix aplicado (hoy)      : se agregó _domain_matches_site() en fetch_news.py que verifica
+                          el dominio real de cada resultado DDG contra el site: configurado,
+                          más _is_blocked_domain() como red de seguridad; se corrigió el
+                          campo "source" para no asumir site incorrectamente.
+Estado post-fix         : Pendiente validación en próxima corrida Actions (mañana)
+Ventanas GDELT          : 49 completadas, por encima del umbral de 45 — el rango de
+                          fechas GDELT puede estar agotado; considerar expandir cobertura
+                          o revisar historical_progress.json en próxima sesión
 ```
 
 ---
@@ -67,6 +78,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-07-16 | 0 | 0 | 9/9 falsos positivos rechazados (colisión "MIDA" + bug de site: en DDG) + fix en fetch_ddg_search() |
 
 ---
 

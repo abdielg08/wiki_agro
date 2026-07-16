@@ -81,6 +81,22 @@ def _is_panama_related(title: str, url: str = "") -> bool:
     return any(term in text for term in _PANAMA_TERMS)
 
 
+def _domain_matches_site(url: str, site: str) -> bool:
+    """True if url's domain is (a subdomain of) the configured site.
+
+    DDG's `site:` search operator is not reliably honored by the news
+    endpoint, so results can come back from an unrelated domain (e.g. a
+    query for site:prensa.com "MIDA" returning a Malaysia or Utah article
+    that merely mentions "MIDA"). This check re-verifies the domain
+    ourselves instead of trusting the query string.
+    """
+    if not site:
+        return True
+    domain = _url_domain(url)
+    site = site.lower()
+    return domain == site or domain.endswith("." + site)
+
+
 def _get(url: str, timeout: int = 20, retries: int = 2, **kwargs) -> requests.Response | None:
     for attempt in range(retries + 1):
         try:
@@ -279,6 +295,12 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         title = r.get("title", "")
         if not url or not title:
             continue
+        # DDG's site: operator is not reliably honored — re-verify the
+        # domain and reject known non-Panama domains before anything else.
+        if not _domain_matches_site(url, site):
+            continue
+        if _is_blocked_domain(url):
+            continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:
@@ -293,7 +315,7 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
             "url": url,
             "title": title,
             "date": pub_date,
-            "source": site or name,
+            "source": name,
             "trust_level": 3,
             "language": "es",
             "country": "PA",
