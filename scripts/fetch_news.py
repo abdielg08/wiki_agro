@@ -81,6 +81,23 @@ def _is_panama_related(title: str, url: str = "") -> bool:
     return any(term in text for term in _PANAMA_TERMS)
 
 
+def _domain_matches_site(url: str, site: str) -> bool:
+    """True if the URL's domain is the requested site (or a subdomain of it).
+
+    DuckDuckGo's `site:` operator is not reliably honored by the news
+    backend — searches restricted to a single domain (e.g. site:prensa.com)
+    can still return results from unrelated domains that merely match the
+    keyword query. This check re-enforces the domain restriction locally.
+    """
+    if not site:
+        return True
+    domain = _url_domain(url)
+    site = site.lower()
+    if site.startswith("www."):
+        site = site[4:]
+    return domain == site or domain.endswith("." + site)
+
+
 def _get(url: str, timeout: int = 20, retries: int = 2, **kwargs) -> requests.Response | None:
     for attempt in range(retries + 1):
         try:
@@ -278,6 +295,10 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         url = r.get("url") or r.get("href", "")
         title = r.get("title", "")
         if not url or not title:
+            continue
+        # DDG's site: filter isn't reliably honored — re-enforce it locally,
+        # and reject known non-Panama domains regardless of source.
+        if not _domain_matches_site(url, site) or _is_blocked_domain(url):
             continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
