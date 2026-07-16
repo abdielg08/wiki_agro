@@ -48,3 +48,42 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-07-16 00:00
+INGEST: 5 artículos pendientes revisados — 5/5 FALSOS POSITIVOS, 0 ingestados
+  Ninguno trata sobre agro panameño; ningún summary ni página de topics/entities creada:
+    - "MITI working on simplified NCM..." (paultan.org) → MIDA de Malasia (Malaysian Investment Development Authority), no Panamá
+    - "Box Elder data center opponents..." (sltrib.com) → MIDA de Utah (Military Installation Development Authority)
+    - "Utah Gov. Cox issues order to protect Great Salt Lake..." (sltrib.com) → misma MIDA de Utah
+    - "Timeline: How the Kevin O'Leary data center plan..." (sltrib.com) → misma MIDA de Utah
+    - "Utah wants to process uranium..." (sltrib.com) → mención incidental de MIDA de Utah
+  Causa raíz diagnosticada: scripts/fetch_news.py::fetch_ddg_search() (búsqueda DDG "prensa_agro",
+    config/sources.yaml site: prensa.com) no aplicaba los filtros _is_blocked_domain() /
+    _is_panama_related() que sí usan los fetchers de RSS y GDELT — el término "MIDA" en
+    search_terms coincide con homónimos internacionales. Además el campo "source" se
+    hardcodeaba al nombre de la búsqueda ("prensa.com") en vez del dominio real de la URL
+    devuelta, ocultando que los artículos no venían de prensa.com.
+  Corrección aplicada: fetch_ddg_search() ahora exige _is_panama_related(title, url),
+    descarta _is_blocked_domain(url), y usa _url_domain(url) como "source" real.
+  Artículos marcados como procesados (mark-ingested) para no re-encolarlos; pendientes: 4
+  Tasa de falsos positivos de esta sesión: 5/5 (100%) — todos detectados y rechazados,
+    0 incorporados al wiki. Cumple regla de 0% falsos positivos en el wiki.
+  BUG adicional encontrado y corregido en scripts/ingest.py::mark_ingested(): iteraba
+    processed.items() asumiendo que todo valor es dict, pero la clave de metadatos
+    "_gdelt_windows" es una lista → AttributeError. Se agregó guard `isinstance(meta, dict)`.
+
+## 2026-07-16 00:05
+INGEST: 4 artículos pendientes revisados — 4/4 FALSOS POSITIVOS, 0 ingestados
+  Mismo patrón de causa raíz (coincidencia genérica en "agricultura"/"agriculture" sin
+    ningún término de Panamá):
+    - "The Persian Qanat" (whc.unesco.org) → sistema de riego histórico de Irán
+    - "New York Farm Bureau" (nyfb.org) → gremio agrícola de Nueva York, EE.UU.
+    - "'Reef Saudi'..." (spa.gov.sa) → programa de agricultura de secano en Arabia Saudita
+    - "Ambient IoT: Communications Enabling Precision Agriculture" (ieeexplore.ieee.org)
+      → paper técnico IEEE sobre 6G/IoT, sin mención de Panamá
+  Ninguno mencionaba Panamá, Chiriquí, Azuero ni ningún término de _PANAMA_TERMS —
+    confirma que el fix en fetch_ddg_search() (commit de esta sesión) habría evitado
+    que estos 4 entraran a la cola en primer lugar.
+  0 summaries/topics/entities creados. Marcados como procesados (mark-ingested).
+  Pendientes tras esta sesión: 0. Tasa de falsos positivos: 9/9 (100%) detectados,
+    0% incorporados al wiki — regla de 0% falsos positivos cumplida.

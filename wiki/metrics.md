@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-07-16
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,46 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Artículos en sources/ | 22 | ↑ continuo |
+| Artículos reales ingestados (con página wiki) | 6 | = total sin falsos positivos |
+| Falsos positivos acumulados | 16 (7 previos + 9 esta sesión) | **0 nuevos** |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Ventanas GDELT completadas | 49 / ~46 estimadas | 45 (2015→hoy) |
+| Días sin artículos nuevos | 0 (último fetch: 2026-07-15) | máx 3 antes de diagnosticar |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions : 2026-07-15 (1 artículo nuevo); sin corrida registrada aún
+                         hoy 2026-07-16 al momento de esta sesión (08:05 UTC)
+Resultado               : 9/9 artículos recibidos en esta y la sesión anterior
+                          reciente resultaron ser falsos positivos (0 incorporados al wiki)
+Causa raíz identificada : fetch_ddg_search() (búsqueda DDG "prensa_agro" en
+                          config/sources.yaml) no aplicaba los filtros
+                          _is_blocked_domain()/_is_panama_related() que sí usan
+                          los fetchers de RSS y GDELT. Coincidencias genéricas con
+                          "MIDA"/"agricultura"/"agriculture" traían artículos de
+                          Malasia, Utah, Irán, Arabia Saudita y EE.UU. sin relación
+                          con Panamá.
+Fix aplicado (sesión 2026-07-16): fetch_ddg_search() ahora exige
+                          _is_panama_related(title, url), descarta
+                          _is_blocked_domain(url), y usa el dominio real de la URL
+                          como "source" (antes se hardcodeaba a "prensa.com").
+                          También se corrigió mark_ingested() en scripts/ingest.py,
+                          que fallaba (AttributeError) al iterar la clave de
+                          metadatos "_gdelt_windows" (una lista) como si fuera dict.
+Ventanas GDELT           : 49 completadas (>= 45) → rango de fechas agotado según
+                          umbral definido en CLAUDE.md. El backfill vía GDELT ya
+                          cubre aprox. 2017-03-30 → 2026-07-14; falta expandir el
+                          rango histórico 2015-02-19 → 2017-03-29 (ejecutar
+                          workflow "Wiki Agropecuario — Crawl Histórico 15 Años"
+                          manualmente con years=2015-2017) para completar la
+                          cobertura objetivo.
+Estado post-fix         : Pendiente validar en la próxima corrida de Actions que
+                          ya no se generen falsos positivos vía DDG search.
 ```
 
 ---
@@ -51,13 +71,15 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 | 2021 Q1-Q4 | 0/4 | ? | Pendiente |
 | 2022 Q1-Q4 | 0/4 | ? | Pendiente |
 | 2023 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2024 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2025 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2026 Q1-Q2 | 0/2 | ? | Pendiente |
-| **TOTAL** | **0/46** | **0** | **Backfill no iniciado** |
+| 2024 Q1-Q4 | ~4/4 | ? | Completo (vía fetch diario) |
+| 2025 Q1-Q4 | ~4/4 | ? | Completo (vía fetch diario) |
+| 2026 Q1-Q3 | ~4/3 | ? | Completo (vía fetch diario) |
+| **TOTAL** | **49/46** | **~13 reales (resto FP)** | **2017-03 → hoy cubierto; falta 2015-02-19 → 2017-03-29** |
 
-> Una vez que Actions corra con el código corregido, actualizar esta tabla con los datos reales.
-> El rendimiento real de GDELT (artículos/trimestre) determinará la duración del backfill.
+> El fetch diario (wiki_daily.yml) viene generando ventanas GDELT rodantes que ya cubren
+> 2017-03-30 → 2026-07-14 (49 ventanas). Falta disparar manualmente el workflow
+> "Wiki Agropecuario — Crawl Histórico 15 Años" con years=2015-2017 para cerrar el
+> tramo más antiguo de la cobertura objetivo (2015-02-19 en adelante).
 
 ---
 
@@ -67,6 +89,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-07-16 | 0 (9 revisados, 9 falsos positivos) | 0 | Fix de bug raíz en fetch_ddg_search() (sin filtro Panamá) + fix de mark_ingested() (AttributeError en `_gdelt_windows`) |
 
 ---
 

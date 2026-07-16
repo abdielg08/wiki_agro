@@ -289,11 +289,18 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         body = r.get("body") or r.get("excerpt", "")
         if not is_agro_relevant(title, body, config):
             continue
+        # DDG's site: operator is not reliably honored — verify domain and
+        # require an unambiguous Panama term (e.g. "MIDA" also matches
+        # Malaysia's/Utah's MIDA), same guard as the RSS/GDELT fetchers.
+        if _is_blocked_domain(url):
+            continue
+        if not _is_panama_related(title, url):
+            continue
         yield {
             "url": url,
             "title": title,
             "date": pub_date,
-            "source": site or name,
+            "source": _url_domain(url) or site or name,
             "trust_level": 3,
             "language": "es",
             "country": "PA",
