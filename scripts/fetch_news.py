@@ -287,7 +287,17 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
             except Exception:
                 pass
         body = r.get("body") or r.get("excerpt", "")
+        # Reject articles from blocked (non-Panama) domains
+        if _is_blocked_domain(url):
+            continue
         if not is_agro_relevant(title, body, config):
+            continue
+        # Require at least one Panama-related term in title or URL — DDG's
+        # site: filter is not reliably honored by the backend, so queries
+        # like "site:prensa.com ... MIDA ..." can return unrelated global
+        # results (e.g. Utah's MIDA, Malaysia's MITI/MIDA) mislabeled with
+        # the configured source name.
+        if not _is_panama_related(title, url):
             continue
         yield {
             "url": url,
@@ -340,7 +350,11 @@ def fetch_world_bank(source: dict, config: dict) -> Iterator[dict]:
             except Exception:
                 pass
         abstract = doc.get("abstracts", "")
+        if _is_blocked_domain(url):
+            continue
         if not is_agro_relevant(title, abstract, config):
+            continue
+        if not _is_panama_related(title, url):
             continue
         yield {
             "url": url,
