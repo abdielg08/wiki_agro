@@ -287,7 +287,15 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
             except Exception:
                 pass
         body = r.get("body") or r.get("excerpt", "")
+        # DDG's `site:` operator is not reliably enforced by the news search,
+        # so results can land on unrelated domains — reject those explicitly.
+        if _is_blocked_domain(url):
+            continue
         if not is_agro_relevant(title, body, config):
+            continue
+        # Require at least one Panama-related term in title or URL (same
+        # guard as fetch_rss — prevents acronym collisions like MIDA/Utah).
+        if not _is_panama_related(title, url):
             continue
         yield {
             "url": url,

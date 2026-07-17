@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-07-17
 ---
 
 # Dashboard de Métricas
@@ -14,50 +14,82 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Artículos en sources/ | 22 | ↑ continuo |
+| Artículos reales ingestados | 13 | = total sin falsos positivos |
+| Falsos positivos acumulados | 16 | **0 nuevos** ⚠️ meta incumplida hoy (ver diagnóstico) |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Ventanas GDELT completadas | 49 / ~46 estimadas | 45 (2015→hoy) — rango cubierto |
+| Días sin artículos nuevos reales (no-FP) | ≥54 (desde 2026-05-24) | máx 3 antes de diagnosticar |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida con datos : 2026-07-17 (9 artículos nuevos en sources/, los 9 = falsos positivos)
+Resultado ingesta real   : 0 artículos nuevos al wiki en esta sesión
+Ventanas GDELT           : 49 completadas — el backfill 2015→hoy vía GDELT está
+                            esencialmente agotado en cobertura de ventanas.
+Causa raíz identificada  : fetch_ddg_search() (scripts/fetch_news.py) — la fuente
+                            web_searches "prensa_agro" (site:prensa.com) usa una
+                            query OR amplia ("agropecuario OR agricultura OR
+                            ganadería OR MIDA OR cosecha Panamá") contra la API de
+                            noticias de DuckDuckGo. El operador `site:` de DDG NO
+                            se aplica de forma confiable en ddgs.news(), y a
+                            diferencia de fetch_rss(), esta función NO llamaba a
+                            _is_panama_related() ni _is_blocked_domain() antes de
+                            aceptar un resultado. Consecuencia: cualquier artículo
+                            mundial que matcheara UN SOLO término OR (p.ej. "MIDA"
+                            o "agricultura") se colaba, etiquetado incorrectamente
+                            con source="prensa.com" aunque su URL real fuera
+                            paultan.org, sltrib.com, ieeexplore.ieee.org,
+                            whc.unesco.org, nyfb.org o spa.gov.sa.
+Fix aplicado (hoy)       : scripts/fetch_news.py::fetch_ddg_search() ahora aplica
+                            _is_blocked_domain(url) y _is_panama_related(title, url)
+                            — mismo guard que fetch_rss() ya usaba. Sin validar aún
+                            en una corrida real de fetch (próxima corrida de
+                            GitHub Actions confirmará si esto reduce los FP a 0).
+Bugs de tooling hallados : (1) `wiki_agro.py mark-ingested <url>` falla con
+                            AttributeError al iterar `_gdelt_windows` (lista) en
+                            processed.json — no filtra con article_entries().
+                            (2) `mark-all-ingested --limit N` selecciona por orden
+                            alfabético de archivo (find_pending), NO por score
+                            (prioritize) como hace `ingest --limit N` — los N
+                            artículos no coinciden. Ambos pendientes de fix; ver
+                            wiki/log.md 2026-07-17 para detalle.
 ```
 
 ---
 
 ## Progreso del Backfill GDELT (2015 → hoy)
 
-| Período | Ventanas | Artículos | Estado |
-|---------|----------|-----------|--------|
-| 2015 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2016 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2017 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2018 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2019 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2020 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2021 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2022 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2023 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2024 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2025 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2026 Q1-Q2 | 0/2 | ? | Pendiente |
-| **TOTAL** | **0/46** | **0** | **Backfill no iniciado** |
+Calculado desde `_gdelt_windows` en `sources/processed.json` (49 ventanas registradas):
 
-> Una vez que Actions corra con el código corregido, actualizar esta tabla con los datos reales.
-> El rendimiento real de GDELT (artículos/trimestre) determinará la duración del backfill.
+| Período | Ventanas completadas | Estado |
+|---------|----------------------|--------|
+| 2015 | **0** | ⚠️ **Sin cubrir — hueco en el backfill** |
+| 2016 | **0** | ⚠️ **Sin cubrir — hueco en el backfill** |
+| 2017 | 4 | Completo |
+| 2018 | 4 | Completo |
+| 2019 | 4 | Completo |
+| 2020 | 4 | Completo |
+| 2021 | 4 | Completo |
+| 2022 | 4 | Completo |
+| 2023 | 4 | Completo |
+| 2024 | 4 | Completo |
+| 2025 | 4 | Completo |
+| 2026 | 13 | Sobre-cubierto (ventanas cortas repetidas de catch-up reciente, no trimestrales) |
+| **TOTAL** | **49** | **2015–2026 nominal, pero 2015 y 2016 están en 0 ventanas** |
+
+> **Hallazgo de esta sesión**: pese a que el conteo total (49) supera la estimación
+> de ~45-46, el desglose por año muestra que **2015 y 2016 nunca se corrieron** —
+> todas las ventanas registradas empiezan en 2017 en adelante. El conteo agregado
+> ocultaba este hueco. Próxima prioridad de backfill: `python scripts/fetch_historical.py
+> --mode gdelt --years 2015-2016` (o el flag equivalente) para cerrar 2015-02-19 → 2016-12-31.
+> Cero de los artículos descargados hasta ahora vía estas ventanas resultaron en
+> ingesta real al wiki en esta sesión — todos eran ruido de otras fuentes (ver
+> diagnóstico de causa raíz arriba, no relacionado a GDELT sino a fetch_ddg_search).
 
 ---
 
@@ -67,6 +99,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-07-17 | 0 | 0 | 9/9 pendientes = falsos positivos (colisión MIDA/agricultura genérica vía fetch_ddg_search). Fix aplicado en scripts/fetch_news.py. Hueco de backfill 2015-2016 detectado. |
 
 ---
 
