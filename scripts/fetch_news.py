@@ -12,6 +12,7 @@ import time
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Iterator
+from urllib.parse import urlparse
 
 import requests
 import trafilatura
@@ -257,6 +258,17 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
     full_query = f"site:{site} {query}" if site else query
     console.print(f"  DDG [cyan]{name}[/cyan] → {full_query[:70]}")
 
+    def _matches_site(url: str) -> bool:
+        """DDGS does not reliably honor the `site:` operator for news search —
+        it has been observed returning unrelated global results (e.g. articles
+        about Malaysia's MIDA or Utah's MIDA) whenever the query terms match,
+        regardless of domain. Verify the domain explicitly instead of trusting
+        the query string."""
+        if not site:
+            return True
+        netloc = urlparse(url).netloc.lower()
+        return netloc == site.lower() or netloc.endswith("." + site.lower())
+
     try:
         with DDGS() as ddgs:
             results = list(ddgs.news(full_query, max_results=max_results))
@@ -278,6 +290,9 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         url = r.get("url") or r.get("href", "")
         title = r.get("title", "")
         if not url or not title:
+            continue
+        if not _matches_site(url):
+            console.print(f"  [dim]DDG descartado (dominio no coincide con {site}): {url[:70]}[/dim]")
             continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
