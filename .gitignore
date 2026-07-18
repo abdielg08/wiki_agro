@@ -10,8 +10,9 @@ dist/
 build/
 .DS_Store
 
-# Archivo temporal de ingest — generado por `wiki_agro.py ingest`
+# Archivos temporales de ingest — generados por `wiki_agro.py ingest`
 pending_ingest.md
+pending_ingest_batch.json
 
 # Sources can grow large; optionally ignore for large deployments
 # sources/articles/*.json

@@ -128,6 +128,16 @@ def run_prepare(
     ingest_file = ROOT / "pending_ingest.md"
     ingest_file.write_text(full_prompt, encoding="utf-8")
 
+    # Persist the exact batch of URLs so mark-all-ingested marks precisely
+    # what was shown here — find_pending()'s filename-sort order can differ
+    # from prioritize()'s score order, so recomputing "top N pending"
+    # independently can mark a different, unreviewed article instead.
+    batch_file = ROOT / "pending_ingest_batch.json"
+    batch_file.write_text(
+        json.dumps([article.get("url", "") for _, article in pending], ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
     console.print(Panel(
         f"[bold]{len(pending)} artículos listos para ingestar.[/bold]\n\n"
         f"El prompt ha sido guardado en [cyan]pending_ingest.md[/cyan]\n\n"
@@ -153,9 +163,36 @@ def mark_ingested(url_or_slug: str) -> bool:
 
 
 def mark_all_ingested(limit: int = 0) -> int:
-    """Mark the first `limit` pending articles as ingested (after Claude processed them)."""
+    """Mark articles as ingested (after Claude processed them).
+
+    Prefers the exact batch of URLs from the last `ingest` run (saved in
+    pending_ingest_batch.json) so this marks precisely what was shown to
+    Claude — not an independently recomputed "first N pending", which can
+    select a different, never-reviewed article due to ordering differences
+    between find_pending() (filename order) and prioritize() (score order).
+    Falls back to find_pending() if no batch file exists.
+    """
     processed = load_processed()
     articles = article_entries(processed)
+
+    batch_file = ROOT / "pending_ingest_batch.json"
+    if batch_file.exists():
+        urls = json.loads(batch_file.read_text(encoding="utf-8"))
+        if limit:
+            urls = urls[:limit]
+        count = 0
+        for url in urls:
+            if url in articles:
+                processed[url]["ingested"] = True
+                processed[url]["ingested_at"] = datetime.now().isoformat()
+                count += 1
+        save_processed(processed)
+        batch_file.unlink()
+        append_log(
+            f"INGEST: {count} artículos marcados como ingestados por sesión Claude Code"
+        )
+        return count
+
     pending = find_pending(limit=limit)
     count = 0
     for _, article in pending:

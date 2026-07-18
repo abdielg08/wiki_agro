@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-07-18
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,49 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Artículos en sources/ | 22 | ↑ continuo |
+| Artículos reales ingestados | 13 | = total sin falsos positivos |
+| Falsos positivos acumulados | 16 (7 previos + 9 nuevos 2026-07-18) | **0 nuevos** — ver diagnóstico abajo |
+| Páginas en wiki/ | 20 | ↑ continuo |
+| Cobertura temporal | 2015-2026 (semilla + backfill parcial) | 2015 → hoy real |
+| Ventanas GDELT completadas | 49 / ~46 estimadas | backfill histórico esencialmente completo |
+| Días sin artículos nuevos en sources/ | 3 (2026-07-16, 17, 18 — el fetch de hoy aún no corre) | máx 3 antes de diagnosticar → **ALERTA ACTIVA** |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions       : 2026-07-17 12:02 UTC (schedule) — conclusion: success (pero 0 artículos)
+Última corrida CON artículos : 2026-07-15 (commit 5f4d667, 1 artículo)
+Runs recientes (actions_list): 07-17 success/0, 07-16 success/0, 07-15 success/1,
+                                07-14 success, 07-13 FAILURE, 07-12..07-03 success
+Causa identificada (logs job 87879498680, run 29578858522, 2026-07-17):
+  1. GDELT API devuelve "GET blocked (403/429)" o "error de red" en CASI TODAS las
+     ventanas intentadas — incluyendo la ventana incremental más reciente
+     (2026-06-18 → 2026-07-16), que es la que traería noticias nuevas de Panamá.
+     No es agotamiento de rango (ver ventanas completadas abajo) — es bloqueo/
+     rate-limit activo del runner IP de GitHub Actions contra api.gdeltproject.org.
+  2. RSS: IICA (0 entradas) y La Prensa (0 entradas) ese día — feeds vacíos, no error.
+  3. DDG: 7 de 8 búsquedas "site:X ..." devuelven "No results found" (probablemente
+     normal / sin novedades). Solo "prensa_agro" (site:prensa.com) devuelve resultados,
+     y el bug de fetch_ddg_search() (ver wiki/log.md 2026-07-18 01:20) permitía que
+     colaran resultados fuera de dominio/tema — YA CORREGIDO en este commit.
+Backfill histórico          : 49 ventanas GDELT trimestrales completadas — cubre
+                               ~2015-2026 casi en su totalidad. El backfill masivo
+                               está esencialmente terminado; el problema activo es
+                               la ventana incremental diaria bloqueada por GDELT.
+Acción recomendada           : GDELT bloquea por IP/rate-limit, no por código —
+                               no hay fix de código disponible desde esta sesión.
+                               Monitorear próximas corridas; si persiste >5-7 días
+                               considerar backoff/retry más largo en fetch_gdelt_window()
+                               o reducir frecuencia de la ventana incremental.
+Fix de código aplicado hoy   : scripts/fetch_news.py fetch_ddg_search() ahora aplica
+                               _is_blocked_domain()/_is_panama_related() (paridad con
+                               fetch_rss()) — evita que resultados DDG fuera de tema/
+                               dominio entren al pipeline. scripts/ingest.py corregido
+                               para que mark-all-ingested marque exactamente el batch
+                               mostrado a Claude (ver wiki/log.md).
 ```
 
 ---
@@ -67,6 +90,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-07-18 | 0 (9/9 falsos positivos, 0 páginas creadas) | 0 | Bug de mark-all-ingested corregido (marcaba artículo incorrecto); fix de fetch_ddg_search() sin filtro Panamá; diagnóstico: GDELT bloqueado (403/429) en runner de Actions, 3 días sin artículos nuevos |
 
 ---
 

@@ -279,6 +279,13 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         title = r.get("title", "")
         if not url or not title:
             continue
+        # DDG's "site:" operator is not reliably honored by the news backend —
+        # reject off-domain results and ambiguous-acronym false positives
+        # (e.g. "MIDA" matching Malaysia or Utah instead of Panama's MIDA).
+        if _is_blocked_domain(url):
+            continue
+        if not _is_panama_related(title, url):
+            continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:
