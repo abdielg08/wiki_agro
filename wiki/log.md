@@ -48,3 +48,43 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-07-18 08:02
+INGEST: 0 artículos reales ingestados — 5/5 falsos positivos (sesión Claude Code, routine)
+  Falsos positivos detectados (colisión de keyword "MIDA"):
+    - "MITI working on simplified NCM..." (paultan.org, 2026-07-08) → MIDA = Malaysian Industrial Development Authority, no Panamá
+    - "Box Elder data center opponents..." (sltrib.com, 2026-05-27) → MIDA = Utah Military Installation Development Authority
+    - "Utah Gov. Cox issues order to protect Great Salt Lake..." (sltrib.com, 2026-05-29) → MIDA = Utah Military Installation Development Authority
+    - "Timeline: How the Kevin O'Leary data center plan came to be..." (sltrib.com, 2026-05-19) → MIDA = Utah Military Installation Development Authority
+    - "Utah wants to process uranium on the Wasatch Front..." (sltrib.com, 2025-06-13) → MIDA = Utah Military Installation Development Authority
+  Ninguno trata sobre agro panameño. No se creó ni actualizó ninguna página del wiki.
+  Los 5 se marcaron `ingested: true` en processed.json (mark-all-ingested) para no bloquear la cola de pendientes.
+  DIAGNÓSTICO: el fetch (GDELT/RSS) sigue trayendo ruido en inglés que matchea "MIDA" como acrónimo ajeno
+  (Malaysia MITI/MIDA, Utah Military Installation Development Authority) en vez de Panamá MIDA
+  (Ministerio de Desarrollo Agropecuario). Ya se había detectado el mismo patrón el 2026-06-22 (7 falsos
+  positivos). Recomendación para el usuario: ajustar el filtro de fetch para exigir contexto panameño
+  (dominio .pa, mención de "Panamá", o co-ocurrencia con términos agropecuarios) antes de descargar
+  artículos que solo contienen la palabra "MIDA".
+
+## 2026-07-18 08:02
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code
+
+## 2026-07-18 08:10
+INGEST: 0 artículos reales ingestados — 4/4 falsos positivos adicionales (misma sesión, routine)
+  Falsos positivos detectados:
+    - "MITI working on simplified NCM..." (paultan.org, 2026-07-08) → duplicado del mismo artículo Malaysia MITI/MIDA visto en el lote anterior
+    - "The Persian Qanat" (whc.unesco.org, 2026-07-07) → sitio UNESCO sobre sistema de riego qanat en Irán, agro genérico sin relación con Panamá
+    - "New York Farm Bureau" (nyfb.org, 2026-06-17) → gremio agrícola de Nueva York, EE.UU., no Panamá
+    - "'Reef Saudi', a Successful Program Based on Rain-Fed Agriculture" (spa.gov.sa, 2026-06-24) → programa agrícola de Arabia Saudita
+  Ninguno trata sobre agro panameño. No se creó ni actualizó ninguna página del wiki.
+  Los 4 se marcaron `ingested: true` en processed.json para no bloquear la cola de pendientes.
+  RESULTADO DE LA SESIÓN: 9/9 artículos pendientes eran falsos positivos (0 artículos reales ingestados).
+  Total falsos positivos acumulados: 11 (7 previos del 2026-06-22 + 4 nuevos, sin contar el
+  duplicado MITI ya contado en el lote de 5). El fetch está trayendo artículos genéricos sobre
+  "agriculture" o coincidencias de la palabra "MIDA"/"agro" en inglés sin ningún filtro geográfico
+  de Panamá. Se requiere ajustar `config/sources.yaml` o la lógica de fetch/scoring para exigir
+  señal explícita de Panamá (dominio .pa, "Panama"/"Panamá" en texto, o entidades como MIDA/IDIAP/BDA
+  en contexto panameño) antes de guardar un artículo como candidato a ingesta.
+
+## 2026-07-18 08:03
+INGEST: 4 artículos marcados como ingestados por sesión Claude Code
