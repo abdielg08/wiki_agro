@@ -2,7 +2,7 @@
 title: Log de Actividad del Wiki
 type: overview
 tags: [log, actividad]
-last_updated: 2025-05-24
+last_updated: 2026-07-19
 ---
 
 # Log de Actividad
@@ -48,3 +48,44 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-07-19 00:00
+ROUTINE: 9 artículos pendientes revisados — 9/9 FALSOS POSITIVOS, ninguno ingestado al wiki
+  Falsos positivos (no son sobre agro de Panamá, no se creó contenido de wiki):
+    1. https://paultan.org/2026/07/07/miti-working-on-simplified-ncm-customised-incentive-mechanism-to-build-real-local-industrial-capabilities/
+       "MIDA" = Malaysian Investment Development Authority (agencia de MITI, Malasia), no MIDA Panamá
+    2. https://www.sltrib.com/news/2026/05/27/box-elder-data-center-opponents/
+       "MIDA" = Military Installation Development Authority (Utah, EE.UU.), data center — no agro
+    3. https://www.sltrib.com/news/environment/2026/05/29/utah-governor-issues-order-protect/
+       Mismo caso: MIDA de Utah, calidad del aire / Great Salt Lake
+    4. https://www.sltrib.com/news/2026/05/19/kevin-oleary-data-center-timeline/
+       Mismo caso: MIDA de Utah, data center de Kevin O'Leary
+    5. https://www.sltrib.com/news/environment/2025/06/12/utah-nuclear-energy-state/
+       Mismo caso: Military Installation Development Authority (MIDA), uranio/energía nuclear en Utah
+    6. https://whc.unesco.org/en/list/1506 — Sistema de qanats persas (Irán), patrimonio UNESCO, no Panamá
+    7. https://www.nyfb.org/ — New York Farm Bureau (EE.UU.), no Panamá
+    8. https://www.spa.gov.sa/en/N2096157 — Programa "Reef Saudi" de agricultura de secano, Arabia Saudita
+  CAUSA RAÍZ: fetch_ddg_search() en scripts/fetch_news.py no aplicaba los filtros
+    _is_blocked_domain()/_is_panama_related() que sí usa fetch_rss(). Todos estos
+    artículos fueron etiquetados incorrectamente con source="prensa.com" y
+    country="PA" pese a venir de dominios no panameños (paultan.org, sltrib.com,
+    whc.unesco.org, nyfb.org, spa.gov.sa). La coincidencia de la sigla "MIDA" con
+    entidades de Malasia y Utah fue el principal vector de falsos positivos.
+  FIX APLICADO: scripts/fetch_news.py — fetch_ddg_search() ahora aplica los mismos
+    filtros de dominio bloqueado y término panameño que fetch_rss().
+  FIX ADICIONAL: scripts/ingest.py::mark_ingested() crasheaba (AttributeError) al
+    iterar sobre la clave interna `_gdelt_windows` de processed.json (una lista,
+    no un dict). Corregido con isinstance(meta, dict) check.
+  Los 9 artículos se marcaron ingested=true (vía mark-ingested/mark-all-ingested)
+    para sacarlos de la cola de pendientes, sin crear contenido de wiki.
+  Pendientes de ingesta: 0
+  DIAGNÓSTICO: 4 días consecutivos (2026-07-16 → 2026-07-19) sin artículos nuevos
+    REALES en sources/articles/ — supera el umbral de 3 días de CLAUDE.md.
+    Ventanas GDELT completadas: 50 (~46 esperadas 2015→hoy) — backfill histórico
+    esencialmente agotado, comportamiento esperado. RSS (IICA, La Prensa) sin
+    entradas nuevas calificantes en los últimos días. Ver wiki/metrics.md para
+    detalle completo del diagnóstico.
+  Total pendientes histórico de falsos positivos: 16 (7 previos + 9 de hoy)
+
+## 2026-07-19 08:02
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code

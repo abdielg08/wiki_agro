@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-07-19
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,53 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
+| Artículos en sources/ | 22 | ↑ continuo |
 | Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Falsos positivos acumulados | 16 | **0 nuevos** ⚠️ +9 esta sesión |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Ventanas GDELT completadas | 50 / ~46 estimadas | 45 (2015→hoy) — backfill histórico esencialmente completo |
+| Días sin artículos nuevos | 4 (2026-07-16 → 2026-07-19) | ⚠️ supera el máx. de 3 días |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions : 2026-07-18 (0 artículos nuevos)
+Resultado              : 4 días consecutivos sin artículos NUEVOS reales en
+                         sources/articles/ (último artículo real: 2026-07-15)
+
+Causa raíz identificada (sesión 2026-07-19):
+  1. GDELT: 50 ventanas trimestrales completadas (~46 esperadas para
+     2015→hoy) → el backfill histórico está esencialmente agotado. Esto es
+     esperado, no un bug; de aquí en adelante GDELT solo aportará ventanas
+     nuevas a medida que avance el calendario (~1 cada pocos meses).
+  2. RSS (IICA, La Prensa): 0 entradas nuevas calificantes en los últimos
+     días — posible agotamiento temporal de contenido publicado, no error
+     de fetch.
+  3. BUG ENCONTRADO Y CORREGIDO: fetch_ddg_search() (búsqueda DuckDuckGo
+     News) no aplicaba los filtros _is_blocked_domain()/_is_panama_related()
+     que sí usa fetch_rss(). Resultado: colaba artículos globales relevantes
+     solo por keyword ("MIDA", "agriculture", etc.) sin verificar que fueran
+     de Panamá, etiquetándolos incorrectamente con source="prensa.com" y
+     country="PA". Esto explica los 9 pendientes de esta sesión — 100%
+     falsos positivos: la sigla "MIDA" colisionó con el Ministry of
+     Investment, Trade and Industry de Malasia y con la Military
+     Installation Development Authority de Utah, más 3 artículos genéricos
+     de agricultura de Irán/EE.UU./Arabia Saudita. Probablemente explica
+     también varios de los "1 artículo nuevo" reportados en sesiones previas
+     (2026-07-10, 07-14, 07-15).
+Fix aplicado            : scripts/fetch_news.py — fetch_ddg_search() ahora
+                         aplica _is_blocked_domain(url) y
+                         _is_panama_related(title, url), igual que
+                         fetch_rss(). También se corrigió un bug en
+                         scripts/ingest.py::mark_ingested() que crasheaba al
+                         iterar la clave interna _gdelt_windows (lista, no
+                         dict), impidiendo marcar artículos como ingestados.
+Estado post-fix         : Pendiente validación en próxima corrida Actions —
+                         debería reducir drásticamente los falsos positivos
+                         provenientes de DDG.
 ```
 
 ---
@@ -67,6 +94,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-07-19 | 0 | 0 | 9 pendientes revisados = 9 falsos positivos (colisión "MIDA" Malasia/Utah + 3 genéricos) descartados sin ingestar. Fix de bug en fetch_ddg_search() (sin filtro Panamá) y en mark_ingested() (crash con _gdelt_windows). ⚠️ 4 días sin artículos reales nuevos |
 
 ---
 
