@@ -469,9 +469,15 @@ def fetch_gdelt_historical(config: dict, processed: dict) -> Iterator[dict]:
         for article in batch:
             yield article
 
-        # Mark window as complete only on successful HTTP response (even if 0 results)
-        completed_windows.add(window_key)
-        processed["_gdelt_windows"] = list(completed_windows)
+        # Mark window as complete only if it's a FULL quarter (90 days). The
+        # trailing window is capped at `end` (= yesterday), which moves every
+        # day — marking it complete under a date-dependent key would bloat
+        # _gdelt_windows with a new stale entry each run and never actually
+        # mark it done. Leave it unmarked so it's re-checked daily until a
+        # full quarter has elapsed and it graduates to a stable key.
+        if next_q - current >= timedelta(days=90):
+            completed_windows.add(window_key)
+            processed["_gdelt_windows"] = list(completed_windows)
 
         current = next_q + timedelta(days=1)
         time.sleep(REQUEST_DELAY * 2)  # polite pause between GDELT windows
