@@ -279,6 +279,15 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         title = r.get("title", "")
         if not url or not title:
             continue
+        # DDG's `site:` operator is not reliably honored by ddgs.news() —
+        # it commonly returns unrelated international results (e.g. "MIDA"
+        # matching Malaysia's investment authority or Utah's Military
+        # Installation Development Authority). Apply the same domain-block
+        # and Panama-relevance checks used by the RSS and GDELT fetchers.
+        if _is_blocked_domain(url):
+            continue
+        if not _is_panama_related(title, url):
+            continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:
