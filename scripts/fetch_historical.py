@@ -201,6 +201,9 @@ def fetch_cdx_domain(
         # Use a heuristic title from URL slug
         slug = url.rstrip("/").split("/")[-1]
         title = slug.replace("-", " ").replace("_", " ")[:100]
+        # CDX/sitemap only ever query domain from CDX_SOURCES/SITEMAP_SOURCES
+        # (all Panama outlets), so Panama-term matching isn't needed here —
+        # unlike DDG, this domain restriction is genuinely enforced upstream.
         if not is_agro_relevant(title, "", config):
             continue
         yield {
