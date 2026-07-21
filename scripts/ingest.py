@@ -128,6 +128,14 @@ def run_prepare(
     ingest_file = ROOT / "pending_ingest.md"
     ingest_file.write_text(full_prompt, encoding="utf-8")
 
+    # Persist exactly which URLs were shown, so `mark-all-ingested` marks this
+    # same batch instead of re-deriving a (possibly differently-ordered) one.
+    batch_file = ROOT / "sources" / ".last_ingest_batch.json"
+    batch_file.write_text(
+        json.dumps([article.get("url", "") for _, article in pending], ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
     console.print(Panel(
         f"[bold]{len(pending)} artículos listos para ingestar.[/bold]\n\n"
         f"El prompt ha sido guardado en [cyan]pending_ingest.md[/cyan]\n\n"
@@ -141,7 +149,7 @@ def run_prepare(
 def mark_ingested(url_or_slug: str) -> bool:
     """Mark an article as ingested in processed.json."""
     processed = load_processed()
-    for url, meta in processed.items():
+    for url, meta in article_entries(processed).items():
         if url == url_or_slug or url_or_slug in meta.get("path", ""):
             meta["ingested"] = True
             meta["ingested_at"] = datetime.now().isoformat()
@@ -153,18 +161,29 @@ def mark_ingested(url_or_slug: str) -> bool:
 
 
 def mark_all_ingested(limit: int = 0) -> int:
-    """Mark the first `limit` pending articles as ingested (after Claude processed them)."""
+    """Mark the last-shown `ingest` batch (or, absent that, the first `limit`
+    pending articles) as ingested (after Claude processed them)."""
     processed = load_processed()
     articles = article_entries(processed)
-    pending = find_pending(limit=limit)
+
+    batch_file = ROOT / "sources" / ".last_ingest_batch.json"
+    if batch_file.exists():
+        urls = json.loads(batch_file.read_text(encoding="utf-8"))
+        if limit:
+            urls = urls[:limit]
+    else:
+        pending = find_pending(limit=limit)
+        urls = [article.get("url", "") for _, article in pending]
+
     count = 0
-    for _, article in pending:
-        url = article.get("url", "")
-        if url in articles:
+    for url in urls:
+        if url in articles and not articles[url].get("ingested"):
             processed[url]["ingested"] = True
             processed[url]["ingested_at"] = datetime.now().isoformat()
             count += 1
     save_processed(processed)
+    if batch_file.exists():
+        batch_file.unlink()
     append_log(
         f"INGEST: {count} artículos marcados como ingestados por sesión Claude Code"
     )

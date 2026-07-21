@@ -132,6 +132,20 @@ def is_agro_relevant(title: str, text: str = "", config: dict = None) -> bool:
     return any(t.lower() in combined for t in terms)
 
 
+def has_panama_context(title: str, text: str = "") -> bool:
+    """Return True if the content explicitly mentions Panama.
+
+    Several agro search terms (e.g. "MIDA", "agricultura") collide with
+    unrelated global content (Malaysia's MITI/MIDA, Utah's Military
+    Installation Development Authority, generic farming news from other
+    countries). Sources that aren't already geographically scoped by domain
+    or API filter (e.g. DDG web search) must additionally require an
+    explicit Panama mention to avoid false positives.
+    """
+    combined = (title + " " + (text or "")).lower()
+    return "panama" in combined or "panamá" in combined
+
+
 # ─── 1. RSS FETCHER ──────────────────────────────────────────────────────────
 
 _ATOM = "{http://www.w3.org/2005/Atom}"
@@ -288,6 +302,11 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
                 pass
         body = r.get("body") or r.get("excerpt", "")
         if not is_agro_relevant(title, body, config):
+            continue
+        # DDG's `site:` filter isn't reliably enforced, so results can come
+        # from unrelated global domains — require an explicit Panama mention
+        # since this fetcher (unlike RSS/CDX/GDELT) has no geographic scoping.
+        if not has_panama_context(title, body):
             continue
         yield {
             "url": url,
