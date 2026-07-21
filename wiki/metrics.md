@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-07-21
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,64 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
+| Artículos en sources/ | 24 | ↑ continuo |
 | Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Falsos positivos acumulados | 18 | **0 nuevos** (ver nota) |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Ventanas GDELT completadas | 52 registradas, pero cobertura real inicia 2017-03-30 | 2015-02-19 → hoy |
+| Días sin artículos nuevos | 1 (2026-07-21, ver commits) | máx 3 antes de diagnosticar |
+
+> Nota falsos positivos: los 18 acumulados son todos artículos correctamente
+> DESCARTADOS (no ingestados al wiki) — la meta "0 nuevos" se refiere a no
+> ingestar contenido incorrecto al wiki, no a evitar que el fetch traiga
+> ruido. El fetch SÍ sigue trayendo ruido (ver diagnóstico abajo) — eso es
+> lo que hay que arreglar, no el proceso de descarte manual.
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida con contenido : 2026-07-20 (2 artículos nuevos)
+Última corrida (hoy)         : 2026-07-21 (0 artículos nuevos) — Actions SÍ corrió
+                                (commit e1fd563 "0 artículos nuevos descargados [skip ci]")
+Actions está corriendo diariamente de forma consistente (ver git log de sources/).
+
+PROBLEMA 1 — Ruido en la fuente "prensa.com" (11 falsos positivos esta sesión, 100% del lote):
+  Causa raíz A: colisión de la sigla "MIDA" — trae artículos sobre Malaysian
+    Investment Development Authority (Malasia) y Military Installation
+    Development Authority (Utah, EE.UU.), ninguno relacionado a Panamá.
+  Causa raíz B: keyword "agriculture" genérico sin filtro de país — trae
+    artículos de agro de Irán (qanats), EE.UU. (NY Farm Bureau), Arabia
+    Saudita (Reef Saudi), papers IEEE genéricos, catálogos de archive.org.
+  Ninguno de los 24 artículos en sources/articles/ atribuidos a "prensa.com"
+  parece venir de prensa.com (nombres de archivo referencian paultan.org,
+  sltrib.com, msn.com, whc.unesco.org, nyfb.org, spa.gov.sa, archive.org,
+  ieeexplore.ieee.org) — el label de fuente "prensa.com" no coincide con
+  el dominio real del artículo. Sugiere que la búsqueda/fetch está mal
+  etiquetada o usando un motor de búsqueda genérico (ver ddgs en
+  requirements.txt) sin restringir dominio ni país.
+  RECOMENDACIÓN: revisar scripts/fetch.py (o equivalente) — agregar filtro
+  de relevancia Panamá (dominio .pa, o texto que contenga "Panamá"/
+  "panameño") ANTES de guardar en sources/articles/, para no seguir
+  generando falsos positivos que consumen cupo de ingesta cada sesión.
+
+PROBLEMA 2 — Gap de cobertura histórica 2015-02-19 → 2017-03-29 (~2 años):
+  _gdelt_windows tiene 52 entradas, pero la más antigua inicia en
+  2017-03-30. El objetivo de cobertura (CLAUDE.md) es 2015-02-19 → hoy.
+  Las primeras ~8 ventanas trimestrales (2015-2017) nunca se procesaron —
+  no aparecen ni como completadas ni parecen haberse reintentado.
+  Las últimas 15 entradas de _gdelt_windows son ventanas diarias con
+  start=20260618 fijo y end creciente día a día (20260623 → 20260720),
+  no ventanas trimestrales — son parte del fetch incremental normal, no
+  del backfill histórico. Es decir: de las 52 entradas, solo 37 son
+  ventanas de backfill trimestral real (2017-03 → 2026-06), y el umbral
+  de "45+ = rango agotado" de CLAUDE.md no aplica limpiamente aquí porque
+  mezcla dos tipos de ventana.
+  RECOMENDACIÓN: revisar por qué el backfill nunca generó ventanas para
+  2015-02-19 → 2017-03-29 — posible bug en la fecha de inicio del backfill
+  o ventanas que fallaron silenciosamente y no se reintentan.
 ```
 
 ---
@@ -42,22 +80,15 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 
 | Período | Ventanas | Artículos | Estado |
 |---------|----------|-----------|--------|
-| 2015 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2016 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2017 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2018 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2019 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2020 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2021 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2022 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2023 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2024 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2025 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2026 Q1-Q2 | 0/2 | ? | Pendiente |
-| **TOTAL** | **0/46** | **0** | **Backfill no iniciado** |
+| 2015-02 → 2017-03 | 0/~8 | 0 | **Pendiente — nunca iniciado (ver Problema 2 arriba)** |
+| 2017-03 → 2026-06 | 37/37 | ? | Completado (ventanas trimestrales ~3 meses c/u) |
+| 2026-06 → hoy | 15 entradas diarias | ? | Fetch incremental normal (no es backfill histórico) |
+| **TOTAL backfill trimestral** | **37/~45** | **?** | **Falta cubrir 2015-02 → 2017-03** |
 
-> Una vez que Actions corra con el código corregido, actualizar esta tabla con los datos reales.
-> El rendimiento real de GDELT (artículos/trimestre) determinará la duración del backfill.
+> Tabla reconstruida el 2026-07-21 a partir de `sources/processed.json` →
+> `_gdelt_windows` (52 entradas totales, ver desglose en Problema 2 arriba).
+> No hay conteo de artículos por ventana individual en processed.json —
+> solo el total global (`Artículos en sources/` arriba).
 
 ---
 
@@ -67,6 +98,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-07-21 | 0 (11 falsos positivos descartados) | 0 | Ver Problemas 1 y 2 arriba. Fix de bug en `mark_ingested()` (crasheaba con `_gdelt_windows`). Ver wiki/log.md 2026-07-21 para detalle completo. |
 
 ---
 
