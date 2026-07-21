@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-07-21
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,41 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Artículos en sources/ | 24 | ↑ continuo |
+| Artículos reales ingestados | 13 | = total sin falsos positivos |
+| Falsos positivos acumulados | 18 (7 previos + 11 esta sesión) | **0 nuevos** desde el fix de fetch_ddg_search |
+| Páginas en wiki/ | 20 | ↑ continuo |
+| Cobertura temporal | 2017-03-30 → 2026-07-18 (ventanas GDELT) | 2015-02-19 → hoy real |
+| Ventanas GDELT completadas | 51 / ~46 estimadas | rango 2015-02-19→hoy agotado en el tramo cubierto; falta expandir hacia atrás |
+| Días sin artículos nuevos | 1 (último: 2026-07-20) | máx 3 antes de diagnosticar |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions : 2026-07-20 (2 artículos nuevos)
+Resultado              : fetch diario funcionando con normalidad
+Ventanas GDELT         : 51 completadas, cubren continuamente 2017-03-30 → 2026-07-18
+                         SIN cubrir 2015-02-19 → 2017-03-29 (~2 años de historia faltante)
+Acción sugerida        : disparar wiki_historical.yml (workflow_dispatch, mode=gdelt)
+                         con years="2015-2017" para cerrar el hueco de backfill
+```
+
+## Diagnóstico de Falsos Positivos (2026-07-21)
+
+```
+Hallazgo   : 11/11 artículos pendientes esta sesión eran falsos positivos
+             (Malasia, Utah EE.UU., Irán, Arabia Saudita, paper técnico 6G,
+             catálogo de zoología brasileña — ninguno sobre Panamá)
+Causa raíz : fetch_ddg_search() en scripts/fetch_news.py no verificaba el
+             dominio real del resultado ni aplicaba _is_blocked_domain() /
+             _is_panama_related(), a diferencia de fetch_rss() y
+             fetch_gdelt_batch(). El operador site: de DuckDuckGo no se
+             respeta de forma confiable.
+Fix        : aplicado en esta sesión — ver wiki/log.md 2026-07-21 08:05.
+Además     : se corrigió un bug separado en mark_ingested() (scripts/ingest.py)
+             que crasheaba al iterar la clave interna _gdelt_windows.
 ```
 
 ---
@@ -67,6 +82,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-07-21 | 0 | 0 | 11 falsos positivos rechazados (0 ingestados, 0% contaminación) + fix de causa raíz en fetch_ddg_search() + fix de bug en mark_ingested() |
 
 ---
 
