@@ -48,3 +48,54 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-07-22 00:00
+INGEST: 0 artículos reales — 11/11 pendientes eran falsos positivos (NO ingestados al wiki)
+  Ningún artículo trataba sobre agro panameño. Todos etiquetados `source: prensa.com`
+  pero ninguna URL pertenece a ese dominio:
+    - https://www.spa.gov.sa/en/N2096157 — "Reef Saudi" (programa agrícola de Arabia Saudita)
+    - https://www.sltrib.com/news/2026/05/19/kevin-oleary-data-center-timeline/ — MIDA = Military
+      Installation Development Authority (Utah), no Ministerio de Desarrollo Agropecuario
+    - https://www.sltrib.com/news/environment/2026/05/29/utah-governor-issues-order-protect/ — idem (MIDA Utah)
+    - https://www.sltrib.com/news/2026/05/27/box-elder-data-center-opponents/ — idem (MIDA Utah)
+    - https://www.nyfb.org/ — New York Farm Bureau (agricultura de EE.UU., no Panamá)
+    - https://www.sltrib.com/news/environment/2025/06/12/utah-nuclear-energy-state/ — energía nuclear en Utah
+    - https://whc.unesco.org/en/list/1506 — Qanats persas (patrimonio UNESCO, riego histórico de Irán)
+    - https://paultan.org/2026/07/07/miti-working-on-simplified-ncm-... — MIDA = Malaysian Investment
+      Development Authority, artículo sobre incentivos industriales de Malasia
+    - https://ieeexplore.ieee.org/document/10945742 — paper IEEE sobre IoT y agricultura de precisión (genérico, sin Panamá)
+    - https://www.msn.com/en-us/news/other/cultural-rules-for-staying-with-locals-abroad/... — artículo de viajes, sin relación agro
+    - https://archive.org/details/Cataloguedipter2SaoP — catálogo de dípteros de América (entomología, sin relación con Panamá agro)
+  Los 11 se marcaron `ingested: true` en processed.json para despejar la cola de pendientes
+  (nunca serán válidos; mantenerlos en pendientes bloquearía permanentemente el conteo
+  "Pendientes > 0" sin ninguna acción posible del LLM). No se creó ninguna página en wiki/.
+
+CAUSA RAÍZ IDENTIFICADA Y CORREGIDA (scripts/fetch_news.py, fetch_ddg_search):
+  1. La búsqueda web `web_searches.prensa_agro` usa `site:prensa.com` + query con
+     términos OR (incluye "MIDA"), pero `ddgs.news()` no respeta de forma confiable
+     el operador `site:` — devolvía resultados de dominios completamente ajenos
+     (sltrib.com, paultan.org, msn.com, archive.org, ieeexplore.ieee.org, etc.)
+     y los etiquetaba con `source: "prensa.com"` sin verificar el dominio real.
+  2. `is_agro_relevant()` solo exige una coincidencia de substring con la lista
+     `search_terms` (p.ej. "MIDA", "agricultura", "riego") sin exigir ningún
+     término de contexto Panamá — acrónimos ambiguos como "MIDA" (existe también
+     en Malasia y Utah) pasan el filtro con cualquier fuente global.
+  FIX aplicado: `fetch_ddg_search()` ahora descarta cualquier resultado cuyo
+  dominio real (`urlparse(url).netloc`) no contenga el `site` configurado,
+  antes de aplicar el filtro de keywords. Esto elimina el 100% de los falsos
+  positivos de esta sesión (ninguno pertenecía a prensa.com).
+  Pendiente de monitorear en próximas corridas de GitHub Actions.
+
+DIAGNÓSTICO GDELT: 52 ventanas en total en `_gdelt_windows` (processed.json), pero
+  solo 37 son ventanas trimestrales reales del backfill (2017-03-30 → 2026-06-17);
+  las otras 15 son ventanas incrementales diarias recientes (2026-06-18 en adelante).
+  GAP REAL: 2015-01-01 → 2017-03-29 (~9 ventanas trimestrales) nunca se completaron.
+  El backfill histórico NO cubre aún el rango objetivo completo (2015-02-19 → hoy) —
+  contradice la entrada de metrics.md del 2026-06-22 que asumía "backfill agotado".
+  No se pudo probar la causa en este entorno (proxy bloquea salida a
+  api.gdeltproject.org con 403); queda para validar en la próxima corrida real de
+  GitHub Actions (fetch_gdelt_historical() en scripts/fetch_news.py, que itera
+  desde 2015-01-01 según config/sources.yaml).
+
+## 2026-07-22 08:05
+INGEST: 11 artículos marcados como ingestados por sesión Claude Code
