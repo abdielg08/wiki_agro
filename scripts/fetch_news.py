@@ -76,7 +76,10 @@ def _is_blocked_domain(url: str) -> bool:
 
 
 def _is_panama_related(title: str, url: str = "") -> bool:
-    """True if the title or URL contains at least one Panama-related term."""
+    """True if the title or URL contains at least one Panama-related term,
+    or the URL's domain uses Panama's ccTLD (.pa, e.g. mida.gob.pa)."""
+    if url and _url_domain(url).endswith(".pa"):
+        return True
     text = (title + " " + url).lower()
     return any(term in text for term in _PANAMA_TERMS)
 
@@ -279,6 +282,8 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         title = r.get("title", "")
         if not url or not title:
             continue
+        if _is_blocked_domain(url):
+            continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:
@@ -288,6 +293,11 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
                 pass
         body = r.get("body") or r.get("excerpt", "")
         if not is_agro_relevant(title, body, config):
+            continue
+        # Require at least one Panama-related term in title or URL — DDG's
+        # site: prefix is not reliably honored by ddgs.news(), so results can
+        # come from unrelated domains (see wiki/log.md 2026-07-24 for evidence).
+        if not _is_panama_related(title, url):
             continue
         yield {
             "url": url,
