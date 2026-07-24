@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-07-24
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,35 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
+| Artículos en sources/ | 24 | ↑ continuo |
 | Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Falsos positivos acumulados | 18 | **0 nuevos** (11 detectados y documentados hoy) |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Ventanas GDELT completadas | 54 / ~45 estimadas | rango agotado — necesita expansión |
+| Días sin artículos nuevos | 4 (desde 2026-07-20) | máx 3 antes de diagnosticar — **ALARMA** |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions : 2026-07-24 (corrió correctamente, 0 artículos nuevos)
+Resultado 07-20→07-24  : 2, 0, (sin log 07-22), 0, 0 artículos nuevos por día
+Ventanas GDELT          : 54 completadas, ≥ 45 estimadas → rango 2015→hoy ya cubierto,
+                          se necesita ampliar el rango objetivo o las queries GDELT para
+                          seguir encontrando artículos nuevos
+Causa de los 0 reales   : de los 11 artículos que llegaron a sources/ esta sesión, los 11
+                          fueron falsos positivos — el pipeline de "prensa.com" (RSS/
+                          búsqueda genérica) hace match por palabras clave ("MIDA",
+                          "agriculture") sin filtro geográfico de Panamá, trayendo
+                          contenido de Utah, Malasia, Arabia Saudita, Irán, Brasil, etc.
+Acción recomendada      : (1) ampliar/redefinir ventanas GDELT si aún hay huecos en
+                          2015-2026; (2) agregar filtro de país/dominio a la fuente
+                          "prensa.com" en scripts/fetch*.py para reducir falsos positivos
+                          (detalle completo en wiki/log.md 2026-07-24)
+Estado                  : Pendientes de ingesta = 0, pero cobertura real de Panamá no
+                          avanzó esta sesión — requiere intervención en el código de fetch
 ```
 
 ---
@@ -67,6 +76,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-07-24 | 0 | 0 | 11 falsos positivos detectados y documentados (0 ingestados reales) + fix de bug en mark_ingested() |
 
 ---
 
