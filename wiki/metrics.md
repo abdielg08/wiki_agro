@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-07-24
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,47 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
+| Artículos en sources/ | 24 | ↑ continuo |
 | Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Falsos positivos acumulados | 15 | **0 nuevos** (8 nuevos detectados y bloqueados hoy) |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Ventanas GDELT completadas | 53 / ~46 estimadas | rango 2015→hoy cubierto |
+| Días sin artículos nuevos | 4 (último: 2026-07-20) | máx 3 antes de diagnosticar |
+
+**Pendientes de ingesta: 0** (los 8 artículos revisados hoy fueron falsos positivos, no wiki content).
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions : 2026-07-23 (corre casi a diario, incl. días con 0 artículos)
+Resultado reciente     : mayoría de corridas devuelven 0-2 artículos nuevos
+Último artículo real   : 2026-07-20 (2 guardados) → 4 días sin nuevos al momento de esta sesión
+Ventanas GDELT         : 53 completadas, superan la estimación original de 46 —
+                         el rango 2015→hoy ya está cubierto por GDELT; el bajo
+                         rendimiento reciente es normal (ventanas incrementales
+                         cerca de tiempo real capturan poco volumen por día).
+
+CAUSA RAÍZ IDENTIFICADA Y CORREGIDA HOY (2026-07-24):
+  scripts/fetch_news.py::fetch_ddg_search() (fuente DDG "site:prensa.com") NO
+  aplicaba los filtros _is_blocked_domain() / _is_panama_related() que sí tienen
+  fetch_rss() y fetch_gdelt_batch(). Además, el operador `site:` de DDG no se
+  respeta de forma confiable, así que resultados de dominios totalmente ajenos
+  (sltrib.com, paultan.org, ieeexplore.ieee.org, archive.org, msn.com,
+  unesco.org, nyfb.org, spa.gov.sa) se guardaban etiquetados como
+  source="prensa.com", country="PA" solo por contener términos agro genéricos
+  (p.ej. "MIDA", "agriculture") sin ninguna señal geográfica de Panamá.
+  Esto explica los 8 falsos positivos consecutivos encontrados en esta sesión.
+Fix aplicado           : fetch_ddg_search() ahora verifica que el dominio del
+                         resultado coincida con `site`, rechaza dominios
+                         bloqueados (_is_blocked_domain) y, para búsquedas sin
+                         `site` fijo, exige término Panamá explícito
+                         (_is_panama_related) — mismo estándar que RSS/GDELT.
+Estado post-fix        : pendiente validación en la próxima corrida de GitHub
+                         Actions (debería dejar de traer artículos no panameños
+                         etiquetados "prensa.com").
 ```
 
 ---
@@ -67,6 +88,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-07-24 | 0 (8/8 revisados = falsos positivos) | 0 | Bugfix `mark-all-ingested` (lote desalineado con `ingest`); root-cause fix en `fetch_ddg_search()` (faltaban filtros de dominio/Panamá) |
 
 ---
 
