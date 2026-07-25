@@ -48,3 +48,79 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-07-25 08:04
+INGEST: 11 artículos marcados como ingestados por sesión Claude Code
+  ACLARACIÓN: los 11 son FALSOS POSITIVOS — ninguno trata sobre agro de Panamá.
+  Ninguno se agregó al wiki (0 summaries, 0 topics, 0 entities creados/actualizados esta sesión).
+  Se marcaron como "ingested: true" únicamente para vaciar la cola de pendientes,
+  siguiendo la regla de CLAUDE.md ("NO ingestarlo — documentar como falso positivo").
+
+  Detalle de los 11 falsos positivos:
+    1. "MITI working on simplified NCM customised incentive mechanism..." (paultan.org, 2026-07-08)
+       → Sobre MITI/MIDA de Malasia (Ministry of Investment, Trade and Industry), no Panamá.
+    2. "Timeline: How the Kevin O'Leary data center plan came to be..." (sltrib.com, 2026-05-19)
+       → MIDA = Military Installation Development Authority de Utah, EE.UU. (data centers).
+    3. "Box Elder data center opponents hope for a vote..." (sltrib.com, 2026-05-27)
+       → Mismo MIDA de Utah (data centers), sin relación con Panamá.
+    4. "Utah Gov. Cox issues order to protect Great Salt Lake..." (sltrib.com, 2026-05-29)
+       → Mismo MIDA de Utah, calidad de aire/agua, sin relación con Panamá.
+    5. "Cultural Rules For Staying With Locals Abroad" (msn.com, 2026-03-07)
+       → Artículo de viajes; menciona MIDA de Utah de pasada. Sin relación con agro.
+    6. "'Reef Saudi', a Successful Program Based on Rain-Fed Agriculture" (spa.gov.sa, 2026-06-24)
+       → Agricultura de secano en Arabia Saudita, no Panamá.
+    7. "New York Farm Bureau" (nyfb.org, 2026-06-17)
+       → Organización agrícola de Nueva York, EE.UU.
+    8. "Utah wants to process uranium on the Wasatch Front..." (sltrib.com, 2025-06-13)
+       → Energía nuclear en Utah, sin relación con agro.
+    9. "The Persian Qanat" (whc.unesco.org, 2026-07-07)
+       → Sistema de irrigación histórico de Persia (patrimonio UNESCO), sin relación con Panamá.
+    10. "Ambient IoT: Communications Enabling Precision Agriculture" (ieeexplore.ieee.org, 2025-03-31)
+        → Paper técnico genérico sobre IoT en agricultura de precisión, sin mención de Panamá.
+    11. "Catalogue of the diptera of the Americas South of United States" (archive.org, 2016-05-13)
+        → Catálogo científico de dípteros (moscas), no es noticia agropecuaria panameña.
+
+  DIAGNÓSTICO DE CAUSA RAÍZ (systemic bug en el fetch pipeline):
+    La fuente "prensa.com" en `config/sources.yaml` (web_searches → prensa_agro) usa DuckDuckGo
+    News Search (ddgs) con la query:
+      site:prensa.com agropecuario OR agricultura OR ganadería OR MIDA OR cosecha Panamá
+    Dos problemas confirmados:
+    (a) `fetch_ddg_search()` en scripts/fetch_news.py NO valida que la URL devuelta
+        pertenezca realmente al dominio buscado (`site:prensa.com`) — a diferencia de
+        `fetch_rss()`, que sí llama a `_is_blocked_domain()` y `_is_panama_related()`.
+        Resultado: DDG devuelve resultados de dominios completamente ajenos
+        (sltrib.com, paultan.org, msn.com, nyfb.org, spa.gov.sa, ieeexplore.ieee.org, etc.)
+        y el código los acepta y los etiqueta como fuente "prensa.com".
+    (b) La query sin paréntesis permite que coincidencias sueltas con el término "MIDA"
+        (sin el término "Panamá") pasen el filtro `is_agro_relevant()`, capturando MIDA de
+        Malasia y MIDA de Utah (Military Installation Development Authority) — ninguno
+        relacionado con el Ministerio de Desarrollo Agropecuario de Panamá.
+    Este mismo patrón ya se había detectado el 2026-06-22 (7 falsos positivos previos,
+    ver wiki/metrics.md "Historial de Sesiones"). Es un problema RECURRENTE del fetch,
+    no un caso aislado — recomendado corregir `fetch_ddg_search()` para agregar
+    verificación de dominio y relación con Panamá, igual que `fetch_rss()`.
+
+  ESTADO DEL BACKFILL GDELT:
+    `_gdelt_windows` en sources/processed.json = 54 ventanas completadas (≥ 45,
+    umbral de CLAUDE.md para "rango agotado"). Análisis detallado por año de las
+    54 ventanas:
+      2015: 0   2016: 0   2017: 4   2018: 4   2019: 4   2020: 4   2021: 4
+      2022: 4   2023: 4   2024: 4   2025: 4   2026: 18
+    CORRECCIÓN al diagnóstico anterior: el total (54) supera el umbral de 45,
+    pero la cobertura NO está distribuida uniformemente 2015→hoy — **2015 y 2016
+    tienen CERO ventanas completadas**, mientras 2026 acumula 18 (muchas más de
+    las ~2 esperadas para Q1-Q2). Esto sugiere que el backfill histórico real
+    (retroceder hacia 2015) nunca se ejecutó con --years apuntando a 2015-2016;
+    en su lugar, las corridas repetidas parecen haber re-procesado ventanas de
+    2026 (posiblemente por defaults del script o de la Action apuntando siempre
+    al año actual). Recomendado para próxima sesión de mantenimiento de código:
+    ejecutar explícitamente `python scripts/fetch_historical.py --years 2015-2016
+    --mode gdelt` para cerrar el hueco real de cobertura histórica.
+
+  ESTADO DE NUEVOS ARTÍCULOS:
+    Último commit en sources/ con contenido nuevo: 2026-07-20 (2 artículos).
+    Commits de sources/ el 2026-07-21, 2026-07-23 y 2026-07-24: 0 artículos nuevos cada uno.
+    Sin commit de sources/ aún hoy (2026-07-25) al momento de esta sesión.
+    RSS activo (IICA, La Prensa) y GDELT (agotado) no están aportando; la única fuente
+    generando entradas nuevas a la cola es la búsqueda DDG "prensa_agro", que en esta
+    sesión resultó ser 100% falsos positivos.

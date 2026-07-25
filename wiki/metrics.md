@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-07-25
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,37 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Artículos en sources/ | 24 | ↑ continuo |
+| Artículos reales ingestados | 13 | = total sin falsos positivos |
+| Falsos positivos acumulados | 18 (7 previos + 11 nuevos hoy) | **0 nuevos** |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Ventanas GDELT completadas | 54 / ~45 estimadas | 45 (2015→hoy) — **2015-2016 sin cobertura (0 ventanas); ver log.md** |
+| Días sin artículos nuevos | 5 (último: 2026-07-20) | máx 3 antes de diagnosticar |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions : 2026-07-24 (0 artículos nuevos)
+Resultado              : sources/ sin artículos nuevos desde 2026-07-20 (2 artículos)
+                         2026-07-21, 07-23, 07-24: 0 artículos nuevos cada corrida
+Causa identificada      : (1) Backfill GDELT agotado: 54 ventanas completadas (≥45),
+                             ya no aporta artículos nuevos.
+                         (2) RSS (IICA, La Prensa) con rendimiento muy bajo/nulo.
+                         (3) Búsqueda DDG "prensa_agro" es la única fuente activa
+                             generando entradas a la cola, pero hoy (2026-07-25)
+                             produjo 11/11 falsos positivos: fetch_ddg_search() no
+                             valida el dominio de la URL devuelta (a diferencia de
+                             fetch_rss()) y la query sin paréntesis deja pasar
+                             coincidencias sueltas con "MIDA" (Malasia, Utah) sin
+                             exigir "Panamá". Detalle en wiki/log.md (2026-07-25 08:04).
+Fix aplicado           : Ninguno todavía — requiere cambio de código en
+                         scripts/fetch_news.py::fetch_ddg_search() (fuera del alcance
+                         de esta sesión, solo wiki). Recomendado para próxima sesión
+                         de mantenimiento de código.
+Estado post-fix        : Pendiente
 ```
 
 ---
@@ -42,22 +53,27 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 
 | Período | Ventanas | Artículos | Estado |
 |---------|----------|-----------|--------|
-| 2015 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2016 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2017 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2018 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2019 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2020 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2021 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2022 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2023 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2024 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2025 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2026 Q1-Q2 | 0/2 | ? | Pendiente |
-| **TOTAL** | **0/46** | **0** | **Backfill no iniciado** |
+| 2015 Q1-Q4 | 0/4 | ? | **Pendiente — sin cobertura** |
+| 2016 Q1-Q4 | 0/4 | ? | **Pendiente — sin cobertura** |
+| 2017 Q1-Q4 | 4/4 | ? | Completo |
+| 2018 Q1-Q4 | 4/4 | ? | Completo |
+| 2019 Q1-Q4 | 4/4 | ? | Completo |
+| 2020 Q1-Q4 | 4/4 | ? | Completo |
+| 2021 Q1-Q4 | 4/4 | ? | Completo |
+| 2022 Q1-Q4 | 4/4 | ? | Completo |
+| 2023 Q1-Q4 | 4/4 | ? | Completo |
+| 2024 Q1-Q4 | 4/4 | ? | Completo |
+| 2025 Q1-Q4 | 4/4 | ? | Completo |
+| 2026 (parcial) | 18 ventanas | ? | Sobre-muestreado — ver nota |
+| **TOTAL** | **54 ventanas** | **?** | **2015-2016 requieren backfill explícito** |
 
-> Una vez que Actions corra con el código corregido, actualizar esta tabla con los datos reales.
-> El rendimiento real de GDELT (artículos/trimestre) determinará la duración del backfill.
+> Conteo por año derivado de `_gdelt_windows` en sources/processed.json (2026-07-25).
+> El conteo de "Artículos" por período no está disponible sin cruzar cada ventana
+> contra sources/articles/ — pendiente de instrumentar en el script de fetch.
+> Las 18 ventanas de 2026 (vs. ~2 esperadas para Q1-Q2) sugieren que las corridas
+> automáticas han estado re-procesando el año actual en vez de expandir el
+> backfill hacia 2015-2016. Ejecutar `fetch_historical.py --years 2015-2016
+> --mode gdelt` explícitamente para cerrar ese hueco.
 
 ---
 
@@ -67,6 +83,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-07-25 | 0 | 0 | 11 falsos positivos descartados (colisión "MIDA" Malasia/Utah vía bug en fetch_ddg_search); GDELT backfill agotado (54/45 ventanas) |
 
 ---
 
