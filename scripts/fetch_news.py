@@ -289,6 +289,14 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         body = r.get("body") or r.get("excerpt", "")
         if not is_agro_relevant(title, body, config):
             continue
+        # Reject articles from blocked (non-Panama) domains
+        if _is_blocked_domain(url):
+            continue
+        # Require at least one Panama-related term in title or URL
+        # (e.g. "MIDA" also matches Malaysia's Investment Development Authority
+        # and Utah's Military Installation Development Authority)
+        if not _is_panama_related(title, url):
+            continue
         yield {
             "url": url,
             "title": title,
@@ -469,11 +477,20 @@ def fetch_gdelt_historical(config: dict, processed: dict) -> Iterator[dict]:
         for article in batch:
             yield article
 
-        # Mark window as complete only on successful HTTP response (even if 0 results)
-        completed_windows.add(window_key)
-        processed["_gdelt_windows"] = list(completed_windows)
+        is_full_window = (next_q - current) >= timedelta(days=90)
+        if is_full_window:
+            # Mark window as complete only on successful HTTP response (even if 0 results)
+            completed_windows.add(window_key)
+            processed["_gdelt_windows"] = list(completed_windows)
+            current = next_q + timedelta(days=1)
+        else:
+            # Trailing window clamped to `end` (= yesterday). `end` grows by a day
+            # on every run, so this window is never truly "closed" — don't persist
+            # it or advance `current`, otherwise a new key accumulates every day
+            # (e.g. 20260618_20260623, 20260618_20260624, ...) without ever
+            # completing a real 90-day window.
+            console.print(f"    [dim]→ ventana parcial (aún no cierra), no se marca completa[/dim]")
 
-        current = next_q + timedelta(days=1)
         time.sleep(REQUEST_DELAY * 2)  # polite pause between GDELT windows
 
 

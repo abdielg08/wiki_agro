@@ -48,3 +48,47 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-07-26 00:00
+ROUTINE: 11 artículos pendientes revisados — los 11 son FALSOS POSITIVOS, 0 ingestados al wiki
+  Ninguno trata sobre el sector agropecuario de Panamá:
+    - MITI/MIDA/MARii (Malasia) — incentivos de inversión industrial, no agro panameño
+    - MIDA = "Military Installation Development Authority" de Utah (4 artículos sobre
+      data centers de Kevin O'Leary/Stratos, energía nuclear y calidad del aire)
+    - New York Farm Bureau (agricultura de EE.UU., no Panamá)
+    - "Reef Saudi" — agricultura de secano en Arabia Saudita
+    - The Persian Qanat — sistema de riego histórico de Irán (UNESCO)
+    - Paper IEEE sobre IoT y agricultura de precisión (genérico, sin mención de Panamá)
+    - Catálogo de dípteros de las Américas (zoología, 1966/67, sin relación agro/Panamá)
+  Causa raíz identificada: la fuente DDG `prensa_agro` (config/sources.yaml) tenía la
+  query `site:prensa.com agropecuario OR agricultura OR ganadería OR MIDA OR cosecha Panamá`
+  sin paréntesis — el operador `OR` rompe la restricción `site:`, así que DuckDuckGo
+  devolvía resultados de cualquier dominio que mencionara "agricultura", "MIDA", etc.,
+  y `fetch_ddg_search()` los etiquetaba todos como fuente "prensa.com" sin verificar
+  el dominio real. Además, a diferencia de `fetch_rss()` y `fetch_gdelt_batch()`,
+  `fetch_ddg_search()` no aplicaba el filtro `_is_panama_related()` como respaldo.
+  Fixes aplicados (scripts/fetch_news.py, config/sources.yaml):
+    1. Query reescrita con paréntesis: `site:prensa.com (agropecuario OR agricultura
+       OR ganadería OR cosecha) Panamá` — restaura el AND real de site: + Panamá.
+    2. `fetch_ddg_search()` ahora aplica `_is_blocked_domain()` y `_is_panama_related()`
+       como respaldo, igual que las demás fuentes.
+  Bug adicional corregido (scripts/ingest.py): `mark_ingested()` iteraba
+  `processed.items()` sin filtrar la clave interna `_gdelt_windows` (una lista),
+  causando `AttributeError` antes de poder marcar cualquier artículo. Ahora usa
+  `article_entries()` como el resto de las funciones del módulo.
+  Los 11 artículos se marcaron como `ingested: true` (procesados/revisados, NO
+  agregados al wiki) para no bloquear futuras sesiones.
+  Pendientes de ingesta: 0. Artículos reales en wiki: sin cambios (13 → 13 ingestados
+  al wiki de 24 descargados; 11 nuevos falsos positivos documentados aquí).
+
+## 2026-07-26 00:05
+DIAGNÓSTICO: 3 días consecutivos (2026-07-23, 07-24, 07-25) con 0 artículos nuevos
+  descargados según los commits `chore(sources): 0 artículos nuevos descargados`.
+  GitHub Actions SÍ está corriendo diariamente (commit más reciente: 2026-07-25).
+  Ventanas GDELT completadas: 55 (por encima del umbral de 45) — el backfill histórico
+  GDELT 2015→hoy está esencialmente agotado; ya no es la fuente de artículos nuevos.
+  El volumen diario ahora depende de RSS (IICA, La Prensa) y de las búsquedas DDG,
+  que traían mayormente falsos positivos por el bug de query descrito arriba.
+  Con el fix de la query DDG, se espera que las próximas corridas de Actions
+  produzcan artículos reales sobre agro panameño en vez de ruido irrelevante —
+  a validar en la próxima corrida.
