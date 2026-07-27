@@ -279,6 +279,15 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         title = r.get("title", "")
         if not url or not title:
             continue
+        # DDG's news search does not reliably honor "site:" — enforce it
+        # ourselves. Without this, a query like site:prensa.com "...MIDA..."
+        # can return unrelated domains (sltrib.com, paultan.org, msn.com)
+        # whose articles mention an unrelated "MIDA" (Malaysia, Utah, etc.)
+        # and get mislabeled as Panama's prensa.com.
+        if site and site not in _url_domain(url):
+            continue
+        if _is_blocked_domain(url):
+            continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:
