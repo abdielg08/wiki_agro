@@ -279,6 +279,11 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         title = r.get("title", "")
         if not url or not title:
             continue
+        # DDG's "site:" operator is not reliably honored — reject results that
+        # actually landed on a known non-Panama domain instead of trusting the
+        # search config's site label.
+        if _is_blocked_domain(url):
+            continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:
@@ -289,11 +294,15 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         body = r.get("body") or r.get("excerpt", "")
         if not is_agro_relevant(title, body, config):
             continue
+        # Require an unambiguous Panama term — "MIDA" and other acronyms also
+        # match unrelated foreign entities (Malaysia's MIDA/MITI, Utah's MIDA).
+        if not _is_panama_related(title, url):
+            continue
         yield {
             "url": url,
             "title": title,
             "date": pub_date,
-            "source": site or name,
+            "source": _url_domain(url) or site or name,
             "trust_level": 3,
             "language": "es",
             "country": "PA",

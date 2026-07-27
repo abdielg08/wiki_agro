@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-07-27
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,49 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
+| Artículos en sources/ | 24 | ↑ continuo |
 | Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Falsos positivos acumulados | 18 (7 previos + 11 el 2026-07-27) | **0 nuevos** |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Ventanas GDELT completadas | 56 (9 bloqueadas 2015-01→2017-03, 19 redundantes por bug de clave) | 45-47 (2015→hoy) |
+| Días sin artículos nuevos | 7 (último real: 2026-07-20) | máx 3 — **SUPERADO** |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions : 2026-07-26 (run 30201051693) — exitosa, 0 artículos nuevos
+Resultado              : 0 artículos nuevos reales por 7 días consecutivos (2026-07-21 → 2026-07-27)
+
+Causas confirmadas con logs reales de Actions:
+  1. RSS IICA y LaPrensaGeneral → "0 entradas en el feed" (feeds vacíos o rotos)
+  2. DDG: 7/8 búsquedas configuradas → "No results found"
+     (oirsa_alertas, mida_noticias, idiap_investigacion, bda_credito,
+     fao_panama, banco_mundial_pa, iica_panama). Solo "prensa_agro" da
+     resultados, y hasta hoy el 100% eran falsos positivos (11 documentados
+     en wiki/log.md el 2026-07-27).
+  3. GDELT bloqueado (403/429) para las 9 ventanas históricas más antiguas
+     (2015-01-01 → 2017-03-29) — NO es un problema de rango de fechas.
+  4. GDELT ventana "actual" responde 200 OK pero 0 artículos para
+     sourcecountry:PA + términos configurados.
+  5. Bug de código (sin corregir): la ventana GDELT "actual" usa
+     end=utcnow()-1día tanto para el rango como para la clave de ventana →
+     genera una clave nueva cada día y nunca se completa de forma estable
+     (19 ventanas redundantes acumuladas). Ver wiki/log.md 2026-07-27.
+
+Fix aplicado esta sesión (2026-07-27):
+  - fetch_ddg_search() ahora aplica _is_blocked_domain()/_is_panama_related()
+    (mismo filtro que fetch_rss/GDELT) — debería eliminar la fuente #2 de
+    falsos positivos hacia adelante.
+  - mark_ingested() ya no crashea con la clave interna _gdelt_windows.
+
+Pendiente (no corregido, requiere más investigación):
+  - Por qué GDELT bloquea específicamente 2015-2017 (¿rate limit acumulado,
+    IP compartida de GH Actions, cambio de API?).
+  - Por qué 7/8 búsquedas DDG a dominios .gob.pa/.org no devuelven resultados.
+  - Bug de clave de ventana GDELT "actual" (ver arriba).
 ```
 
 ---
@@ -67,6 +90,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-07-27 | 0 (11 revisados, 11 falsos positivos) | 0 | Fix fetch_ddg_search (filtros domain/Panamá) + fix mark_ingested crash + diagnóstico con logs reales de Actions (GDELT bloqueado 2015-2017, RSS muerto, 7/8 DDG sin resultados) |
 
 ---
 
