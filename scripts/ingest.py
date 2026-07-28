@@ -13,6 +13,7 @@ Para marcar un artículo como ingestado después de que Claude lo procese:
 """
 
 import json
+import re
 import sys
 from pathlib import Path
 from datetime import datetime
@@ -142,6 +143,8 @@ def mark_ingested(url_or_slug: str) -> bool:
     """Mark an article as ingested in processed.json."""
     processed = load_processed()
     for url, meta in processed.items():
+        if not isinstance(meta, dict):
+            continue
         if url == url_or_slug or url_or_slug in meta.get("path", ""):
             meta["ingested"] = True
             meta["ingested_at"] = datetime.now().isoformat()
@@ -153,14 +156,26 @@ def mark_ingested(url_or_slug: str) -> bool:
 
 
 def mark_all_ingested(limit: int = 0) -> int:
-    """Mark the first `limit` pending articles as ingested (after Claude processed them)."""
+    """
+    Mark as ingested exactly the articles listed in the last-generated
+    pending_ingest.md (not an independently recomputed pending list —
+    `ingest` selects by score/strategy, so recomputing here could mark
+    different, unreviewed articles as done).
+    """
+    ingest_file = ROOT / "pending_ingest.md"
+    if not ingest_file.exists():
+        console.print("[red]No existe pending_ingest.md — ejecuta 'ingest' primero.[/red]")
+        return 0
+    text = ingest_file.read_text(encoding="utf-8")
+    urls = re.findall(r"mark-ingested '([^']*)'", text)
+    if limit:
+        urls = urls[:limit]
+
     processed = load_processed()
     articles = article_entries(processed)
-    pending = find_pending(limit=limit)
     count = 0
-    for _, article in pending:
-        url = article.get("url", "")
-        if url in articles:
+    for url in urls:
+        if url in articles and not processed[url].get("ingested"):
             processed[url]["ingested"] = True
             processed[url]["ingested_at"] = datetime.now().isoformat()
             count += 1
