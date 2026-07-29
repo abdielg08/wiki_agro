@@ -189,7 +189,8 @@
     "title": "'Reef Saudi', a Successful Program Based on Rain-Fed Agriculture",
     "date": "2026-06-24",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-07-29T16:04:58.803694"
   },
   "https://www.sltrib.com/news/2026/05/19/kevin-oleary-data-center-timeline/": {
     "saved_at": "2026-06-27T12:05:20.042626",
@@ -197,7 +198,8 @@
     "title": "Timeline: How the Kevin O’Leary data center plan came to be, and what’s happened since",
     "date": "2026-05-19",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-07-29T16:04:58.803685"
   },
   "https://www.sltrib.com/news/environment/2026/05/29/utah-governor-issues-order-protect/": {
     "saved_at": "2026-06-27T12:05:20.043697",
@@ -205,7 +207,8 @@
     "title": "Utah Gov. Cox issues order to protect Great Salt Lake, air quality from data centers",
     "date": "2026-05-29",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-07-29T16:04:58.803691"
   },
   "https://www.sltrib.com/news/2026/05/27/box-elder-data-center-opponents/": {
     "saved_at": "2026-06-27T12:05:20.044648",
@@ -213,7 +216,8 @@
     "title": "Box Elder data center opponents hope for a vote — but are ready for a legal fight",
     "date": "2026-05-27",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-07-29T16:04:58.803688"
   },
   "https://www.nyfb.org/": {
     "saved_at": "2026-06-29T14:42:54.312073",
@@ -221,7 +225,8 @@
     "title": "New York Farm Bureau",
     "date": "2026-06-17",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-07-29T16:04:58.803692"
   },
   "https://www.sltrib.com/news/environment/2025/06/12/utah-nuclear-energy-state/": {
     "saved_at": "2026-07-02T12:53:53.066448",
@@ -229,7 +234,8 @@
     "title": "Utah wants to process uranium on the Wasatch Front for nuclear energy. Here’s where.",
     "date": "2025-06-13",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-07-29T16:04:58.803679"
   },
   "https://whc.unesco.org/en/list/1506": {
     "saved_at": "2026-07-10T13:04:57.003757",
@@ -237,7 +243,8 @@
     "title": "The Persian Qanat",
     "date": "2026-07-07",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-07-29T16:04:58.803695"
   },
   "https://paultan.org/2026/07/07/miti-working-on-simplified-ncm-customised-incentive-mechanism-to-build-real-local-industrial-capabilities/": {
     "saved_at": "2026-07-14T12:06:00.385283",
@@ -245,7 +252,8 @@
     "title": "MITI working on simplified NCM customised incentive mechanism to build real local industrial capabilities",
     "date": "2026-07-08",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-07-29T16:04:58.803696"
   },
   "https://ieeexplore.ieee.org/document/10945742": {
     "saved_at": "2026-07-15T12:10:08.462784",
@@ -253,7 +261,8 @@
     "title": "Ambient IoT: Communications Enabling Precision Agriculture",
     "date": "2025-03-31",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-07-29T16:04:58.803677"
   },
   "https://www.msn.com/en-us/news/other/cultural-rules-for-staying-with-locals-abroad/ss-AA1QWARj?ocid=BingNewsVerp": {
     "saved_at": "2026-07-20T13:01:08.501359",
@@ -261,7 +270,8 @@
     "title": "Cultural Rules For Staying With Locals Abroad",
     "date": "2026-03-07",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-07-29T16:04:58.803682"
   },
   "https://archive.org/details/Cataloguedipter2SaoP": {
     "saved_at": "2026-07-20T13:01:08.502291",
@@ -269,7 +279,8 @@
     "title": "Catalogue of the diptera of the Americas South of United States",
     "date": "2016-05-13",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-07-29T16:04:58.803665"
   },
   "https://www.heraldo.es/noticias/aragon/2026/05/03/luis-biendicho-vox-asume-consejeria-medio-ambiente-con-un-inaga-bajo-lupa-investigacion-judicial-por-caso-forestalia-2017165.html": {
     "saved_at": "2026-07-29T12:56:00.851198",
@@ -277,7 +288,8 @@
     "title": "Luis Biendicho asume la consejería de Medio Ambiente, con un Inaga bajo la lupa por el caso Forestalia",
     "date": "2026-05-03",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-07-29T16:04:58.803683"
   },
   "https://www.heraldo.es/noticias/economia/2025/11/25/aragon-celebra-sentencia-supremo-tumba-ampliacion-obligatoria-espacio-cerdo-granjas-1873321.html": {
     "saved_at": "2026-07-29T12:56:00.852732",
@@ -285,6 +297,7 @@
     "title": "Aragón celebra la sentencia del Supremo que tumba ampliación obligatoria del espacio por cerdo en las granjas",
     "date": "2025-11-25",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-07-29T16:04:58.803680"
   }
 }

@@ -279,6 +279,13 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         title = r.get("title", "")
         if not url or not title:
             continue
+        # DDG's `site:` operator is not reliably enforced by the ddgs library —
+        # it has been observed returning results from unrelated global domains
+        # (e.g. paultan.org, sltrib.com) for a query scoped to site:prensa.com.
+        if site and site not in _url_domain(url):
+            continue
+        if _is_blocked_domain(url):
+            continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:
@@ -288,6 +295,12 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
                 pass
         body = r.get("body") or r.get("excerpt", "")
         if not is_agro_relevant(title, body, config):
+            continue
+        # Generic agro keywords (e.g. "MIDA", "agricultura") match global news
+        # unrelated to Panama (Malaysia's MITI, Utah's Military Installation
+        # Development Authority also abbreviate to "MIDA"). Require an explicit
+        # Panama-related term, same as the RSS and GDELT fetchers.
+        if not _is_panama_related(title, url + " " + body):
             continue
         yield {
             "url": url,
