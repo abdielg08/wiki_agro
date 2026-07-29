@@ -12,6 +12,7 @@ import time
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Iterator
+from urllib.parse import urlparse
 
 import requests
 import trafilatura
@@ -120,8 +121,15 @@ def extract_full_text(url: str) -> str | None:
         return None
 
 
-def is_agro_relevant(title: str, text: str = "", config: dict = None) -> bool:
-    """Return True if the content is relevant to Panama's agro sector."""
+def is_agro_relevant(title: str, text: str = "", config: dict = None, require_panama: bool = False) -> bool:
+    """Return True if the content is relevant to Panama's agro sector.
+
+    Matching an agro term alone (e.g. "MIDA") is not sufficient to prove the
+    article is about Panama — other countries have unrelated entities that
+    share the same name/acronym (Utah's Military Installation Development
+    Authority, Malaysia's MITI, etc.). When `require_panama` is set, an
+    explicit "panama"/"panamá" mention is also required.
+    """
     if config is None:
         config = load_config()
     terms = (
@@ -129,7 +137,12 @@ def is_agro_relevant(title: str, text: str = "", config: dict = None) -> bool:
         + config.get("search_terms", {}).get("secondary", [])
     )
     combined = (title + " " + (text or "")).lower()
-    return any(t.lower() in combined for t in terms)
+    has_term = any(t.lower() in combined for t in terms)
+    if not has_term:
+        return False
+    if require_panama and "panam" not in combined:
+        return False
+    return True
 
 
 # ─── 1. RSS FETCHER ──────────────────────────────────────────────────────────
@@ -274,11 +287,22 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
             console.print(f"  [yellow]DDG error: {e}[/yellow]")
             return
 
+    skipped_domain = 0
+    skipped_relevance = 0
     for r in results:
         url = r.get("url") or r.get("href", "")
         title = r.get("title", "")
         if not url or not title:
             continue
+        # DDG's `site:` operator is not reliably enforced by the backend —
+        # verify the result actually comes from the requested domain before
+        # trusting it (and before labeling it with that domain as "source").
+        if site:
+            netloc = urlparse(url).netloc.lower().removeprefix("www.")
+            expected = site.lower().removeprefix("www.")
+            if netloc != expected and not netloc.endswith("." + expected):
+                skipped_domain += 1
+                continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:
@@ -287,7 +311,8 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
             except Exception:
                 pass
         body = r.get("body") or r.get("excerpt", "")
-        if not is_agro_relevant(title, body, config):
+        if not is_agro_relevant(title, body, config, require_panama=True):
+            skipped_relevance += 1
             continue
         yield {
             "url": url,
@@ -300,6 +325,11 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
             "summary_raw": body[:1000],
             "full_text": None,
         }
+    if skipped_domain or skipped_relevance:
+        console.print(
+            f"    [dim]descartados: {skipped_domain} fuera de dominio, "
+            f"{skipped_relevance} sin mención de Panamá[/dim]"
+        )
     time.sleep(REQUEST_DELAY)
 
 
