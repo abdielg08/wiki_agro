@@ -279,6 +279,11 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         title = r.get("title", "")
         if not url or not title:
             continue
+        # DDGS's `site:` operator isn't strictly enforced — results from
+        # unrelated domains leak through and would otherwise be mislabeled
+        # with this search's configured source name. Reject them explicitly.
+        if _is_blocked_domain(url):
+            continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:
@@ -288,6 +293,8 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
                 pass
         body = r.get("body") or r.get("excerpt", "")
         if not is_agro_relevant(title, body, config):
+            continue
+        if not _is_panama_related(title, url):
             continue
         yield {
             "url": url,
