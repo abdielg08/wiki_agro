@@ -141,7 +141,7 @@ def run_prepare(
 def mark_ingested(url_or_slug: str) -> bool:
     """Mark an article as ingested in processed.json."""
     processed = load_processed()
-    for url, meta in processed.items():
+    for url, meta in article_entries(processed).items():
         if url == url_or_slug or url_or_slug in meta.get("path", ""):
             meta["ingested"] = True
             meta["ingested_at"] = datetime.now().isoformat()
@@ -153,12 +153,21 @@ def mark_ingested(url_or_slug: str) -> bool:
 
 
 def mark_all_ingested(limit: int = 0) -> int:
-    """Mark the first `limit` pending articles as ingested (after Claude processed them)."""
+    """Mark the first `limit` pending articles as ingested (after Claude processed them).
+
+    Uses the same priority ordering as `run_prepare` (via `prioritize`), so this
+    marks exactly the articles that were shown in the last `pending_ingest.md` —
+    not an arbitrary filename-sorted slice that may include unreviewed articles.
+    """
+    from prioritize import prioritize
+
     processed = load_processed()
     articles = article_entries(processed)
-    pending = find_pending(limit=limit)
+    all_pending = find_pending(limit=0)
+    scored = prioritize(all_pending, strategy="score")
+    pending_articles = [article for _, article, _ in scored[:limit]] if limit else [a for _, a in all_pending]
     count = 0
-    for _, article in pending:
+    for article in pending_articles:
         url = article.get("url", "")
         if url in articles:
             processed[url]["ingested"] = True
