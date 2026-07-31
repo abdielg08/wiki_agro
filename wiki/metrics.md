@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-07-31
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,39 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
+| Artículos en sources/ | 29 | ↑ continuo |
 | Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Falsos positivos acumulados | 23 (7 previos + 16 nuevos hoy) | **0 nuevos** — no se cumplió esta sesión |
+| Falsos positivos en contenido del wiki | 0 | 0% — **cumplido** (ninguno llegó a wiki/) |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Ventanas GDELT completadas | 59 / ~45 estimadas | rango agotado |
+| Días sin artículos NUEVOS REALES en wiki | 68 (desde semilla 2026-05-24) | máx 3 antes de diagnosticar |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida con nuevas descargas : 2026-07-30 (3 artículos — los 3 falsos positivos)
+Resultado sesión 2026-07-31         : 16 pendientes revisados, 0 reales, 16 falsos positivos
+Causa identificada     : fetch_ddg_search() (fuente web_searches:prensa_agro) no aplicaba
+                         filtro de relevancia a Panamá ni de dominio — a diferencia del
+                         fetcher RSS. El calificador site:prensa.com de DDG tampoco se
+                         respeta de forma confiable, dejando pasar dominios ajenos
+                         (sltrib.com, heraldo.es, thestar.com.my, etc.) con "MIDA" o
+                         "agricultura" en el texto.
+Fix aplicado           : scripts/fetch_news.py::fetch_ddg_search() ahora exige
+                         _is_blocked_domain()=False, coincidencia de dominio con el
+                         site solicitado, y _is_panama_related() — igual que RSS.
+                         También se corrigió un crash en ingest.mark_ingested()
+                         (iteraba _gdelt_windows como si fuera un artículo).
+Estado post-fix        : Pendiente validación en próxima corrida Actions —
+                         debería bajar drásticamente el volumen de "prensa.com"
+                         y/o empezar a traer artículos reales.
+GDELT                  : 59 ventanas completadas (> 45 estimadas) → rango histórico
+                         2015→hoy agotado. Crecimiento futuro depende de RSS (IICA,
+                         La Prensa) y de la búsqueda DDG ya corregida.
 ```
 
 ---
@@ -67,6 +80,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-07-31 | 0 | 0 | 16 falsos positivos rechazados (0 reales) + fix de causa raíz en fetch_ddg_search() + fix de crash en mark_ingested() |
 
 ---
 

@@ -279,6 +279,15 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         title = r.get("title", "")
         if not url or not title:
             continue
+        if _is_blocked_domain(url):
+            continue
+        # ddgs' "site:" qualifier is not reliably enforced by the backend —
+        # results from completely unrelated domains have been observed
+        # (e.g. a `site:prensa.com` query returning sltrib.com, paultan.org).
+        # If a specific site was requested, require the result to actually
+        # come from it.
+        if site and site not in _url_domain(url):
+            continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:
@@ -288,6 +297,11 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
                 pass
         body = r.get("body") or r.get("excerpt", "")
         if not is_agro_relevant(title, body, config):
+            continue
+        # Require an explicit Panama-related term, same as the RSS fetcher —
+        # "MIDA"/"agricultura" alone match Malaysia's MIDA, Utah's MIDA,
+        # Aragón/Brazil/Saudi agriculture stories, etc.
+        if not _is_panama_related(title, url) and not _is_panama_related(body):
             continue
         yield {
             "url": url,
