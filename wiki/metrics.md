@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-07-31
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,43 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Artículos en sources/ | 29 | ↑ continuo |
+| Artículos reales ingestados (contenido en wiki/) | 6 | = total sin falsos positivos |
+| Falsos positivos acumulados | 23 (16 nuevos hoy) | **0 nuevos** ⚠️ ver nota |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Ventanas GDELT completadas | 59 / ~45 estimadas | 45 (2015→hoy) — **rango agotado, ahora en modo diario/incremental** |
+| Días sin artículos nuevos reales | 0-1 (último commit sources/: 2026-07-30) | máx 3 antes de diagnosticar |
+
+⚠️ **Nota sobre falsos positivos**: los 23 acumulados NO son fallos del criterio
+0% del LLM (ninguno fue ingestado al wiki) — son contaminación en el *fetch*
+(`fetch_ddg_search`, fuente `prensa_agro`) que traía artículos globales sin
+relación con Panamá solo por coincidir la palabra "MIDA"/"agricultura". Ver
+diagnóstico y fix en `wiki/log.md` (sesión 2026-07-31). El fix ya está en
+`scripts/fetch_news.py`; a partir de la próxima corrida de fetch no debería
+generar más contaminación de este tipo.
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida con datos nuevos : 2026-07-30 (3 artículos descargados)
+Resultado sesión 2026-07-31     : 0 pendientes reales al terminar (16 evaluados, 16 falsos positivos)
+Causa identificada              : fetch_ddg_search() (fuente web_searches.prensa_agro) no filtraba
+                                   por dominio real ni por relevancia Panamá — el operador site: de
+                                   DuckDuckGo no se respeta de forma confiable, y is_agro_relevant()
+                                   sola no basta (palabras como "MIDA"/"agricultura" matchean contenido
+                                   global no panameño: Malasia, Utah, España, Brasil, Arabia Saudita, Irán)
+Fix aplicado                    : scripts/fetch_news.py::fetch_ddg_search() ahora valida dominio real,
+                                   aplica _is_blocked_domain() y _is_panama_related() (mismo criterio que
+                                   fetch_rss()), y corrige el mislabeling de source. Commit en esta sesión.
+Ventanas GDELT                  : 59 completadas (>45) — backfill trimestral 2015-2026 esencialmente
+                                   agotado; los últimos ~40 registros son ventanas diarias de julio 2026,
+                                   es decir el fetch ya está operando en modo incremental/actual, no
+                                   bloqueado.
+Estado post-fix                 : Pendiente validar en la próxima corrida de GitHub Actions que
+                                   prensa_agro deje de producir contaminación.
 ```
 
 ---
@@ -67,6 +84,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-07-31 | 0 (16 evaluados, 16/16 falsos positivos) | 0 | Contaminación en fetch_ddg_search (fuente prensa_agro) — root cause diagnosticado y corregido en scripts/fetch_news.py. 0 páginas wiki nuevas, 0% falsos positivos ingeridos. |
 
 ---
 
