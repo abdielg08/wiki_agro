@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-08-01
 ---
 
 # Dashboard de Métricas
@@ -14,10 +14,10 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
+| Artículos en sources/ | 29 | ↑ continuo |
 | Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Falsos positivos acumulados | 23 (7 + 16 nuevos) | **0 nuevos** desde el fix |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
 | Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
 | Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
@@ -27,13 +27,19 @@ last_updated: 2026-06-22
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions : 2026-07-31 (commit 8f09783, "0 artículos nuevos descargados")
+Resultado              : 0 artículos nuevos genuinos; cola de pendientes 100% falsos positivos (16/16)
+Causa identificada     : web_search "prensa_agro" (DDG) no verificaba que la URL devuelta
+                         perteneciera realmente a site:prensa.com — DDG no siempre respeta
+                         el operador site:, y is_agro_relevant() acepta un solo término
+                         genérico (p.ej. "MIDA", "agricultura") sin exigir contexto Panamá.
+                         Resultado: artículos de Utah/EE.UU., España (Aragón), Brasil,
+                         Arabia Saudita, Irán, etc. entraban etiquetados como "prensa.com".
+Fix aplicado           : fetch_ddg_search() ahora descarta resultados cuyo dominio real
+                         (urlparse(url).netloc) no contiene el `site` configurado.
+                         También se corrigió mark_ingested() en scripts/ingest.py, que
+                         crasheaba al iterar la clave interna `_gdelt_windows` (lista, no dict).
+Estado post-fix        : Pendiente validación en próxima corrida Actions (2026-08-01+)
 ```
 
 ---
@@ -67,6 +73,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-08-01 | 0 | 0 | 16 falsos positivos detectados y descartados (0% ingestados al wiki) + fix de raíz en fetch_ddg_search() (validación de dominio) + fix de mark_ingested() (crash con _gdelt_windows) |
 
 ---
 
