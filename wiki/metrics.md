@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-08-02
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,38 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
+| Artículos en sources/ | 29 | ↑ continuo |
 | Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Falsos positivos acumulados | 23 | **0 nuevos** (16 detectados hoy, 0 ingestados al wiki) |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Ventanas GDELT completadas | 61 (38 distintas) / ~45 estimadas | 45 (2015→hoy) |
+| Días sin artículos nuevos reales en wiki | 70 (desde 2026-05-24) | máx 3 antes de diagnosticar |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions : 2026-08-02 (commit bf0b8e0, "0 artículos nuevos")
+Resultado               : el fetch SÍ corre 3x/día, pero el 100% de lo descargado desde
+                          el 2026-06-22 son falsos positivos: colisión de la sigla "MIDA"
+                          (Utah/EE.UU., Malasia) más contenido agro genérico sin filtro
+                          de país (España/Aragón, Brasil, Arabia Saudita, Irán, EE.UU.)
+Causa raíz identificada : "MIDA" está en HIGH_PRIORITY_TERMS de scripts/prioritize.py
+                          sin verificar que sea el MIDA panameño, así que estos falsos
+                          positivos escalan al tope del ranking de score cada sesión.
+Backfill histórico      : 2015-01-01 → 2017-03-29 (9 ventanas trimestrales, el tramo
+                          más antiguo del objetivo) NUNCA se completa — falla en cada
+                          corrida desde el reset del 2026-06-22 sin quedar marcado.
+                          Detalle completo en wiki/log.md (entrada 2026-08-02 16:07).
+Bugs de herramienta      : 2 bugs encontrados y corregidos hoy en scripts/ingest.py —
+                          orden inconsistente en mark_all_ingested() (marcaba artículos
+                          distintos a los revisados) y crash en mark_ingested() por la
+                          clave interna _gdelt_windows. Detalle en wiki/log.md.
+Estado post-fix         : pendiente validar en próxima corrida Actions si el backfill
+                          2015-2017 avanza; el problema de falsos positivos por "MIDA"
+                          sigue sin mitigar en el fetch/scoring (fuera de alcance hoy).
 ```
 
 ---
@@ -67,6 +79,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-08-02 | 0 | 0 | 16 falsos positivos detectados y descartados (0 al wiki); 2 bugs corregidos en scripts/ingest.py; diagnóstico de backfill 2015-2017 estancado |
 
 ---
 
