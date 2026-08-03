@@ -12,6 +12,7 @@ import time
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Iterator
+from urllib.parse import urlparse
 
 import requests
 import trafilatura
@@ -279,6 +280,15 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         title = r.get("title", "")
         if not url or not title:
             continue
+        # ddgs no siempre respeta el operador "site:" — verificar que el
+        # dominio devuelto sea realmente el configurado, si no descartar
+        # (evita falsos positivos como sltrib.com, paultan.org, etc.
+        # coincidiendo por palabras clave genéricas tipo "MIDA"/"agricultura")
+        if site:
+            netloc = urlparse(url).netloc.lower()
+            site_host = site.lower().removeprefix("www.")
+            if not (netloc == site_host or netloc.endswith("." + site_host) or netloc == "www." + site_host):
+                continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:
