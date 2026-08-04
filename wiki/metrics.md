@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-08-04
 ---
 
 # Dashboard de Métricas
@@ -14,13 +14,13 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
+| Artículos en sources/ | 29 | ↑ continuo |
 | Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Falsos positivos acumulados | 23 | **0 nuevos** |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Ventanas GDELT completadas | 62 / ~45 estimadas | 45 (2015→hoy) — rango agotado, necesita expansión |
+| Días sin artículos nuevos | 5 (desde 2026-07-30) | máx 3 antes de diagnosticar — **⚠ excedido** |
 
 ---
 
@@ -34,6 +34,23 @@ Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/4
 Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
                          Ventanas GDELT reseteadas a [] para backfill real
 Estado post-fix        : Pendiente validación en próxima corrida Actions
+
+Sesión 2026-08-04 (ingest manual)
+Resultado              : 0 artículos reales, 16 falsos positivos descartados
+Causa identificada     : fetch_ddg_search() (scripts/fetch_news.py) buscaba
+                         "site:prensa.com ... OR MIDA ..." vía DuckDuckGo News
+                         sin aplicar _is_panama_related() (sí lo tenía el
+                         fetcher RSS). El término suelto "MIDA" colisiona con
+                         Utah (Military Installation Development Authority) y
+                         Malasia (Malaysian Investment Development Authority),
+                         trayendo resultados globales sin relación con Panamá.
+                         16/16 pendientes de esta corrida eran falsos
+                         positivos (Utah, Malasia, España, Brasil, Arabia
+                         Saudita, UNESCO, IEEE, archive.org). Detalle en
+                         wiki/log.md (2026-08-04 16:05).
+Fix aplicado            : se agregó _is_panama_related() a fetch_ddg_search()
+                         en scripts/fetch_news.py
+Estado post-fix         : pendiente de validación en próxima corrida Actions
 ```
 
 ---
@@ -67,6 +84,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-08-04 | 0 | 0 | 16 falsos positivos descartados (bug fetch_ddg_search sin filtro Panamá) + fix aplicado |
 
 ---
 

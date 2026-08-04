@@ -289,6 +289,8 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         body = r.get("body") or r.get("excerpt", "")
         if not is_agro_relevant(title, body, config):
             continue
+        if not _is_panama_related(title, url) and not _is_panama_related(body, ""):
+            continue
         yield {
             "url": url,
             "title": title,
