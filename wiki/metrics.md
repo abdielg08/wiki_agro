@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-08-06
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,43 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Artículos en sources/ | 29 | ↑ continuo |
+| Artículos reales ingestados (al wiki) | 13 | = total sin falsos positivos |
+| Falsos positivos acumulados (flag `false_positive` en processed.json) | 16 | **0 nuevos publicados al wiki** (cumplido: 0 de 16 se publicaron) |
+| Pendientes de ingesta | 0 | 0 |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Ventanas GDELT completadas | 62 / ~45 estimadas | 45 (2015→hoy) — **superado, ver nota** |
+| Días sin artículos nuevos reales en wiki/ | 1 (2026-08-06, sesión sin ingestas reales) | máx 3 antes de diagnosticar |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions verificada : 2026-08-05 12:47 UTC (status: success)
+Corrida de hoy (2026-08-06)       : aún no ejecutada (cron 11:00 UTC / 6am Panamá)
+Resultado sesión 2026-08-06       : 16/16 artículos pendientes = falsos positivos (0 reales)
+
+Causa raíz identificada:
+  El web_search "prensa_agro" (scripts/fetch_news.py::fetch_ddg_search) arma la
+  query como "site:prensa.com agropecuario OR agricultura OR ganadería OR MIDA
+  OR cosecha Panamá", pero el backend de DDG News NO respeta el operador
+  "site:" de forma confiable. Además is_agro_relevant() solo hace substring
+  match de términos genéricos (incl. "MIDA", "agro") sin verificar dominio ni
+  geografía. Resultado: 16 artículos de heraldo.es (Aragón, España),
+  sltrib.com (Utah — "MIDA" = Military Installation Development Authority),
+  paultan.org (Malasia — "MIDA"/"MITI" = Ministry of Investment Trade and
+  Industry), archive.org, ieeexplore.ieee.org, nyfb.org, spa.gov.sa,
+  agenciabrasil.ebc.com.br y whc.unesco.org quedaron mal etiquetados como
+  country=PA/source=prensa.com y entraron a la cola de pendientes.
+
+Fix aplicado (2026-08-06, este commit):
+  scripts/fetch_news.py::fetch_ddg_search ahora valida que el netloc real de
+  cada resultado coincida con el dominio configurado en `site` antes de
+  aceptarlo — descarta cualquier resultado fuera de ese dominio.
+Estado post-fix: pendiente de validación en la próxima corrida de Actions
+  (2026-08-06 11:00 UTC o siguiente).
 ```
 
 ---
@@ -67,6 +84,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-08-06 | 0 reales / 16 falsos positivos rechazados | 0 | Root cause: bug en filtro `site:` de fetch_ddg_search (prensa_agro). Fix aplicado en scripts/fetch_news.py. Ventanas GDELT (62) ya superan la estimación de 45 — revisar rango/estrategia de backfill en próxima sesión. |
 
 ---
 
