@@ -279,6 +279,8 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         title = r.get("title", "")
         if not url or not title:
             continue
+        if _is_blocked_domain(url):
+            continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:
@@ -289,11 +291,17 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         body = r.get("body") or r.get("excerpt", "")
         if not is_agro_relevant(title, body, config):
             continue
+        # DDGS's site: operator is not reliably enforced — results can come
+        # back from unrelated domains (e.g. "MIDA" matching Malaysia's
+        # investment agency or Utah's Military Installation Development
+        # Authority). Require an explicit Panama term as well.
+        if not _is_panama_related(title, url):
+            continue
         yield {
             "url": url,
             "title": title,
             "date": pub_date,
-            "source": site or name,
+            "source": _url_domain(url) or site or name,
             "trust_level": 3,
             "language": "es",
             "country": "PA",
@@ -445,9 +453,18 @@ def fetch_gdelt_historical(config: dict, processed: dict) -> Iterator[dict]:
     current = start
     while current < end:
         next_q = min(current + timedelta(days=90), end)
+        # A window is only a real, closed quarter if it reached a full 90-day
+        # span or the configured hard end date. Otherwise it's the trailing
+        # edge, capped only by "yesterday" — that boundary moves forward every
+        # day, so persisting it as a completed window would mint a new
+        # never-repeating key each run (real bug seen in processed.json:
+        # 25 junk "20260618_2026XXXX" entries from one growing trailing
+        # window instead of real quarterly progress) and permanently skip
+        # data published in that window after the day it was marked done.
+        is_full_quarter = next_q == current + timedelta(days=90) or next_q == config_end
         window_key = f"{current.strftime('%Y%m%d')}_{next_q.strftime('%Y%m%d')}"
 
-        if window_key in completed_windows:
+        if is_full_quarter and window_key in completed_windows:
             console.print(f"  [dim]GDELT skip (ya descargado): {window_key}[/dim]")
             current = next_q + timedelta(days=1)
             continue
@@ -461,20 +478,26 @@ def fetch_gdelt_historical(config: dict, processed: dict) -> Iterator[dict]:
         if batch is None:
             # Network error — skip window WITHOUT marking complete so it's retried next run
             console.print(f"    [yellow]→ error de red, se reintentará en próxima ejecución[/yellow]")
-            current = next_q + timedelta(days=1)
-            time.sleep(REQUEST_DELAY * 3)  # longer pause after error before next window
-            continue
+            if is_full_quarter:
+                current = next_q + timedelta(days=1)
+                time.sleep(REQUEST_DELAY * 3)  # longer pause after error before next window
+                continue
+            break
 
         console.print(f"    → {len(batch)} artículos")
         for article in batch:
             yield article
 
-        # Mark window as complete only on successful HTTP response (even if 0 results)
-        completed_windows.add(window_key)
-        processed["_gdelt_windows"] = list(completed_windows)
-
-        current = next_q + timedelta(days=1)
-        time.sleep(REQUEST_DELAY * 2)  # polite pause between GDELT windows
+        if is_full_quarter:
+            # Mark window as complete only on successful HTTP response (even if 0 results)
+            completed_windows.add(window_key)
+            processed["_gdelt_windows"] = list(completed_windows)
+            current = next_q + timedelta(days=1)
+            time.sleep(REQUEST_DELAY * 2)  # polite pause between GDELT windows
+        else:
+            # Trailing edge — don't advance or persist; re-query this same
+            # growing window next run until it becomes a full quarter.
+            break
 
 
 # ─── FULL TEXT ENRICHMENT ────────────────────────────────────────────────────

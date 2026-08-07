@@ -152,11 +152,22 @@ def mark_ingested(url_or_slug: str) -> bool:
     return False
 
 
-def mark_all_ingested(limit: int = 0) -> int:
-    """Mark the first `limit` pending articles as ingested (after Claude processed them)."""
+def mark_all_ingested(limit: int = 0, strategy: str = "score") -> int:
+    """Mark the first `limit` pending articles as ingested (after Claude processed them).
+
+    Uses the same `prioritize()` ordering as `run_prepare()` so this marks the
+    exact set of articles `ingest` showed to Claude — `find_pending()` alone is
+    sorted by filename, which is a different order and would mark the wrong
+    articles as ingested.
+    """
+    from prioritize import prioritize
+
     processed = load_processed()
     articles = article_entries(processed)
-    pending = find_pending(limit=limit)
+    all_pending = find_pending(limit=0)
+    scored = prioritize(all_pending, strategy=strategy)
+    pending = [(path, article) for path, article, _ in scored[:limit]] if limit else \
+              [(path, article) for path, article, _ in scored]
     count = 0
     for _, article in pending:
         url = article.get("url", "")
