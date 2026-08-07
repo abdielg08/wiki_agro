@@ -19,6 +19,7 @@ import xml.etree.ElementTree as ET
 from bs4 import BeautifulSoup
 from dateutil import parser as dateparser
 from rich.console import Console
+from urllib.parse import urlparse
 
 sys.path.insert(0, str(Path(__file__).parent))
 from core import (
@@ -279,6 +280,13 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         title = r.get("title", "")
         if not url or not title:
             continue
+        if site:
+            host = urlparse(url).netloc.lower().removeprefix("www.")
+            if host != site.lower().removeprefix("www.") and not host.endswith("." + site.lower().removeprefix("www.")):
+                # DDG's `site:` operator is not reliably honored — drop results
+                # that don't actually come from the requested domain instead of
+                # mislabeling them as this source/country below.
+                continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:
