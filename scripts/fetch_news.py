@@ -289,6 +289,12 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         body = r.get("body") or r.get("excerpt", "")
         if not is_agro_relevant(title, body, config):
             continue
+        # DDG's `site:` operator is not reliably honored by ddgs.news(), so
+        # generic OR queries (e.g. "MIDA") can return unrelated global
+        # results (Malaysia's MIDA, Utah's MIDA, Spain/Brazil agro news).
+        # Require an explicit Panama signal like the RSS/GDELT fetchers do.
+        if not (_is_panama_related(title, url) or _is_panama_related(body)):
+            continue
         yield {
             "url": url,
             "title": title,

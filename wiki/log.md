@@ -48,3 +48,46 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-08-07 00:05
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code
+
+## 2026-08-07 00:05
+INGEST: 11 artículos marcados como ingestados por sesión Claude Code
+
+## 2026-08-07 (routine)
+FALSOS POSITIVOS: 16/16 artículos pendientes eran falsos positivos — 0 artículos
+ingestados al wiki esta sesión (regla CLAUDE.md #9: 0% falsos positivos, innegociable).
+
+Verificación: se leyó el texto completo de los 16 artículos pendientes; ninguno
+menciona "Panamá"/"Panama" ni regiones panameñas. Todos etiquetados con
+`source: prensa.com` pero provenientes de dominios no relacionados:
+  - thestar.com.my / paultan.org (Malasia) → coinciden con "MIDA" =
+    Malaysian Investment Development Authority (no Ministerio de Desarrollo
+    Agropecuario de Panamá)
+  - sltrib.com / fox13now.com (Utah, EE.UU.) → coinciden con "MIDA" =
+    Military Installation Development Authority de Utah
+  - heraldo.es (Aragón, España) → coinciden con "agro"/"agricultura" genérico
+  - agenciabrasil.ebc.com.br (Brasil) → "agricultura familiar" genérico
+  - spa.gov.sa, whc.unesco.org, ieeexplore.org, archive.org, nyfb.org,
+    worldbank.org (genérico) → sin relación con Panamá
+
+RAÍZ DEL PROBLEMA (diagnosticada y corregida):
+  `scripts/fetch_news.py::fetch_ddg_search()` no aplicaba el filtro
+  `_is_panama_related()` que sí tienen `fetch_rss()` y el fetcher de GDELT.
+  La búsqueda `prensa_general` usa `site:prensa.com` + query OR ("MIDA" entre
+  los términos), pero `ddgs.news()` no respeta de forma confiable el operador
+  `site:`, así que devuelve resultados globales que solo coinciden con un
+  término ambiguo como "MIDA", y el código los etiquetaba igual como
+  `source: prensa.com` / `country: PA` sin verificar el contenido.
+
+FIX APLICADO: se agregó verificación `_is_panama_related(title,url)` o
+`_is_panama_related(body)` a `fetch_ddg_search()` en scripts/fetch_news.py,
+igual que en los demás fetchers. Esto debe detener el flujo de falsos
+positivos en las próximas corridas de GitHub Actions.
+
+ACCIÓN: los 16 artículos se marcaron `ingested: true` en processed.json
+(sin crear páginas de wiki) para vaciar la cola de pendientes contaminada;
+no se creó ningún summary/topic/entity para ellos. Cola de pendientes: 0.
+
+Falsos positivos acumulados: 7 (sesión 2026-06-22) + 16 (esta sesión) = 23.

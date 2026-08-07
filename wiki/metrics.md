@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-08-07
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,49 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
+| Artículos en sources/ | 29 | ↑ continuo |
 | Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Falsos positivos acumulados | 23 (7 previos + 16 hoy) | **0 nuevos** |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Ventanas GDELT completadas | 62 (rango real: 2017-03-30 → 2026-08-03) | cubrir desde 2015-02-19 |
+| Días sin artículos nuevos | **8 días** (último `saved_at`: 2026-07-30) | máx 3 antes de diagnosticar |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida con artículos nuevos : 2026-07-30 (8 días sin nuevos artículos — supera
+                                       el umbral de falla de 3 días de CLAUDE.md)
+Resultado hoy (2026-08-07)          : 0 artículos nuevos en sources/articles/
+
+PROBLEMA #1 (identificado y corregido hoy):
+  fetch_ddg_search() en scripts/fetch_news.py no filtraba por relevancia
+  geográfica → 16/16 artículos pendientes eran falsos positivos globales
+  (Malasia, Utah, España, Brasil) que coincidían con términos ambiguos
+  como "MIDA" o "agricultura". Fix: se agregó _is_panama_related() a
+  fetch_ddg_search(), igual que ya tenían fetch_rss() y el fetcher GDELT.
+  Ver wiki/log.md 2026-08-07 para el detalle completo.
+
+PROBLEMA #2 (pendiente de diagnóstico — requiere revisar corridas de Actions):
+  A pesar de 62 ventanas GDELT "completadas", el rango real cubierto es
+  2017-03-30 → 2026-08-03 — el período 2015-02-19 a 2017-03-29 (objetivo
+  de cobertura) AÚN NO se ha procesado. Varias ventanas registradas
+  comparten la misma fecha de inicio (ej. tres ventanas distintas que
+  empiezan en 2026-06-18), lo que sugiere que la selección de ventanas en
+  fetch_historical.py puede estar re-visitando periodos recientes en vez
+  de avanzar sistemáticamente hacia atrás desde 2015. No se modificó ese
+  código esta sesión — se documenta para revisión en la próxima sesión.
+  Esto es probablemente también la causa de los 8 días sin artículos
+  nuevos: si GDELT sigue re-consultando ventanas ya vistas (2026), no
+  hay contenido nuevo que descubrir, y las fuentes RSS activas
+  (IICA, La Prensa) no producen suficiente volumen por sí solas.
+
+Estado post-fix : Fix de falsos positivos aplicado. Pendiente validar en
+                   la próxima corrida de Actions si vuelven a aparecer
+                   artículos nuevos reales; si no, investigar
+                   fetch_historical.py (selección de ventanas GDELT).
 ```
 
 ---
@@ -67,6 +90,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-08-07 | 0 reales (16 falsos positivos detectados y excluidos) | 0 | Fix de bug en fetch_ddg_search() (faltaba filtro Panamá); 8 días sin artículos nuevos — ver diagnóstico arriba |
 
 ---
 
