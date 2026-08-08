@@ -286,8 +286,19 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
                 pub_date = dateparser.parse(str(date_raw)).strftime("%Y-%m-%d")
             except Exception:
                 pass
+        # Reject results DDG returned outside the requested site (site: is not
+        # reliably enforced by the search backend) and non-Panama domains.
+        if site and not _url_domain(url).endswith(site.lower()):
+            continue
+        if _is_blocked_domain(url):
+            continue
         body = r.get("body") or r.get("excerpt", "")
         if not is_agro_relevant(title, body, config):
+            continue
+        # Require an unambiguous Panama term in title/URL — a generic term
+        # match (e.g. "MIDA", "agricultura") is not enough on its own, since
+        # those collide with unrelated orgs/topics abroad.
+        if not _is_panama_related(title, url):
             continue
         yield {
             "url": url,
