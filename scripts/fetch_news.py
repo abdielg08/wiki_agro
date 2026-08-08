@@ -12,6 +12,7 @@ import time
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Iterator
+from urllib.parse import urlparse
 
 import requests
 import trafilatura
@@ -279,6 +280,12 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         title = r.get("title", "")
         if not url or not title:
             continue
+        # DDG's `site:` operator is not reliably honored by the news backend —
+        # it has been observed returning results from unrelated global domains
+        # (e.g. heraldo.es, sltrib.com, ieeexplore.ieee.org) for a `site:prensa.com`
+        # query. Enforce the domain restriction ourselves to avoid false positives.
+        if site and site.lower() not in urlparse(url).netloc.lower():
+            continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:
@@ -293,7 +300,7 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
             "url": url,
             "title": title,
             "date": pub_date,
-            "source": site or name,
+            "source": name,
             "trust_level": 3,
             "language": "es",
             "country": "PA",
