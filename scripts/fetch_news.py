@@ -12,6 +12,7 @@ import time
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Iterator
+from urllib.parse import urlparse
 
 import requests
 import trafilatura
@@ -279,6 +280,11 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         title = r.get("title", "")
         if not url or not title:
             continue
+        if site and site not in urlparse(url).netloc:
+            # DDG's `site:` operator is not reliably honored by the news
+            # backend — it can return off-domain results (seen leaking
+            # global "agriculture"/"MIDA" matches unrelated to Panama).
+            continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:
@@ -444,7 +450,16 @@ def fetch_gdelt_historical(config: dict, processed: dict) -> Iterator[dict]:
 
     current = start
     while current < end:
-        next_q = min(current + timedelta(days=90), end)
+        full_quarter_end = current + timedelta(days=90)
+        # `end` is a moving target (yesterday) — a window only counts as a
+        # real, closed quarter once it reaches the full 90 days. Otherwise
+        # capping next_q at `end` mints a brand-new window_key every single
+        # day (20260618_20260623, 20260618_20260624, ...) that never
+        # matches a prior "completed" entry, so the loop never advances
+        # past the current quarter and the same near-duplicate date range
+        # gets re-queried and re-marked "complete" indefinitely.
+        is_full_quarter = full_quarter_end <= end
+        next_q = full_quarter_end if is_full_quarter else end
         window_key = f"{current.strftime('%Y%m%d')}_{next_q.strftime('%Y%m%d')}"
 
         if window_key in completed_windows:
@@ -469,11 +484,18 @@ def fetch_gdelt_historical(config: dict, processed: dict) -> Iterator[dict]:
         for article in batch:
             yield article
 
-        # Mark window as complete only on successful HTTP response (even if 0 results)
-        completed_windows.add(window_key)
-        processed["_gdelt_windows"] = list(completed_windows)
+        if is_full_quarter:
+            # Mark window as complete only once it's a genuine closed
+            # 90-day quarter (even if 0 results) — never persist a
+            # trailing partial window, so it gets re-fetched (cheaply,
+            # since most of it is unchanged) until it closes for real.
+            completed_windows.add(window_key)
+            processed["_gdelt_windows"] = list(completed_windows)
+            current = next_q + timedelta(days=1)
+        else:
+            # Trailing partial window handled — nothing more to do this run.
+            break
 
-        current = next_q + timedelta(days=1)
         time.sleep(REQUEST_DELAY * 2)  # polite pause between GDELT windows
 
 
