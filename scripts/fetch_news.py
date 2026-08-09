@@ -287,7 +287,17 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
             except Exception:
                 pass
         body = r.get("body") or r.get("excerpt", "")
+        # Reject articles from blocked (non-Panama) domains
+        if _is_blocked_domain(url):
+            continue
         if not is_agro_relevant(title, body, config):
+            continue
+        # Require at least one Panama-related term in title or URL
+        # (DDGS's site: filter is not reliably honored, so acronym
+        # collisions like "MIDA" — Malaysia's Investment Development
+        # Authority, Utah's Military Installation Development Authority —
+        # can otherwise leak in from unrelated domains)
+        if not _is_panama_related(title, url):
             continue
         yield {
             "url": url,
