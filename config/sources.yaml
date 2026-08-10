@@ -157,7 +157,10 @@ sources:
 web_searches:
   - name: "prensa_agro"
     site: "prensa.com"
-    query: "agropecuario OR agricultura OR ganadería OR MIDA OR cosecha Panamá"
+    # OR terms must be parenthesized — otherwise "site:" only scopes the
+    # first clause and DDG returns unrelated results from any domain that
+    # matches "MIDA" (Malaysia's MITI/MIDA, Utah's MIDA, etc).
+    query: "(agropecuario OR agricultura OR ganadería OR MIDA OR cosecha Panamá)"
     max_results: 20
 
   - name: "oirsa_alertas"

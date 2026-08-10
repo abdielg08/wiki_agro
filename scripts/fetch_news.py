@@ -289,6 +289,14 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         body = r.get("body") or r.get("excerpt", "")
         if not is_agro_relevant(title, body, config):
             continue
+        # Reject articles from blocked (non-Panama) domains
+        if _is_blocked_domain(url):
+            continue
+        # Require at least one Panama-related term in title, body or URL —
+        # "site:" search restrictions are not reliably honored by DDG, so
+        # agro-keyword matches alone (e.g. "MIDA") let through foreign results.
+        if not _is_panama_related(title + " " + body, url):
+            continue
         yield {
             "url": url,
             "title": title,
