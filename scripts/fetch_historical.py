@@ -35,7 +35,7 @@ from core import (
     console, load_config, load_processed, save_processed,
     save_article, ROOT
 )
-from fetch_news import _get, HEADERS, REQUEST_DELAY, is_agro_relevant
+from fetch_news import _get, HEADERS, REQUEST_DELAY, is_agro_relevant, _is_panama_related, _is_blocked_domain
 
 PROGRESS_FILE = ROOT / "sources" / "historical_progress.json"
 
@@ -91,6 +91,12 @@ def fetch_gdelt_window(start: str, end: str, query: str = _AGRO_QUERY) -> list[d
         url = item.get("url", "")
         title = item.get("title", "")
         if not url or not title:
+            continue
+        # GDELT's sourcecountry:PA / domain metadata is unreliable — it lets through
+        # foreign articles that merely mention an acronym like "MIDA" (which also
+        # names Malaysia's and Utah's investment authorities). Require an
+        # unambiguous Panama term in the title/URL and reject known non-PA domains.
+        if _is_blocked_domain(url) or not _is_panama_related(title, url):
             continue
         date_raw = item.get("seendate", "")
         try:
