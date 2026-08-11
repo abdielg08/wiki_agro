@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-08-11
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,43 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Artículos en sources/ | 29 | ↑ continuo |
+| Artículos reales ingestados | 18 | = total sin falsos positivos |
+| Falsos positivos acumulados | 12 | **0 nuevos** (5 detectados hoy, no ingestados) |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Ventanas GDELT completadas | 64 (con gap 2015-2017 + 27 duplicadas cerca de hoy) | 45 (2015→hoy) sin gaps ni duplicados |
+| Días sin artículos nuevos | 1+ (0 nuevos hoy 2026-08-11) | máx 3 antes de diagnosticar |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions : 2026-08-10 (previas: 2026-08-07, 2026-08-04)
+Resultado              : 0 artículos nuevos en las últimas 3 corridas registradas
+Causa identificada #1  : GAP histórico real 2015-01-01 → 2017-03-29 (9
+                         trimestres) — GDELT falla en red para fechas tan
+                         antiguas en cada corrida, la ventana nunca se marca
+                         completa, nunca avanza. NO es "rango agotado".
+Causa identificada #2  : 27 ventanas duplicadas/solapadas con inicio fijo
+                         20260618 y fin creciente día a día — bug de cálculo
+                         cuando `current` queda a <90 días de `end`(=ayer).
+                         Cada corrida re-consulta casi el mismo rango,
+                         desperdiciando cuota en su mayoría duplicados.
+                         Detalle técnico en wiki/log.md (2026-08-11 00:05).
+Falso positivo detectado: colisión de keyword "MIDA" trae artículos de la
+                         Malaysian Investment Development Authority y de la
+                         Utah Military Installation Development Authority,
+                         etiquetados incorrectamente con country="PA".
+                         5/5 del lote de hoy — 0 ingestados.
+Estado                 : Pipeline corre según cron diario, pero NO avanza el
+                         backfill 2015-2017 y desperdicia cuota en 2026.
+                         Recomendado (fuera de alcance de esta rutina):
+                         arreglar fetch_gdelt_historical() en
+                         scripts/fetch_news.py (ver log.md), sumar fuentes
+                         Nivel 3 (Panamá América, TVN, La Estrella), y
+                         filtrar por país/entidad en el matching de "MIDA".
 ```
 
 ---
@@ -67,6 +84,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-08-11 | 0 | 11 | 5/5 pendientes eran falsos positivos (colisión "MIDA"); diagnóstico de gap GDELT 2015-2017 y ventanas duplicadas 2026 |
 
 ---
 

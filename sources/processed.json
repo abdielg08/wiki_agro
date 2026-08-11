@@ -203,7 +203,8 @@
     "title": "Timeline: How the Kevin O’Leary data center plan came to be, and what’s happened since",
     "date": "2026-05-19",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-08-11T00:08:43.709144"
   },
   "https://www.sltrib.com/news/environment/2026/05/29/utah-governor-issues-order-protect/": {
     "saved_at": "2026-06-27T12:05:20.043697",
@@ -211,7 +212,8 @@
     "title": "Utah Gov. Cox issues order to protect Great Salt Lake, air quality from data centers",
     "date": "2026-05-29",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-08-11T00:08:44.100542"
   },
   "https://www.sltrib.com/news/2026/05/27/box-elder-data-center-opponents/": {
     "saved_at": "2026-06-27T12:05:20.044648",
@@ -219,7 +221,8 @@
     "title": "Box Elder data center opponents hope for a vote — but are ready for a legal fight",
     "date": "2026-05-27",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-08-11T00:08:43.907660"
   },
   "https://www.nyfb.org/": {
     "saved_at": "2026-06-29T14:42:54.312073",
@@ -251,7 +254,8 @@
     "title": "MITI working on simplified NCM customised incentive mechanism to build real local industrial capabilities",
     "date": "2026-07-08",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-08-11T00:08:43.537105"
   },
   "https://ieeexplore.ieee.org/document/10945742": {
     "saved_at": "2026-07-15T12:10:08.462784",
@@ -267,7 +271,8 @@
     "title": "Cultural Rules For Staying With Locals Abroad",
     "date": "2026-03-07",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-08-11T00:08:44.272103"
   },
   "https://archive.org/details/Cataloguedipter2SaoP": {
     "saved_at": "2026-07-20T13:01:08.502291",
