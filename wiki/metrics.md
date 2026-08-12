@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-08-12
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,36 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Artículos en sources/ | 29 | ↑ continuo |
+| Artículos reales ingestados | 13 | = total sin falsos positivos |
+| Falsos positivos acumulados | 12 (7 previos + 5 hoy) | **0 nuevos** |
+| Pendientes de ingesta | 11 (inspeccionadas manualmente hoy: las 11 son falsos positivos) | 0 |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Ventanas GDELT completadas | 65 / ~45 estimadas | 45 (2015→hoy) — meta superada, ver nota |
+| Días sin artículos nuevos | 12 (último real: 2026-08-07; hoy 2026-08-12 sigue en 0) | máx 3 antes de diagnosticar → **ALARMA ACTIVA** |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions : 2026-08-12 (corrió correctamente, commit 0405017)
+Resultado              : 0 artículos nuevos (5ta corrida consecutiva en 0: 08-02, 08-04, 08-07, 08-10, 08-12)
+Ventanas GDELT          : 65 completadas — supera el estimado de 45. El backfill temporal
+                          2015→hoy ya no está limitado por rango de fechas.
+Causa raíz identificada: el fetch SÍ trae artículos (16 se acumularon en las últimas semanas)
+                         pero el matching es por acrónimo suelto ("MIDA" y similares) SIN exigir
+                         contexto Panamá. Resultado: 16/16 de los pendientes de esta sesión son
+                         falsos positivos (Malasia, Utah, España, Brasil, Arabia Saudita, papers
+                         IEEE, UNESCO, archive.org — detalle completo en wiki/log.md 2026-08-12).
+Estado                  : pipeline trae "ruido" pero ningún artículo real de agro panameño
+                         desde 2026-07-30.
+Acción recomendada      : revisar la query de búsqueda en scripts/ (GDELT y/o ddgs) y exigir
+                         relevancia geográfica Panamá (dominio .pa, o "Panamá"/"panameñ*" en el
+                         texto) antes de guardar candidatos en sources/articles/. Sin este fix,
+                         cada sesión de routine seguirá gastando su cupo de ingesta descartando
+                         el mismo tipo de ruido.
 ```
 
 ---
@@ -67,6 +77,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-08-12 | 0 (5/5 falsos positivos, no ingestados) | 11 (todos falsos positivos confirmados) | Colisión de acrónimo "MIDA" (Malasia/Utah/etc.) — pipeline de fetch necesita filtro de relevancia geográfica Panamá |
 
 ---
 
