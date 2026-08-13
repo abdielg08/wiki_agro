@@ -279,6 +279,15 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         title = r.get("title", "")
         if not url or not title:
             continue
+        # DDG's `site:` operator is not strictly enforced by the backend —
+        # it can return off-domain, off-country results. Reject anything
+        # that isn't actually on the requested site and isn't Panama-related.
+        if _is_blocked_domain(url):
+            continue
+        if site and _url_domain(url) != site.lower() and not _url_domain(url).endswith("." + site.lower()):
+            continue
+        if not _is_panama_related(title, url):
+            continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:

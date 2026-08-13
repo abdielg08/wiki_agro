@@ -153,10 +153,21 @@ def mark_ingested(url_or_slug: str) -> bool:
 
 
 def mark_all_ingested(limit: int = 0) -> int:
-    """Mark the first `limit` pending articles as ingested (after Claude processed them)."""
+    """Mark the first `limit` pending articles as ingested (after Claude processed them).
+
+    Uses the same score-based priority order as `run_prepare`/`ingest`, so this
+    marks the exact articles Claude was shown in pending_ingest.md — not a
+    different filesystem-ordered batch.
+    """
+    from prioritize import prioritize
+
     processed = load_processed()
     articles = article_entries(processed)
-    pending = find_pending(limit=limit)
+    all_pending = find_pending(limit=0)
+    scored = prioritize(all_pending, strategy="score")
+    pending = [(path, article) for path, article, _ in scored[:limit]] if limit else [
+        (path, article) for path, article, _ in scored
+    ]
     count = 0
     for _, article in pending:
         url = article.get("url", "")
