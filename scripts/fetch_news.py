@@ -12,6 +12,7 @@ import time
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Iterator
+from urllib.parse import urlparse
 
 import requests
 import trafilatura
@@ -274,10 +275,18 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
             console.print(f"  [yellow]DDG error: {e}[/yellow]")
             return
 
+    skipped_domain = 0
+    skipped_panama = 0
     for r in results:
         url = r.get("url") or r.get("href", "")
         title = r.get("title", "")
         if not url or not title:
+            continue
+        # DDG's `site:` operator is not reliably honored by the news search
+        # endpoint — verify the result actually comes from the requested
+        # domain before trusting its trust_level/source label.
+        if site and site not in urlparse(url).netloc.lower():
+            skipped_domain += 1
             continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
@@ -288,6 +297,13 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
                 pass
         body = r.get("body") or r.get("excerpt", "")
         if not is_agro_relevant(title, body, config):
+            continue
+        # Agro search terms alone (e.g. "MIDA", "agricultura", "sequía")
+        # match plenty of non-Panama news; require an explicit Panama
+        # mention so the web-search path can't smuggle in false positives.
+        combined = (title + " " + (body or "")).lower()
+        if "panama" not in combined and "panamá" not in combined:
+            skipped_panama += 1
             continue
         yield {
             "url": url,
@@ -300,6 +316,11 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
             "summary_raw": body[:1000],
             "full_text": None,
         }
+    if skipped_domain or skipped_panama:
+        console.print(
+            f"  [dim]  descartados: {skipped_domain} fuera de dominio, "
+            f"{skipped_panama} sin mención de Panamá[/dim]"
+        )
     time.sleep(REQUEST_DELAY)
 
 
