@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-08-14
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,43 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
+| Artículos en sources/ | 29 | ↑ continuo |
 | Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Falsos positivos acumulados | 23 (7 previos + 16 esta sesión) | **0 nuevos** |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Ventanas GDELT completadas | 66 (ver nota de calidad abajo) | 47 limpias (2015→hoy) |
+| Días sin artículos nuevos | 15 (desde 2026-07-30) | máx 3 antes de diagnosticar — **ALARMA ACTIVA** |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions : 2026-08-13 (corre a diario, confirmado por historial de commits)
+Resultado               : 0 artículos nuevos en cada corrida desde 2026-07-31 (15 días)
+Causa raíz identificada (2026-08-14):
+  1. fetch_ddg_search() no validaba que las URLs devueltas por DDGS().news()
+     pertenecieran al dominio `site:` solicitado. Las 16 entradas pendientes
+     de "prensa.com" NO eran de prensa.com (paultan.org, sltrib.com, heraldo.es,
+     msn.com, archive.org, ieeexplore.org, nyfb.org, spa.gov.sa, agenciabrasil.ebc.com.br,
+     whc.unesco.org). 0/23 artículos históricos de esa fuente eran reales.
+     FIX APLICADO: verificación de dominio (urlparse) en fetch_ddg_search —
+     descarta resultados fuera del dominio configurado.
+  2. is_agro_relevant() acepta cualquier término genérico (agricultura, cultivo,
+     MIDA) sin exigir contexto Panamá — colisiona con MIDA Malasia/Utah.
+     NO corregido esta sesión (el fix #1 ya elimina el 100% de los falsos
+     positivos observados; revisar si reaparecen dentro del dominio correcto).
+  3. Ventanas GDELT: 66 "completadas" pero solo 47 ventanas trimestrales limpias
+     cubren 2015→hoy. 10 ventanas de 2015-2017 siguen sin completar pese a
+     meses de corridas diarias; 29 ventanas son variantes duplicadas de una
+     sola ventana abierta (inicio 2026-06-18) con fecha de cierre dinámica
+     distinta cada día — el backfill está atascado re-consultando el mismo
+     rango reciente en vez de avanzar sobre 2015-2017.
+     NO corregido esta sesión (requiere pruebas contra API real de GDELT) —
+     pendiente para sesión de ingeniería dedicada.
+Estado post-fix         : Fix de dominio pendiente de validación en próxima
+                          corrida de Actions (2026-08-15 6am Panamá).
 ```
 
 ---
@@ -67,6 +84,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-08-14 | 0 | 0 | 16 falsos positivos detectados y descartados (fuente prensa_agro). Fix de dominio en fetch_ddg_search + fix de bug en mark_ingested. Diagnóstico de ventanas GDELT atascadas documentado (ver Estado del Fetch). |
 
 ---
 

@@ -12,6 +12,7 @@ import time
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Iterator
+from urllib.parse import urlparse
 
 import requests
 import trafilatura
@@ -274,11 +275,17 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
             console.print(f"  [yellow]DDG error: {e}[/yellow]")
             return
 
+    site_norm = site.lower().removeprefix("www.") if site else ""
+
     for r in results:
         url = r.get("url") or r.get("href", "")
         title = r.get("title", "")
         if not url or not title:
             continue
+        if site_norm:
+            domain = urlparse(url).netloc.lower().removeprefix("www.")
+            if domain != site_norm and not domain.endswith("." + site_norm):
+                continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:

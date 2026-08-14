@@ -197,7 +197,8 @@
     "title": "'Reef Saudi', a Successful Program Based on Rain-Fed Agriculture",
     "date": "2026-06-24",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-08-14T09:07:46.362335"
   },
   "https://www.sltrib.com/news/2026/05/19/kevin-oleary-data-center-timeline/": {
     "saved_at": "2026-06-27T12:05:20.042626",
@@ -205,7 +206,8 @@
     "title": "Timeline: How the Kevin O’Leary data center plan came to be, and what’s happened since",
     "date": "2026-05-19",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-08-14T09:06:59.904646"
   },
   "https://www.sltrib.com/news/environment/2026/05/29/utah-governor-issues-order-protect/": {
     "saved_at": "2026-06-27T12:05:20.043697",
@@ -213,7 +215,8 @@
     "title": "Utah Gov. Cox issues order to protect Great Salt Lake, air quality from data centers",
     "date": "2026-05-29",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-08-14T09:07:00.279899"
   },
   "https://www.sltrib.com/news/2026/05/27/box-elder-data-center-opponents/": {
     "saved_at": "2026-06-27T12:05:20.044648",
@@ -221,7 +224,8 @@
     "title": "Box Elder data center opponents hope for a vote — but are ready for a legal fight",
     "date": "2026-05-27",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-08-14T09:07:00.100600"
   },
   "https://www.nyfb.org/": {
     "saved_at": "2026-06-29T14:42:54.312073",
@@ -229,7 +233,8 @@
     "title": "New York Farm Bureau",
     "date": "2026-06-17",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-08-14T09:07:45.997062"
   },
   "https://www.sltrib.com/news/environment/2025/06/12/utah-nuclear-energy-state/": {
     "saved_at": "2026-07-02T12:53:53.066448",
@@ -237,7 +242,8 @@
     "title": "Utah wants to process uranium on the Wasatch Front for nuclear energy. Here’s where.",
     "date": "2025-06-13",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-08-14T09:07:45.245373"
   },
   "https://whc.unesco.org/en/list/1506": {
     "saved_at": "2026-07-10T13:04:57.003757",
@@ -245,7 +251,8 @@
     "title": "The Persian Qanat",
     "date": "2026-07-07",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-08-14T09:07:46.766220"
   },
   "https://paultan.org/2026/07/07/miti-working-on-simplified-ncm-customised-incentive-mechanism-to-build-real-local-industrial-capabilities/": {
     "saved_at": "2026-07-14T12:06:00.385283",
@@ -253,7 +260,8 @@
     "title": "MITI working on simplified NCM customised incentive mechanism to build real local industrial capabilities",
     "date": "2026-07-08",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-08-14T09:06:59.717059"
   },
   "https://ieeexplore.ieee.org/document/10945742": {
     "saved_at": "2026-07-15T12:10:08.462784",
@@ -261,7 +269,8 @@
     "title": "Ambient IoT: Communications Enabling Precision Agriculture",
     "date": "2025-03-31",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-08-14T09:07:45.055404"
   },
   "https://www.msn.com/en-us/news/other/cultural-rules-for-staying-with-locals-abroad/ss-AA1QWARj?ocid=BingNewsVerp": {
     "saved_at": "2026-07-20T13:01:08.501359",
@@ -269,7 +278,8 @@
     "title": "Cultural Rules For Staying With Locals Abroad",
     "date": "2026-03-07",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-08-14T09:07:00.469651"
   },
   "https://archive.org/details/Cataloguedipter2SaoP": {
     "saved_at": "2026-07-20T13:01:08.502291",
@@ -277,7 +287,8 @@
     "title": "Catalogue of the diptera of the Americas South of United States",
     "date": "2016-05-13",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-08-14T09:07:44.865650"
   },
   "https://www.heraldo.es/noticias/aragon/2026/05/03/luis-biendicho-vox-asume-consejeria-medio-ambiente-con-un-inaga-bajo-lupa-investigacion-judicial-por-caso-forestalia-2017165.html": {
     "saved_at": "2026-07-29T12:56:00.851198",
@@ -285,7 +296,8 @@
     "title": "Luis Biendicho asume la consejería de Medio Ambiente, con un Inaga bajo la lupa por el caso Forestalia",
     "date": "2026-05-03",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-08-14T09:07:45.623021"
   },
   "https://www.heraldo.es/noticias/economia/2025/11/25/aragon-celebra-sentencia-supremo-tumba-ampliacion-obligatoria-espacio-cerdo-granjas-1873321.html": {
     "saved_at": "2026-07-29T12:56:00.852732",
@@ -293,7 +305,8 @@
     "title": "Aragón celebra la sentencia del Supremo que tumba ampliación obligatoria del espacio por cerdo en las granjas",
     "date": "2025-11-25",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-08-14T09:07:45.437796"
   },
   "https://www.heraldo.es/noticias/economia/2026/06/08/aega-pide-elecciones-campo-aragon-consejera-agricultura-le-responde-que-no-esta-dispuesta-gastar-un-millon-euros-2027313.html": {
     "saved_at": "2026-07-30T12:24:28.020434",
@@ -301,7 +314,8 @@
     "title": "AEGA pide elecciones al campo en Aragón y la consejera de Agricultura le responde que no está dispuesta a gastar un millón",
     "date": "2026-06-08",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-08-14T09:07:45.818664"
   },
   "https://agenciabrasil.ebc.com.br/economia/noticia/2026-07/finep-vai-pagar-r-220-milhoes-para-inovacoes-em-agricultura-familiar": {
     "saved_at": "2026-07-30T12:24:28.021551",
@@ -309,7 +323,8 @@
     "title": "Finep vai pagar R$ 220 milhões para inovações em agricultura familiar",
     "date": "2026-07-02",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-08-14T09:07:46.578121"
   },
   "https://www.heraldo.es/noticias/economia/2026/06/23/arvensis-agro-amplia-sus-instalaciones-preve-aumentar-un-50-su-facturacion-2030-2031462.html": {
     "saved_at": "2026-07-30T12:24:28.022755",
@@ -317,6 +332,7 @@
     "title": "Arvensis Agro amplía sus instalaciones y prevé aumentar un 50 % su facturación en 2030",
     "date": "2026-06-23",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-08-14T09:07:46.176787"
   }
 }
