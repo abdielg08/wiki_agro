@@ -289,6 +289,12 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         body = r.get("body") or r.get("excerpt", "")
         if not is_agro_relevant(title, body, config):
             continue
+        # DDG's `site:` operator is not reliably honored — reject results
+        # that land outside Panama regardless of the configured site filter.
+        if _is_blocked_domain(url):
+            continue
+        if not _is_panama_related(title, url):
+            continue
         yield {
             "url": url,
             "title": title,

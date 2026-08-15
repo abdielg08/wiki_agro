@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-08-15
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,45 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Artículos en sources/ | 29 | ↑ continuo |
+| Artículos ingestados (total) | 18 | = total sin falsos positivos |
+| Pendientes de ingesta | 11 | 0 |
+| Falsos positivos acumulados | 12 (+5 hoy) | **0 nuevos** ⚠️ meta incumplida hoy |
+| Páginas en wiki/ | 20 (8 topics, 3 entities, 6 summaries, 3 overview) | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Ventanas GDELT completadas | 67 | 46 (2015→hoy, ~trimestral) — ya superado, ver nota |
+| Días sin artículos nuevos | **15** (desde 2026-07-30) | máx 3 antes de diagnosticar — ⚠️ **UMBRAL EXCEDIDO 5x** |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida con commit  : 2026-08-14 (corre diario, "chore(sources): 0 artículos nuevos [skip ci]")
+Racha sin artículos nuevos : 2026-07-31 → 2026-08-14 (8 corridas consecutivas, 15 días) = 0 nuevos
+Último artículo real nuevo : 2026-07-30 (3 artículos)
+
+CAUSA RAÍZ CONFIRMADA (sesión 2026-08-15):
+  scripts/fetch_news.py::fetch_ddg_search() (usada por web_searches.prensa_agro,
+  config/sources.yaml, query con término ambiguo "MIDA") pasa `site:prensa.com` a
+  ddgs.news(), pero DuckDuckGo no honra ese operador de forma confiable — retorna
+  resultados de dominios no panameños (paultan.org, sltrib.com, msn.com) etiquetados
+  como source="prensa.com". A diferencia de fetch_rss(), fetch_ddg_search() NO
+  aplicaba _is_blocked_domain()/_is_panama_related() — por eso 5/5 artículos del
+  lote de hoy fueron falsos positivos (colisión de acrónimo "MIDA" con Malasia/Utah).
+  Esto probablemente explica buena parte de por qué el fetch automático "corre" pero
+  no produce artículos reales nuevos hace 15 días: el pipeline probablemente está
+  descargando falsos positivos que otros filtros descartan silenciosamente antes de
+  guardarlos, o GDELT (ventanas ya en 67, más que las ~46 trimestrales esperadas para
+  2015→hoy) está devolviendo resultados repetidos/duplicados sin cobertura nueva.
+
+FIX APLICADO esta sesión: agregados _is_blocked_domain(url) y
+  _is_panama_related(title, url) a fetch_ddg_search() en scripts/fetch_news.py
+  (mismo guardrail que ya tenía fetch_rss()). Pendiente validar en la próxima
+  corrida de GitHub Actions si esto restaura el flujo de artículos nuevos, o si
+  el problema real está en el agotamiento de ventanas GDELT (67 completadas)
+  y hace falta expandir/reiniciar el rango de backfill.
+Estado post-fix: pendiente de validación (próxima corrida Actions).
 ```
 
 ---
@@ -56,8 +75,10 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 | 2026 Q1-Q2 | 0/2 | ? | Pendiente |
 | **TOTAL** | **0/46** | **0** | **Backfill no iniciado** |
 
-> Una vez que Actions corra con el código corregido, actualizar esta tabla con los datos reales.
-> El rendimiento real de GDELT (artículos/trimestre) determinará la duración del backfill.
+> ⚠️ Tabla desactualizada: `sources/processed.json._gdelt_windows` ya tiene 67 ventanas
+> completadas (más que las ~46 estimadas), pero esta tabla no se ha reconciliado con el
+> detalle real por período. Pendiente para una sesión futura: recorrer `_gdelt_windows`
+> y recalcular esta tabla por año/trimestre real.
 
 ---
 
@@ -67,6 +88,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-08-15 | 0 reales (5 revisados, 5 falsos positivos) | 11 | Fix de causa raíz en fetch_ddg_search() (faltaban filtros geo/dominio). 15 días sin artículos reales nuevos (desde 2026-07-30) — ver "Estado del Fetch". |
 
 ---
 

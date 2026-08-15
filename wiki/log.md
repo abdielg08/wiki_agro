@@ -48,3 +48,48 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-08-15 00:00
+INGEST: 5 artículos revisados, 0 ingestados — 5 FALSOS POSITIVOS (0% ingesta esta sesión)
+  Los 5 artículos de este lote fueron capturados por colisión de acrónimo "MIDA"
+  (Ministerio de Desarrollo Agropecuario de Panamá) con otras entidades homónimas
+  no relacionadas al agro panameño. Ninguno es sobre agro panameño — NO se creó
+  contenido en wiki/. Marcados como ingested=true (procesados/revisados) para
+  liberarlos de la cola de pendientes.
+  - "MITI working on simplified NCM customised incentive mechanism..." (prensa.com,
+    2026-07-08) → sobre MITI/MIDA/MARii de Malasia (Malaysian Industrial Development
+    Authority), incentivos industriales. No es agro, no es Panamá.
+    https://paultan.org/2026/07/07/miti-working-on-simplified-ncm-customised-incentive-mechanism-to-build-real-local-industrial-capabilities/
+  - "Timeline: How the Kevin O'Leary data center plan came to be..." (prensa.com,
+    2026-05-19) → sobre MIDA de Utah, EE.UU. (Military Installation Development
+    Authority) y un centro de datos de Kevin O'Leary. No es agro, no es Panamá.
+    https://www.sltrib.com/news/2026/05/19/kevin-oleary-data-center-timeline/
+  - "Box Elder data center opponents hope for a vote..." (prensa.com, 2026-05-27)
+    → mismo caso MIDA de Utah (data centers), oposición local. No es agro, no es
+    Panamá. https://www.sltrib.com/news/2026/05/27/box-elder-data-center-opponents/
+  - "Utah Gov. Cox issues order to protect Great Salt Lake..." (prensa.com,
+    2026-05-29) → mismo caso MIDA de Utah, calidad del aire/agua ligada a data
+    centers. No es agro, no es Panamá.
+    https://www.sltrib.com/news/environment/2026/05/29/utah-governor-issues-order-protect/
+  - "Cultural Rules For Staying With Locals Abroad" (prensa.com, 2026-03-07) →
+    artículo de viajes/cultura que menciona MIDA de Utah de pasada en un litigio.
+    No es agro, no es Panamá.
+    https://www.msn.com/en-us/news/other/cultural-rules-for-staying-with-locals-abroad/ss-AA1QWARj?ocid=BingNewsVerp
+  DIAGNÓSTICO (causa raíz confirmada en código): `scripts/fetch_news.py::fetch_ddg_search()`
+  (usada por `web_searches.prensa_agro` en config/sources.yaml, query con término
+  ambiguo "MIDA") pasa `site:prensa.com` a `ddgs.news()`, pero DuckDuckGo NO honra
+  ese operador de forma confiable — retorna resultados de dominios no panameños
+  (paultan.org, sltrib.com, msn.com) y el código los etiquetaba con `source="prensa.com"`
+  sin aplicar los filtros `_is_blocked_domain()` / `_is_panama_related()` que sí existen
+  y se usan en `fetch_rss()` (líneas 220/226). `fetch_ddg_search()` era la única ruta de
+  fetch sin ese guardrail.
+  FIX APLICADO esta sesión: se agregaron `_is_blocked_domain(url)` y
+  `_is_panama_related(title, url)` a `fetch_ddg_search()` en scripts/fetch_news.py,
+  igual que en fetch_rss(). Commit en esta sesión. Debe validarse en la próxima
+  corrida de GitHub Actions que no se generen más falsos positivos vía DDG.
+  Nota: la fuente ` prensa.com` seguía etiquetando el "source" con el nombre de sitio
+  configurado y no el dominio real — no se modificó (bajo impacto: "prensa.com" no
+  tiene peso especial en prioritize.py), pero queda como mejora futura para trazabilidad.
+
+## 2026-08-15 00:16
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code
