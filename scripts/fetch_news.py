@@ -279,6 +279,15 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         title = r.get("title", "")
         if not url or not title:
             continue
+        # DDG's `site:` operator is not reliably enforced — reject results
+        # whose domain doesn't actually match the requested site. Without
+        # this, off-site global news (e.g. Malaysia's MITI/MIDA, Utah's
+        # "MIDA" = Military Installation Development Authority) leaks in
+        # and gets mislabeled with this source's country/trust level.
+        if site and site not in _url_domain(url):
+            continue
+        if _is_blocked_domain(url):
+            continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:
@@ -443,8 +452,15 @@ def fetch_gdelt_historical(config: dict, processed: dict) -> Iterator[dict]:
     end = min(config_end, datetime.utcnow() - timedelta(days=1))
 
     current = start
-    while current < end:
-        next_q = min(current + timedelta(days=90), end)
+    # Only process FULL 90-day windows. Truncating the trailing window to
+    # `end` was a bug: since `end` = yesterday, it shifts forward by one day
+    # on every run, so the window_key for the tail never repeats and never
+    # gets marked complete — the same growing tail window gets re-fetched
+    # every day forever instead of the backfill advancing. Recent days are
+    # already covered by the RSS/DDG fetchers, so it's fine to leave the
+    # last (incomplete) quarter for GDELT to pick up once it's 90 days old.
+    while current + timedelta(days=90) <= end:
+        next_q = current + timedelta(days=90)
         window_key = f"{current.strftime('%Y%m%d')}_{next_q.strftime('%Y%m%d')}"
 
         if window_key in completed_windows:
