@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-08-15
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,40 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Artículos en sources/ | 29 | ↑ continuo |
+| Artículos reales ingestados (con página de wiki) | 13 | = total sin falsos positivos |
+| Falsos positivos acumulados | 23 (7 previos + 16 el 2026-08-15) | **0 nuevos** |
+| Páginas en wiki/ | 20 | ↑ continuo |
+| Cobertura temporal | 2015-2026 (semilla, sin backfill real aún) | 2015 → hoy real |
+| Ventanas GDELT completadas | 67 / ~45 estimadas | 45 (2015→hoy) — **estimación superada, revisar** |
+| Días sin artículos nuevos REALES | 16 (último: 2026-07-30) | máx 3 antes de diagnosticar |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions (histórico) : 2026-06-21 fix; corre diario desde entonces, "0 artículos nuevos"
+Último artículo REAL de Panamá     : 2026-07-30 → 16 días sin avance real al 2026-08-15
+Causa identificada (2026-08-15)    : scripts/fetch_news.py::fetch_ddg_search() (búsqueda
+                                      "prensa_agro") no aplicaba el filtro _is_panama_related()
+                                      que sí tienen RSS y GDELT. El operador site:prensa.com de
+                                      DuckDuckGo no se respeta de forma confiable y "MIDA" es
+                                      ambiguo (Malasia, Utah), así que los "artículos nuevos"
+                                      descargados en días recientes eran 100% falsos positivos,
+                                      no relacionados con Panamá ni con agro (ver wiki/log.md).
+Fix aplicado                       : se agregó el guard _is_panama_related()/_is_blocked_domain()
+                                      a fetch_ddg_search() (scripts/fetch_news.py), igual que
+                                      RSS/GDELT. Se corrigió también un bug en
+                                      scripts/ingest.py::mark_ingested() que crasheaba con
+                                      AttributeError al iterar la clave interna _gdelt_windows.
+Estado post-fix                    : pendiente validar en la próxima corrida de Actions que
+                                      fetch_ddg_search ya no traiga resultados fuera de Panamá.
+Ventanas GDELT (67, > ~45 est.)    : sugiere backfill histórico 2015→hoy ya cubierto, o que el
+                                      generador de ventanas en fetch_historical.py está
+                                      re-creando ventanas no alineadas a trimestre calendario
+                                      (ver p.ej. "20260618_20260708" en _gdelt_windows).
+                                      Pendiente de revisión en próxima sesión.
 ```
 
 ---
@@ -67,6 +81,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-08-15 | 0 | 0 | 16 falsos positivos detectados y descartados (0 páginas nuevas) + fix de fetch_ddg_search() (faltaba filtro Panamá) + fix de mark_ingested() (crash con _gdelt_windows) |
 
 ---
 

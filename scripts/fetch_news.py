@@ -289,6 +289,12 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         body = r.get("body") or r.get("excerpt", "")
         if not is_agro_relevant(title, body, config):
             continue
+        # Require at least one Panama-related term in title or URL — DDG's
+        # `site:` operator is not reliably honored, so results can come from
+        # anywhere and match on ambiguous acronyms (e.g. "MIDA" also names a
+        # Malaysian investment authority and a Utah development authority).
+        if _is_blocked_domain(url) or not _is_panama_related(title, url):
+            continue
         yield {
             "url": url,
             "title": title,
