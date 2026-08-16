@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-08-16
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,43 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
+| Artículos en sources/ | 29 | ↑ continuo |
 | Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Falsos positivos acumulados | 23 (7 previos + 16 hoy) | **0 nuevos** |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Ventanas GDELT completadas | 69 / ~45 estimadas | 45 (2015→hoy) — **rango agotado, necesita expansión** |
+| Días sin artículos nuevos | 17 (desde 2026-07-30) | máx 3 antes de diagnosticar — **⚠ alarma activa** |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions : 2026-08-16 (corre regularmente, cada 1-3 días)
+Resultado               : 0 artículos nuevos desde 2026-07-30 (17 días, 10+ corridas)
+Causa identificada       : (1) _gdelt_windows = 69 ventanas completadas (≥45) → rango de
+                            fechas GDELT agotado, necesita expansión del período cubierto.
+                            (2) fetch_ddg_search() (scripts/fetch_news.py) no validaba el
+                            dominio real del resultado contra search_cfg["site"] — el
+                            operador site:prensa.com de DuckDuckGo no es confiable y
+                            devolvía artículos internacionales sin relación con Panamá,
+                            inflando pending_ingest.md con basura (16/16 pendientes hoy
+                            eran falsos positivos: Utah, Malasia, España/Aragón, Arabia
+                            Saudita, Brasil, Irán, EEUU).
+Fix aplicado (2026-08-16): fetch_ddg_search() ahora exige que el dominio del resultado
+                            coincida con search_cfg["site"] y pasa por _is_blocked_domain()
+                            antes de aceptarlo (mismo patrón que fetch_rss()). También se
+                            corrigieron 2 bugs en scripts/ingest.py: mark_ingested()
+                            crasheaba con _gdelt_windows (no-dict) en processed.json, y
+                            mark_all_ingested() marcaba artículos distintos a los
+                            realmente revisados (usa find_pending() sin score en vez del
+                            orden de prioritize() usado por `ingest`).
+Estado post-fix          : Pendiente validación en próxima corrida Actions. El rango
+                            GDELT agotado (69≥45) sigue siendo la causa probable de que
+                            el conteo de artículos nuevos siga bajo incluso después del
+                            fix — requiere expandir el período de backfill en
+                            scripts/fetch_historical.py.
 ```
 
 ---
@@ -67,6 +84,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-08-16 | 0 | 0 | 16/16 pendientes eran falsos positivos (DDG site: no confiable). Fix de fetch_ddg_search() + 2 bugs en ingest.py |
 
 ---
 

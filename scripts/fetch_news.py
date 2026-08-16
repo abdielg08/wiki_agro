@@ -279,6 +279,15 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         title = r.get("title", "")
         if not url or not title:
             continue
+        # DDG's `site:` operator is not reliably honored — verify the result
+        # actually comes from the configured domain. Without this check,
+        # generic international "agro" results (e.g. Utah's MIDA, Malaysia's
+        # MITI/MARii, Aragón's consejería de Agricultura) get mislabeled as
+        # source=prensa.com/country=PA and pollute the ingest queue.
+        if site and site not in _url_domain(url):
+            continue
+        if _is_blocked_domain(url):
+            continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:
