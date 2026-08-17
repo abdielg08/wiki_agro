@@ -12,6 +12,7 @@ import time
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Iterator
+from urllib.parse import urlparse
 
 import requests
 import trafilatura
@@ -279,6 +280,12 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         title = r.get("title", "")
         if not url or not title:
             continue
+        # DDG's "site:" operator is not reliably enforced — verify the
+        # result actually comes from the requested domain before trusting it.
+        if site and site not in urlparse(url).netloc.lower():
+            continue
+        if _is_blocked_domain(url):
+            continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:
@@ -289,6 +296,12 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         body = r.get("body") or r.get("excerpt", "")
         if not is_agro_relevant(title, body, config):
             continue
+        # Require an explicit Panama signal unless the source is an
+        # official Panamanian domain (.gob.pa) — generic international
+        # sources otherwise flood the queue with false positives.
+        if not url.rstrip("/").endswith(".gob.pa") and ".gob.pa/" not in url:
+            if not _is_panama_related(title, url) and not _is_panama_related(body):
+                continue
         yield {
             "url": url,
             "title": title,
