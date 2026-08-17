@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-08-17
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,40 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
+| Artículos en sources/ | 29 | ↑ continuo |
 | Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Falsos positivos acumulados | 23 (7 previos + 16 esta sesión) | **0 nuevos reales colados** |
+| Páginas en wiki/ | 20 | ↑ continuo |
+| Cobertura temporal real (GDELT) | 2017-2026 | 2015 → hoy (faltan 2015-2016) |
+| Ventanas GDELT completadas | 69 / ~46 estimadas | 2015→hoy sin huecos |
+| Días sin artículos nuevos | 18 (desde 2026-07-30) | máx 3 antes de diagnosticar — **⚠ ALARMA** |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions : 2026-08-16 (corre a diario, 6:00 AM Panamá)
+Resultado               : 0 artículos nuevos (racha de 18 días desde 2026-07-30)
+Causa identificada       : Dos problemas distintos, ver diagnóstico completo en wiki/log.md 2026-08-17:
+  1. Faltan 8 ventanas GDELT de 2015-2016 (Q1-Q4 cada año) — nunca se completan,
+     se reintentan cada corrida sin avanzar. Backfill real cubre solo 2017-2026.
+  2. Cuando SÍ llegan artículos "nuevos", son en su mayoría falsos positivos:
+     score_article() en prioritize.py puntúa alto cualquier mención de "MIDA"
+     sin verificar que sea la agencia panameña (colisión con Utah Military
+     Installation Development Authority, agencia de inversión de Malasia, etc.)
+     — 16/16 artículos pendientes esta sesión eran ruido global sin relación
+     con Panamá (España, Brasil, EE.UU., Arabia Saudita, Irán, Malasia, Utah).
+Bug de código corregido : mark_all_ingested() en scripts/ingest.py marcaba un lote
+                          DISTINTO al mostrado para revisión (find_pending() por
+                          orden de archivo vs. prioritize() por score) — podía
+                          marcar artículos reales como "ingestados" sin que el LLM
+                          los viera nunca. Ahora lee las URLs exactas de
+                          pending_ingest.md. Ver wiki/log.md 2026-08-17 para detalle.
+Estado post-diagnóstico  : Pendiente: (1) investigar por qué 2015-2016 nunca completan
+                          (no se pudo probar GDELT desde este sandbox, proxy bloqueado),
+                          (2) acotar el filtro de relevancia para exigir mención
+                          explícita de Panamá, no solo términos agro genéricos.
 ```
 
 ---
@@ -42,22 +56,23 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 
 | Período | Ventanas | Artículos | Estado |
 |---------|----------|-----------|--------|
-| 2015 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2016 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2017 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2018 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2019 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2020 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2021 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2022 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2023 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2024 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2025 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2026 Q1-Q2 | 0/2 | ? | Pendiente |
-| **TOTAL** | **0/46** | **0** | **Backfill no iniciado** |
+| 2015 Q1-Q4 | 0/4 | ? | **⚠ Nunca completa — reintenta cada corrida sin avanzar** |
+| 2016 Q1-Q4 | 0/4 | ? | **⚠ Nunca completa — reintenta cada corrida sin avanzar** |
+| 2017 Q1-Q4 | 4/4 | ver processed.json | Completo |
+| 2018 Q1-Q4 | 4/4 | ver processed.json | Completo |
+| 2019 Q1-Q4 | 4/4 | ver processed.json | Completo |
+| 2020 Q1-Q4 | 4/4 | ver processed.json | Completo |
+| 2021 Q1-Q4 | 4/4 | ver processed.json | Completo |
+| 2022 Q1-Q4 | 4/4 | ver processed.json | Completo |
+| 2023 Q1-Q4 | 4/4 | ver processed.json | Completo |
+| 2024 Q1-Q4 | 4/4 | ver processed.json | Completo |
+| 2025 Q1-Q4 | 4/4 | ver processed.json | Completo |
+| 2026 (cola móvil) | 33 ventanas de 1 día | ver processed.json | Avanza 1 ventana/día, sin huecos |
+| **TOTAL** | **69/46 estimadas** | ver sources/ | **2017-2026 completo; 2015-2016 bloqueado (8 ventanas)** |
 
-> Una vez que Actions corra con el código corregido, actualizar esta tabla con los datos reales.
-> El rendimiento real de GDELT (artículos/trimestre) determinará la duración del backfill.
+> 2015-2016 son las únicas ventanas que faltan del backfill trimestral. Investigar en la
+> próxima sesión por qué fallan sistemáticamente (ver diagnóstico 2026-08-17 en log.md) —
+> no se pudo probar el endpoint de GDELT desde este sandbox (proxy bloquea el dominio).
 
 ---
 
@@ -67,6 +82,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-08-17 | 0 (16 falsos positivos, 0 reales) | 0 | Fix de bug en mark_all_ingested (marcaba lote sin revisar) + diagnóstico completo de la contaminación de la cola y del bloqueo GDELT 2015-2016 — ver log.md |
 
 ---
 

@@ -13,6 +13,7 @@ Para marcar un artículo como ingestado después de que Claude lo procese:
 """
 
 import json
+import re
 import sys
 from pathlib import Path
 from datetime import datetime
@@ -153,13 +154,33 @@ def mark_ingested(url_or_slug: str) -> bool:
 
 
 def mark_all_ingested(limit: int = 0) -> int:
-    """Mark the first `limit` pending articles as ingested (after Claude processed them)."""
+    """
+    Mark as ingested exactly the batch of articles last shown to Claude Code
+    for review (parsed from pending_ingest.md's `mark-ingested` command list).
+
+    NOTE: this must NOT recompute "the next N pending articles" via
+    find_pending()/prioritize() — that selection can differ from the batch
+    actually shown for review (find_pending sorts by filename, ingest sorts
+    by relevance score), which would silently mark unreviewed articles as
+    ingested instead of the reviewed ones.
+    """
+    ingest_file = ROOT / "pending_ingest.md"
+    if not ingest_file.exists():
+        console.print("[red]No existe pending_ingest.md — ejecuta 'ingest' primero.[/red]")
+        return 0
+
+    urls = re.findall(
+        r"^python wiki_agro\.py mark-ingested '([^']+)'",
+        ingest_file.read_text(encoding="utf-8"),
+        flags=re.MULTILINE,
+    )
+    if limit:
+        urls = urls[:limit]
+
     processed = load_processed()
     articles = article_entries(processed)
-    pending = find_pending(limit=limit)
     count = 0
-    for _, article in pending:
-        url = article.get("url", "")
+    for url in urls:
         if url in articles:
             processed[url]["ingested"] = True
             processed[url]["ingested_at"] = datetime.now().isoformat()
