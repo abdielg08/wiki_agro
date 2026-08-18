@@ -35,7 +35,10 @@ from core import (
     console, load_config, load_processed, save_processed,
     save_article, ROOT
 )
-from fetch_news import _get, HEADERS, REQUEST_DELAY, is_agro_relevant
+from fetch_news import (
+    _get, HEADERS, REQUEST_DELAY, is_agro_relevant,
+    _is_panama_related, _is_blocked_domain,
+)
 
 PROGRESS_FILE = ROOT / "sources" / "historical_progress.json"
 
@@ -91,6 +94,11 @@ def fetch_gdelt_window(start: str, end: str, query: str = _AGRO_QUERY) -> list[d
         url = item.get("url", "")
         title = item.get("title", "")
         if not url or not title:
+            continue
+        # sourcecountry:PA alone is not reliable (e.g. "MIDA" also matches
+        # Malaysia's investment agency and Utah's Military Installation
+        # Development Authority) — require a real Panama signal too.
+        if _is_blocked_domain(url) or not _is_panama_related(title, url):
             continue
         date_raw = item.get("seendate", "")
         try:

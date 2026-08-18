@@ -274,11 +274,22 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
             console.print(f"  [yellow]DDG error: {e}[/yellow]")
             return
 
+    site_domain = site.lower().removeprefix("www.") if site else ""
+
     for r in results:
         url = r.get("url") or r.get("href", "")
         title = r.get("title", "")
         if not url or not title:
             continue
+        # DDG's `site:` operator is not always honored by the news backend —
+        # verify the result actually belongs to the requested domain before
+        # trusting it as a Panama source (root cause of a 100% false-positive
+        # batch: unrelated global "agriculture" articles were leaking in
+        # under source="prensa.com"). See wiki/log.md 2026-08-18.
+        if site_domain:
+            result_domain = _url_domain(url).removeprefix("www.")
+            if result_domain != site_domain and not result_domain.endswith("." + site_domain):
+                continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:
