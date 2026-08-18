@@ -287,7 +287,16 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
             except Exception:
                 pass
         body = r.get("body") or r.get("excerpt", "")
+        # DDG's site: filter is not reliably honored — it returns off-domain
+        # results too, so enforce the domain restriction ourselves and reject
+        # non-Panama results explicitly (see _is_blocked_domain/_is_panama_related).
+        if site and not _url_domain(url).endswith(site.lower()):
+            continue
+        if _is_blocked_domain(url):
+            continue
         if not is_agro_relevant(title, body, config):
+            continue
+        if not _is_panama_related(title, url + " " + body):
             continue
         yield {
             "url": url,
