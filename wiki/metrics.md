@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-08-18
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,54 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Artículos en sources/ | 29 | ↑ continuo |
+| Artículos reales ingestados (wiki) | 13 | = total sin falsos positivos |
+| Marcados como procesados (incl. falsos positivos) | 18 | — |
+| Pendientes de ingesta | 11 | 0 |
+| Falsos positivos acumulados | 12 (7 previos + 5 hoy) | **0 nuevos** |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Ventanas GDELT completadas | 70 | 45 (2015→hoy) — **rango agotado, necesita expansión** |
+| Días sin artículos nuevos reales | ~18 (último real: 2026-07-31) | máx 3 antes de diagnosticar |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions : 2026-08-17 — "0 artículos nuevos descargados"
+Racha sin nuevos        : 2026-08-02 → 2026-08-17 (16 corridas, salvo 2026-07-30/31
+                          con 2-3 nuevos). Cron diario SÍ está corriendo (commits
+                          diarios confirmados en sources/).
+
+Causa raíz encontrada (sesión 2026-08-18):
+  1. GDELT: 70 ventanas ya completadas (> 45 esperadas para 2015→hoy) → el rango
+     histórico disponible está prácticamente agotado; nuevas corridas de GDELT ya
+     no aportan artículos nuevos porque casi todo el período ya fue escaneado.
+  2. DDG web_search "prensa_agro" (config/sources.yaml → scripts/fetch_news.py
+     fetch_ddg_search): construía la query como `site:prensa.com {keywords}`, pero
+     el endpoint ddgs.news() NO respeta el operador `site:` de forma confiable.
+     Resultado: devolvía artículos de dominios totalmente ajenos (paultan.org,
+     sltrib.com, msn.com, heraldo.es, nyfb.org, spa.gov.sa, whc.unesco.org,
+     ieeexplore.ieee.org, archive.org, agenciabrasil.ebc.com.br) etiquetados
+     incorrectamente como source="prensa.com", sin verificar el dominio real.
+  3. "MIDA" está en search_terms.primary como sigla ambigua (coincide con Malaysian
+     Investment Development Authority y con Military Installation Development
+     Authority de Utah) — is_agro_relevant() los aceptaba solo por esa coincidencia.
+  Resultado combinado: el 100% de los 16 pendientes en processed.json (antes de esta
+  sesión) resultaron ser falsos positivos del pipeline "prensa_agro", no del LLM.
+
+Fix aplicado (2026-08-18) : scripts/fetch_news.py fetch_ddg_search() ahora verifica
+  que el netloc de la URL devuelta coincida con el `site` solicitado antes de
+  aceptar el resultado (urlparse + comparación exacta o subdominio).
+
+Pendiente de seguir revisando: los 11 pendientes restantes probablemente incluyen
+  más falsos positivos del mismo pipeline (generados antes del fix) — revisar en
+  la próxima sesión de ingesta.
+
+Recomendación siguiente corrida: considerar ampliar el rango de fechas de GDELT o
+  reducir su prioridad frente a RSS/DDG (ya corregido) como fuente principal, dado
+  que el backfill histórico vía GDELT está cerca de su límite de cobertura real.
 ```
 
 ---
@@ -67,6 +95,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-08-18 | 0 | 11 | 5/5 revisados = falsos positivos (colisión sigla "MIDA" + bug `site:` en DDG). Fix aplicado en fetch_ddg_search(). |
 
 ---
 
