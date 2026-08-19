@@ -289,6 +289,13 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         body = r.get("body") or r.get("excerpt", "")
         if not is_agro_relevant(title, body, config):
             continue
+        # Reject URLs from known non-Panama domains
+        if _is_blocked_domain(url):
+            continue
+        # Require at least one Panama term in title/URL/body — DDG's site: filter
+        # is not reliable and generic agro keywords (e.g. "MIDA") match worldwide.
+        if not _is_panama_related(title, url) and not _is_panama_related(body):
+            continue
         yield {
             "url": url,
             "title": title,
@@ -440,12 +447,19 @@ def fetch_gdelt_historical(config: dict, processed: dict) -> Iterator[dict]:
     start = datetime.strptime(cfg.get("date_range", {}).get("start", "2015-01-01"), "%Y-%m-%d")
     # Never query beyond yesterday — GDELT doesn't have future articles
     config_end = datetime.strptime(cfg.get("date_range", {}).get("end", "2025-12-31"), "%Y-%m-%d")
-    end = min(config_end, datetime.utcnow() - timedelta(days=1))
+    yesterday = datetime.utcnow() - timedelta(days=1)
+    end = min(config_end, yesterday)
 
     current = start
     while current < end:
         next_q = min(current + timedelta(days=90), end)
         window_key = f"{current.strftime('%Y%m%d')}_{next_q.strftime('%Y%m%d')}"
+        # The trailing window gets capped by "yesterday" (which moves forward every
+        # day) rather than by a natural 90-day boundary or the fixed config_end.
+        # Marking it complete would mint a brand-new key each run without ever
+        # advancing past it — so it's re-queried each day and only persisted to
+        # completed_windows once it closes on a real boundary.
+        is_open_tail = next_q == yesterday and yesterday < config_end
 
         if window_key in completed_windows:
             console.print(f"  [dim]GDELT skip (ya descargado): {window_key}[/dim]")
@@ -469,9 +483,11 @@ def fetch_gdelt_historical(config: dict, processed: dict) -> Iterator[dict]:
         for article in batch:
             yield article
 
-        # Mark window as complete only on successful HTTP response (even if 0 results)
-        completed_windows.add(window_key)
-        processed["_gdelt_windows"] = list(completed_windows)
+        # Mark window as complete only on successful HTTP response (even if 0 results),
+        # and only if it's not the still-growing open tail window.
+        if not is_open_tail:
+            completed_windows.add(window_key)
+            processed["_gdelt_windows"] = list(completed_windows)
 
         current = next_q + timedelta(days=1)
         time.sleep(REQUEST_DELAY * 2)  # polite pause between GDELT windows
