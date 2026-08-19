@@ -12,6 +12,7 @@ import time
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Iterator
+from urllib.parse import urlparse
 
 import requests
 import trafilatura
@@ -79,6 +80,20 @@ def _is_panama_related(title: str, url: str = "") -> bool:
     """True if the title or URL contains at least one Panama-related term."""
     text = (title + " " + url).lower()
     return any(term in text for term in _PANAMA_TERMS)
+
+
+def _matches_site(url: str, site: str) -> bool:
+    """True if url's domain matches (or is a subdomain of) the configured site.
+
+    DDGS's `site:` search operator is not reliably enforced by the underlying
+    search engine, so results can come from unrelated domains — this is a
+    hard post-filter to catch that.
+    """
+    if not site:
+        return True
+    domain = urlparse(url).netloc.lower()
+    site = site.lower()
+    return domain == site or domain.endswith("." + site)
 
 
 def _get(url: str, timeout: int = 20, retries: int = 2, **kwargs) -> requests.Response | None:
@@ -279,6 +294,10 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         title = r.get("title", "")
         if not url or not title:
             continue
+        if _is_blocked_domain(url):
+            continue
+        if not _matches_site(url, site):
+            continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:
@@ -288,6 +307,8 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
                 pass
         body = r.get("body") or r.get("excerpt", "")
         if not is_agro_relevant(title, body, config):
+            continue
+        if not _is_panama_related(title, url) and "panam" not in body.lower():
             continue
         yield {
             "url": url,
