@@ -37,6 +37,8 @@ def find_pending(limit: int = 0, reprocess: bool = False) -> list[tuple[Path, di
         article = load_article(path)
         url = article.get("url", "")
         meta = articles.get(url, {})
+        if meta.get("rejected"):
+            continue
         if not meta.get("ingested") or reprocess:
             has_text = bool(article.get("full_text") or article.get("summary_raw"))
             if has_text:
@@ -150,6 +152,22 @@ def mark_ingested(url_or_slug: str) -> bool:
             return True
     console.print(f"[red]No encontrado: {url_or_slug}[/red]")
     return False
+
+
+def mark_rejected(url: str, reason: str) -> bool:
+    """Flag an article as a false positive so it leaves the ingest queue."""
+    processed = load_processed()
+    meta = processed.get(url)
+    if not isinstance(meta, dict):
+        console.print(f"[red]No encontrado: {url}[/red]")
+        return False
+    meta["rejected"] = True
+    meta["rejected_reason"] = reason
+    meta["rejected_at"] = datetime.now().isoformat()
+    meta.pop("ingested_at", None)
+    meta["ingested"] = False
+    save_processed(processed)
+    return True
 
 
 def mark_all_ingested(limit: int = 0) -> int:

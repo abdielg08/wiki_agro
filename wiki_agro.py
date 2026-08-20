@@ -166,6 +166,16 @@ def mark_ingested(url_or_slug):
     _mark(url_or_slug)
 
 
+@cli.command("mark-rejected")
+@click.argument("url")
+@click.option("--reason", required=True, help="Por qué el artículo es un falso positivo")
+def mark_rejected(url, reason):
+    """Marcar un artículo como falso positivo (lo saca de la cola de ingesta)."""
+    from ingest import mark_rejected as _mark
+    if _mark(url, reason):
+        console.print(f"[yellow]✗ Rechazado: {url[:70]}[/yellow]")
+
+
 @cli.command("mark-all-ingested")
 @click.option("--limit", default=0, type=int,
               help="Número de artículos a marcar (0 = todos los pendientes)")
@@ -212,8 +222,9 @@ def stats():
     # Filter out internal metadata keys (prefixed with _)
     articles = {k: v for k, v in processed.items() if not k.startswith("_") and isinstance(v, dict)}
     total_articles = len(articles)
-    ingested = sum(1 for v in articles.values() if v.get("ingested"))
-    pending = total_articles - ingested
+    rejected = sum(1 for v in articles.values() if v.get("rejected"))
+    ingested = sum(1 for v in articles.values() if v.get("ingested") and not v.get("rejected"))
+    pending = total_articles - ingested - rejected
 
     wiki_pages = list((WIKI_DIR).rglob("*.md"))
     topics = list((WIKI_DIR / "topics").glob("*.md"))
@@ -234,6 +245,7 @@ def stats():
     t.add_row("Artículos descargados", str(total_articles))
     t.add_row("Artículos ingestados", str(ingested))
     t.add_row("Pendientes de ingesta", str(pending))
+    t.add_row("Rechazados (falsos positivos)", str(rejected))
     t.add_row("Total páginas wiki", str(len(wiki_pages)))
     t.add_row("  Topics", str(len(topics)))
     t.add_row("  Entidades", str(len(entities)))

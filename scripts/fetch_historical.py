@@ -70,7 +70,8 @@ _AGRO_QUERY = (
 def fetch_gdelt_window(start: str, end: str, query: str = _AGRO_QUERY) -> list[dict] | None:
     """Fetch one quarterly window from GDELT. Returns None on network error."""
     params = {
-        "query": f"({query}) sourcecountry:PA",
+        # FIPS 10-4, not ISO: Panama is PM. "PA" is Paraguay.
+        "query": f"({query}) sourcecountry:PM",
         "mode": "artlist",
         "maxrecords": 250,
         "format": "json",

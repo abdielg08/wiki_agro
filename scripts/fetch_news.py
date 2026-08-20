@@ -7,9 +7,11 @@ Fetch agro news from Panama from multiple sources:
 """
 
 import json
+import re
 import sys
 import time
 from datetime import datetime, timedelta
+from functools import lru_cache
 from pathlib import Path
 from typing import Iterator
 
@@ -75,6 +77,18 @@ def _is_blocked_domain(url: str) -> bool:
     return any(domain.endswith(tld) for tld in _NON_PA_TLDS)
 
 
+def _panama_domains(config: dict) -> set[str]:
+    """Domains of configured sources based in Panama (country: PA)."""
+    domains = set()
+    for group in config.get("sources", {}).values():
+        for source in group or []:
+            if source.get("country") == "PA":
+                domain = _url_domain(source.get("url", ""))
+                if domain:
+                    domains.add(domain.removeprefix("www."))
+    return domains
+
+
 def _is_panama_related(title: str, url: str = "") -> bool:
     """True if the title or URL contains at least one Panama-related term."""
     text = (title + " " + url).lower()
@@ -120,6 +134,11 @@ def extract_full_text(url: str) -> str | None:
         return None
 
 
+@lru_cache(maxsize=256)
+def _term_pattern(term: str) -> re.Pattern:
+    return re.compile(rf"(?<!\w){re.escape(term)}(?!\w)", re.IGNORECASE)
+
+
 def is_agro_relevant(title: str, text: str = "", config: dict = None) -> bool:
     """Return True if the content is relevant to Panama's agro sector."""
     if config is None:
@@ -128,8 +147,9 @@ def is_agro_relevant(title: str, text: str = "", config: dict = None) -> bool:
         config.get("search_terms", {}).get("primary", [])
         + config.get("search_terms", {}).get("secondary", [])
     )
-    combined = (title + " " + (text or "")).lower()
-    return any(t.lower() in combined for t in terms)
+    combined = title + " " + (text or "")
+    # Whole-word match: substring matching made "MIDA" hit "comida"/"medida".
+    return any(_term_pattern(t).search(combined) for t in terms)
 
 
 # ─── 1. RSS FETCHER ──────────────────────────────────────────────────────────
@@ -255,6 +275,7 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
     name = search_cfg.get("name", site)
 
     full_query = f"site:{site} {query}" if site else query
+    pa_domain = site.lower() in _panama_domains(config) or site.lower().endswith(".pa")
     console.print(f"  DDG [cyan]{name}[/cyan] → {full_query[:70]}")
 
     try:
@@ -286,14 +307,25 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
                 pub_date = dateparser.parse(str(date_raw)).strftime("%Y-%m-%d")
             except Exception:
                 pass
+        # DDG's news endpoint ignores the `site:` operator, so results arrive
+        # from arbitrary domains. Keep only the domain the search asked for.
+        domain = _url_domain(url).removeprefix("www.")
+        if site and not (domain == site or domain.endswith("." + site)):
+            continue
+        if _is_blocked_domain(url):
+            continue
         body = r.get("body") or r.get("excerpt", "")
         if not is_agro_relevant(title, body, config):
+            continue
+        # A Panamanian domain is itself the geographic guarantee; for any other
+        # domain the article must name Panama explicitly.
+        if not pa_domain and not _is_panama_related(title, url):
             continue
         yield {
             "url": url,
             "title": title,
             "date": pub_date,
-            "source": site or name,
+            "source": domain or site or name,
             "trust_level": 3,
             "language": "es",
             "country": "PA",
@@ -374,7 +406,8 @@ def fetch_gdelt_batch(query: str, start_date: str, end_date: str, max_records: i
     Only call mark-complete when result is not None.
     """
     params = {
-        "query": f"{query} sourcecountry:PA",
+        # FIPS 10-4, not ISO: Panama is PM. "PA" is Paraguay.
+        "query": f"{query} sourcecountry:PM",
         "mode": "artlist",
         "maxrecords": max_records,
         "format": "json",
@@ -390,6 +423,7 @@ def fetch_gdelt_batch(query: str, start_date: str, end_date: str, max_records: i
         data = resp.json()
     except Exception:
         return None
+    config = load_config()
     articles = []
     for item in data.get("articles", []):
         url = item.get("url", "")
@@ -401,8 +435,10 @@ def fetch_gdelt_batch(query: str, start_date: str, end_date: str, max_records: i
         if _is_blocked_domain(url):
             continue
 
-        # Require at least one Panama term in title or URL
-        if not _is_panama_related(title, url):
+        # sourcecountry:PM already restricts to Panamanian outlets, so a
+        # Panama term in the headline is not required — domestic coverage
+        # rarely names the country. Topicality still has to hold.
+        if not is_agro_relevant(title, "", config):
             continue
 
         date_raw = item.get("seendate", "")

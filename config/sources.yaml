@@ -239,7 +239,7 @@ gdelt:
   api_url: "https://api.gdeltproject.org/api/v2/doc/doc"
   max_records: 250
   language: "spa"
-  country_code: "PA"
+  country_code: "PM"  # FIPS 10-4 code for Panama (ISO "PA" is Paraguay in FIPS)
   date_range:
     start: "2015-01-01"
     end: "2027-12-31"

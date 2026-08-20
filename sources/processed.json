@@ -1,77 +1,5 @@
 {
-  "_gdelt_windows": [
-    "20260618_20260730",
-    "20210923_20211222",
-    "20201224_20210324",
-    "20221222_20230322",
-    "20200326_20200624",
-    "20211223_20220323",
-    "20170928_20171227",
-    "20230323_20230621",
-    "20260618_20260806",
-    "20260618_20260628",
-    "20260319_20260617",
-    "20180628_20180926",
-    "20260618_20260723",
-    "20240919_20241218",
-    "20250320_20250618",
-    "20231221_20240320",
-    "20180329_20180627",
-    "20230622_20230920",
-    "20190328_20190626",
-    "20260618_20260722",
-    "20240620_20240918",
-    "20260618_20260627",
-    "20260618_20260815",
-    "20251218_20260318",
-    "20260618_20260816",
-    "20210624_20210922",
-    "20210325_20210623",
-    "20260618_20260707",
-    "20260618_20260703",
-    "20260618_20260709",
-    "20260618_20260702",
-    "20260618_20260714",
-    "20200924_20201223",
-    "20260618_20260717",
-    "20260618_20260809",
-    "20250619_20250917",
-    "20171228_20180328",
-    "20260618_20260724",
-    "20260618_20260701",
-    "20260618_20260708",
-    "20180927_20181226",
-    "20260618_20260720",
-    "20260618_20260728",
-    "20220324_20220622",
-    "20260618_20260813",
-    "20250918_20251217",
-    "20260618_20260803",
-    "20230921_20231220",
-    "20260618_20260801",
-    "20170629_20170927",
-    "20241219_20250319",
-    "20260618_20260729",
-    "20190926_20191225",
-    "20220623_20220921",
-    "20200625_20200923",
-    "20220922_20221221",
-    "20260618_20260727",
-    "20260618_20260623",
-    "20240321_20240619",
-    "20260618_20260819",
-    "20260618_20260811",
-    "20190627_20190925",
-    "20260618_20260626",
-    "20191226_20200325",
-    "20260618_20260812",
-    "20260618_20260718",
-    "20170330_20170628",
-    "20260618_20260624",
-    "20260618_20260725",
-    "20260618_20260814",
-    "20181227_20190327"
-  ],
+  "_gdelt_windows": [],
   "https://www.tvn-2.com/nacionales/sequia-azuero-el-nino-2015-2016": {
     "saved_at": "2026-05-24T22:49:18.237842",
     "path": "sources/articles/20160301_tvnnoticias_sequia-azuero-nino-2015-2016.json",
@@ -132,9 +60,12 @@
     "title": "Mida welcomes Tengku Zafrul's appointment as chairman",
     "date": "2025-12-03",
     "source": "prensa.com",
-    "ingested": true,
+    "ingested": false,
     "skipped": true,
-    "skip_reason": "falso positivo: fuente malasia (thestar.com.my), no relacionado con Panama"
+    "skip_reason": "falso positivo: fuente malasia (thestar.com.my), no relacionado con Panama",
+    "rejected": true,
+    "rejected_reason": "MIDA = Malaysian Investment Development Authority, no el MIDA panameño",
+    "rejected_at": "2026-08-20T16:17:35.096580"
   },
   "https://www.thestar.com.my/business/business-news/2026/01/13/mida-sees-broader-investment-pipeline-beyond-data-centres-in-2026": {
     "saved_at": "2026-05-30T12:01:27.208195",
@@ -142,9 +73,12 @@
     "title": "MIDA sees broader investment pipeline beyond data centres in 2026",
     "date": "2026-01-13",
     "source": "prensa.com",
-    "ingested": true,
+    "ingested": false,
     "skipped": true,
-    "skip_reason": "falso positivo: fuente malasia (thestar.com.my), MIDA = Malaysian Investment Development Authority"
+    "skip_reason": "falso positivo: fuente malasia (thestar.com.my), MIDA = Malaysian Investment Development Authority",
+    "rejected": true,
+    "rejected_reason": "MIDA = Malaysian Investment Development Authority, no el MIDA panameño",
+    "rejected_at": "2026-08-20T16:17:35.098032"
   },
   "https://www.thestar.com.my/business/business-news/2026/04/22/malaysia-should-reform-recalibrate-response-to-global-changes-says-tengku-zafrul": {
     "saved_at": "2026-05-30T12:01:27.208950",
@@ -152,9 +86,12 @@
     "title": "Malaysia should reform, recalibrate response to global changes, says Tengku Zafrul",
     "date": "2026-04-22",
     "source": "prensa.com",
-    "ingested": true,
+    "ingested": false,
     "skipped": true,
-    "skip_reason": "falso positivo: fuente malasia (thestar.com.my), sin relacion con Panama"
+    "skip_reason": "falso positivo: fuente malasia (thestar.com.my), sin relacion con Panama",
+    "rejected": true,
+    "rejected_reason": "MIDA = Malaysian Investment Development Authority, no el MIDA panameño",
+    "rejected_at": "2026-08-20T16:17:35.099202"
   },
   "https://www.fox13now.com/news/local-news/box-elder-county/mida-violated-state-law-in-approval-process-of-box-elder-county-data-center-group-claims": {
     "saved_at": "2026-06-04T13:54:27.115663",
@@ -162,9 +99,12 @@
     "title": "MIDA violated state law in approval process of Box Elder County data center, group claims",
     "date": "2026-05-26",
     "source": "prensa.com",
-    "ingested": true,
+    "ingested": false,
     "skipped": true,
-    "skip_reason": "falso positivo: fox13now.com (Utah, EEUU), sin relacion con Panama"
+    "skip_reason": "falso positivo: fox13now.com (Utah, EEUU), sin relacion con Panama",
+    "rejected": true,
+    "rejected_reason": "MIDA = Military Installation Development Authority (Utah, EE.UU.)",
+    "rejected_at": "2026-08-20T16:17:35.101229"
   },
   "https://www.worldbank.org/ext/en/development-topics": {
     "saved_at": "2026-06-08T14:43:01.400687",
@@ -172,9 +112,12 @@
     "title": "Development Topics",
     "date": "2026-06-03",
     "source": "prensa.com",
-    "ingested": true,
+    "ingested": false,
     "skipped": true,
-    "skip_reason": "falso positivo: pagina generica de worldbank.org, sin contenido agropecuario Panama"
+    "skip_reason": "falso positivo: pagina generica de worldbank.org, sin contenido agropecuario Panama",
+    "rejected": true,
+    "rejected_reason": "Página genérica del Banco Mundial, sin contenido de Panamá",
+    "rejected_at": "2026-08-20T16:17:35.104110"
   },
   "https://www.thestar.com.my/business/business-news/2025/12/18/i-bhd039s-first-ai-experience-centre-opens-at-i-city": {
     "saved_at": "2026-06-11T14:31:45.817248",
@@ -182,9 +125,12 @@
     "title": "I-Bhd's first AI experience centre opens at i-City",
     "date": "2025-12-18",
     "source": "prensa.com",
-    "ingested": true,
+    "ingested": false,
     "skipped": true,
-    "skip_reason": "falso positivo: fuente malasia (thestar.com.my), centro de IA Malasia"
+    "skip_reason": "falso positivo: fuente malasia (thestar.com.my), centro de IA Malasia",
+    "rejected": true,
+    "rejected_reason": "MIDA = Malaysian Investment Development Authority, no el MIDA panameño",
+    "rejected_at": "2026-08-20T16:17:35.097430"
   },
   "https://ieeexplore.ieee.org/document/11018750": {
     "saved_at": "2026-06-19T13:58:42.404601",
@@ -192,9 +138,12 @@
     "title": "A 3D-Printed Worm-Like Robot for Corrugated Pipes Using Anisotropic Fins",
     "date": "2026-06-07",
     "source": "prensa.com",
-    "ingested": true,
+    "ingested": false,
     "skipped": true,
-    "skip_reason": "falso positivo: ieeexplore.ieee.org, articulo de robotica sin relacion con agro Panama"
+    "skip_reason": "falso positivo: ieeexplore.ieee.org, articulo de robotica sin relacion con agro Panama",
+    "rejected": true,
+    "rejected_reason": "Paper técnico IEEE sin relación con agro panameño",
+    "rejected_at": "2026-08-20T16:17:35.105124"
   },
   "https://www.spa.gov.sa/en/N2096157": {
     "saved_at": "2026-06-26T13:04:28.458471",
@@ -202,7 +151,10 @@
     "title": "'Reef Saudi', a Successful Program Based on Rain-Fed Agriculture",
     "date": "2026-06-24",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": false,
+    "rejected": true,
+    "rejected_reason": "Agro de Arabia Saudita — fuera del alcance geográfico",
+    "rejected_at": "2026-08-20T16:17:35.108762"
   },
   "https://www.sltrib.com/news/2026/05/19/kevin-oleary-data-center-timeline/": {
     "saved_at": "2026-06-27T12:05:20.042626",
@@ -210,7 +162,10 @@
     "title": "Timeline: How the Kevin O’Leary data center plan came to be, and what’s happened since",
     "date": "2026-05-19",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": false,
+    "rejected": true,
+    "rejected_reason": "MIDA = Military Installation Development Authority (Utah, EE.UU.)",
+    "rejected_at": "2026-08-20T16:17:35.100499"
   },
   "https://www.sltrib.com/news/environment/2026/05/29/utah-governor-issues-order-protect/": {
     "saved_at": "2026-06-27T12:05:20.043697",
@@ -218,7 +173,10 @@
     "title": "Utah Gov. Cox issues order to protect Great Salt Lake, air quality from data centers",
     "date": "2026-05-29",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": false,
+    "rejected": true,
+    "rejected_reason": "MIDA = Military Installation Development Authority (Utah, EE.UU.)",
+    "rejected_at": "2026-08-20T16:17:35.103226"
   },
   "https://www.sltrib.com/news/2026/05/27/box-elder-data-center-opponents/": {
     "saved_at": "2026-06-27T12:05:20.044648",
@@ -226,7 +184,10 @@
     "title": "Box Elder data center opponents hope for a vote — but are ready for a legal fight",
     "date": "2026-05-27",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": false,
+    "rejected": true,
+    "rejected_reason": "MIDA = Military Installation Development Authority (Utah, EE.UU.)",
+    "rejected_at": "2026-08-20T16:17:35.102160"
   },
   "https://www.nyfb.org/": {
     "saved_at": "2026-06-29T14:42:54.312073",
@@ -234,7 +195,10 @@
     "title": "New York Farm Bureau",
     "date": "2026-06-17",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": false,
+    "rejected": true,
+    "rejected_reason": "New York Farm Bureau — fuera del alcance geográfico",
+    "rejected_at": "2026-08-20T16:17:35.107103"
   },
   "https://www.sltrib.com/news/environment/2025/06/12/utah-nuclear-energy-state/": {
     "saved_at": "2026-07-02T12:53:53.066448",
@@ -242,7 +206,10 @@
     "title": "Utah wants to process uranium on the Wasatch Front for nuclear energy. Here’s where.",
     "date": "2025-06-13",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": false,
+    "rejected": true,
+    "rejected_reason": "MIDA = Military Installation Development Authority (Utah, EE.UU.)",
+    "rejected_at": "2026-08-20T16:17:35.094149"
   },
   "https://whc.unesco.org/en/list/1506": {
     "saved_at": "2026-07-10T13:04:57.003757",
@@ -250,7 +217,10 @@
     "title": "The Persian Qanat",
     "date": "2026-07-07",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": false,
+    "rejected": true,
+    "rejected_reason": "Ficha UNESCO sobre qanats de Irán — no es agro panameño",
+    "rejected_at": "2026-08-20T16:17:35.109890"
   },
   "https://paultan.org/2026/07/07/miti-working-on-simplified-ncm-customised-incentive-mechanism-to-build-real-local-industrial-capabilities/": {
     "saved_at": "2026-07-14T12:06:00.385283",
@@ -258,7 +228,10 @@
     "title": "MITI working on simplified NCM customised incentive mechanism to build real local industrial capabilities",
     "date": "2026-07-08",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": false,
+    "rejected": true,
+    "rejected_reason": "MIDA = Malaysian Investment Development Authority, no el MIDA panameño",
+    "rejected_at": "2026-08-20T16:17:35.110471"
   },
   "https://ieeexplore.ieee.org/document/10945742": {
     "saved_at": "2026-07-15T12:10:08.462784",
@@ -266,7 +239,10 @@
     "title": "Ambient IoT: Communications Enabling Precision Agriculture",
     "date": "2025-03-31",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": false,
+    "rejected": true,
+    "rejected_reason": "Paper técnico IEEE sin relación con agro panameño",
+    "rejected_at": "2026-08-20T16:17:35.093235"
   },
   "https://www.msn.com/en-us/news/other/cultural-rules-for-staying-with-locals-abroad/ss-AA1QWARj?ocid=BingNewsVerp": {
     "saved_at": "2026-07-20T13:01:08.501359",
@@ -274,7 +250,10 @@
     "title": "Cultural Rules For Staying With Locals Abroad",
     "date": "2026-03-07",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": false,
+    "rejected": true,
+    "rejected_reason": "MIDA = Military Installation Development Authority (Utah, EE.UU.)",
+    "rejected_at": "2026-08-20T16:17:35.098669"
   },
   "https://archive.org/details/Cataloguedipter2SaoP": {
     "saved_at": "2026-07-20T13:01:08.502291",
@@ -282,7 +261,10 @@
     "title": "Catalogue of the diptera of the Americas South of United States",
     "date": "2016-05-13",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": false,
+    "rejected": true,
+    "rejected_reason": "Catálogo entomológico de 1966, no es noticia agropecuaria de Panamá",
+    "rejected_at": "2026-08-20T16:17:35.092186"
   },
   "https://www.heraldo.es/noticias/aragon/2026/05/03/luis-biendicho-vox-asume-consejeria-medio-ambiente-con-un-inaga-bajo-lupa-investigacion-judicial-por-caso-forestalia-2017165.html": {
     "saved_at": "2026-07-29T12:56:00.851198",
@@ -290,7 +272,10 @@
     "title": "Luis Biendicho asume la consejería de Medio Ambiente, con un Inaga bajo la lupa por el caso Forestalia",
     "date": "2026-05-03",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": false,
+    "rejected": true,
+    "rejected_reason": "Agro de Aragón, España — fuera del alcance geográfico",
+    "rejected_at": "2026-08-20T16:17:35.099857"
   },
   "https://www.heraldo.es/noticias/economia/2025/11/25/aragon-celebra-sentencia-supremo-tumba-ampliacion-obligatoria-espacio-cerdo-granjas-1873321.html": {
     "saved_at": "2026-07-29T12:56:00.852732",
@@ -298,7 +283,10 @@
     "title": "Aragón celebra la sentencia del Supremo que tumba ampliación obligatoria del espacio por cerdo en las granjas",
     "date": "2025-11-25",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": false,
+    "rejected": true,
+    "rejected_reason": "Agro de Aragón, España — fuera del alcance geográfico",
+    "rejected_at": "2026-08-20T16:17:35.095346"
   },
   "https://www.heraldo.es/noticias/economia/2026/06/08/aega-pide-elecciones-campo-aragon-consejera-agricultura-le-responde-que-no-esta-dispuesta-gastar-un-millon-euros-2027313.html": {
     "saved_at": "2026-07-30T12:24:28.020434",
@@ -306,7 +294,10 @@
     "title": "AEGA pide elecciones al campo en Aragón y la consejera de Agricultura le responde que no está dispuesta a gastar un millón",
     "date": "2026-06-08",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": false,
+    "rejected": true,
+    "rejected_reason": "Agro de Aragón, España — fuera del alcance geográfico",
+    "rejected_at": "2026-08-20T16:17:35.106145"
   },
   "https://agenciabrasil.ebc.com.br/economia/noticia/2026-07/finep-vai-pagar-r-220-milhoes-para-inovacoes-em-agricultura-familiar": {
     "saved_at": "2026-07-30T12:24:28.021551",
@@ -314,7 +305,10 @@
     "title": "Finep vai pagar R$ 220 milhões para inovações em agricultura familiar",
     "date": "2026-07-02",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": false,
+    "rejected": true,
+    "rejected_reason": "Agro de Brasil — fuera del alcance geográfico",
+    "rejected_at": "2026-08-20T16:17:35.109291"
   },
   "https://www.heraldo.es/noticias/economia/2026/06/23/arvensis-agro-amplia-sus-instalaciones-preve-aumentar-un-50-su-facturacion-2030-2031462.html": {
     "saved_at": "2026-07-30T12:24:28.022755",
@@ -322,7 +316,10 @@
     "title": "Arvensis Agro amplía sus instalaciones y prevé aumentar un 50 % su facturación en 2030",
     "date": "2026-06-23",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": false,
+    "rejected": true,
+    "rejected_reason": "Agro de Aragón, España — fuera del alcance geográfico",
+    "rejected_at": "2026-08-20T16:17:35.108140"
   },
   "https://www.maine.gov/dacf/ard/index.shtml": {
     "saved_at": "2026-08-19T11:16:57.209199",
@@ -330,6 +327,9 @@
     "title": "Agricultural Resource Development Division",
     "date": "2026-08-13",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": false,
+    "rejected": true,
+    "rejected_reason": "Agro del estado de Maine, EE.UU. — fuera del alcance geográfico",
+    "rejected_at": "2026-08-20T16:17:35.111304"
   }
 }
