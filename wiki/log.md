@@ -2,7 +2,7 @@
 title: Log de Actividad del Wiki
 type: overview
 tags: [log, actividad]
-last_updated: 2025-05-24
+last_updated: 2026-08-20
 ---
 
 # Log de Actividad
@@ -48,3 +48,19 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-08-20 00:00
+ROUTINE: `stats` → 30 descargados / 13 ingestados / 17 pendientes antes de esta sesión
+INGEST: 5 artículos revisados de pending_ingest.md — **0 ingestados, 5 falsos positivos** (0% tasa de aceptación, consistente con regla de 0% falsos positivos: ninguno se agregó al wiki)
+  Falsos positivos (0 menciones de "Panamá" en el texto completo de cada uno; todos capturados por coincidencia de la sigla "MIDA" con entidades homónimas no panameñas):
+    - https://paultan.org/2026/07/07/miti-working-on-simplified-ncm-customised-incentive-mechanism-to-build-real-local-industrial-capabilities/ — MITI/MIDA/MARii de **Malasia** (Malaysian Investment Development Authority), no MIDA Panamá
+    - https://www.sltrib.com/news/2026/05/27/box-elder-data-center-opponents/ — MIDA = Military Installation Development Authority de **Utah, EE.UU.** (centro de datos Box Elder)
+    - https://www.sltrib.com/news/environment/2026/05/29/utah-governor-issues-order-protect/ — mismo MIDA de Utah, orden del gobernador Cox sobre Great Salt Lake
+    - https://www.sltrib.com/news/2026/05/19/kevin-oleary-data-center-timeline/ — mismo MIDA de Utah, timeline del centro de datos de Kevin O'Leary
+    - https://www.msn.com/en-us/news/other/cultural-rules-for-staying-with-locals-abroad/ss-AA1QWARj?ocid=BingNewsVerp — artículo de viajes sin relación agropecuaria, arrastrado por la misma búsqueda de "MIDA" (Utah)
+  Acción: marcados como ingestados vía `mark-all-ingested --limit 5` para vaciar la cola (no se creó contenido wiki)
+  **Alerta de calidad de fuente**: la fuente `prensa.com` (en processed.json realmente resuelve a dominios como paultan.org, sltrib.com, msn.com) está devolviendo resultados de una búsqueda ambigua por la sigla "MIDA" que colisiona con "Malaysian Investment Development Authority" y "Military Installation Development Authority" (Utah). Recomendado: ajustar el fetch para exigir contexto panameño explícito (ej. "Panamá", "MIDA Panamá", dominio .pa) antes de guardar el artículo como candidato.
+DIAGNÓSTICO: pendientes tras esta sesión = 12. Ver wiki/metrics.md para estado del fetch y ventanas GDELT.
+
+## 2026-08-20 00:13
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code
