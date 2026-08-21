@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-08-21
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,40 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
+| Artículos en sources/ | 30 | ↑ continuo |
+| Artículos ingestados (processed.json) | 30 | = total, 0 pendientes |
+| Artículos reales en wiki (no falsos positivos) | 6 | = total sin falsos positivos |
+| Falsos positivos acumulados | 24 (7 previos + 17 hoy) | **0 nuevos** — en riesgo, ver diagnóstico |
+| Páginas en wiki/ | 20 | ↑ continuo |
 | Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Ventanas GDELT completadas | 72 / ~45 estimadas | 45 (2015→hoy) — **excedido, ver nota** |
+| Días sin artículos nuevos reales | ≥2 (2026-08-20, 2026-08-21: 0 nuevos; 2026-08-19: 1 nuevo pero falso positivo) | máx 3 antes de diagnosticar |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions : 2026-08-21 (corre a diario, incl. 2026-08-20: 0 nuevos)
+Resultado              : Actions SÍ corre regularmente, pero:
+                         - Ventanas GDELT: 72 completadas (> 45 estimadas) →
+                           rango de fechas agotado, backfill histórico
+                           efectivamente estancado sin expansión de ventanas.
+                         - Única fuente activa produciendo artículos "nuevos":
+                           web_searches.prensa_agro (DDG site:prensa.com).
+Causa identificada (2026-08-21) : fuente DDG "prensa.com" está ROTA —
+  17/17 artículos pendientes evaluados hoy (100%) fueron falsos positivos:
+  DDG no respeta el filtro `site:prensa.com`, el query permite coincidencia
+  sin mención de Panamá (términos unidos con OR), y fetch_ddg_search()
+  hardcodea source=prensa.com/country=PA/language=es sin validar el
+  resultado real. Detalle completo en wiki/log.md (entrada 2026-08-21 16:45).
+Fix aplicado            : Ninguno esta sesión (cambio de código fuera del
+                          alcance de la routine automática) — documentado
+                          como recomendación en wiki/log.md.
+Estado                  : REQUIERE ACCIÓN DEL USUARIO — revisar
+                          scripts/fetch_news.py::fetch_ddg_search() e
+                          is_agro_relevant(), y config/sources.yaml
+                          (web_searches.prensa_agro query).
 ```
 
 ---
@@ -67,6 +81,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-08-21 | 0 al wiki (17/17 falsos positivos) | 0 | Fuente DDG "prensa.com" identificada como rota (100% FP). Bugs de `mark-ingested`/`mark-all-ingested` documentados y evitados con workaround manual. Ver wiki/log.md. |
 
 ---
 
