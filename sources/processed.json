@@ -242,7 +242,8 @@
     "title": "Utah wants to process uranium on the Wasatch Front for nuclear energy. Here’s where.",
     "date": "2025-06-13",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-08-21T08:16:56.912290"
   },
   "https://whc.unesco.org/en/list/1506": {
     "saved_at": "2026-07-10T13:04:57.003757",
@@ -266,7 +267,8 @@
     "title": "Ambient IoT: Communications Enabling Precision Agriculture",
     "date": "2025-03-31",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-08-21T08:16:56.912288"
   },
   "https://www.msn.com/en-us/news/other/cultural-rules-for-staying-with-locals-abroad/ss-AA1QWARj?ocid=BingNewsVerp": {
     "saved_at": "2026-07-20T13:01:08.501359",
@@ -274,7 +276,8 @@
     "title": "Cultural Rules For Staying With Locals Abroad",
     "date": "2026-03-07",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-08-21T08:16:56.912292"
   },
   "https://archive.org/details/Cataloguedipter2SaoP": {
     "saved_at": "2026-07-20T13:01:08.502291",
@@ -282,7 +285,8 @@
     "title": "Catalogue of the diptera of the Americas South of United States",
     "date": "2016-05-13",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-08-21T08:16:56.912277"
   },
   "https://www.heraldo.es/noticias/aragon/2026/05/03/luis-biendicho-vox-asume-consejeria-medio-ambiente-con-un-inaga-bajo-lupa-investigacion-judicial-por-caso-forestalia-2017165.html": {
     "saved_at": "2026-07-29T12:56:00.851198",
@@ -298,7 +302,8 @@
     "title": "Aragón celebra la sentencia del Supremo que tumba ampliación obligatoria del espacio por cerdo en las granjas",
     "date": "2025-11-25",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-08-21T08:16:56.912291"
   },
   "https://www.heraldo.es/noticias/economia/2026/06/08/aega-pide-elecciones-campo-aragon-consejera-agricultura-le-responde-que-no-esta-dispuesta-gastar-un-millon-euros-2027313.html": {
     "saved_at": "2026-07-30T12:24:28.020434",
