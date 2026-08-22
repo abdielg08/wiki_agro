@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-08-22
 ---
 
 # Dashboard de Métricas
@@ -14,50 +14,73 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Artículos en sources/ | 30 | ↑ continuo |
+| Artículos reales ingestados | 13 | = total sin falsos positivos |
+| Falsos positivos acumulados | 28 (7 previos + 21 esta sesión) | **0 nuevos** |
+| Páginas en wiki/ | 20 | ↑ continuo |
+| Cobertura temporal real | 2017-03 → hoy (parcial) | 2015-02-19 → hoy |
+| Ventanas GDELT completadas | 72 | cobertura 2015→hoy |
+| Días sin artículos nuevos | **3** (2026-08-20, 08-21, 08-22 en 0; último real: 08-19) | ⚠️ máx 3 antes de diagnosticar — **UMBRAL ALCANZADO** |
+
+---
+
+## ⚠️ Señal de alarma activa (2026-08-22)
+
+`Días sin artículos nuevos` llegó a 3. Diagnóstico ejecutado — ver detalle abajo y en `wiki/log.md`.
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions : 2026-08-21 (corre diario, 11:24 UTC — a tiempo)
+Resultado               : 0 artículos nuevos (patrón: 0 en la mayoría de días,
+                          ocasional 1-3; sin corrida de hoy 08-22 aún al momento
+                          de esta sesión)
+Causa identificada      : (1) La cola de ingesta pendiente estaba 100% contaminada
+                          por un bug real en fetch_ddg_search() (ver detalle abajo) —
+                          21/21 artículos revisados en esta sesión eran falsos
+                          positivos, ninguno sobre agro panameño.
+                          (2) El backfill histórico (wiki_historical.yml) NUNCA se ha
+                          ejecutado para 2015-02-19 → 2017-03-29 — hueco real de
+                          ~2 años en la cobertura declarada como objetivo.
+                          (3) Este entorno de sesión (Claude Code cloud) tiene la
+                          API de GDELT bloqueada por su proxy saliente (403 en el
+                          túnel) — GitHub Actions sí tiene acceso (ventanas GDELT
+                          avanzan a diario), así que el fetch diario de GDELT no
+                          está bloqueado en producción, solo aquí.
+Fix aplicado esta sesión : fetch_ddg_search() ahora descarta resultados de DDG cuyo
+                          dominio real no coincide con el `site:` consultado —
+                          bloqueará los falsos positivos tipo "MIDA" (homónimos:
+                          Malaysia MIDA, Utah Military Installation Development
+                          Authority) y artículos de otros países que colaban por
+                          match de substring genérico.
+                          mark_all_ingested() e mark_ingested() en scripts/ingest.py
+                          tenían bugs de selección/filtrado — corregidos (ver log.md
+                          2026-08-22 08:30 para detalle completo).
+Acción recomendada      : Disparar manualmente el workflow `wiki_historical.yml`
+                          (workflow_dispatch) con years="2015-2017" mode="gdelt"
+                          para cerrar el hueco de cobertura 2015-02-19→2017-03-29.
+                          No se disparó desde esta sesión (corre hasta 6h y hace
+                          push directo a main fuera del flujo de PR de esta sesión) —
+                          requiere confirmación humana.
 ```
 
 ---
 
 ## Progreso del Backfill GDELT (2015 → hoy)
 
-| Período | Ventanas | Artículos | Estado |
-|---------|----------|-----------|--------|
-| 2015 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2016 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2017 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2018 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2019 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2020 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2021 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2022 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2023 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2024 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2025 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2026 Q1-Q2 | 0/2 | ? | Pendiente |
-| **TOTAL** | **0/46** | **0** | **Backfill no iniciado** |
+| Período | Ventanas | Estado |
+|---------|----------|--------|
+| 2015-02-19 → 2017-03-29 | 0 | **Nunca ejecutado — hueco real de cobertura** |
+| 2017-03-30 → 2026-06-17 | ~68 (trimestrales) | Completado |
+| 2026-06-18 → hoy | ~4 (incrementales diarias) | En progreso (fetch diario) |
+| **TOTAL** | **72** | **Backfill histórico incompleto — falta 2015-2017** |
 
-> Una vez que Actions corra con el código corregido, actualizar esta tabla con los datos reales.
-> El rendimiento real de GDELT (artículos/trimestre) determinará la duración del backfill.
+> Fuente: `sources/processed.json` → `_gdelt_windows` (72 ventanas, la más antigua
+> inicia en 2017-03-30). El objetivo declarado en CLAUDE.md es 2015-02-19 → hoy;
+> ese arranque nunca se cubrió. Ejecutar `wiki_historical.yml` con years=2015-2017
+> para cerrarlo.
 
 ---
 
@@ -67,6 +90,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-08-22 | 0 (21/21 revisados = falsos positivos) | 0 | Cola completa contaminada por bug de dominio en DDG search (corregido). 2 bugs adicionales corregidos en ingest.py (selección de mark-all-ingested y filtrado de claves internas). Hueco de cobertura 2015-2017 identificado. |
 
 ---
 
@@ -84,3 +108,9 @@ Al ejecutar, la routine DEBE:
 - Revisar el último log de GitHub Actions (ver wiki/log.md para contexto)
 - Identificar si el problema es GDELT rate-limit, RSS caído, o config
 - Documentar el diagnóstico en wiki/log.md con pasos para resolverlo
+
+**Pendiente de seguimiento (próxima sesión)**:
+- Validar que el fix de `fetch_ddg_search()` (dominio real vs. `site:` consultado)
+  efectivamente reduce los falsos positivos en la próxima corrida de `fetch --mode all`.
+- Confirmar con el usuario si se debe disparar `wiki_historical.yml` para
+  years=2015-2017 (hueco de cobertura real, ver arriba).

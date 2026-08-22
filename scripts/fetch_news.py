@@ -12,6 +12,7 @@ import time
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Iterator
+from urllib.parse import urlparse
 
 import requests
 import trafilatura
@@ -278,6 +279,12 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         url = r.get("url") or r.get("href", "")
         title = r.get("title", "")
         if not url or not title:
+            continue
+        # DDGS "site:" filter is not reliably honored by the news backend —
+        # it can return results from unrelated domains, so re-verify here.
+        # Without this, generic terms (e.g. "MIDA") pull in homonym false
+        # positives from other countries (Malaysia's MIDA, Utah's MIDA, etc.)
+        if site and site.lower() not in urlparse(url).netloc.lower():
             continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""

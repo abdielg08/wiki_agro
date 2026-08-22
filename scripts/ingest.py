@@ -141,7 +141,7 @@ def run_prepare(
 def mark_ingested(url_or_slug: str) -> bool:
     """Mark an article as ingested in processed.json."""
     processed = load_processed()
-    for url, meta in processed.items():
+    for url, meta in article_entries(processed).items():
         if url == url_or_slug or url_or_slug in meta.get("path", ""):
             meta["ingested"] = True
             meta["ingested_at"] = datetime.now().isoformat()
@@ -153,10 +153,24 @@ def mark_ingested(url_or_slug: str) -> bool:
 
 
 def mark_all_ingested(limit: int = 0) -> int:
-    """Mark the first `limit` pending articles as ingested (after Claude processed them)."""
+    """
+    Mark the top `limit` pending articles as ingested (after Claude processed them).
+
+    Uses the same score-based priority order as `run_prepare()` (the default
+    strategy behind `ingest --limit N`), so this marks the same articles that
+    were actually shown to Claude in the last `pending_ingest.md` batch — NOT
+    filename/path order, which can select a completely different set and
+    silently mark unreviewed articles as ingested. When in doubt, prefer the
+    per-article `mark-ingested <url>` commands listed at the end of
+    `pending_ingest.md` — they are exact regardless of this function's order.
+    """
+    from prioritize import prioritize
+
     processed = load_processed()
     articles = article_entries(processed)
-    pending = find_pending(limit=limit)
+    all_pending = find_pending(limit=0)
+    scored = prioritize(all_pending, strategy="score")
+    pending = [(path, article) for path, article, _ in scored[: limit or len(scored)]]
     count = 0
     for _, article in pending:
         url = article.get("url", "")
