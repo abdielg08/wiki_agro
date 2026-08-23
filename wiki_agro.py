@@ -169,10 +169,17 @@ def mark_ingested(url_or_slug):
 @cli.command("mark-all-ingested")
 @click.option("--limit", default=0, type=int,
               help="Número de artículos a marcar (0 = todos los pendientes)")
-def mark_all_ingested(limit):
+@click.option("--strategy", default="score",
+              type=click.Choice(["score", "recent", "oldest", "source"]),
+              help="Debe coincidir con la estrategia usada en 'ingest' para marcar el mismo lote")
+@click.option("--year", default=None,
+              help="Filtrar por año o rango: 2020 o 2018-2021")
+@click.option("--source", default=None,
+              help="Filtrar por fuente: MIDA, LaPrensaEco, FAO, etc.")
+def mark_all_ingested(limit, strategy, year, source):
     """Marcar artículos pendientes como ingestados (después de que Claude los procesó)."""
     from ingest import mark_all_ingested as _mark_all
-    count = _mark_all(limit=limit)
+    count = _mark_all(limit=limit, strategy=strategy, year_filter=year, source_filter=source)
     console.print(f"[bold green]✓ {count} artículos marcados como ingestados[/bold green]")
 
 
