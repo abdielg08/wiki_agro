@@ -279,6 +279,12 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         title = r.get("title", "")
         if not url or not title:
             continue
+        # DDG's `site:` operator is not reliably honored by the news vertical —
+        # verify the result actually lives on the configured domain before
+        # trusting it, otherwise unrelated global articles slip through
+        # mislabeled with this source's name (e.g. matched only on "MIDA").
+        if site and not _url_domain(url).endswith(site.lower()):
+            continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:
@@ -288,6 +294,8 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
                 pass
         body = r.get("body") or r.get("excerpt", "")
         if not is_agro_relevant(title, body, config):
+            continue
+        if not site and not _is_panama_related(title, url):
             continue
         yield {
             "url": url,
