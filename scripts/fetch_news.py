@@ -279,6 +279,13 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         title = r.get("title", "")
         if not url or not title:
             continue
+        # The `site:` operator isn't reliably enforced by the underlying search
+        # engine — verify the result actually belongs to the requested domain
+        # before trusting it and labeling it with that source's name/level.
+        if site and not _url_domain(url).endswith(site.lower()):
+            continue
+        if _is_blocked_domain(url):
+            continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:
