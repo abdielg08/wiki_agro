@@ -141,7 +141,7 @@ def run_prepare(
 def mark_ingested(url_or_slug: str) -> bool:
     """Mark an article as ingested in processed.json."""
     processed = load_processed()
-    for url, meta in processed.items():
+    for url, meta in article_entries(processed).items():
         if url == url_or_slug or url_or_slug in meta.get("path", ""):
             meta["ingested"] = True
             meta["ingested_at"] = datetime.now().isoformat()
@@ -153,13 +153,28 @@ def mark_ingested(url_or_slug: str) -> bool:
 
 
 def mark_all_ingested(limit: int = 0) -> int:
-    """Mark the first `limit` pending articles as ingested (after Claude processed them)."""
+    """
+    Mark as ingested the exact articles listed in the current pending_ingest.md
+    (the batch `ingest` generated and Claude just processed) — not an independently
+    re-derived pending list, since `ingest` orders by priority/score while a plain
+    filename-sorted pending scan can select a different set of articles.
+    """
+    import re
+
+    ingest_file = ROOT / "pending_ingest.md"
+    if not ingest_file.exists():
+        console.print("[red]No existe pending_ingest.md — ejecuta primero 'ingest'.[/red]")
+        return 0
+
+    urls = re.findall(r"^- \*\*URL\*\*: (.+)$", ingest_file.read_text(encoding="utf-8"), re.MULTILINE)
+    if limit:
+        urls = urls[:limit]
+
     processed = load_processed()
     articles = article_entries(processed)
-    pending = find_pending(limit=limit)
     count = 0
-    for _, article in pending:
-        url = article.get("url", "")
+    for url in urls:
+        url = url.strip()
         if url in articles:
             processed[url]["ingested"] = True
             processed[url]["ingested_at"] = datetime.now().isoformat()
