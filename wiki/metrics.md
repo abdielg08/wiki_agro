@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-08-25
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,31 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Artículos en sources/ | 50 | ↑ continuo |
+| Artículos reales ingestados | 10 (resúmenes en wiki/) | = total sin falsos positivos |
+| Falsos positivos acumulados | 8 | **0 nuevos** |
+| Páginas en wiki/ | 25 (9 topics, 3 entidades, 10 resúmenes, 3 overview) | ↑ continuo |
+| Cobertura temporal | 2015-2026 (backfill parcial) | 2015 → hoy real |
+| Ventanas GDELT completadas | 74 / ~46 estimadas | 45 (2015→hoy) — **rango agotado, requiere expansión** |
+| Días sin artículos nuevos | 1 (último fetch: 2026-08-24) | máx 3 antes de diagnosticar |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions : 2026-08-24 (20 artículos nuevos descargados)
+Cadencia observada      : ~1 corrida/día (no 3x/día como asume CLAUDE.md);
+                          irregular, con días sin commit (ej. 2026-08-23)
+Ventanas GDELT          : 74 completadas — supera el estimado original de ~45-46
+                          ventanas para cubrir 2015→hoy. El rango original parece agotado.
+Diagnóstico             : el backfill sigue trayendo artículos nuevos (20 el 2026-08-24),
+                          por lo que no está bloqueado, pero el conteo de ventanas (74)
+                          sugiere que necesita expandirse más allá del rango 2015-2026
+                          original o que hay reintentos/duplicados en el conteo.
+                          Revisar scripts/fetch.py para confirmar el mecanismo de
+                          expansión de ventanas GDELT.
+Pendientes tras sesión  : 32 (se procesaron 5: 4 ingestados + 1 falso positivo)
 ```
 
 ---
@@ -42,22 +47,14 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 
 | Período | Ventanas | Artículos | Estado |
 |---------|----------|-----------|--------|
-| 2015 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2016 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2017 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2018 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2019 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2020 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2021 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2022 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2023 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2024 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2025 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2026 Q1-Q2 | 0/2 | ? | Pendiente |
-| **TOTAL** | **0/46** | **0** | **Backfill no iniciado** |
+| **TOTAL** | **74/~46 estimadas** | **50 en sources/** | **En progreso — rango original superado** |
 
-> Una vez que Actions corra con el código corregido, actualizar esta tabla con los datos reales.
-> El rendimiento real de GDELT (artículos/trimestre) determinará la duración del backfill.
+> `processed.json._gdelt_windows` registra 74 ventanas completadas, más de las ~45-46
+> estimadas originalmente para cubrir 2015→hoy en trimestres. El desglose por período no
+> está disponible en `processed.json` (solo se guarda la lista plana de ventanas
+> `YYYYMMDD_YYYYMMDD`); si se requiere el desglose trimestral, hay que parsear esa lista.
+> Prioridad: confirmar en `scripts/fetch.py` si las 74 ventanas cubren 2015-2026 sin
+> huecos o si hay reintentos/duplicados inflando el conteo.
 
 ---
 
@@ -67,6 +64,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-08-25 | 4 (+1 falso positivo documentado) | 32 | Fix de bug en `mark-ingested` (scripts/ingest.py); creada página subsidios_programas.md |
 
 ---
 
