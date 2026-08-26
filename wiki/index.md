@@ -36,7 +36,7 @@ article_count: 0
 ### Ganadería y Proteína Animal
 | Página | Descripción |
 |--------|-------------|
-| [ganaderia_bovina.md](topics/ganaderia_bovina.md) | Cría, leche, carne; regiones ganaderas |
+| [ganaderia_bovina.md](topics/ganaderia_bovina.md) | Cría, leche, carne; sequías e inundaciones en Azuero/Veraguas |
 | [porcicultura.md](topics/porcicultura.md) | Producción porcina nacional |
 | [avicultura.md](topics/avicultura.md) | Pollos de engorde, huevos, industria avícola |
 | [acuicultura_pesca.md](topics/acuicultura_pesca.md) | Camarones, tilapia, pesca artesanal |
@@ -56,8 +56,8 @@ article_count: 0
 ### Políticas y Gobernanza
 | Página | Descripción |
 |--------|-------------|
-| [politicas_agropecuarias.md](topics/politicas_agropecuarias.md) | Leyes, Plan Mulino B/. 850M 2024-2029, planes de gobierno |
-| [subsidios_programas.md](topics/subsidios_programas.md) | Plan de Semillas, Agroalimentos, programas de apoyo |
+| [politicas_agropecuarias.md](topics/politicas_agropecuarias.md) | Leyes, Plan Mulino B/. 850M 2024-2029, planes de gobierno, transición ministerial 2024 |
+| [subsidios_programas.md](topics/subsidios_programas.md) | Subsidios MIDA, compensaciones a productores, transición 2024 |
 
 ### Regiones Agrícolas
 | Página | Descripción |
@@ -67,7 +67,7 @@ article_count: 0
 | [veraguas.md](topics/veraguas.md) | Diversidad productiva, palma africana |
 | [cocle.md](topics/cocle.md) | Caña de azúcar, piña, ganadería |
 | [bocas_del_toro.md](topics/bocas_del_toro.md) | Banano (Chiquita/Fyffes), cacao, turismo rural |
-| [darien_comarca.md](topics/darien_comarca.md) | Frontera, agricultura indígena, palma africana |
+| [darien_comarca.md](topics/darien_comarca.md) | Frontera, agricultura indígena, palma africana, reclamos de compensación arrocera |
 
 ---
 
@@ -98,7 +98,11 @@ article_count: 0
 | 2022-04-10 | IICA | [Vigilancia Fusarium TR4 bananeras](summaries/20220410_iica_platano-banano-exportaciones-fusarium.md) | 56M cajas, US$ 500M en riesgo |
 | 2021-08-15 | BDA | [Crédito pandemia 2020-2021](summaries/20210815_bda_credito-agropecuario-pandemia-2020-2021.md) | B/. 320M, 28K productores |
 | 2024-03-05 | MIDA | [Plan Agropecuario Mulino 2024-2029](summaries/20240305_mida_politica-agropecuaria-mulino-2024.md) | B/. 850M, meta 80% autoabastecimiento |
+| 2022-05-24 | prensa.com | [Siembra ~90 mil ha de arroz ciclo 2022-2023](summaries/20220524_prensacom_siembra-90-mil-hectareas-arroz-2022-2023.md) | 79,600 ha en secano |
+| 2024-06-07 | prensa.com | [Linares revisará subsidios en el MIDA](summaries/20240607_prensacom_linares-revisara-subsidios-mida.md) | Transición ministerial Valderrama → Linares |
+| 2024-06-13 | prensa.com | [Productores de arroz de Panamá Este y Darién exigen pago](summaries/20240613_prensacom_productores-arroz-panama-este-darien-exigen-pago.md) | Compensaciones pendientes de 2023 |
+| 2024-11-07 | prensa.com | [Inundaciones afectan arroz, maíz y ganadería](summaries/20241107_prensacom_inundaciones-perdidas-arroz-maiz-ganaderia.md) | Veraguas, lluvias de fin de semana |
 
 ---
 
-*Última actualización del índice: 2026-05-24*
+*Última actualización del índice: 2026-08-26*
