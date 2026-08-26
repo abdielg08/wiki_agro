@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-08-26
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,39 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Artículos en sources/ | 50 | ↑ continuo |
+| Artículos ingestados (total) | 18 | = total sin falsos positivos |
+| Artículos reales ingestados (excl. falsos positivos) | 17 | ↑ continuo |
+| Falsos positivos acumulados | 8 (7 previos + 1 nuevo 2026-08-26) | **0 nuevos** por sesión |
+| Pendientes de ingesta | 32 | 0 |
+| Páginas en wiki/ | 24 (8 topics, 3 entities, 10 summaries, ~3 overview) | ↑ continuo |
+| Cobertura temporal | 2015-2026 (parcial) | 2015 → hoy real |
+| Ventanas GDELT completadas | 75 (`_gdelt_windows` en processed.json) | 45-46 (2015→hoy) — **superado** |
+| Días sin artículos nuevos | 1 (última corrida Actions 2026-08-25 trajo 0) | máx 3 antes de diagnosticar |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions : 2026-08-25 (commit a8ccd35→4908c54)
+Resultado 2026-08-25    : 0 artículos nuevos
+Resultado 2026-08-24    : 20 artículos nuevos (última corrida productiva)
+Racha reciente          : 0,0,0,20,0,0,1,0,0,0,0,0,0,0,0 (últimos ~15 días,
+                           más reciente primero) — fetch corre a diario pero
+                           trae artículos nuevos de forma intermitente.
+Diagnóstico (Paso 4)    : `_gdelt_windows` = 75 completadas, superando el
+                           umbral de ~45-46 ventanas estimadas para cubrir
+                           2015→hoy. Según CLAUDE.md esto sugiere que el
+                           rango de fechas GDELT ya está agotado y el fetch
+                           puede estar reintentando ventanas ya cubiertas
+                           sin encontrar contenido nuevo. Recomendado:
+                           revisar scripts/fetch_historical.py para
+                           verificar si necesita expansión de rango o
+                           una fuente adicional (RSS IICA/La Prensa activos).
+Estado                  : Sin fallo crítico (días_sin_nuevos=1 < 3), pero
+                           el ritmo de nuevos artículos se está desacelerando
+                           — monitorear en próximas sesiones.
 ```
 
 ---
@@ -67,6 +80,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-08-26 | 4 (+1 falso positivo excluido) | 32 | Fix de bug en `mark-ingested` (AttributeError con `_gdelt_windows`); GDELT windows en 75 (>45 umbral) |
 
 ---
 
