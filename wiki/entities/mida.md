@@ -1,13 +1,17 @@
 ---
 title: MIDA — Ministerio de Desarrollo Agropecuario
 type: entity
-tags: [gobierno, ministerio, politica-agropecuaria, plan-mulino, semillas, fitosanitario]
-last_updated: 2026-05-24
-article_count: 2
+tags: [gobierno, ministerio, politica-agropecuaria, plan-mulino, semillas, fitosanitario, subsidios, transicion]
+last_updated: 2026-08-27
+article_count: 6
 sources:
   - "https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023"
   - "https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024"
-related: [entities/idiap.md, entities/bda.md, topics/politicas_agropecuarias.md, topics/arroz.md, topics/plagas_enfermedades.md]
+  - "https://www.prensa.com/economia/panama-proyecta-sembrar-cerca-de-90-mil-hectareas-de-arroz-para-el-ciclo-2022-2023/"
+  - "https://www.prensa.com/politica/roberto-linares-revisara-los-subsidios-en-el-mida/"
+  - "https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/"
+  - "https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/"
+related: [entities/idiap.md, entities/bda.md, topics/politicas_agropecuarias.md, topics/arroz.md, topics/plagas_enfermedades.md, topics/subsidios_programas.md, topics/darien_comarca.md]
 ---
 
 # MIDA — Ministerio de Desarrollo Agropecuario
@@ -36,6 +40,18 @@ El Ministerio de Desarrollo Agropecuario (MIDA) es la institución rectora del s
 - Presupuesto IDIAP triplicado: B/. 15M → **B/. 45M/año**
 - Plan de Semillas: **40,000 productores** con semillas certificadas
 
+### Transición Ministerial 2024
+- **2024-06-07**: reunión de transición entre el ministro saliente Augusto Valderrama y el ministro designado Roberto José Linares, previo al cambio de gobierno hacia la administración de José Raúl Mulino; Linares anunció revisión de los programas de subsidios del MIDA [La Prensa, 2024-06-07]
+
+### Proyección Arroz 2022-2023
+- **2022-05-24**: MIDA proyectó sembrar cerca de **90,000 hectáreas** de arroz para el ciclo 2022-2023 (79,600 ha secano + ~10,400 ha riego) [La Prensa, 2022-05-24]
+
+### Compensaciones Pendientes a Productores
+- **2024-06-13**: productores de arroz de Panamá Este y Darién exigieron en la sede del MIDA el pago de compensaciones pendientes de 2023 [La Prensa, 2024-06-13]
+
+### Inundaciones 2024
+- **2024-11-07**: MIDA inició evaluación de pérdidas en arroz, maíz y ganadería por fuertes lluvias en Veraguas [La Prensa, 2024-11-07]
+
 ### Crisis Arroz 2023
 - Declaró Plan de Emergencia Arrocera ante caída del **18%** en producción (230,000 TM vs. 280,000 TM en 2022) [MIDA, 2023-09-15]
 - Distribución de semilla certificada IDIAP-Esperanza a productores afectados
@@ -56,14 +72,21 @@ El Ministerio de Desarrollo Agropecuario (MIDA) es la institución rectora del s
 - Capacidad de ejecución históricamente por debajo del presupuesto asignado
 - Laboratorios de diagnóstico fitosanitario subutilizados o desactualizados
 - Cobertura limitada en zonas remotas (comarcas, Darién)
+- Retrasos en el pago de compensaciones a productores, especialmente en regiones periféricas (Panamá Este, Darién)
 
 ## Referencias
 
 - [MIDA, 2023 — Producción de arroz](https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023)
 - [MIDA, 2024 — Plan Agropecuario Mulino 2024-2029](https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024)
+- [La Prensa, 2022 — Proyección siembra arroz 2022-2023](https://www.prensa.com/economia/panama-proyecta-sembrar-cerca-de-90-mil-hectareas-de-arroz-para-el-ciclo-2022-2023/)
+- [La Prensa, 2024 — Transición Valderrama → Linares](https://www.prensa.com/politica/roberto-linares-revisara-los-subsidios-en-el-mida/)
+- [La Prensa, 2024 — Productores de Darién exigen compensaciones](https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/)
+- [La Prensa, 2024 — Pérdidas por inundaciones en Veraguas](https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/)
 
 ## Ver también
 - [IDIAP](idiap.md) — investigación agropecuaria
 - [BDA](bda.md) — financiamiento al sector
 - [Políticas Agropecuarias](../topics/politicas_agropecuarias.md)
+- [Subsidios y Programas](../topics/subsidios_programas.md)
 - [Arroz en Panamá](../topics/arroz.md)
+- [Darién y Comarcas](../topics/darien_comarca.md)
