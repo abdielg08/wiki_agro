@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-08-27
 ---
 
 # Dashboard de Métricas
@@ -14,27 +14,50 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Artículos en sources/ | 50 | ↑ continuo |
+| Artículos reales ingestados | 18 | = total sin falsos positivos |
+| Falsos positivos acumulados | 8 (7 previos + 1 hoy: paultan.org/MITI Malasia) | **0 nuevos** |
+| Pendientes de ingesta | 32 | 0 |
+| Páginas en wiki/ | 24 (8 topics, 3 entities, 10 summaries, 3 overview) | ↑ continuo |
+| Cobertura temporal | 2015-2026 (parcial, en progreso) | 2015 → hoy real |
+| Ventanas GDELT completadas | 75 | ~45-46 estimadas (objetivo ya superado) |
+| Días sin artículos nuevos | 0-3 (ver diagnóstico abajo) | máx 3 antes de diagnosticar |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions : 2026-08-26 (run #92, completed/success)
+Resultado               : 0 artículos nuevos ese día
+Corrida previa          : 2026-08-25 (run #91) → 20 artículos nuevos
+Corrida 2026-08-24      : (run #90) → 0 artículos nuevos
+Diagnóstico             : El workflow wiki_daily.yml SÍ está corriendo diariamente sin errores
+                          (últimas 10+ corridas: conclusion=success). La variabilidad 0/20/0
+                          artículos es consistente con la naturaleza intermitente de RSS
+                          (IICA, La Prensa) + GDELT, no con una falla del pipeline.
+                          Ventanas GDELT completadas (75) ya superan el estimado original de
+                          ~45-46 para cobertura 2015→hoy — el backfill histórico vía GDELT
+                          parece estar mayormente agotado/cubierto; las ventanas nuevas que se
+                          siguen agregando corresponden a tracking incremental de días recientes.
+Corrida de hoy (2026-08-27, 11:00 UTC) : aún no reflejada en el historial de Actions al momento
+                          de esta sesión (la sesión corrió antes de esa hora) — no se puede
+                          confirmar todavía si trajo artículos nuevos.
+Acción recomendada       : sin acción correctiva por ahora — monitorear si el patrón de 0
+                          artículos se repite 2+ días más seguidos, lo cual sí ameritaría revisar
+                          si las fuentes RSS (IICA, La Prensa) dejaron de publicar contenido
+                          nuevo o si el filtro de relevancia se volvió demasiado estricto.
 ```
+
+### Bug corregido en esta sesión (2026-08-27)
+`mark-all-ingested --limit N` selecciona artículos por orden alfabético de archivo
+(`find_pending()`), mientras que `ingest --limit N` los selecciona por score de prioridad
+(`prioritize()`). Ambos usan "--limit 5" pero pueden devolver conjuntos distintos. Esto causó
+que 5 artículos nunca procesados fueran marcados `ingested: true` por error; se revirtieron
+manualmente en `sources/processed.json` y se marcaron correctamente los 5 realmente procesados.
+Ver detalle completo en `wiki/log.md` (entrada 2026-08-27 08:35). Recomendación: usar
+`mark-ingested <url>` individual (inmune al bug) en vez de `mark-all-ingested --limit N` hasta
+que se corrija el código, o unificar el criterio de orden entre ambas funciones.
 
 ---
 
@@ -67,6 +90,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-08-27 | 4 (+1 falso positivo detectado) | 32 | Rutina programada; corregido bug de `mark-all-ingested` (ver arriba) |
 
 ---
 
