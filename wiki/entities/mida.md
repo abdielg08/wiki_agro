@@ -2,11 +2,15 @@
 title: MIDA — Ministerio de Desarrollo Agropecuario
 type: entity
 tags: [gobierno, ministerio, politica-agropecuaria, plan-mulino, semillas, fitosanitario]
-last_updated: 2026-05-24
-article_count: 2
+last_updated: 2024-11-07
+article_count: 6
 sources:
   - "https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023"
   - "https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024"
+  - "https://www.prensa.com/economia/panama-proyecta-sembrar-cerca-de-90-mil-hectareas-de-arroz-para-el-ciclo-2022-2023/"
+  - "https://www.prensa.com/politica/roberto-linares-revisara-los-subsidios-en-el-mida/"
+  - "https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/"
+  - "https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/"
 related: [entities/idiap.md, entities/bda.md, topics/politicas_agropecuarias.md, topics/arroz.md, topics/plagas_enfermedades.md]
 ---
 
@@ -41,6 +45,14 @@ El Ministerio de Desarrollo Agropecuario (MIDA) es la institución rectora del s
 - Distribución de semilla certificada IDIAP-Esperanza a productores afectados
 - Créditos BDA al 4% anual para reactivación del sector
 
+### Proyecciones y Gestión del Cultivo de Arroz
+- **2022**: proyectó siembra de **~90,000 ha** de arroz para el ciclo 2022-2023 (79,600 ha en secano) [MIDA, vía prensa.com, 2022-05-24]
+- **2024-11-07**: inundaciones por lluvias fuertes afectaron arroz en Veraguas, maíz, pastizales y ganadería; MIDA evaluando pérdidas [prensa.com, 2024-11-07]
+
+### Transición de Gobierno 2024
+- **2024-06-07**: reunión de transición entre el ministro saliente Augusto Valderrama y el titular designado Roberto José Linares; Linares anunció revisión de subsidios vigentes [prensa.com, 2024-06-07]
+- **2024-06-13**: productores de arroz de Panamá Este y Darién protestaron en la sede del MIDA por falta de pago de compensaciones del ciclo 2023 [prensa.com, 2024-06-13]
+
 ### Emergencias Fitosanitarias
 - **2018**: Plan emergencia gusano cogollero — B/. 3.2 millones en insecticidas, 12,000 productores atendidos
 - **2022**: Refuerzo vigilancia Fusarium TR4 — inspecciones semanales en fronteras, coordinación con IICA
@@ -56,11 +68,16 @@ El Ministerio de Desarrollo Agropecuario (MIDA) es la institución rectora del s
 - Capacidad de ejecución históricamente por debajo del presupuesto asignado
 - Laboratorios de diagnóstico fitosanitario subutilizados o desactualizados
 - Cobertura limitada en zonas remotas (comarcas, Darién)
+- Retrasos en el pago de compensaciones/subsidios a productores, con protestas documentadas en Panamá Este y Darién (2024)
 
 ## Referencias
 
 - [MIDA, 2023 — Producción de arroz](https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023)
 - [MIDA, 2024 — Plan Agropecuario Mulino 2024-2029](https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024)
+- [prensa.com, 2022 — Proyección de siembra arroz 2022-2023](https://www.prensa.com/economia/panama-proyecta-sembrar-cerca-de-90-mil-hectareas-de-arroz-para-el-ciclo-2022-2023/)
+- [prensa.com, 2024 — Roberto Linares revisará subsidios](https://www.prensa.com/politica/roberto-linares-revisara-los-subsidios-en-el-mida/)
+- [prensa.com, 2024 — Productores exigen pago de compensaciones](https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/)
+- [prensa.com, 2024 — Pérdidas por inundaciones](https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/)
 
 ## Ver también
 - [IDIAP](idiap.md) — investigación agropecuaria
