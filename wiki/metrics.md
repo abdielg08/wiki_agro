@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-08-28
 ---
 
 # Dashboard de Métricas
@@ -14,50 +14,61 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Artículos en sources/ | 51 | ↑ continuo |
+| Artículos ingestados (processed.json) | 18 | = total sin falsos positivos |
+| Artículos reales en wiki (summaries) | 10 | = ingestados − falsos positivos marcados |
+| Falsos positivos acumulados (marcados ingested pero fuera del wiki) | 8 | **0 nuevos añadidos al wiki** |
+| Pendientes de ingesta | 33 | 0 |
+| Páginas en wiki/ | 24 (8 topics, 3 entities, 10 summaries, 3 overview) | ↑ continuo |
+| Cobertura temporal real (sources/) | 2007-11-04 → 2026-08-21 (incluye ruido pre-2015, ver nota) | 2015-02-19 → hoy |
+| Ventanas GDELT completadas | 76 | ~45-46 estimadas (ya superado) |
+| Días sin artículos nuevos | 1 (último commit sources/: 2026-08-27) | máx 3 antes de diagnosticar |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions : 2026-08-27 (commit "1 artículos nuevos descargados")
+Resultado               : Fetch activo, backfill avanzando (76 ventanas GDELT completadas)
+Días sin artículos      : 1 — dentro de umbral normal (falla a los 3 días consecutivos)
 ```
+
+### Problema de calidad detectado (2026-08-28): colisión de acrónimos en el fetch
+
+El pipeline de fetch está trayendo artículos NO relacionados con Panamá que
+colisionan por acrónimo o keyword con términos agro panameños:
+
+- **"MIDA"**: colisiona con Malaysian Investment Development Authority (Malasia,
+  medio thestar.com.my) y con Military Installation Development Authority
+  (Utah, medio fox13now.com). Confirmados 8 falsos positivos con este patrón
+  (7 históricos + 1 nuevo el 2026-08-28: paultan.org/MITI Malasia).
+- Otros falsos positivos sospechosos vistos en sources/ sin confirmar aún:
+  `ieeexplore.ieee.org/document/10945742` (pendiente), artículo fechado
+  2026-08-21 sobre "Mozambique foot-and-mouth vaccine" (no es Panamá),
+  y artículos con fecha 2007 (fuera del rango objetivo 2015→hoy).
+- Ninguno de estos contaminó el wiki (topics/entities/summaries) — el filtro
+  humano/LLM en el paso de ingesta los detecta y descarta correctamente.
+  El costo es operativo: infla "artículos descargados" e "ingestados" con
+  ruido que hay que revisar manualmente en cada sesión.
+
+**Recomendación**: agregar filtro de relevancia más estricto en el fetch
+(ej. exigir `country:PA` en GDELT y/o lista negra de dominios no panameños
+como thestar.com.my, fox13now.com, paultan.org) antes de guardar en sources/.
 
 ---
 
 ## Progreso del Backfill GDELT (2015 → hoy)
 
-| Período | Ventanas | Artículos | Estado |
-|---------|----------|-----------|--------|
-| 2015 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2016 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2017 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2018 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2019 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2020 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2021 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2022 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2023 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2024 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2025 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2026 Q1-Q2 | 0/2 | ? | Pendiente |
-| **TOTAL** | **0/46** | **0** | **Backfill no iniciado** |
+| Métrica | Valor |
+|---------|-------|
+| Ventanas GDELT completadas | 76 (superó la estimación original de ~45-46) |
+| Artículos totales en sources/ | 51 |
+| Cobertura de fechas observada | 2007-11-04 → 2026-08-21 (incluye ruido pre-2015 y falsos positivos internacionales) |
 
-> Una vez que Actions corra con el código corregido, actualizar esta tabla con los datos reales.
-> El rendimiento real de GDELT (artículos/trimestre) determinará la duración del backfill.
+> El desglose trimestral detallado no se recalculó esta sesión — pendiente para
+> una sesión de mantenimiento dedicada a reconstruir la tabla por período a
+> partir de `_gdelt_windows` en `sources/processed.json`.
 
 ---
 
@@ -67,6 +78,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-08-28 | 4 reales + 1 falso positivo descartado | 33 | Rutina automatizada; 1 nuevo falso positivo (paultan.org/MITI, colisión "MIDA") documentado y NO ingestado al wiki |
 
 ---
 
