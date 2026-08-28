@@ -112,3 +112,47 @@ MAINTENANCE: Diagnóstico avanzado del fetch (pendientes=33 > 0, ejecutado igual
     en cada corrida en vez de consolidar. Recomendación: revisar lógica de ventana parcial
     del trimestre actual en el script de fetch.
   Detalle completo en wiki/metrics.md → "Progreso del Backfill GDELT" y "Hallazgos del diagnóstico".
+
+## 2026-08-28 08:35
+BUGFIX: `mark-all-ingested --limit 5` marcó los artículos INCORRECTOS
+
+  Hallazgo crítico: `wiki_agro.py ingest --limit 5` selecciona artículos por
+  **score de relevancia** (`prioritize(strategy="score")`), pero
+  `wiki_agro.py mark-all-ingested --limit 5` usa `find_pending(limit=5)`,
+  que toma los primeros 5 pendientes en **orden alfabético de archivo**
+  (`sorted(SOURCES_DIR.glob("*.json"))`) — un criterio de selección
+  completamente distinto. Ambos comandos NO seleccionan el mismo conjunto
+  de artículos salvo coincidencia.
+
+  Consecuencia real de esta sesión: al ejecutar `mark-all-ingested --limit 5`
+  (como indica CLAUDE.md Paso 3), se marcaron como ingestados 5 artículos
+  DIFERENTES a los 4 reales + 1 falso positivo que efectivamente procesé:
+    - "Catalogue of the diptera of the Americas South of United States"
+      (archive.org, 2016) — ni siquiera es de Panamá/agro; falso positivo
+      NO detectado por el pipeline, marcado como ingestado sin revisión.
+    - "Agroturismo en temporada de cosecha" (prensa.com, 2019)
+    - "Mida debe mejorar el sistema de diagnóstico" (prensa.com, 2010)
+    - "Las seis plagas de la agricultura" (prensa.com, 2007)
+    - "Ministro Valderrama niega irregularidades en planilla del Mida"
+      (prensa.com, 2019)
+  Ninguno de estos 5 tiene contenido en wiki/summaries/ ni fue revisado
+  para falsos positivos — quedaron marcados `ingested: true` sin ingesta real.
+
+  Corrección aplicada manualmente en sources/processed.json:
+    - Revertidos a `ingested: false` (sin `ingested_at`) los 5 artículos
+      marcados incorrectamente — vuelven a la cola de pendientes para
+      revisión/ingesta real en una próxima sesión.
+    - Marcados `ingested: true` los 5 URLs que sí fueron procesados en esta
+      sesión (4 reales + falso positivo MITI/Malasia), vía edición directa
+      equivalente a `mark-ingested <url>` por cada uno.
+
+  Efecto neto en `stats`: sin cambio (18 ingestados, 33 pendientes) — el
+  bug no afectó los conteos agregados, solo QUÉ artículos específicos
+  quedaron marcados.
+
+  Recomendación (no aplicada en esta sesión, requiere cambio de código):
+  la rutina en CLAUDE.md Paso 3 debe usar los comandos `mark-ingested <url>`
+  explícitos que ya genera `pending_ingest.md` al final del archivo, en vez
+  de `mark-all-ingested --limit N` — o bien corregir `mark_all_ingested()`
+  en scripts/ingest.py para que use el mismo criterio de `prioritize()` que
+  `run_prepare()`, en lugar de `find_pending()` sin scoring.
