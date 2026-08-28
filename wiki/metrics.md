@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-08-28
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,28 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Artículos en sources/ | 51 | ↑ continuo |
+| Artículos reales ingestados | 18 (17 con contenido + 1 falso positivo marcado) | = total sin falsos positivos |
+| Falsos positivos acumulados | 8 | **0 nuevos** |
+| Pendientes de ingesta | 33 | 0 |
+| Páginas en wiki/ | 25 (9 topics, 3 entidades, 10 resúmenes, 3 overview) | ↑ continuo |
+| Cobertura temporal | 2015-2026 (parcial) | 2015 → hoy real |
+| Ventanas GDELT completadas | 76 / ~45 estimadas | 45 (2015→hoy) — **rango agotado, necesita expansión** |
+| Días sin artículos nuevos | 1 (última corrida: 2026-08-27) | máx 3 antes de diagnosticar |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions : 2026-08-27 20:57 UTC
+Resultado               : 1 artículo nuevo (foot-and-mouth-vaccine, no agro-Panamá — pendiente evaluación)
+Corridas previas        : 2026-08-25 (0 nuevos), 2026-08-24 (20 nuevos)
+Ventanas GDELT          : 76 completadas — supera el umbral de 45 estimadas para cobertura 2015→hoy.
+                          Diagnóstico (CLAUDE.md Paso 4.2): con 45+ ventanas completadas, el rango de fechas
+                          configurado está agotado y necesita expansión para seguir trayendo artículos nuevos
+                          vía GDELT. Revisar scripts/fetch para ampliar el rango o rotar queries.
+Fuentes activas         : RSS IICA y La Prensa siguen aportando artículos ocasionales fuera de GDELT.
 ```
 
 ---
@@ -67,6 +69,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-08-28 | 4 (+1 falso positivo descartado) | 33 | Routine automatizada; detectado patrón de mal etiquetado source/country en fetch (2do caso: Mozambique) |
 
 ---
 
