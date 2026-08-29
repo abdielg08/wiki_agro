@@ -1,12 +1,14 @@
 ---
 title: Políticas Agropecuarias en Panamá
 type: topic
-tags: [politica-agropecuaria, plan-mulino, mida, bda, idiap, seguridad-alimentaria, riego, semillas, 2024]
-last_updated: 2026-05-24
-article_count: 1
+tags: [politica-agropecuaria, plan-mulino, mida, bda, idiap, seguridad-alimentaria, riego, semillas, subsidios, transicion-gobierno, 2024]
+last_updated: 2026-08-29
+article_count: 3
 sources:
   - "https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024"
-related: [topics/subsidios_programas.md, topics/tecnologia_innovacion.md, topics/agua_riego.md, topics/credito_financiamiento.md, entities/mida.md, entities/bda.md, entities/idiap.md]
+  - "https://www.prensa.com/politica/roberto-linares-revisara-los-subsidios-en-el-mida/"
+  - "https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/"
+related: [topics/subsidios_programas.md, topics/tecnologia_innovacion.md, topics/agua_riego.md, topics/credito_financiamiento.md, topics/arroz.md, entities/mida.md, entities/bda.md, entities/idiap.md]
 ---
 
 # Políticas Agropecuarias en Panamá
@@ -44,6 +46,11 @@ Las políticas agropecuarias panameñas de 2015-2025 han evolucionado de interve
 | Adaptación climática | 25,000 ha riego en Azuero |
 | Investigación | IDIAP de B/. 15M → 45M/año |
 
+### Transición de Gobierno en el MIDA — Junio 2024
+- Primera reunión de transición entre el ministro saliente **Augusto Valderrama** y el ministro designado **Roberto José Linares**: 7 de junio de 2024 [prensa.com, 2024-06-07]
+- El nuevo ministro anunció que revisaría los **subsidios y programas de apoyo** del MIDA
+- Días después (13 de junio de 2024), productores de arroz de **Panamá Este y Darién** protestaron en la sede del MIDA exigiendo el pago de compensaciones pendientes de 2023 [prensa.com, 2024-06-13]
+
 ## Políticas de Emergencia Previas (2015-2024)
 
 - **2016**: Estado de emergencia agropecuaria por sequía El Niño 2015-2016; BDA refinancia B/. 45M
@@ -64,10 +71,14 @@ Las políticas agropecuarias panameñas de 2015-2025 han evolucionado de interve
 - Coordinación interinstitucional MIDA-BDA-IDIAP-MEF en proyectos plurianuales
 - Cobertura de pequeños productores en zonas remotas con infraestructura deficiente
 - Sostenibilidad fiscal: planes ambiciosos sujetos a cambios de gobierno y restricciones presupuestarias
+- Continuidad institucional en transiciones de gobierno: revisión de subsidios en curso desde junio 2024
+- Retrasos en el pago de compensaciones a productores comprometidas en administraciones previas (caso arroceros Panamá Este/Darién, 2023-2024)
 
 ## Referencias
 
 - [MIDA, 2024 — Plan Agropecuario Gobierno Mulino 2024-2029](https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024)
+- [prensa.com, 2024-06-07 — Linares revisará los subsidios en el MIDA](https://www.prensa.com/politica/roberto-linares-revisara-los-subsidios-en-el-mida/)
+- [prensa.com, 2024-06-13 — Productores de arroz exigen pago de compensaciones](https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/)
 
 ## Ver también
 
