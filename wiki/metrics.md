@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-08-29
 ---
 
 # Dashboard de Métricas
@@ -14,50 +14,64 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Artículos descargados en sources/ | 51 | ↑ continuo |
+| Artículos ingestados (incl. falsos positivos marcados para retirarlos de la cola) | 18 | = total sin falsos positivos |
+| Pendientes de ingesta | 33 | 0 |
+| Falsos positivos acumulados | 8 (7 previos "MIDA Malasia" + 1 nuevo "MITI Malasia" 2026-08-29) | **0 nuevos por sesión, idealmente** |
+| Páginas en wiki/ | 25 (9 topics, 3 entidades, 10 resúmenes, 2 overview) | ↑ continuo |
+| Cobertura temporal | 2015-2026 (parcial) | 2015 → hoy real |
+| Ventanas GDELT completadas | 76 (superó el estimado de ~45-46) | rango agotado — ver diagnóstico |
+| Días sin artículos nuevos en sources/ | 2 (última descarga real: 2026-08-27) | máx 3 antes de diagnosticar |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions exitosa : 2026-08-27 20:51 UTC (run #93, 1 artículo nuevo)
+Últimas 2 corridas             : 2026-08-28 21:16 UTC (run #94) → FALLO
+                                  2026-08-29 15:23 UTC (run #95) → FALLO
+Duración de corridas fallidas  : ~3-4 segundos (vs. ~6 min en corridas normales)
+Diagnóstico                    : el job "Fetch artículos → Commit a sources/" nunca
+                                  llegó a asignarse un runner (sin runner_id/runner_name,
+                                  sin pasos ejecutados — falla antes de "Set up job").
+                                  No es un error del script Python (fetch/ingest tienen
+                                  continue-on-error: true y ni siquiera se alcanzaron).
+Causa más probable              : cuota de minutos de GitHub Actions agotada para la
+                                  cuenta/organización, o Actions deshabilitado/restringido
+                                  a nivel de repo — no se puede confirmar sin acceso a
+                                  Settings → Billing / Settings → Actions del repositorio.
+Ventanas GDELT                  : 76 ventanas completadas, superando el estimado de ~45-46
+                                  necesarias para cubrir 2015→hoy. El rango de fechas del
+                                  backfill histórico está efectivamente agotado; nuevas
+                                  ventanas GDELT ya no deberían aportar artículos nuevos
+                                  hasta que se expanda la lógica de generación de ventanas.
+Acción recomendada (usuario)    : 1) revisar github.com/settings/billing (o el billing de
+                                  la organización) por minutos de Actions agotados;
+                                  2) revisar Settings → Actions → General del repo por
+                                  restricciones; 3) si el backfill GDELT está agotado,
+                                  revisar/expandir la lógica de ventanas en el script de
+                                  fetch para cubrir vacíos o repetir con distinta granularidad.
 ```
 
 ---
 
 ## Progreso del Backfill GDELT (2015 → hoy)
 
-| Período | Ventanas | Artículos | Estado |
-|---------|----------|-----------|--------|
-| 2015 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2016 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2017 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2018 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2019 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2020 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2021 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2022 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2023 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2024 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2025 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2026 Q1-Q2 | 0/2 | ? | Pendiente |
-| **TOTAL** | **0/46** | **0** | **Backfill no iniciado** |
+```
+Ventanas GDELT completadas (sources/processed.json → _gdelt_windows) : 76
+Estimado original (quarters 2015-2026)                                : ~46
+```
 
-> Una vez que Actions corra con el código corregido, actualizar esta tabla con los datos reales.
-> El rendimiento real de GDELT (artículos/trimestre) determinará la duración del backfill.
+> **Nota (2026-08-29)**: la tabla trimestral anterior (`Período | Ventanas | Artículos | Estado`)
+> quedó desactualizada y contradecía el conteo real (`_gdelt_windows` ya tiene 76 entradas,
+> no 0/46 como decía la tabla). `_gdelt_windows` almacena rangos de fecha en formato
+> `YYYYMMDD_YYYYMMDD` sin desglose de artículos por ventana ni orden cronológico garantizado,
+> por lo que no es posible reconstruir aquí una tabla trimestral fiel sin instrumentar el
+> script de fetch para que registre esa granularidad. Se retira la tabla fabricada para no
+> reportar datos falsos; el número real de ventanas (76) ya superó el estimado de ~46,
+> lo que indica que el rango de fechas 2015→hoy está cubierto o el criterio de generación
+> de ventanas necesita revisión (posibles duplicados o solapamientos).
 
 ---
 
@@ -67,6 +81,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-08-29 | 4 reales + 1 falso positivo documentado | 33 | Routine automática; detectado y corregido bug de desalineación entre `ingest --limit N` (orden por score) y `mark-all-ingested --limit N` (orden alfabético) — ver wiki/log.md 16:20. Diagnosticado: Actions falla 2 días seguidos sin asignar runner (probable cuota agotada); GDELT en 76/~46 ventanas (rango agotado) |
 
 ---
 
