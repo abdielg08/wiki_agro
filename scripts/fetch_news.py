@@ -12,6 +12,7 @@ import time
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Iterator
+from urllib.parse import urlparse
 
 import requests
 import trafilatura
@@ -279,6 +280,16 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         title = r.get("title", "")
         if not url or not title:
             continue
+        # DDG's `site:` operator is not strictly enforced by the news search —
+        # it regularly leaks results from unrelated domains (e.g. searches for
+        # "MIDA" have returned Malaysian investment-authority news, since MIDA
+        # is also a Malaysian government acronym). Drop anything not actually
+        # hosted on the requested site.
+        if site:
+            host = urlparse(url).netloc.lower().removeprefix("www.")
+            expected = site.lower().removeprefix("www.")
+            if host != expected and not host.endswith("." + expected):
+                continue
         date_raw = r.get("date") or r.get("published", "")
         pub_date = ""
         if date_raw:

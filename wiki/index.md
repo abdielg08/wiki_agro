@@ -2,8 +2,8 @@
 title: Índice del Wiki Agropecuario de Panamá
 type: overview
 tags: [indice, navegacion]
-last_updated: 2025-05-24
-article_count: 0
+last_updated: 2026-08-30
+article_count: 14
 ---
 
 # Wiki Agropecuario de Panamá
@@ -98,7 +98,15 @@ article_count: 0
 | 2022-04-10 | IICA | [Vigilancia Fusarium TR4 bananeras](summaries/20220410_iica_platano-banano-exportaciones-fusarium.md) | 56M cajas, US$ 500M en riesgo |
 | 2021-08-15 | BDA | [Crédito pandemia 2020-2021](summaries/20210815_bda_credito-agropecuario-pandemia-2020-2021.md) | B/. 320M, 28K productores |
 | 2024-03-05 | MIDA | [Plan Agropecuario Mulino 2024-2029](summaries/20240305_mida_politica-agropecuaria-mulino-2024.md) | B/. 850M, meta 80% autoabastecimiento |
+| 2022-05-24 | La Prensa | [Proyección de siembra 90 mil ha arroz 2022-2023](summaries/20220524_prensacom_proyeccion-siembra-arroz-2022-2023.md) | MIDA proyecta 90K ha, 79.6K en secano |
+| 2024-06-07 | La Prensa | [Linares revisará subsidios en el MIDA](summaries/20240607_prensacom_linares-revisara-subsidios-mida.md) | Transición Valderrama → Linares |
+| 2024-06-13 | La Prensa | [Arroceros Panamá Este/Darién exigen compensaciones](summaries/20240613_prensacom_arroceros-panama-este-darien-exigen-compensaciones.md) | Pagos 2023 pendientes al MIDA |
+| 2024-11-07 | La Prensa | [Inundaciones afectan arroz, maíz y ganadería](summaries/20241107_prensacom_inundaciones-perdidas-arroz-maiz-ganaderia.md) | Veraguas; pastizales y ganado dañados |
+| 2007-11-04 | La Prensa | [Las seis plagas de la agricultura](summaries/20071104_prensacom_seis-plagas-agricultura.md) | Biocombustibles vs. seguridad alimentaria (histórico, pre-2015) |
+| 2010-07-04 | La Prensa | [Mida debe mejorar sistema de diagnóstico](summaries/20100704_prensacom_mida-mejorar-sistema-diagnostico.md) | Serología equinos/bovinos/aves (histórico, pre-2015) |
+| 2019-11-15 | La Prensa | [Agroturismo en temporada de cosecha](summaries/20191115_prensacom_agroturismo-temporada-cosecha.md) | Paisaje agrícola y turismo rural |
+| 2019-11-21 | La Prensa | [Valderrama niega irregularidades en planilla del Mida](summaries/20191121_prensacom_valderrama-niega-irregularidades-planilla-mida.md) | Denuncia de doble salario negada |
 
 ---
 
-*Última actualización del índice: 2026-05-24*
+*Última actualización del índice: 2026-08-30*
