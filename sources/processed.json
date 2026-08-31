@@ -343,7 +343,8 @@
     "title": "Evalúan pérdidas en producción de arroz, maíz y ganadería por las inundaciones",
     "date": "2024-11-07",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-08-31T16:19:25.060102"
   },
   "https://www.prensa.com/impresa/economia/Agroturismo-temporada-cosecha_0_5442205773.html": {
     "saved_at": "2026-08-24T11:18:59.204975",
@@ -415,7 +416,8 @@
     "title": "Panamá proyecta sembrar cerca de 90 mil hectáreas de arroz para el ciclo 2022-2023",
     "date": "2022-05-24",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-08-31T16:19:25.200067"
   },
   "https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/": {
     "saved_at": "2026-08-24T11:18:59.212833",
@@ -423,7 +425,8 @@
     "title": "Productores de arroz de Panamá este y Darién exigen al Mida el pago de compensaciones",
     "date": "2024-06-13",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-08-31T16:19:25.476846"
   },
   "https://www.prensa.com/economia/mida-confirma-la-llegada-de-20-mil-quintales-de-cebolla-importada/": {
     "saved_at": "2026-08-24T11:18:59.213571",
@@ -455,7 +458,8 @@
     "title": "Roberto Linares revisará los subsidios en el Mida",
     "date": "2024-06-07",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-08-31T16:19:25.335856"
   },
   "https://www.prensa.com/economia/Ministro-Valderrama-irregularidades-planilla-Mida_0_5446705379.html": {
     "saved_at": "2026-08-24T11:18:59.217028",
