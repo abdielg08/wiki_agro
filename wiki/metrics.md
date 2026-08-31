@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-08-31
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,37 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Artículos en sources/ | 51 | ↑ continuo |
+| Artículos reales ingestados | 18 | = total sin falsos positivos |
+| Falsos positivos acumulados | 8 (7 previos + 1 hoy: paultan.org/MITI Malasia) | **0 nuevos** ⚠️ meta incumplida hoy |
+| Páginas en wiki/ | 24 | ↑ continuo |
+| Cobertura temporal | 2015-2026 (parcial, dominado por 2022-2024) | 2015 → hoy real |
+| Ventanas GDELT completadas | no expuesto en processed.json actual | 45 (2015→hoy) |
+| Días sin artículos nuevos en sources/ | **3-4 días** (último commit de fetch: 2026-08-27) | máx 3 antes de diagnosticar ⚠️ **UMBRAL SUPERADO** |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions      : 2026-08-30 15:06 UTC (run #96) — CONCLUSIÓN: failure
+Corridas previas             : #95 (2026-08-29) failure | #94 (2026-08-28) failure
+                                #93 (2026-08-27) success — 0 artículos nuevos
+Último commit con artículos  : 2e30165 "1 artículos nuevos descargados" — 2026-08-27
+Causa identificada            : Las 3 corridas más recientes (#94, #95, #96) fallaron en
+                                ~3-6 segundos — tiempo insuficiente para completar
+                                checkout + setup-python + pip install + fetch. Apunta a un
+                                fallo temprano (runner/quota/permisos), NO a un error dentro
+                                de wiki_agro.py fetch. Logs no disponibles vía API (HTTP 404
+                                al descargarlos) — no se pudo confirmar la causa exacta.
+Acción recomendada            : Revisar manualmente los logs en GitHub:
+                                https://github.com/abdielg08/wiki_agro/actions/runs/33318722494
+                                https://github.com/abdielg08/wiki_agro/actions/runs/33260107823
+                                https://github.com/abdielg08/wiki_agro/actions/runs/33211853678
+                                Posibles causas: cuota de Actions agotada, permisos de
+                                GITHUB_TOKEN cambiados, o incidente de GitHub Actions.
+Estado                         : SEÑAL DE ALARMA — 3 días consecutivos sin artículos nuevos
+                                en sources/articles/ (umbral del CLAUDE.md alcanzado)
 ```
 
 ---
@@ -67,6 +78,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-08-31 | 4 (de 5 pendientes; 1 falso positivo) | 33 | Fetch de GitHub Actions falla 3 días consecutivos (#94-#96); ver Estado del Fetch |
 
 ---
 
