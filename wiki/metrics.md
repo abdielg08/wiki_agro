@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-09-01
 ---
 
 # Dashboard de Métricas
@@ -14,59 +14,55 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Artículos en sources/ | 51 | ↑ continuo |
+| Artículos ingestados | 18 | = total sin falsos positivos |
+| Pendientes de ingesta | 33 | 0 |
+| Falsos positivos acumulados | 8 (7 previos + 1 nuevo: MITI/Malasia, no ingestado) | **0 nuevos por sesión** |
+| Páginas en wiki/ | 26 (10 topics, 3 entidades, 10 resúmenes, 3 overview) | ↑ continuo |
+| Cobertura temporal | 2015-2026 (parcial) | 2015 → hoy real |
+| Ventanas GDELT completadas | 76 | rango agotado — necesita expansión (>45) |
+| Días sin artículos nuevos en sources/ | 5 (último: 2026-08-27) | máx 3 antes de diagnosticar — **UMBRAL SUPERADO** |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida exitosa con artículos  : 2026-08-27 (run #93, "1 artículos nuevos descargados")
+Últimas 4 corridas (#94–#97)          : FALLARON — 2026-08-28, 08-29, 08-30, 08-31
+Duración de las corridas fallidas     : ~3 segundos, sin runner asignado (runner_id: 0)
+Causa probable                        : startup_failure — límite de minutos/gasto de GitHub Actions
+                                         agotado, o problema de configuración/permisos del repositorio.
+                                         No es un error del script de fetch (nunca llegó a ejecutarse).
+Ventanas GDELT                        : 76 completadas — por encima del umbral 45+ de CLAUDE.md,
+                                         sugiere que el rango de fechas GDELT disponible ya se agotó
+                                         y requiere expansión (además del problema de Actions).
+Acción requerida (fuera del alcance
+de un commit de código)               : el usuario debe revisar Settings → Actions / facturación del
+                                         repositorio o cuenta de GitHub para restaurar la ejecución
+                                         del workflow "Wiki Agropecuario — Fetch Diario".
 ```
 
 ---
 
 ## Progreso del Backfill GDELT (2015 → hoy)
 
-| Período | Ventanas | Artículos | Estado |
-|---------|----------|-----------|--------|
-| 2015 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2016 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2017 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2018 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2019 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2020 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2021 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2022 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2023 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2024 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2025 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2026 Q1-Q2 | 0/2 | ? | Pendiente |
-| **TOTAL** | **0/46** | **0** | **Backfill no iniciado** |
+| Período | Ventanas | Estado |
+|---------|----------|--------|
+| 2015–2026 | 76 completadas | Rango agotado — pendiente expansión de años/fuentes adicionales |
 
-> Una vez que Actions corra con el código corregido, actualizar esta tabla con los datos reales.
-> El rendimiento real de GDELT (artículos/trimestre) determinará la duración del backfill.
+> Nota: la tabla trimestral anterior (0/46) quedó obsoleta — el fetch ya avanzó a 76 ventanas GDELT
+> desde entonces. Pendiente reconstruir el detalle por período con datos de `sources/processed.json`.
 
 ---
 
 ## Historial de Sesiones de Routine
 
-| Fecha | Artículos ingestados | Pendientes restantes | Nota |
-|-------|---------------------|----------------------|------|
-| 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
-| 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| Fecha | Artículos ingestados | Falsos positivos | Pendientes restantes | Nota |
+|-------|---------------------|-------------------|----------------------|------|
+| 2026-05-24 | 6 (semilla manual) | 0 | 0 | Datos semilla iniciales — no son fetches automáticos |
+| 2026-06-22 | 0 | 7 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-09-01 | 4 | 1 (MITI/Malasia, no ingestado) | 33 | GitHub Actions con 4 corridas fallidas consecutivas (ver log.md) |
 
 ---
 
@@ -84,3 +80,7 @@ Al ejecutar, la routine DEBE:
 - Revisar el último log de GitHub Actions (ver wiki/log.md para contexto)
 - Identificar si el problema es GDELT rate-limit, RSS caído, o config
 - Documentar el diagnóstico en wiki/log.md con pasos para resolverlo
+
+**Estado 2026-09-01**: umbral de alarma superado (5 días sin artículos nuevos, 4 corridas de
+Actions fallidas consecutivas). Diagnóstico completo en `wiki/log.md`. Requiere intervención del
+usuario en la configuración de GitHub Actions — no resoluble con un commit de código.

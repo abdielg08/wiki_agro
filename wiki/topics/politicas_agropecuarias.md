@@ -1,11 +1,12 @@
 ---
 title: Políticas Agropecuarias en Panamá
 type: topic
-tags: [politica-agropecuaria, plan-mulino, mida, bda, idiap, seguridad-alimentaria, riego, semillas, 2024]
-last_updated: 2026-05-24
-article_count: 1
+tags: [politica-agropecuaria, plan-mulino, mida, bda, idiap, seguridad-alimentaria, riego, semillas, 2024, transicion-gobierno]
+last_updated: 2026-09-01
+article_count: 2
 sources:
   - "https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024"
+  - "https://www.prensa.com/politica/roberto-linares-revisara-los-subsidios-en-el-mida/"
 related: [topics/subsidios_programas.md, topics/tecnologia_innovacion.md, topics/agua_riego.md, topics/credito_financiamiento.md, entities/mida.md, entities/bda.md, entities/idiap.md]
 ---
 
@@ -28,6 +29,9 @@ Las políticas agropecuarias panameñas de 2015-2025 han evolucionado de interve
 - Centros agroindustriales: **20 nuevos** en zonas rurales
 - Apoyo técnico: IICA, FAO, BID en formulación del plan
 - Respaldo gremial: ANAGAN, CNA, Federación de Cooperativas Agropecuarias
+
+### Transición de Gobierno 2024
+- **2024-06-07**: Primera reunión de transición entre el ministro saliente Augusto Valderrama y el ministro designado Roberto José Linares; se anunció revisión de los subsidios del MIDA [prensa.com, 2024-06-07]
 
 ### Contexto Estructural
 - **85%** de los productores panameños tienen fincas menores de 20 ha (agricultura familiar dominante)
@@ -68,6 +72,7 @@ Las políticas agropecuarias panameñas de 2015-2025 han evolucionado de interve
 ## Referencias
 
 - [MIDA, 2024 — Plan Agropecuario Gobierno Mulino 2024-2029](https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024)
+- [prensa.com, 2024 — Roberto Linares revisará los subsidios en el Mida](https://www.prensa.com/politica/roberto-linares-revisara-los-subsidios-en-el-mida/)
 
 ## Ver también
 
