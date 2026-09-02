@@ -1,12 +1,13 @@
 ---
 title: Plagas y Enfermedades en el Agro Panameño
 type: topic
-tags: [plagas, enfermedades, gusano-cogollero, sigatoka, fusarium, roya, mida, idiap, oirsa]
-last_updated: 2025-05-24
-article_count: 2
+tags: [plagas, enfermedades, gusano-cogollero, sigatoka, fusarium, roya, influenza-aviar, mida, idiap, oirsa]
+last_updated: 2022-10-22
+article_count: 3
 sources:
   - "https://www.prensa.com/economia/gusano-cogollero-crisis-maiz-panama-2018"
   - "https://www.iica.int/es/prensa/noticias/panama-banana-fusarium-tr4-2022"
+  - "https://www.prensa.com/economia/mida-refuerza-controles-por-brote-de-influenza-aviar-en-frontera-con-colombia/"
 related: [topics/maiz.md, topics/platano_banano.md, topics/cambio_climatico.md, entities/mida.md, entities/idiap.md]
 ---
 
@@ -39,6 +40,10 @@ El sector agropecuario panameño enfrenta amenazas fitosanitarias y zoosanitaria
 - Requiere tratamiento fungicida intensivo; incrementa costos de producción
 - Mayor impacto en pequeños productores que no tienen acceso a programas de control aéreo
 
+### Influenza Aviar
+- **2022-10-22**: Brote de influenza aviar detectado en Colombia; según autoridades colombianas, la ubicación de los focos no representa riesgo para la producción ni el consumo de huevos y carne de pollo en Panamá [prensa.com, 2022-10-22]
+- La Dirección de Salud Animal del MIDA reforzó los controles zoosanitarios en la frontera con Colombia como medida preventiva
+
 ## Tendencias (2015–2025)
 
 - Emergencia de nuevas plagas exóticas (cogollero, TR4) vinculadas al comercio global
@@ -57,6 +62,7 @@ El sector agropecuario panameño enfrenta amenazas fitosanitarias y zoosanitaria
 
 - [La Prensa, 2018 — Crisis del gusano cogollero](https://www.prensa.com/economia/gusano-cogollero-crisis-maiz-panama-2018)
 - [IICA, 2022 — Vigilancia Fusarium TR4](https://www.iica.int/es/prensa/noticias/panama-banana-fusarium-tr4-2022)
+- [prensa.com, 2022 — MIDA refuerza controles por influenza aviar en frontera con Colombia](https://www.prensa.com/economia/mida-refuerza-controles-por-brote-de-influenza-aviar-en-frontera-con-colombia/)
 
 ## Ver también
 

@@ -1,12 +1,13 @@
 ---
 title: Maíz en Panamá
 type: topic
-tags: [maiz, gusano-cogollero, plagas, mida, idiap, oirsa, seguridad-alimentaria]
-last_updated: 2026-05-24
-article_count: 1
+tags: [maiz, gusano-cogollero, plagas, mida, idiap, oirsa, seguridad-alimentaria, inundaciones]
+last_updated: 2024-11-07
+article_count: 2
 sources:
   - "https://www.prensa.com/economia/gusano-cogollero-crisis-maiz-panama-2018"
-related: [topics/plagas_enfermedades.md, topics/seguridad_alimentaria.md, topics/cambio_climatico.md, entities/mida.md, entities/idiap.md]
+  - "https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/"
+related: [topics/plagas_enfermedades.md, topics/seguridad_alimentaria.md, topics/cambio_climatico.md, topics/arroz.md, entities/mida.md, entities/idiap.md]
 ---
 
 # Maíz en Panamá
@@ -34,6 +35,9 @@ El maíz es un cultivo fundamental para la seguridad alimentaria y la economía 
 - IDIAP + CIMMYT: desarrollo de variedades de maíz con resistencia genética al cogollero
 - Transición gradual desde insecticidas químicos hacia control biológico integrado
 
+### Inundaciones 2024
+- **2024-11-07**: Fuertes lluvias de fin de semana afectaron cultivos de maíz en Veraguas, junto con arroz, pastizales y ganadería vacuna/porcina; evaluación de pérdidas en curso [prensa.com, 2024-11-07]
+
 ## Tendencias (2015–2025)
 
 - Emergencia del gusano cogollero (2018) como plaga crónica del sector maicero
@@ -51,6 +55,7 @@ El maíz es un cultivo fundamental para la seguridad alimentaria y la economía 
 ## Referencias
 
 - [La Prensa, 2018 — Crisis del gusano cogollero](https://www.prensa.com/economia/gusano-cogollero-crisis-maiz-panama-2018)
+- [prensa.com, 2024 — Inundaciones afectan arroz, maíz y ganadería](https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/)
 
 ## Ver también
 

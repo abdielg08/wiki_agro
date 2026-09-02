@@ -2,7 +2,7 @@
 title: Índice del Wiki Agropecuario de Panamá
 type: overview
 tags: [indice, navegacion]
-last_updated: 2025-05-24
+last_updated: 2026-09-02
 article_count: 0
 ---
 
@@ -18,6 +18,7 @@ article_count: 0
 - **Ver entidades**: organizaciones, regiones y actores en `entities/`
 - **Artículos fuente**: resúmenes individuales en `summaries/`
 - **Actividad reciente**: ver `log.md`
+- **Métricas del sistema**: ver `metrics.md`
 
 ---
 
@@ -57,7 +58,7 @@ article_count: 0
 | Página | Descripción |
 |--------|-------------|
 | [politicas_agropecuarias.md](topics/politicas_agropecuarias.md) | Leyes, Plan Mulino B/. 850M 2024-2029, planes de gobierno |
-| [subsidios_programas.md](topics/subsidios_programas.md) | Plan de Semillas, Agroalimentos, programas de apoyo |
+| [subsidios_programas.md](topics/subsidios_programas.md) | Compensaciones a productores de arroz, revisión de subsidios MIDA 2024 |
 
 ### Regiones Agrícolas
 | Página | Descripción |
@@ -98,7 +99,12 @@ article_count: 0
 | 2022-04-10 | IICA | [Vigilancia Fusarium TR4 bananeras](summaries/20220410_iica_platano-banano-exportaciones-fusarium.md) | 56M cajas, US$ 500M en riesgo |
 | 2021-08-15 | BDA | [Crédito pandemia 2020-2021](summaries/20210815_bda_credito-agropecuario-pandemia-2020-2021.md) | B/. 320M, 28K productores |
 | 2024-03-05 | MIDA | [Plan Agropecuario Mulino 2024-2029](summaries/20240305_mida_politica-agropecuaria-mulino-2024.md) | B/. 850M, meta 80% autoabastecimiento |
+| 2022-05-24 | prensa.com | [Siembra 90 mil ha de arroz ciclo 2022-2023](summaries/20220524_prensacom_siembra-90mil-hectareas-arroz-2022-2023.md) | Proyección MIDA: 79,600 ha secano + resto en riego |
+| 2024-06-07 | prensa.com | [Roberto Linares revisará los subsidios en el MIDA](summaries/20240607_prensacom_roberto-linares-subsidios-mida.md) | Transición Valderrama → Linares |
+| 2024-06-13 | prensa.com | [Productores arroz Panamá Este y Darién exigen compensaciones](summaries/20240613_prensacom_productores-arroz-panama-este-darien-compensaciones.md) | Pagos de 2023 pendientes |
+| 2024-11-07 | prensa.com | [Inundaciones afectan arroz, maíz y ganadería](summaries/20241107_prensacom_inundaciones-arroz-maiz-ganaderia.md) | Veraguas, evaluación de pérdidas en curso |
+| 2022-10-22 | prensa.com | [MIDA refuerza controles por influenza aviar en frontera con Colombia](summaries/20221022_prensacom_mida-refuerza-controles-influenza-aviar-colombia.md) | Sin riesgo confirmado para Panamá |
 
 ---
 
-*Última actualización del índice: 2026-05-24*
+*Última actualización del índice: 2026-09-02*

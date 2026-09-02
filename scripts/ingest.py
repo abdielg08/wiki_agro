@@ -141,10 +141,10 @@ def run_prepare(
 def mark_ingested(url_or_slug: str) -> bool:
     """Mark an article as ingested in processed.json."""
     processed = load_processed()
-    for url, meta in processed.items():
+    for url, meta in article_entries(processed).items():
         if url == url_or_slug or url_or_slug in meta.get("path", ""):
-            meta["ingested"] = True
-            meta["ingested_at"] = datetime.now().isoformat()
+            processed[url]["ingested"] = True
+            processed[url]["ingested_at"] = datetime.now().isoformat()
             save_processed(processed)
             console.print(f"[green]✓ Marcado como ingestado: {url[:60]}[/green]")
             return True
