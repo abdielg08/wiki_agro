@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-09-03
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,33 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Artículos en sources/ | 51 | ↑ continuo |
+| Artículos ingestados (total, incl. falsos positivos) | 18 | = total sin pendientes |
+| Artículos reales ingestados al wiki | 10 | = total sin falsos positivos |
+| Falsos positivos acumulados | 8 | **0 nuevos** (1 detectado esta sesión, ver log 2026-09-03) |
+| Pendientes de ingesta | 33 | 0 |
+| Páginas en wiki/ | 26 (10 topics, 3 entities, 10 summaries) | ↑ continuo |
+| Cobertura temporal | 2015-2026 (backfill en curso) | 2015 → hoy real |
+| Ventanas GDELT completadas | 78 / ~45 estimadas | 45 (2015→hoy) — **rango agotado, requiere expansión** |
+| Días sin artículos nuevos | 7 (último real: 2026-08-27) | máx 3 antes de diagnosticar |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions : 2026-09-03 (SÍ corrió — commit "0 artículos nuevos descargados")
+Resultado               : 0 artículos nuevos (igual que 2026-09-01; último real fue 2026-08-27)
+Causa identificada      : Ventanas GDELT completadas = 78, por encima de las ~45 estimadas
+                          para cubrir 2015→hoy → el rango histórico ya fue barrido por GDELT.
+                          Los 0 nuevos ya no son timeout/bloqueo sino agotamiento del rango.
+                          RSS IICA y La Prensa siguen activos, aportan artículos ocasionales.
+Recomendación           : expandir backfill — sub-particionar ventanas ya cubiertas (semanal
+                          en vez de trimestral) o sumar nuevas fuentes RSS/GDELT.
+Bug encontrado          : `wiki_agro.py mark-ingested '<url>'` falla (AttributeError) porque
+                          scripts/ingest.py:145 no filtra la clave interna `_gdelt_windows`
+                          (lista) al iterar processed.items(). Usar `mark-all-ingested --limit N`
+                          mientras no se corrija.
 ```
 
 ---
@@ -42,22 +49,13 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 
 | Período | Ventanas | Artículos | Estado |
 |---------|----------|-----------|--------|
-| 2015 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2016 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2017 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2018 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2019 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2020 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2021 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2022 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2023 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2024 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2025 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2026 Q1-Q2 | 0/2 | ? | Pendiente |
-| **TOTAL** | **0/46** | **0** | **Backfill no iniciado** |
+| **TOTAL** | **78/~45 estimadas** | **51 (sources/)** | **Rango 2015→hoy cubierto por GDELT; requiere expansión (ver Estado del Fetch)** |
 
-> Una vez que Actions corra con el código corregido, actualizar esta tabla con los datos reales.
-> El rendimiento real de GDELT (artículos/trimestre) determinará la duración del backfill.
+> `sources/processed.json._gdelt_windows` registra 78 ventanas completadas, superando la
+> estimación inicial de ~45 para cubrir 2015→hoy. El desglose por trimestre no se guarda en
+> processed.json (solo la lista plana de ventanas), por lo que la tabla trimestral anterior no
+> se puede reconstruir sin instrumentar `fetch_gdelt_historical()` para registrar período+conteo
+> por ventana. Próxima mejora sugerida: loggear (ventana, artículos_encontrados) por corrida.
 
 ---
 
@@ -67,6 +65,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-09-03 | 5 (4 reales + 1 falso positivo) | 33 | Routine: git pull + ingest --limit 5; falso positivo MITI/Malasia detectado y documentado en log.md |
 
 ---
 

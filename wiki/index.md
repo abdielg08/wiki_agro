@@ -2,8 +2,8 @@
 title: Índice del Wiki Agropecuario de Panamá
 type: overview
 tags: [indice, navegacion]
-last_updated: 2025-05-24
-article_count: 0
+last_updated: 2026-09-03
+article_count: 10
 ---
 
 # Wiki Agropecuario de Panamá
@@ -36,7 +36,7 @@ article_count: 0
 ### Ganadería y Proteína Animal
 | Página | Descripción |
 |--------|-------------|
-| [ganaderia_bovina.md](topics/ganaderia_bovina.md) | Cría, leche, carne; regiones ganaderas |
+| [ganaderia_bovina.md](topics/ganaderia_bovina.md) | Cría, leche, carne; vulnerabilidad a sequías e inundaciones |
 | [porcicultura.md](topics/porcicultura.md) | Producción porcina nacional |
 | [avicultura.md](topics/avicultura.md) | Pollos de engorde, huevos, industria avícola |
 | [acuicultura_pesca.md](topics/acuicultura_pesca.md) | Camarones, tilapia, pesca artesanal |
@@ -57,7 +57,7 @@ article_count: 0
 | Página | Descripción |
 |--------|-------------|
 | [politicas_agropecuarias.md](topics/politicas_agropecuarias.md) | Leyes, Plan Mulino B/. 850M 2024-2029, planes de gobierno |
-| [subsidios_programas.md](topics/subsidios_programas.md) | Plan de Semillas, Agroalimentos, programas de apoyo |
+| [subsidios_programas.md](topics/subsidios_programas.md) | Compensaciones, revisión de subsidios en transiciones de gobierno |
 
 ### Regiones Agrícolas
 | Página | Descripción |
@@ -98,7 +98,11 @@ article_count: 0
 | 2022-04-10 | IICA | [Vigilancia Fusarium TR4 bananeras](summaries/20220410_iica_platano-banano-exportaciones-fusarium.md) | 56M cajas, US$ 500M en riesgo |
 | 2021-08-15 | BDA | [Crédito pandemia 2020-2021](summaries/20210815_bda_credito-agropecuario-pandemia-2020-2021.md) | B/. 320M, 28K productores |
 | 2024-03-05 | MIDA | [Plan Agropecuario Mulino 2024-2029](summaries/20240305_mida_politica-agropecuaria-mulino-2024.md) | B/. 850M, meta 80% autoabastecimiento |
+| 2024-11-07 | La Prensa | [Inundaciones dañan arroz, maíz y ganadería en Veraguas](summaries/20241107_prensacom_inundaciones-perdidas-arroz-maiz-ganaderia.md) | Lluvias afectan sembradíos y pastizales |
+| 2022-05-24 | La Prensa | [Proyección de siembra de arroz 2022-2023](summaries/20220524_prensacom_proyeccion-siembra-arroz-2022-2023.md) | ~90,000 ha proyectadas, 79,600 ha en secano |
+| 2024-06-07 | La Prensa | [Linares revisará subsidios en el Mida](summaries/20240607_prensacom_linares-revisara-subsidios-mida.md) | Transición ministerial Valderrama → Linares |
+| 2024-06-13 | La Prensa | [Productores de arroz exigen compensaciones](summaries/20240613_prensacom_productores-arroz-darien-exigen-compensaciones.md) | Panamá Este y Darién, pagos pendientes de 2023 |
 
 ---
 
-*Última actualización del índice: 2026-05-24*
+*Última actualización del índice: 2026-09-03*
