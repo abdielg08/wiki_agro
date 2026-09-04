@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-09-04
 ---
 
 # Dashboard de Métricas
@@ -14,59 +14,71 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Artículos en sources/ | 51 | ↑ continuo |
+| Artículos reales ingestados (acumulado) | 10 | = total sin falsos positivos |
+| Falsos positivos acumulados | 8 | **0 nuevos** |
+| Pendientes de ingesta | 33 | 0 |
+| Páginas en wiki/ | 25 (9 topics, 3 entidades, 10 resúmenes, 3 overview) | ↑ continuo |
+| Cobertura temporal real (artículos ingestados) | 2016-2024 | 2015-02-19 → hoy |
+| Ventanas GDELT completadas | 78 (37 trimestrales + 41 "recientes" cuasi-duplicadas) | 46 (2015→hoy) |
+| Días sin artículos nuevos reales | **8** (última: 2026-08-27) | máx 3 antes de diagnosticar — **⚠ ALARMA ACTIVA** |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions       : 2026-09-03 (0 artículos nuevos)
+Último artículo nuevo real   : 2026-08-27 (1 artículo)
+Días sin artículos nuevos    : 8 — supera el máximo de 3 (CLAUDE.md) → señal de alarma
+
+Causa identificada (2026-09-04):
+  - El backfill histórico NO cubre 2015-02-19 → 2017-03-29 (~2 años sin ninguna ventana GDELT).
+  - La corrida diaria está re-escaneando una ventana "reciente" (desde 2026-06-18) cuyo `end`
+    avanza ~1 día por corrida, generando una clave de ventana "nueva" aunque el contenido se
+    solape casi totalmente con el día anterior → explica los "0 artículos nuevos" consecutivos.
+  - RSS de IICA y La Prensa siguen activos pero aportan pocos artículos nuevos por día.
+
+Acción recomendada:
+  - Priorizar ventanas trimestrales faltantes de 2015-02-19 a 2017-03-29 en el fetcher GDELT.
+  - Revisar generación de la ventana "reciente" para que no cree una clave nueva por cada `end`
+    de un día distinto sin aportar cobertura real adicional.
+  - Ver diagnóstico completo en wiki/log.md, entrada 2026-09-04 00:05.
 ```
 
 ---
 
 ## Progreso del Backfill GDELT (2015 → hoy)
 
-| Período | Ventanas | Artículos | Estado |
-|---------|----------|-----------|--------|
-| 2015 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2016 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2017 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2018 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2019 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2020 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2021 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2022 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2023 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2024 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2025 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2026 Q1-Q2 | 0/2 | ? | Pendiente |
-| **TOTAL** | **0/46** | **0** | **Backfill no iniciado** |
+| Período | Ventanas | Estado |
+|---------|----------|--------|
+| 2015-02 a 2017-03 | 0 ventanas | **Pendiente — hueco confirmado en el objetivo de cobertura** |
+| 2017-03 a 2026-06 | 37 ventanas trimestrales | Completado (cobertura continua confirmada) |
+| 2026-06 a 2026-09 ("reciente") | 41 ventanas cuasi-duplicadas | Necesita corrección de lógica (ver diagnóstico arriba) |
+| **TOTAL** | **78 ventanas** | **Backfill histórico incompleto — falta el tramo 2015-2017** |
 
-> Una vez que Actions corra con el código corregido, actualizar esta tabla con los datos reales.
-> El rendimiento real de GDELT (artículos/trimestre) determinará la duración del backfill.
+> Reemplaza la tabla trimestral anterior (que asumía 46 ventanas 2015-2026) porque las claves reales
+> de `_gdelt_windows` no siguen ese esquema de trimestres fijos. Ver detalle en wiki/log.md.
+
+---
+
+## Falsos Positivos Detectados
+
+| Fecha detección | Artículo | Motivo |
+|------------------|----------|--------|
+| 2026-06-22 | (7 artículos, auditoría previa) | Ver wiki/log.md, entrada 2026-06-22 |
+| 2026-09-04 | "MITI working on simplified NCM..." (paultan.org) | Medio automotriz de Malasia; MITI/MARii malayos, no MIDA panameño |
+| Pendiente de revisión | "Mozambique: More than 1M doses of foot-and-mouth vaccine..." (clubofmozambique.com) | Trata sobre Mozambique, no Panamá — detectado pero fuera del batch procesado hoy |
 
 ---
 
 ## Historial de Sesiones de Routine
 
-| Fecha | Artículos ingestados | Pendientes restantes | Nota |
-|-------|---------------------|----------------------|------|
-| 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
-| 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| Fecha | Artículos ingestados | Falsos positivos | Pendientes restantes | Nota |
+|-------|---------------------|-------------------|----------------------|------|
+| 2026-05-24 | 6 (semilla manual) | 0 | 0 | Datos semilla iniciales — no son fetches automáticos |
+| 2026-06-22 | 0 | 7 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-09-04 | 4 | 1 | 33 | Sesión programada; diagnóstico de backfill incompleto 2015-2017 |
 
 ---
 
@@ -84,3 +96,7 @@ Al ejecutar, la routine DEBE:
 - Revisar el último log de GitHub Actions (ver wiki/log.md para contexto)
 - Identificar si el problema es GDELT rate-limit, RSS caído, o config
 - Documentar el diagnóstico en wiki/log.md con pasos para resolverlo
+
+**Estado actual de la alarma (2026-09-04)**: ACTIVA — 8 días sin artículos nuevos reales.
+Diagnóstico ya documentado (ver arriba y wiki/log.md); pendiente de que una sesión con acceso a
+`scripts/` corrija la lógica de generación de ventanas GDELT.
