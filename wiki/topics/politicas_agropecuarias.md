@@ -50,6 +50,7 @@ Las políticas agropecuarias panameñas de 2015-2025 han evolucionado de interve
 - **2018**: Plan de emergencia fitosanitaria por gusano cogollero; B/. 3.2M en insecticidas a 12,000 productores
 - **2020-2021**: Línea COVID-19 BDA: B/. 85M al 2% anual; récord B/. 320M en créditos
 - **2023**: Plan de Emergencia Arrocera: semilla IDIAP-Esperanza + créditos BDA al 4% por caída -18% en arroz
+- **2024-06-07**: Transición ministerial MIDA (Valderrama → Linares) incluyó revisión de subsidios vigentes [La Prensa, 2024-06-07]
 
 ## Tendencias (2015–2025)
 

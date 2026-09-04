@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-09-04
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,41 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Artículos en sources/ | 51 | ↑ continuo |
+| Artículos procesados (ingested=true) | 18 | = total sin falsos positivos |
+| Falsos positivos acumulados | 8 (7 previos + 1 el 2026-09-04) | **0 nuevos** |
+| Pendientes de ingesta | 33 | 0 |
+| Páginas en wiki/ | 25 (9 topics, 3 entidades, 10 resúmenes, 3 overview) | ↑ continuo |
+| Cobertura temporal | 2015-2026 (parcial, en backfill) | 2015 → hoy real |
+| Ventanas GDELT completadas | 78 | 45 (2015→hoy) — **YA SUPERADO** |
+| Días sin artículos nuevos | 8 (última descarga real: 2026-08-27) | máx 3 antes de diagnosticar |
+
+**⚠️ ALARMA ACTIVA**: 8 días sin artículos nuevos descargados por GitHub Actions — supera el umbral de 3 días. Ver diagnóstico abajo.
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida con resultados : 2026-08-27 (commit 2e30165, 1 artículo nuevo)
+Corridas recientes sin nuevos  : 2026-09-01 (df761f6, 0), 2026-09-03 (30074d2, 0)
+Ventanas GDELT completadas     : 78 (>= 45 estimadas para cubrir 2015→hoy)
+Diagnóstico (2026-09-04)       : Actions SÍ está corriendo (hay commits [skip ci] recientes),
+                                  pero devuelve 0 artículos nuevos en las últimas 2 corridas.
+                                  Con 78 ventanas GDELT ya completadas (> umbral de 45), el
+                                  rango de fechas históricas parece agotado — GDELT ya no
+                                  tiene ventanas nuevas que ofrecer con la configuración actual.
+Causa más probable             : Rango de fechas de backfill agotado → necesita expansión
+                                  (ventanas más recientes / reconfigurar límites de fecha) o
+                                  las fuentes RSS (IICA, La Prensa) no están aportando artículos
+                                  nuevos en el día a día.
+Acción recomendada             : Revisar sources/processed.json → _gdelt_windows (78 entradas)
+                                  y expandir/ajustar el rango de backfill en scripts de fetch;
+                                  validar que las fuentes RSS activas sigan respondiendo.
+Bug adicional detectado        : 1 artículo (paultan.org, sobre política industrial de Malasia)
+                                  fue etiquetado incorrectamente con source="prensa.com" y
+                                  country="PA" — ver falso positivo documentado en wiki/log.md
+                                  2026-09-04. Revisar el scraper que asigna source/country.
 ```
 
 ---
@@ -54,10 +69,14 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 | 2024 Q1-Q4 | 0/4 | ? | Pendiente |
 | 2025 Q1-Q4 | 0/4 | ? | Pendiente |
 | 2026 Q1-Q2 | 0/2 | ? | Pendiente |
-| **TOTAL** | **0/46** | **0** | **Backfill no iniciado** |
+| **TOTAL** | **78/46** | **51** | **Ventanas GDELT superan la meta original; desglose por trimestre pendiente de recomputar** |
 
-> Una vez que Actions corra con el código corregido, actualizar esta tabla con los datos reales.
-> El rendimiento real de GDELT (artículos/trimestre) determinará la duración del backfill.
+> 2026-09-04: `sources/processed.json → _gdelt_windows` ya tiene 78 ventanas registradas (más que
+> las 46 estimadas para cubrir 2015→hoy), pero el fetch automático lleva 8 días sin traer
+> artículos nuevos. Esto sugiere que las ventanas se están re-generando o solapando sin cubrir
+> rango nuevo real. La tabla por trimestre de arriba está desactualizada (asume 0 ventanas) y
+> debe recalcularse a partir de las 78 entradas de `_gdelt_windows` en una próxima sesión de
+> mantenimiento/lint.
 
 ---
 
@@ -67,6 +86,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-09-04 | 4 (+1 falso positivo rechazado) | 33 | Routine: arroz/maíz/inundaciones/subsidios; detectado bug de source/country mal asignado; ventanas GDELT (78) superan umbral 45 — backfill necesita expansión de rango |
 
 ---
 

@@ -2,7 +2,7 @@
 title: Log de Actividad del Wiki
 type: overview
 tags: [log, actividad]
-last_updated: 2025-05-24
+last_updated: 2026-09-04
 ---
 
 # Log de Actividad
@@ -48,3 +48,35 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-09-04 00:00
+INGEST: 4 artículos procesados (routine — sesión Claude Code)
+  Artículos:
+    - 20241107_prensacom (Pérdidas por inundaciones en arroz/maíz/ganadería, Veraguas) → summaries/ + topics/arroz.md, topics/maiz.md, topics/cambio_climatico.md actualizados + entities/mida.md actualizado
+    - 20220524_prensacom (Proyección siembra arroz ~90,000 ha ciclo 2022-2023) → summaries/ + topics/arroz.md, topics/politicas_agropecuarias.md actualizados + entities/mida.md actualizado
+    - 20240607_prensacom (Linares revisará subsidios en el Mida — transición Valderrama→Linares) → summaries/ + topics/subsidios_programas.md creado + topics/politicas_agropecuarias.md actualizado + entities/mida.md actualizado
+    - 20240613_prensacom (Productores de arroz Panamá Este/Darién exigen compensaciones 2023) → summaries/ + topics/arroz.md, topics/subsidios_programas.md actualizados + entities/mida.md actualizado
+  Páginas creadas: topics/subsidios_programas.md
+  Páginas actualizadas: topics/arroz.md, topics/maiz.md, topics/cambio_climatico.md, topics/politicas_agropecuarias.md, entities/mida.md, index.md
+  Summaries: 4 nuevos archivos en wiki/summaries/
+
+FALSO POSITIVO: 1 artículo rechazado — NO ingestado
+  - Archivo: sources/articles/20260708_prensacom_2026-07-07-miti-working-on-simplified-ncm-customised-incenti.json
+  - Título: "MITI working on simplified NCM customised incentive mechanism to build real local industrial capabilities"
+  - URL real: https://paultan.org/2026/07/07/miti-working-on-simplified-ncm-customised-incentive-mechanism-to-build-real-local-industrial-capabilities/
+  - Motivo: el artículo trata sobre política industrial/automotriz de Malaysia (MITI = Ministry of Investment, Trade
+    and Industry de Malasia; MARii = Malaysia Automotive, Robotics and IoT Institute; MIDA en este contexto es la
+    Malaysian Investment Development Authority, no el Ministerio de Desarrollo Agropecuario de Panamá). No tiene
+    relación con el agro panameño a pesar de estar etiquetado con source="prensa.com" y country="PA" en
+    sources/processed.json — falla evidente de clasificación en el pipeline de ingesta (paultan.org es un medio
+    automotriz malayo, no prensa.com). Se marca como procesado (ingested=true) para no ocupar cupo de la routine,
+    pero SIN crear contenido de wiki.
+  - Acción recomendada: revisar el fetcher/scraper — posible bug de asignación de source/country cuando la URL
+    real no coincide con el dominio esperado.
+
+## 2026-09-04 (avance)
+INGEST: 5 artículos marcados como procesados en processed.json (4 ingestados + 1 falso positivo documentado)
+  Pendientes restantes: 33
+
+## 2026-09-04 08:16
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code
