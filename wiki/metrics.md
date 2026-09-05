@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-09-05
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,32 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Artículos en sources/ | 51 | ↑ continuo |
+| Artículos ingestados (processed.json) | 18 | = total sin falsos positivos |
+| Pendientes de ingesta | 33 | 0 |
+| Falsos positivos acumulados | 8 (7 previos + 1 el 2026-09-05: MITI/MARii Malasia) | **0 nuevos reales ingestados como si fueran agro** |
+| Páginas en wiki/ | 24 (8 topics, 3 entities, 10 summaries, 3 overview) | ↑ continuo |
+| Cobertura temporal | 2015-2026 (semilla + ingesta real) | 2015 → hoy real |
+| Ventanas GDELT completadas | 79 | 45+ (2015→hoy) — meta original ya superada |
+| Días sin artículos nuevos reales | 8 (desde 2026-08-27) | máx 3 antes de diagnosticar — **ALARMA ACTIVA** |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions       : 2026-09-04 (commit bcc74c2, "0 artículos nuevos descargados")
+Historial reciente           : 2026-08-27 (+1), 2026-09-01 (0), 2026-09-03 (0), 2026-09-04 (0)
+Días sin artículos nuevos    : 8 (desde 2026-08-27) — supera umbral de alarma (3 días)
+Ventanas GDELT completadas   : 79 (ya superó la meta original de ~45 → rango 2015-hoy
+                                probablemente ya cubierto o en re-procesamiento sin resultados nuevos)
+Causa probable              : (1) agotamiento del rango de fechas útil en GDELT, o
+                               (2) RSS de IICA/La Prensa sin entradas nuevas relevantes, o
+                               (3) el filtro de keywords "MIDA"/"agro" está trayendo ruido
+                               internacional (Malasia MIDA/MITI, data centers, IEEE, etc. —
+                               ver wiki/log.md 2026-09-05) en vez de artículos panameños válidos
+Diagnóstico completo         : ver wiki/log.md, entrada 2026-09-05 00:15
+Estado                       : sin resolver — requiere revisión de fetch_gdelt / filtros de fuente
 ```
 
 ---
@@ -42,22 +48,16 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 
 | Período | Ventanas | Artículos | Estado |
 |---------|----------|-----------|--------|
-| 2015 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2016 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2017 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2018 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2019 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2020 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2021 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2022 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2023 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2024 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2025 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2026 Q1-Q2 | 0/2 | ? | Pendiente |
-| **TOTAL** | **0/46** | **0** | **Backfill no iniciado** |
+| **TOTAL** | **79 ventanas completadas** | **51 descargados / 18 ingestados** | **En curso — ritmo de artículos nuevos muy bajo desde 2026-08-27** |
 
-> Una vez que Actions corra con el código corregido, actualizar esta tabla con los datos reales.
-> El rendimiento real de GDELT (artículos/trimestre) determinará la duración del backfill.
+> El contador `_gdelt_windows` en `sources/processed.json` marca 79 ventanas completadas, por encima
+> de la estimación original de ~45 para cubrir 2015→hoy. No hay desglose por trimestre disponible en
+> este momento porque `processed.json` solo guarda el contador agregado, no el detalle por ventana.
+> El estancamiento en artículos nuevos (8 días sin ingreso real) pese a que las ventanas GDELT siguen
+> "completándose" sugiere que el backfill está reprocesando rangos ya cubiertos sin encontrar
+> contenido adicional, o que el filtro de relevancia está descartando/mezclando resultados no
+> panameños (ver "Estado del Fetch" arriba). Requiere revisión del script de fetch para desglosar
+> el progreso real por período.
 
 ---
 
@@ -67,6 +67,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-09-05 | 4 (1 falso positivo excluido) | 33 | Routine automática; detectado falso positivo Malasia MIDA/MITI; alarma por 8 días sin artículos nuevos reales |
 
 ---
 
