@@ -2,7 +2,7 @@
 title: Índice del Wiki Agropecuario de Panamá
 type: overview
 tags: [indice, navegacion]
-last_updated: 2025-05-24
+last_updated: 2026-09-05
 article_count: 0
 ---
 
@@ -36,7 +36,7 @@ article_count: 0
 ### Ganadería y Proteína Animal
 | Página | Descripción |
 |--------|-------------|
-| [ganaderia_bovina.md](topics/ganaderia_bovina.md) | Cría, leche, carne; regiones ganaderas |
+| [ganaderia_bovina.md](topics/ganaderia_bovina.md) | Cría, leche, carne; regiones ganaderas; impacto de sequías e inundaciones |
 | [porcicultura.md](topics/porcicultura.md) | Producción porcina nacional |
 | [avicultura.md](topics/avicultura.md) | Pollos de engorde, huevos, industria avícola |
 | [acuicultura_pesca.md](topics/acuicultura_pesca.md) | Camarones, tilapia, pesca artesanal |
@@ -44,7 +44,7 @@ article_count: 0
 ### Retos Sectoriales
 | Página | Descripción |
 |--------|-------------|
-| [cambio_climatico.md](topics/cambio_climatico.md) | Sequías, El Niño, inundaciones, adaptación |
+| [cambio_climatico.md](topics/cambio_climatico.md) | Sequías, El Niño, inundaciones (incl. Veraguas nov. 2024), adaptación |
 | [seguridad_alimentaria.md](topics/seguridad_alimentaria.md) | Autoabastecimiento, pobreza rural, déficit |
 | [plagas_enfermedades.md](topics/plagas_enfermedades.md) | Gusano cogollero, roya del café, enfermedades |
 | [precios_mercados.md](topics/precios_mercados.md) | Volatilidad de precios, importaciones vs. producción local |
@@ -56,8 +56,8 @@ article_count: 0
 ### Políticas y Gobernanza
 | Página | Descripción |
 |--------|-------------|
-| [politicas_agropecuarias.md](topics/politicas_agropecuarias.md) | Leyes, Plan Mulino B/. 850M 2024-2029, planes de gobierno |
-| [subsidios_programas.md](topics/subsidios_programas.md) | Plan de Semillas, Agroalimentos, programas de apoyo |
+| [politicas_agropecuarias.md](topics/politicas_agropecuarias.md) | Leyes, Plan Mulino B/. 850M 2024-2029, planes de gobierno, transición 2024 |
+| [subsidios_programas.md](topics/subsidios_programas.md) | Plan de Semillas, revisión de subsidios en transición 2024, programas de apoyo |
 
 ### Regiones Agrícolas
 | Página | Descripción |
@@ -98,7 +98,11 @@ article_count: 0
 | 2022-04-10 | IICA | [Vigilancia Fusarium TR4 bananeras](summaries/20220410_iica_platano-banano-exportaciones-fusarium.md) | 56M cajas, US$ 500M en riesgo |
 | 2021-08-15 | BDA | [Crédito pandemia 2020-2021](summaries/20210815_bda_credito-agropecuario-pandemia-2020-2021.md) | B/. 320M, 28K productores |
 | 2024-03-05 | MIDA | [Plan Agropecuario Mulino 2024-2029](summaries/20240305_mida_politica-agropecuaria-mulino-2024.md) | B/. 850M, meta 80% autoabastecimiento |
+| 2022-05-24 | La Prensa | [Proyección siembra arroz 2022-2023](summaries/20220524_prensacom_siembra-arroz-2022-2023.md) | MIDA proyecta 90 mil ha (79,600 secano) |
+| 2024-06-07 | La Prensa | [Linares revisará subsidios en el MIDA](summaries/20240607_prensacom_linares-subsidios-mida.md) | Transición Valderrama → Linares, revisión de subsidios |
+| 2024-06-13 | La Prensa | [Productores de arroz exigen compensaciones](summaries/20240613_prensacom_productores-arroz-compensaciones.md) | Panamá Este/Darién, pagos 2023 pendientes |
+| 2024-11-07 | La Prensa | [Inundaciones afectan arroz, maíz y ganadería](summaries/20241107_prensacom_inundaciones-arroz-maiz-ganaderia.md) | Veraguas, evaluación de pérdidas MIDA |
 
 ---
 
-*Última actualización del índice: 2026-05-24*
+*Última actualización del índice: 2026-09-05*

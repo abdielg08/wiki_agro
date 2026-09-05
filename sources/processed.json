@@ -290,7 +290,8 @@
     "title": "Catalogue of the diptera of the Americas South of United States",
     "date": "2016-05-13",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-05T16:15:27.965715"
   },
   "https://www.heraldo.es/noticias/aragon/2026/05/03/luis-biendicho-vox-asume-consejeria-medio-ambiente-con-un-inaga-bajo-lupa-investigacion-judicial-por-caso-forestalia-2017165.html": {
     "saved_at": "2026-07-29T12:56:00.851198",
@@ -354,7 +355,8 @@
     "title": "Agroturismo en temporada de cosecha",
     "date": "2019-11-15",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-05T16:15:27.965716"
   },
   "https://www.prensa.com/provincias/fijan-medidas-para-prevenir-casos-de-la-covid-19-en-la-proxima-cosecha-de-cafe/": {
     "saved_at": "2026-08-24T11:18:59.205884",
@@ -370,7 +372,8 @@
     "title": "Mida debe mejorar el sistema de diagnóstico",
     "date": "2010-07-04",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-05T16:15:27.965713"
   },
   "https://www.prensa.com/impresa/economia/plagas-agricultura_0_2148535259.html": {
     "saved_at": "2026-08-24T11:18:59.207747",
@@ -378,7 +381,8 @@
     "title": "Las seis plagas de la agricultura",
     "date": "2007-11-04",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-05T16:15:27.965703"
   },
   "https://www.prensa.com/economia/cartera-de-credito-agropecuario-de-banco-nacional-de-panama-alcanzo-los-7141-millones-en-2024/": {
     "saved_at": "2026-08-24T11:18:59.208497",
@@ -466,7 +470,8 @@
     "title": "Ministro Valderrama niega irregularidades en planilla del Mida",
     "date": "2019-11-21",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-05T16:15:27.965717"
   },
   "https://www.prensa.com/sociedad/agricultura-vertical-revoluciona-cultivo-en-panama-lechuga-en-30-dias-sin-sol-ni-tierra/": {
     "saved_at": "2026-08-24T11:18:59.217836",
