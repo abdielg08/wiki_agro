@@ -2,8 +2,8 @@
 title: Índice del Wiki Agropecuario de Panamá
 type: overview
 tags: [indice, navegacion]
-last_updated: 2025-05-24
-article_count: 0
+last_updated: 2026-09-06
+article_count: 10
 ---
 
 # Wiki Agropecuario de Panamá
@@ -36,7 +36,7 @@ article_count: 0
 ### Ganadería y Proteína Animal
 | Página | Descripción |
 |--------|-------------|
-| [ganaderia_bovina.md](topics/ganaderia_bovina.md) | Cría, leche, carne; regiones ganaderas |
+| [ganaderia_bovina.md](topics/ganaderia_bovina.md) | Cría, leche, carne; vulnerabilidad a sequías e inundaciones |
 | [porcicultura.md](topics/porcicultura.md) | Producción porcina nacional |
 | [avicultura.md](topics/avicultura.md) | Pollos de engorde, huevos, industria avícola |
 | [acuicultura_pesca.md](topics/acuicultura_pesca.md) | Camarones, tilapia, pesca artesanal |
@@ -98,7 +98,11 @@ article_count: 0
 | 2022-04-10 | IICA | [Vigilancia Fusarium TR4 bananeras](summaries/20220410_iica_platano-banano-exportaciones-fusarium.md) | 56M cajas, US$ 500M en riesgo |
 | 2021-08-15 | BDA | [Crédito pandemia 2020-2021](summaries/20210815_bda_credito-agropecuario-pandemia-2020-2021.md) | B/. 320M, 28K productores |
 | 2024-03-05 | MIDA | [Plan Agropecuario Mulino 2024-2029](summaries/20240305_mida_politica-agropecuaria-mulino-2024.md) | B/. 850M, meta 80% autoabastecimiento |
+| 2022-05-24 | La Prensa | [Proyección siembra arroz 2022-2023](summaries/20220524_prensacom_proyeccion-siembra-arroz-2022-2023.md) | ~90K ha proyectadas, 79.6K ha en secano |
+| 2024-06-07 | La Prensa | [Transición Valderrama-Linares en el MIDA](summaries/20240607_prensacom_transicion-roberto-linares-mida.md) | Revisión de subsidios agropecuarios |
+| 2024-06-13 | La Prensa | [Productores de arroz exigen compensaciones](summaries/20240613_prensacom_productores-arroz-panama-este-darien-compensaciones.md) | Panamá Este/Darién, pagos 2023 pendientes |
+| 2024-11-07 | La Prensa | [Pérdidas por inundaciones en Veraguas](summaries/20241107_prensacom_perdidas-inundaciones-arroz-maiz-ganaderia.md) | Arroz, maíz, ganadería vacuna/porcina afectados |
 
 ---
 
-*Última actualización del índice: 2026-05-24*
+*Última actualización del índice: 2026-09-06*
