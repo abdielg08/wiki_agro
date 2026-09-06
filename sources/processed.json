@@ -507,5 +507,53 @@
     "date": "2026-08-21",
     "source": "prensa.com",
     "ingested": false
+  },
+  "https://www.prensa.com/impresa/economia/rol-trazabilidad-agricultura-moderna_0_5358214179.html": {
+    "saved_at": "2026-09-06T13:51:13.337888",
+    "path": "/home/runner/work/wiki_agro/wiki_agro/sources/articles/20190726_prensacom_impresa-economia-rol-trazabilidad-agricultura-moderna_0_5358.json",
+    "title": "El rol de la trazabilidad en la agricultura moderna",
+    "date": "2019-07-26",
+    "source": "prensa.com",
+    "ingested": false
+  },
+  "https://www.prensa.com/impresa/economia/Impulsan-desarrollo-agricultura-familiar_0_5415958417.html": {
+    "saved_at": "2026-09-06T13:51:13.339425",
+    "path": "/home/runner/work/wiki_agro/wiki_agro/sources/articles/20191011_prensacom_impresa-economia-impulsan-desarrollo-agricultura-familiar_0_.json",
+    "title": "Impulsan el desarrollo de agricultura familiar",
+    "date": "2019-10-11",
+    "source": "prensa.com",
+    "ingested": false
+  },
+  "https://www.prensa.com/opinion/Horizonte-agropecuario_0_5380711932.html": {
+    "saved_at": "2026-09-06T13:51:13.340365",
+    "path": "/home/runner/work/wiki_agro/wiki_agro/sources/articles/20190825_prensacom_opinion-horizonte-agropecuario_0_5380711932-html.json",
+    "title": "Horizonte agropecuario",
+    "date": "2019-08-25",
+    "source": "prensa.com",
+    "ingested": false
+  },
+  "https://www.prensa.com/economia/que-ocurre-con-el-arroz-en-panama-productores-temen-perdidas-en-la-cosecha-mientras-la-industria-justifica-las-importaciones/": {
+    "saved_at": "2026-09-06T13:51:13.341138",
+    "path": "/home/runner/work/wiki_agro/wiki_agro/sources/articles/20250724_prensacom_economia-que-ocurre-con-el-arroz-en-panama-productores-temen.json",
+    "title": "¿Qué ocurre con el arroz en Panamá? Productores temen pérdidas en la cosecha mientras la industria justifica las importaciones",
+    "date": "2025-07-24",
+    "source": "prensa.com",
+    "ingested": false
+  },
+  "https://www.prensa.com/provincias/MIDA-presenta-plan-contingencia-verano_0_5419707981.html": {
+    "saved_at": "2026-09-06T13:51:13.342310",
+    "path": "/home/runner/work/wiki_agro/wiki_agro/sources/articles/20191015_prensacom_provincias-mida-presenta-plan-contingencia-verano_0_54197079.json",
+    "title": "MIDA presenta plan de contingencia para el verano 2020",
+    "date": "2019-10-15",
+    "source": "prensa.com",
+    "ingested": false
+  },
+  "https://www.prensa.com/impresa/economia/los-subsidios-acaparan-los-fondos-del-mida/": {
+    "saved_at": "2026-09-06T13:51:13.343164",
+    "path": "/home/runner/work/wiki_agro/wiki_agro/sources/articles/20200827_prensacom_impresa-economia-los-subsidios-acaparan-los-fondos-del-mida.json",
+    "title": "Los subsidios acaparan los fondos del Mida",
+    "date": "2020-08-27",
+    "source": "prensa.com",
+    "ingested": false
   }
 }
