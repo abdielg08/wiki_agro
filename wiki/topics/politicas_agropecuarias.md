@@ -1,12 +1,14 @@
 ---
 title: Políticas Agropecuarias en Panamá
 type: topic
-tags: [politica-agropecuaria, plan-mulino, mida, bda, idiap, seguridad-alimentaria, riego, semillas, 2024]
-last_updated: 2026-05-24
-article_count: 1
+tags: [politica-agropecuaria, plan-mulino, mida, bda, idiap, seguridad-alimentaria, riego, semillas, transicion-gobierno, 2022, 2024]
+last_updated: 2026-09-06
+article_count: 3
 sources:
   - "https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024"
-related: [topics/subsidios_programas.md, topics/tecnologia_innovacion.md, topics/agua_riego.md, topics/credito_financiamiento.md, entities/mida.md, entities/bda.md, entities/idiap.md]
+  - "https://www.prensa.com/politica/roberto-linares-revisara-los-subsidios-en-el-mida/"
+  - "https://www.prensa.com/economia/panama-proyecta-sembrar-cerca-de-90-mil-hectareas-de-arroz-para-el-ciclo-2022-2023/"
+related: [topics/subsidios_programas.md, topics/tecnologia_innovacion.md, topics/agua_riego.md, topics/credito_financiamiento.md, topics/arroz.md, entities/mida.md, entities/bda.md, entities/idiap.md]
 ---
 
 # Políticas Agropecuarias en Panamá
@@ -49,7 +51,13 @@ Las políticas agropecuarias panameñas de 2015-2025 han evolucionado de interve
 - **2016**: Estado de emergencia agropecuaria por sequía El Niño 2015-2016; BDA refinancia B/. 45M
 - **2018**: Plan de emergencia fitosanitaria por gusano cogollero; B/. 3.2M en insecticidas a 12,000 productores
 - **2020-2021**: Línea COVID-19 BDA: B/. 85M al 2% anual; récord B/. 320M en créditos
+- **2022**: MIDA proyectó siembra de **~90,000 ha de arroz** para el ciclo 2022-2023 (79,600 ha en secano) [prensa.com, 2022-05-24]
 - **2023**: Plan de Emergencia Arrocera: semilla IDIAP-Esperanza + créditos BDA al 4% por caída -18% en arroz
+
+## Transición de Gobierno 2024 (Valderrama → Linares)
+
+- **2024-06-07**: Primera reunión de transición en el MIDA entre el ministro saliente Augusto Valderrama y el ministro designado Roberto José Linares, previo al inicio de la administración de José Raúl Mulino (julio 2024) [prensa.com, 2024-06-07]
+- Uno de los temas tratados: **revisión de los subsidios** agropecuarios vigentes (ver [Subsidios y Programas](subsidios_programas.md))
 
 ## Tendencias (2015–2025)
 
@@ -68,6 +76,8 @@ Las políticas agropecuarias panameñas de 2015-2025 han evolucionado de interve
 ## Referencias
 
 - [MIDA, 2024 — Plan Agropecuario Gobierno Mulino 2024-2029](https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024)
+- [prensa.com, 2024 — Roberto Linares revisará los subsidios en el Mida](https://www.prensa.com/politica/roberto-linares-revisara-los-subsidios-en-el-mida/)
+- [prensa.com, 2022 — Proyección de siembra de arroz 2022-2023](https://www.prensa.com/economia/panama-proyecta-sembrar-cerca-de-90-mil-hectareas-de-arroz-para-el-ciclo-2022-2023/)
 
 ## Ver también
 
@@ -75,4 +85,5 @@ Las políticas agropecuarias panameñas de 2015-2025 han evolucionado de interve
 - [Agua y Riego](agua_riego.md)
 - [Tecnología e Innovación](tecnologia_innovacion.md)
 - [Crédito y Financiamiento](credito_financiamiento.md)
+- [Arroz en Panamá](arroz.md)
 - [MIDA](../entities/mida.md) | [BDA](../entities/bda.md) | [IDIAP](../entities/idiap.md)

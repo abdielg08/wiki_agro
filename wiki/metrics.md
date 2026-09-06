@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-09-06
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,29 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Artículos descargados en sources/ | 57 | ↑ continuo |
+| Artículos reales ingestados | 18 | = total sin falsos positivos |
+| Pendientes de ingesta | 39 | 0 |
+| Falsos positivos acumulados (confirmados/marcados) | 7 | **0 nuevos** |
+| Falsos positivos sospechados en backlog (no ingestados aún) | ~7-10 (ver diagnóstico 2026-09-06) | 0 al momento de ingestar |
+| Páginas en wiki/ | 26 (9 topics, 3 entities, 11 summaries, resto overview) | ↑ continuo |
+| Cobertura temporal | 2015-2026 (semilla + backfill parcial) | 2015 → hoy real |
+| Ventanas GDELT completadas | 79 (según `_gdelt_windows` en processed.json) | cobertura 2015→hoy |
+| Días sin artículos nuevos | 0 (último fetch: 2026-09-06) | máx 3 antes de diagnosticar |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions : 2026-09-06 (commit 24cfc3c: "6 artículos nuevos descargados")
+Resultado              : 6 artículos nuevos el día de la última corrida — el fetch SÍ está funcionando
+Ventanas GDELT          : 79 completadas (ver sources/processed.json._gdelt_windows)
+Hallazgo nuevo (2026-09-06): el backlog de 57 artículos descargados incluye varios
+                         falsos positivos por colisión de sigla/keyword (p.ej. "MIDA" de Malasia,
+                         noticias de EE.UU./Arabia Saudita/Brasil/Mozambique no relacionadas con
+                         Panamá). Ninguno fue ingestado; deben filtrarse manualmente al aparecer
+                         en pending_ingest.md. Ver wiki/log.md 2026-09-06 14:05 para detalle completo.
 ```
 
 ---
@@ -54,10 +57,15 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 | 2024 Q1-Q4 | 0/4 | ? | Pendiente |
 | 2025 Q1-Q4 | 0/4 | ? | Pendiente |
 | 2026 Q1-Q2 | 0/2 | ? | Pendiente |
-| **TOTAL** | **0/46** | **0** | **Backfill no iniciado** |
+| **TOTAL** | **79/46 (ver nota)** | **57** | **En progreso** |
 
-> Una vez que Actions corra con el código corregido, actualizar esta tabla con los datos reales.
-> El rendimiento real de GDELT (artículos/trimestre) determinará la duración del backfill.
+> 2026-09-06: `sources/processed.json._gdelt_windows` reporta 79 ventanas completadas y 57 artículos
+> descargados en total, confirmando que el backfill está en marcha. No se dispone de un desglose
+> por trimestre/año en el estado actual del script, por lo que la tabla de arriba (por período) no
+> se actualiza línea por línea para evitar inventar cifras — solo se actualiza el TOTAL con el dato
+> real disponible. El total de 79 ventanas supera la estimación original de 46, lo que sugiere que
+> el script cuenta reintentos/subventanas distinto a la estimación inicial; revisar en una futura
+> sesión de mantenimiento si se requiere granularidad por trimestre.
 
 ---
 
@@ -67,6 +75,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-09-06 | 5 (0 falsos positivos) | 39 | Lote 100% arroz/MIDA panameño; detectada contaminación de falsos positivos en backlog (ver log) |
 
 ---
 
