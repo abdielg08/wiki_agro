@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-09-07
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,31 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Artículos en sources/ | 57 | ↑ continuo |
+| Artículos reales ingestados | 18 | = total sin falsos positivos |
+| Artículos pendientes de ingesta | 39 | 0 (objetivo por sesión) |
+| Falsos positivos acumulados | 7+ (ver nota) | **0 nuevos** |
+| Páginas en wiki/ | 29 (12 topics, 3 entidades, 11 resúmenes) | ↑ continuo |
+| Cobertura temporal | 2015-2026 (parcial) | 2015 → hoy real |
+| Ventanas GDELT completadas | 79 (`_gdelt_windows`) | ≥45 (2015→hoy) — **superado** |
+| Días sin artículos nuevos en sources/ | 1 (última descarga: 2026-09-06) | máx 3 antes de diagnosticar |
+
+> Nota falsos positivos: además de los 7 previos, el fetch histórico había capturado artículos de "MIDA" en el sentido de *Malaysian Investment Development Authority* (thestar.com.my) y un caso de fox13now.com (Utah, EEUU) sin relación con Panamá. Todos están marcados `skipped: true` con `skip_reason` en `sources/processed.json` — no se ingestaron en esta ni en sesiones previas.
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida con artículos nuevos : 2026-09-06 (commit 24cfc3c, 6 artículos)
+Resultado sesión de hoy (2026-09-07): 0 artículos nuevos en sources/ al momento de esta
+                                       routine (origin/main sin commits nuevos de sources/ hoy)
+Ventanas GDELT                      : 79 completadas — supera el estimado de 45 para
+                                       cobertura 2015→hoy; se observan ventanas que se
+                                       solapan/repiten (p.ej. "20260618_20260714",
+                                       "20260618_20260801", "20260618_20260902")
+Acción sugerida                     : revisar en próxima sesión si fetch_gdelt_historical()
+                                       está generando ventanas duplicadas o solapadas
 ```
 
 ---
@@ -67,6 +72,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-09-07 | 5 (arroz/MIDA, 0 falsos positivos) | 39 | Creadas: precios_mercados.md, subsidios_programas.md, veraguas.md, darien_comarca.md |
 
 ---
 

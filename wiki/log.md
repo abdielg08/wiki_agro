@@ -48,3 +48,25 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-09-07 00:00
+ROUTINE: Diagnóstico inicial — python wiki_agro.py stats
+  Artículos descargados: 57 | Ingestados: 13 | Pendientes: 44
+  Fuentes: prensa.com (51), MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+INGEST: 5 artículos procesados (todos sobre arroz/MIDA, 100% agro Panamá, 0 falsos positivos)
+  Artículos:
+    - 20250724_prensacom_que-ocurre-con-el-arroz-en-panama-productores-temen → summaries/ + topics/arroz.md, topics/precios_mercados.md (creado), topics/subsidios_programas.md (creado) actualizados + entities/mida.md actualizado
+    - 20241107_prensacom_evaluan-perdidas-en-produccion-de-arroz-maiz-y-gana → summaries/ + topics/arroz.md, topics/maiz.md, topics/cambio_climatico.md actualizados + topics/veraguas.md (creado)
+    - 20220524_prensacom_panama-proyecta-sembrar-cerca-de-90-mil-hectareas-d → summaries/ + topics/arroz.md actualizado + entities/mida.md actualizado
+    - 20240613_prensacom_productores-de-arroz-de-panama-este-y-darien-exigen → summaries/ + topics/arroz.md, topics/subsidios_programas.md actualizados + topics/darien_comarca.md (creado) + entities/mida.md actualizado
+    - 20240607_prensacom_roberto-linares-revisara-los-subsidios-en-el-mida → summaries/ + topics/subsidios_programas.md, topics/politicas_agropecuarias.md actualizados + entities/mida.md actualizado
+  Páginas creadas: precios_mercados.md, subsidios_programas.md, veraguas.md, darien_comarca.md
+  Páginas actualizadas: arroz.md, maiz.md, cambio_climatico.md, politicas_agropecuarias.md, mida.md
+  Summaries: 5 nuevos archivos en wiki/summaries/
+  Nota: el texto fuente de los 5 artículos (`full_text`) es `null` en sources/articles/ — solo se dispuso de `summary_raw` truncado (~250-300 caracteres). Los resúmenes documentan únicamente los hechos confirmados en el extracto disponible, sin inferir detalles no confirmados.
+
+INGEST: 5 artículos marcados como ingestados (mark-all-ingested --limit 5)
+
+## 2026-09-07 16:17
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code
