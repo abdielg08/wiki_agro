@@ -1,12 +1,13 @@
 ---
 title: Cambio Climático e Impacto en el Agro Panameño
 type: topic
-tags: [cambio-climatico, sequia, el-nino, adaptacion, resiliencia, azuero, ganaderia]
-last_updated: 2026-05-24
-article_count: 1
+tags: [cambio-climatico, sequia, el-nino, la-nina, inundaciones, adaptacion, resiliencia, azuero, veraguas, ganaderia]
+last_updated: 2026-09-07
+article_count: 2
 sources:
   - "https://www.tvn-2.com/nacionales/sequia-azuero-el-nino-2015-2016"
-related: [topics/agua_riego.md, topics/seguridad_alimentaria.md, topics/arroz.md, topics/ganaderia_bovina.md, topics/plagas_enfermedades.md, entities/mida.md, entities/idiap.md]
+  - "https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/"
+related: [topics/agua_riego.md, topics/seguridad_alimentaria.md, topics/arroz.md, topics/maiz.md, topics/ganaderia_bovina.md, topics/plagas_enfermedades.md, entities/mida.md, entities/idiap.md]
 ---
 
 # Cambio Climático e Impacto en el Agro Panameño
@@ -35,6 +36,11 @@ El cambio climático es uno de los principales retos del sector agropecuario pan
 - Costos de producción arroz: B/. 8.50 → B/. 12.00 por quintal (+41%)
 - Regiones más afectadas: Azuero (Los Santos), Coclé, Veraguas
 
+### Inundaciones de Noviembre 2024 (La Niña)
+- Fuertes lluvias de fin de semana dañaron cultivos de arroz en **Veraguas**, junto con maíz y pastizales [prensa.com, 2024-11-07]
+- Afectación a zonas de actividad ganadera vacuna y porcina por daño a áreas de pastoreo
+- Evaluación de pérdidas iniciada por las autoridades agropecuarias
+
 ## Regiones Más Vulnerables
 - **Azuero** (Los Santos, Herrera): sequía estructural y ganadería dependiente de lluvias
 - **Coclé y Veraguas**: producción de arroz afectada sistemáticamente por sequías
@@ -42,7 +48,7 @@ El cambio climático es uno de los principales retos del sector agropecuario pan
 
 ## Tendencias (2015–2025)
 
-- Sequías El Niño (2015-16, 2023) impactan consistentemente producción de arroz y ganadería
+- Sequías El Niño (2015-16, 2023) e inundaciones por lluvias intensas (Veraguas, 2024) impactan consistentemente producción de arroz, maíz y ganadería
 - Aridización progresiva de Azuero: sequías extremas pasaron de ocurrir cada 15-20 años a cada 3-5 años (proyección IICA/FAO)
 - Mayor presión de plagas exóticas vinculada a temperaturas más altas (gusano cogollero desde 2018)
 - Plan Mulino 2024-2029 contempla 25,000 ha de riego en Azuero como respuesta estructural
@@ -65,9 +71,11 @@ El cambio climático es uno de los principales retos del sector agropecuario pan
 
 - [TVN, 2016 — Sequía El Niño 2015-2016 en Azuero](https://www.tvn-2.com/nacionales/sequia-azuero-el-nino-2015-2016)
 - [MIDA, 2023 — Producción de arroz cae 18%](https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023)
+- [prensa.com, 2024 — Pérdidas por inundaciones en arroz, maíz y ganadería](https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/)
 
 ## Ver también
 - [Arroz en Panamá](arroz.md)
+- [Maíz](maiz.md)
 - [Ganadería Bovina](ganaderia_bovina.md)
 - [Agua y Riego](agua_riego.md)
 - [Seguridad Alimentaria](seguridad_alimentaria.md)
