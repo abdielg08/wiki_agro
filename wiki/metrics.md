@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-09-08
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,36 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Artículos en sources/ | 57 | ↑ continuo |
+| Artículos reales ingestados | 18 | = total sin falsos positivos |
+| Pendientes de ingesta | 39 | 0 |
+| Falsos positivos acumulados (lote actual) | 0 nuevos | **0 nuevos** |
+| Páginas en wiki/ | 27 (10 topics, 3 entidades, 11 resúmenes, resto overview) | ↑ continuo |
+| Cobertura temporal real (sources/) | ~2017-03 → 2026-06 | 2015-02-19 → hoy |
+| Ventanas GDELT en processed.json | 79 (~35 backfill histórico + ~44 ventana incremental duplicada) | 45 (2015→hoy), sin duplicados |
+| Días sin artículos nuevos | 2 (último fetch con resultados: 2026-09-06) | máx 3 antes de diagnosticar |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida con artículos nuevos : 2026-09-06 (+6 artículos)
+Corridas recientes (sources/)       : 09-06(+6) 09-04(0) 09-03(0) 09-01(0) 08-27(+1) 08-24(+20)
+Resultado                           : Fetch activo, no en falla (2 días sin nuevos, < umbral de 3)
+Diagnóstico ventanas GDELT          : 79 ventanas registradas en processed.json
+                                       - ~35 ventanas de backfill histórico (2017-03 → 2026-06)
+                                       - ~44 ventanas con prefijo fijo "20260618_" y fin variable día a día:
+                                         patrón de ventana "incremental" (últimos ~90 días) que se re-registra
+                                         en cada corrida en vez de consolidarse en una sola entrada
+Causa identificada                  : (1) backfill histórico aún no llega a 2015-02-19 — arranca en 2017-03,
+                                         faltan 2015-2016 completos
+                                       (2) el conteo de "ventanas completadas" (79) está inflado por duplicados
+                                         de la ventana incremental — no es una señal limpia de agotamiento
+Fuentes RSS (IICA, La Prensa)       : activas, siguen aportando artículos (prensa.com = 51/57 del total)
+Fix recomendado (no aplicado)       : revisar generación de ventanas incrementales en el script de fetch para
+                                         que actualice/reemplace la ventana existente en vez de crear una nueva
+                                         cada corrida; y reanudar backfill histórico desde 2015-02-19
 ```
 
 ---
@@ -67,6 +77,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-09-08 | 5 (0 falsos positivos) | 39 | Lote de arroz/MIDA (2022, 2024×3, 2025); creó topics/precios_mercados.md y topics/subsidios_programas.md (enlaces rotos preexistentes en index.md) |
 
 ---
 
