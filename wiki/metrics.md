@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-09-08
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,42 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Artículos en sources/ | 57 | ↑ continuo |
+| Artículos reales ingestados | 18 | = total sin falsos positivos |
+| Pendientes de ingesta | 39 | 0 |
+| Falsos positivos acumulados (confirmados en processed.json) | 2 | **0 nuevos** |
+| Páginas en wiki/ | 27 (10 topics, 3 entidades, 11 resúmenes) | ↑ continuo |
+| Cobertura temporal | 2015-2026 (mezcla semilla + backfill real) | 2015 → hoy real |
+| Ventanas GDELT completadas | 79 | 45 (2015→hoy) — **superada, ver nota** |
+| Días sin nuevos artículos en sources/ | 2 (último commit: 2026-09-06) | máx 3 antes de diagnosticar |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida con artículos nuevos : 2026-09-06 (6 artículos)
+Commits en sources/ desde entonces  : ninguno (sin corridas registradas 09-07 ni 09-08)
+Días sin commit en sources/         : 2 (dentro del umbral de 3 días — VIGILAR)
+Ventanas GDELT completadas          : 79 (supera el estimado de 45 para 2015→hoy;
+                                       varias ventanas recientes con fin "20260618"
+                                       se repiten — posible solapamiento en el
+                                       cálculo de ventanas incrementales, revisar
+                                       si persiste en la próxima sesión)
+Cola de pendientes                  : 39 artículos, incluye falsos positivos
+                                       evidentes por título (ver nota abajo)
+```
+
+**Nota — calidad de la cola de pendientes**: al revisar los 39 artículos pendientes
+restantes se identificaron por título varios que claramente NO son sobre agro
+panameño (ej. centros de datos en Utah, "MIDA" de Malasia, agricultura en
+Aragón/España, Finep en Brasil, vacuna aviar en Mozambique, New York Farm
+Bureau). No se ingirieron en esta sesión porque el lote de 5 seleccionado por
+`ingest --limit 5` no los incluyó (los 5 procesados fueron 100% sobre agro
+panameño — ver `wiki/log.md`). Se recomienda que la próxima sesión los
+revise y marque como falsos positivos para mantener la cola limpia; el
+ruido sugiere que el filtro de relevancia del fetch (GDELT/RSS) coincide
+con palabras clave genéricas ("agro", "MIDA", "farm").
 ```
 
 ---
@@ -42,22 +58,18 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 
 | Período | Ventanas | Artículos | Estado |
 |---------|----------|-----------|--------|
-| 2015 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2016 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2017 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2018 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2019 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2020 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2021 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2022 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2023 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2024 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2025 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2026 Q1-Q2 | 0/2 | ? | Pendiente |
-| **TOTAL** | **0/46** | **0** | **Backfill no iniciado** |
+| **TOTAL** | **79/45 estimadas** | **57 descargados / 18 ingestados** | **Estimado original superado** |
 
-> Una vez que Actions corra con el código corregido, actualizar esta tabla con los datos reales.
-> El rendimiento real de GDELT (artículos/trimestre) determinará la duración del backfill.
+> El conteo de ventanas GDELT (79) ya superó el estimado original de 45 para
+> cubrir 2015→hoy. No se cuenta con el detalle por trimestre porque
+> `processed.json._gdelt_windows` almacena una lista plana de rangos
+> `YYYYMMDD_YYYYMMDD`, no un desglose por año/trimestre. Se detectó que varias
+> ventanas recientes (fin `20260618`) se repiten, lo que sugiere que el
+> backfill incremental podría estar re-consultando el mismo rango reciente en
+> lugar de avanzar sobre huecos históricos. Recomendado para próxima sesión:
+> inspeccionar `scripts/` (o el módulo de fetch) para confirmar si el avance
+> del backfill histórico 2015-2021 está completo o si sigue pendiente pese al
+> conteo alto de ventanas.
 
 ---
 
@@ -67,6 +79,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-09-08 | 5 (arroz/Mida: importaciones, inundaciones 2024, siembra 2022-23, compensaciones Panamá Este/Darién, revisión subsidios) | 39 | Sin falsos positivos en el lote. Detectados ~10+ falsos positivos evidentes por título en la cola restante (pendiente de revisión). 2 páginas topics nuevas creadas (precios_mercados.md, subsidios_programas.md). Sin commits en sources/ desde 2026-09-06 (2 días) — vigilar umbral de 3 días. **BUG encontrado y corregido**: `mark-all-ingested --limit N` no usa el mismo orden que `ingest --limit N` (score vs. alfabético) y marcó los artículos equivocados; además `mark-ingested <url>` individual falla por bug con `_gdelt_windows`. Ver detalle y corrección en wiki/log.md 2026-09-08 16:22. Requiere fix en `scripts/ingest.py` en una próxima sesión de mantenimiento de código. |
 
 ---
 
