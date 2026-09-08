@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-09-08
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,48 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Artículos en sources/ | 57 | ↑ continuo |
+| Artículos reales ingestados | 11 | = total sin falsos positivos |
+| Falsos positivos acumulados | 8 (+1 esta sesión) | **0 nuevos en el lote procesado** |
+| Pendientes de ingesta | 38 | 0 |
+| Páginas en wiki/ | 27 (10 topics, 3 entidades, 11 resúmenes) | ↑ continuo |
+| Cobertura temporal | 2015-2026 (semilla + real, arroz/MIDA 2022-2025) | 2015 → hoy real |
+| Ventanas GDELT completadas | 79 (`_gdelt_windows`) | 45 (2015→hoy) — **ya superado**, ver nota |
+| Días sin artículos nuevos | 2 (último commit sources/: 2026-09-06) | máx 3 antes de diagnosticar |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida con artículos nuevos : 2026-09-06 (6 artículos)
+Días sin artículos nuevos           : 2 (09-07, 09-08 sin commit en sources/)
+Ventanas GDELT completadas          : 79 — muy por encima de las ~45 estimadas
+                                       para cubrir 2015→hoy. Posible causa:
+                                       el fetcher re-corre ventanas ya completadas
+                                       en vez de expandir a fechas nuevas, o el
+                                       cálculo de "~45 estimadas" original era
+                                       incorrecto. Pendiente investigar
+                                       scripts/fetch_gdelt.py (o equivalente).
+Contaminación de la cola de pending : 15+ artículos con source="prensa.com" que
+                                       en realidad vienen de dominios ajenos
+                                       (thestar.com.my, sltrib.com, heraldo.es,
+                                       clubofmozambique.com, archive.org,
+                                       ieeexplore.ieee.org, whc.unesco.org,
+                                       maine.gov, nyfb.org, agenciabrasil.ebc.com.br,
+                                       spa.gov.sa, paultan.org, msn.com, fox13now.com).
+                                       Coinciden por el acrónimo "MIDA" (usado
+                                       también por la Malaysian Investment
+                                       Development Authority) o términos genéricos
+                                       de agro/plagas sin filtro de país real.
+                                       Recomendación: validar dominio real de la
+                                       URL contra el "source" declarado antes de
+                                       guardar en sources/articles/.
+Bug de código corregido esta sesión : mark-all-ingested usaba un orden distinto
+                                       al de `ingest`, marcando lotes equivocados
+                                       como ingestados sin procesarlos realmente
+                                       (ver wiki/log.md 2026-09-08 para detalle).
+                                       Corregido en scripts/ingest.py.
 ```
 
 ---
@@ -54,10 +76,13 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 | 2024 Q1-Q4 | 0/4 | ? | Pendiente |
 | 2025 Q1-Q4 | 0/4 | ? | Pendiente |
 | 2026 Q1-Q2 | 0/2 | ? | Pendiente |
-| **TOTAL** | **0/46** | **0** | **Backfill no iniciado** |
+| **TOTAL** | **79/46** | **?** | **Ventanas ya superan la meta original — requiere recálculo por trimestre** |
 
-> Una vez que Actions corra con el código corregido, actualizar esta tabla con los datos reales.
-> El rendimiento real de GDELT (artículos/trimestre) determinará la duración del backfill.
+> Esta tabla trimestral quedó desactualizada: `_gdelt_windows` en `processed.json` ya
+> registra 79 ventanas completadas, muy por encima de las ~45 estimadas. Antes de
+> confiar en esta tabla hay que recalcular la distribución real por trimestre a partir
+> de `_gdelt_windows` (formato `YYYYMMDD_YYYYMMDD`) y confirmar si el exceso se debe a
+> ventanas duplicadas/reprocesadas o a que la estimación original de 45 era baja.
 
 ---
 
@@ -67,6 +92,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-09-08 | 5 reales + 1 falso positivo documentado | 38 | Cluster arroz/MIDA 2022-2025; fix de bug en mark-all-ingested/mark-ingested (scripts/ingest.py) |
 
 ---
 

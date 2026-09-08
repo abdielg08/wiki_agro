@@ -290,7 +290,10 @@
     "title": "Catalogue of the diptera of the Americas South of United States",
     "date": "2016-05-13",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-08T00:17:46.618233",
+    "skipped": true,
+    "skip_reason": "falso positivo: catálogo entomológico histórico (archive.org), no es noticia sobre agro panameño"
   },
   "https://www.heraldo.es/noticias/aragon/2026/05/03/luis-biendicho-vox-asume-consejeria-medio-ambiente-con-un-inaga-bajo-lupa-investigacion-judicial-por-caso-forestalia-2017165.html": {
     "saved_at": "2026-07-29T12:56:00.851198",
@@ -346,7 +349,8 @@
     "title": "Evalúan pérdidas en producción de arroz, maíz y ganadería por las inundaciones",
     "date": "2024-11-07",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-08T00:22:07.157644"
   },
   "https://www.prensa.com/impresa/economia/Agroturismo-temporada-cosecha_0_5442205773.html": {
     "saved_at": "2026-08-24T11:18:59.204975",
@@ -418,7 +422,8 @@
     "title": "Panamá proyecta sembrar cerca de 90 mil hectáreas de arroz para el ciclo 2022-2023",
     "date": "2022-05-24",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-08T00:22:07.313896"
   },
   "https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/": {
     "saved_at": "2026-08-24T11:18:59.212833",
@@ -426,7 +431,8 @@
     "title": "Productores de arroz de Panamá este y Darién exigen al Mida el pago de compensaciones",
     "date": "2024-06-13",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-08T00:22:07.450537"
   },
   "https://www.prensa.com/economia/mida-confirma-la-llegada-de-20-mil-quintales-de-cebolla-importada/": {
     "saved_at": "2026-08-24T11:18:59.213571",
@@ -458,7 +464,8 @@
     "title": "Roberto Linares revisará los subsidios en el Mida",
     "date": "2024-06-07",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-08T00:22:07.703388"
   },
   "https://www.prensa.com/economia/Ministro-Valderrama-irregularidades-planilla-Mida_0_5446705379.html": {
     "saved_at": "2026-08-24T11:18:59.217028",
@@ -538,7 +545,8 @@
     "title": "¿Qué ocurre con el arroz en Panamá? Productores temen pérdidas en la cosecha mientras la industria justifica las importaciones",
     "date": "2025-07-24",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-08T00:22:07.024888"
   },
   "https://www.prensa.com/provincias/MIDA-presenta-plan-contingencia-verano_0_5419707981.html": {
     "saved_at": "2026-09-06T13:51:13.342310",
