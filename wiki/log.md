@@ -48,3 +48,33 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-09-09 (routine automatizada)
+INGEST: 5 artículos procesados (todos prensa.com, 100% verificados como agro-Panamá, 0 falsos positivos)
+  Artículos:
+    - 20250724_prensacom_economia-que-ocurre-con-el-arroz-en-panama-productores-temen → summaries/ + topics/arroz.md + topics/precios_mercados.md (nueva) actualizados + entities/mida.md actualizado
+    - 20241107_prensacom_economia-evaluan-perdidas-en-produccion-de-arroz-maiz-y-gana → summaries/ + topics/arroz.md + topics/maiz.md + topics/cambio_climatico.md actualizados
+    - 20220524_prensacom_economia-panama-proyecta-sembrar-cerca-de-90-mil-hectareas-d → summaries/ + topics/arroz.md actualizado + entities/mida.md actualizado
+    - 20240613_prensacom_economia-productores-de-arroz-de-panama-este-y-darien-exigen → summaries/ + topics/arroz.md actualizado + entities/mida.md actualizado
+    - 20240607_prensacom_politica-roberto-linares-revisara-los-subsidios-en-el-mida → summaries/ + topics/politicas_agropecuarias.md actualizado + entities/mida.md actualizado
+  Nota: el texto fuente de estos 5 artículos venía truncado (`full_text: null`, solo `summary_raw` parcial en el JSON descargado). Los resúmenes creados reflejan únicamente los hechos confirmados en el extracto disponible y lo señalan explícitamente; no se inventaron cifras no presentes en la fuente (la única excepción es una diferencia aritmética explícitamente marcada como inferida en el artículo de 90,000 ha de arroz).
+  Páginas creadas: topics/precios_mercados.md
+  Páginas actualizadas: topics/arroz.md, topics/maiz.md, topics/cambio_climatico.md, topics/politicas_agropecuarias.md, entities/mida.md, wiki/index.md
+  Summaries: 5 nuevos archivos en wiki/summaries/
+  Post-ingesta: `python wiki_agro.py stats` → descargados: 57, ingestados: 18, pendientes: 39, páginas wiki: 26
+
+DIAGNÓSTICO — Fetch automático (GitHub Actions):
+  Último commit tocando sources/: 2026-09-06 13:56 UTC ("6 artículos nuevos descargados")
+  Hoy: 2026-09-09 — han pasado 3 días corridos sin ningún commit nuevo en sources/ (ni siquiera de "0 artículos nuevos")
+  → Esto indica que el workflow de GitHub Actions probablemente NO ha corrido en los últimos 3 días
+    (los días anteriores el workflow corría con frecuencia casi diaria, incluso reportando 0 artículos).
+    Se recomienda revisar el estado del workflow en GitHub Actions directamente (no verificable desde esta sesión).
+  Ventanas GDELT completadas: 79 (`_gdelt_windows` en sources/processed.json) — muy por encima de las ~45 estimadas
+    para cobertura 2015→hoy, lo que sugiere que el rango de fechas ya fue cubierto y el backfill histórico
+    debería estar avanzado o completo; sin embargo wiki/metrics.md aún no refleja este progreso (desactualizado
+    desde 2026-06-22). Se corrige en esta sesión.
+  Pendientes de ingesta siguen > 0 (39) — bajo la definición de éxito de CLAUDE.md esto es una condición de fallo
+    del sistema hasta que se reduzcan a 0 vía rutinas sucesivas de ingesta (~15 artículos/día en 3 routines).
+
+## 2026-09-09 08:15
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code
