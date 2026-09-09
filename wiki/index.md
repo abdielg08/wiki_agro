@@ -98,7 +98,12 @@ article_count: 0
 | 2022-04-10 | IICA | [Vigilancia Fusarium TR4 bananeras](summaries/20220410_iica_platano-banano-exportaciones-fusarium.md) | 56M cajas, US$ 500M en riesgo |
 | 2021-08-15 | BDA | [Crédito pandemia 2020-2021](summaries/20210815_bda_credito-agropecuario-pandemia-2020-2021.md) | B/. 320M, 28K productores |
 | 2024-03-05 | MIDA | [Plan Agropecuario Mulino 2024-2029](summaries/20240305_mida_politica-agropecuaria-mulino-2024.md) | B/. 850M, meta 80% autoabastecimiento |
+| 2025-07-24 | prensa.com | [Tensión arrocera por importaciones](summaries/20250724_prensacom_arroz-tension-importaciones-cosecha.md) | Productores denuncian importaciones en cosecha; eliminación de subsidios |
+| 2024-11-07 | prensa.com | [Inundaciones Veraguas](summaries/20241107_prensacom_inundaciones-arroz-maiz-ganaderia-veraguas.md) | Lluvias dañan arroz, maíz y ganadería |
+| 2022-05-24 | prensa.com | [Proyección siembra arroz 2022-2023](summaries/20220524_prensacom_siembra-90mil-hectareas-arroz-2022-2023.md) | ~90,000 ha proyectadas, 79,600 ha en secano |
+| 2024-06-13 | prensa.com | [Productores Panamá Este/Darién exigen compensaciones](summaries/20240613_prensacom_productores-arroz-panama-este-darien-compensaciones.md) | Exigen al MIDA pago de compensaciones 2023 |
+| 2024-06-07 | prensa.com | [Roberto Linares revisará subsidios MIDA](summaries/20240607_prensacom_roberto-linares-subsidios-mida.md) | Transición ministerial Valderrama → Linares |
 
 ---
 
-*Última actualización del índice: 2026-05-24*
+*Última actualización del índice: 2026-09-09*
