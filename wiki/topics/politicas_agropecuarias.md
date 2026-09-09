@@ -1,12 +1,14 @@
 ---
 title: Políticas Agropecuarias en Panamá
 type: topic
-tags: [politica-agropecuaria, plan-mulino, mida, bda, idiap, seguridad-alimentaria, riego, semillas, 2024]
-last_updated: 2026-05-24
-article_count: 1
+tags: [politica-agropecuaria, plan-mulino, mida, bda, idiap, seguridad-alimentaria, riego, semillas, subsidios, 2024, 2025]
+last_updated: 2026-09-09
+article_count: 3
 sources:
   - "https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024"
-related: [topics/subsidios_programas.md, topics/tecnologia_innovacion.md, topics/agua_riego.md, topics/credito_financiamiento.md, entities/mida.md, entities/bda.md, entities/idiap.md]
+  - "https://www.prensa.com/politica/roberto-linares-revisara-los-subsidios-en-el-mida/"
+  - "https://www.prensa.com/economia/que-ocurre-con-el-arroz-en-panama-productores-temen-perdidas-en-la-cosecha-mientras-la-industria-justifica-las-importaciones/"
+related: [topics/subsidios_programas.md, topics/tecnologia_innovacion.md, topics/agua_riego.md, topics/credito_financiamiento.md, topics/arroz.md, entities/mida.md, entities/bda.md, entities/idiap.md]
 ---
 
 # Políticas Agropecuarias en Panamá
@@ -44,6 +46,12 @@ Las políticas agropecuarias panameñas de 2015-2025 han evolucionado de interve
 | Adaptación climática | 25,000 ha riego en Azuero |
 | Investigación | IDIAP de B/. 15M → 45M/año |
 
+### Transición de Gobierno y Revisión de Subsidios (2024)
+- **2024-06-07**: reunión de transición entre el ministro saliente Augusto Valderrama y el designado Roberto José Linares; agenda incluyó revisión de subsidios agropecuarios [La Prensa, 2024-06-07](https://www.prensa.com/politica/roberto-linares-revisara-los-subsidios-en-el-mida/)
+
+### Disputa por Importaciones y Subsidios (2025)
+- Gremios de productores de arroz denunciaron eliminación de subsidios y caída de precios coincidiendo con importaciones masivas durante la cosecha 2025; la industria importadora defendió la práctica [La Prensa, 2025-07-24](https://www.prensa.com/economia/que-ocurre-con-el-arroz-en-panama-productores-temen-perdidas-en-la-cosecha-mientras-la-industria-justifica-las-importaciones/)
+
 ## Políticas de Emergencia Previas (2015-2024)
 
 - **2016**: Estado de emergencia agropecuaria por sequía El Niño 2015-2016; BDA refinancia B/. 45M
@@ -68,6 +76,8 @@ Las políticas agropecuarias panameñas de 2015-2025 han evolucionado de interve
 ## Referencias
 
 - [MIDA, 2024 — Plan Agropecuario Gobierno Mulino 2024-2029](https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024)
+- [La Prensa, 2024-06 — Transición ministerial y revisión de subsidios](https://www.prensa.com/politica/roberto-linares-revisara-los-subsidios-en-el-mida/)
+- [La Prensa, 2025-07 — Disputa por importaciones y subsidios en arroz](https://www.prensa.com/economia/que-ocurre-con-el-arroz-en-panama-productores-temen-perdidas-en-la-cosecha-mientras-la-industria-justifica-las-importaciones/)
 
 ## Ver también
 
