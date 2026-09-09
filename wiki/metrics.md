@@ -28,19 +28,20 @@ last_updated: 2026-09-09
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida con commit  : 2026-09-06 13:56 UTC — "6 artículos nuevos descargados"
-Historial reciente         : commits casi diarios desde 2026-08-14 (incluso con "0 artículos nuevos")
-Resultado hoy (2026-09-09) : SIN commits nuevos en sources/ desde 2026-09-06 (3 días corridos)
-Causa identificada         : No verificable desde esta sesión (sin acceso a logs de GitHub Actions).
-                              El patrón de commits previos era casi diario, por lo que la ausencia total
-                              de commits (ni siquiera "0 artículos nuevos") sugiere que el workflow dejó
-                              de correr, más que un fetch que corrió y no encontró nada.
+Última corrida exitosa     : Run #103, 2026-09-06 13:50 UTC — "6 artículos nuevos descargados" (~6 min)
+Run #104 (2026-09-07)      : FALLÓ — conclusion=failure, duró solo ~3 segundos
+Run #105 (2026-09-08)      : FALLÓ — conclusion=failure, duró solo ~3 segundos
+Causa identificada         : Confirmado vía GitHub Actions API que el workflow "Wiki Agropecuario — Fetch
+                              Diario" SÍ se disparó por schedule ambos días (no es un cron deshabilitado),
+                              pero el job falló casi instantáneamente (~3s vs. ~6-8 min en corridas exitosas),
+                              lo que indica una falla temprana (checkout / setup-python / pip install) antes
+                              de llegar al paso de fetch — no un timeout o bloqueo de GDELT/RSS durante la
+                              descarga. Logs del job no accesibles desde esta sesión (HTTP 404).
 Ventanas GDELT              : 79 completadas, muy por encima de las ~45 estimadas para cubrir 2015→hoy.
                               Esto sugiere que el backfill histórico GDELT ya cubrió el rango objetivo
                               y que las fuentes activas ahora son mayormente RSS (IICA, La Prensa).
-Acción recomendada          : Revisar directamente en GitHub → pestaña Actions si el workflow programado
-                              se ejecutó y su resultado (éxito/fallo/no disparado) — no verificable desde
-                              esta sesión de Claude Code.
+Acción recomendada          : Revisar manualmente en GitHub → Actions → runs #104 y #105 (job "Fetch
+                              artículos → Commit a sources/") para identificar el paso exacto que falla.
 ```
 
 ---

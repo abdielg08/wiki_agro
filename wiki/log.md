@@ -66,12 +66,22 @@ INGEST: 5 artículos procesados (todos prensa.com, 100% verificados como agro-Pa
 DIAGNÓSTICO — Fetch automático (GitHub Actions):
   Último commit tocando sources/: 2026-09-06 13:56 UTC ("6 artículos nuevos descargados")
   Hoy: 2026-09-09 — han pasado 3 días corridos sin ningún commit nuevo en sources/ (ni siquiera de "0 artículos nuevos")
-  → Esto indica que el workflow de GitHub Actions probablemente NO ha corrido en los últimos 3 días
-    (los días anteriores el workflow corría con frecuencia casi diaria, incluso reportando 0 artículos).
-    Se recomienda revisar el estado del workflow en GitHub Actions directamente (no verificable desde esta sesión).
+  Verificado vía GitHub Actions API (mcp__github__actions_list / actions_get) sobre el workflow "Wiki Agropecuario —
+  Fetch Diario" (wiki_daily.yml):
+    - Run #103 (2026-09-06 13:50 UTC): conclusion=success, duración ~6 min → produjo el commit de 6 artículos
+    - Run #104 (2026-09-07 16:12 UTC): conclusion=FAILURE, duración ~3 segundos (14:12:41 → 14:12:44)
+    - Run #105 (2026-09-08 14:49 UTC): conclusion=FAILURE, duración ~3 segundos (14:49:32 → 14:49:35)
+  → El workflow SÍ se disparó por schedule ambos días (no es un problema de cron/Actions deshabilitado), pero
+    falló casi instantáneamente en el único job "Fetch artículos → Commit a sources/", muy por debajo de la
+    duración típica de una corrida exitosa (varios minutos). Esto apunta a una falla temprana (checkout,
+    setup-python, o instalación de dependencias) antes de llegar al paso de fetch real — NO a un timeout de
+    GDELT ni a bloqueo de red durante la descarga.
+    Los logs del job no pudieron descargarse desde esta sesión (HTTP 404 al pedir logs de los jobs
+    102110024228 y 101806339466 — probablemente expirados o no accesibles con este token). Se requiere
+    revisión manual en GitHub → Actions → runs #104/#105 para confirmar el paso exacto que falla.
   Ventanas GDELT completadas: 79 (`_gdelt_windows` en sources/processed.json) — muy por encima de las ~45 estimadas
     para cobertura 2015→hoy, lo que sugiere que el rango de fechas ya fue cubierto y el backfill histórico
-    debería estar avanzado o completo; sin embargo wiki/metrics.md aún no refleja este progreso (desactualizado
+    debería estar avanzado o completo; sin embargo wiki/metrics.md aún no reflejaba este progreso (desactualizado
     desde 2026-06-22). Se corrige en esta sesión.
   Pendientes de ingesta siguen > 0 (39) — bajo la definición de éxito de CLAUDE.md esto es una condición de fallo
     del sistema hasta que se reduzcan a 0 vía rutinas sucesivas de ingesta (~15 artículos/día en 3 routines).
