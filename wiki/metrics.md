@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-09-10
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,32 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Artículos en sources/ | 57 | ↑ continuo |
+| Artículos reales ingestados | 18 | = total sin falsos positivos |
+| Pendientes de ingesta | 39 | 0 |
+| Falsos positivos acumulados | 7 | **0 nuevos** (0 en esta sesión) |
+| Páginas en wiki/ | 26 (9 topics, 3 entities, 11 summaries, resto overview) | ↑ continuo |
+| Cobertura temporal | 2015-2026 (semilla + backfill parcial) | 2015 → hoy real |
+| Ventanas GDELT completadas | 79 | 45 (2015→hoy) — **rango agotado, necesita expansión** |
+| Días sin artículos nuevos en sources/ | **4** (último commit sources/: 2026-09-06) | máx 3 antes de diagnosticar — **⚠ umbral superado** |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida con commit en sources/ : 2026-09-06 (6 artículos nuevos)
+Días sin nuevos artículos              : 4 (sin commits en sources/ del 07 al 10 de sep)
+Ventanas GDELT completadas             : 79 — supera el umbral de ~45 estimadas
+Diagnóstico (CLAUDE.md Paso 4)         : con 45+ ventanas completadas, la causa más probable
+                                          es que el rango de fechas GDELT disponible ya fue
+                                          recorrido y necesita expansión, no un bloqueo/timeout
+Fuentes RSS activas                    : IICA y La Prensa (no se puede confirmar desde este
+                                          entorno si devolvieron artículos en 07-10 sep, ya que
+                                          no hubo commits nuevos en sources/ para verificarlo)
+Acción recomendada                     : revisar el workflow de GitHub Actions (fetch_historical.py)
+                                          para confirmar si corrió en 07-10 sep; si las ventanas
+                                          GDELT están agotadas, ampliar rango/estrategia de backfill
 ```
 
 ---
@@ -67,6 +73,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-09-10 | 5 | 39 | Todos sobre arroz/MIDA (importaciones, subsidios, inundaciones, compensaciones, transición ministerial); 0 falsos positivos. Detectado: 4 días sin nuevos artículos en sources/ y 79 ventanas GDELT (rango agotado) |
 
 ---
 
