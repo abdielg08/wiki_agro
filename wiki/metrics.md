@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-09-10
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,40 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Artículos en sources/ | 57 | ↑ continuo |
+| Artículos reales ingestados | 11 | = total sin falsos positivos |
+| Falsos positivos acumulados (confirmados) | 7 | **0 nuevos** |
+| Falsos positivos sospechosos aún en cola pendiente | ≥13 (sin confirmar/marcar) | 0 |
+| Pendientes de ingesta | 39 | 0 |
+| Páginas en wiki/ | 27 (10 topics, 3 entities, 11 summaries, 2 overview) | ↑ continuo |
+| Cobertura temporal | 2015-2026 (semilla + backfill parcial) | 2015 → hoy real |
+| Ventanas GDELT completadas | 79 (con solapamiento en ventanas recientes) | 45 (2015→hoy) |
+| Días sin artículos nuevos | **4** (última descarga real: 2026-09-06) | máx 3 antes de diagnosticar — **UMBRAL SUPERADO** |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida exitosa (con artículos) : 2026-09-06 (run #103, 6 artículos nuevos)
+Últimas 3 corridas (#104 07-sep, #105 08-sep, #106 09-sep) : conclusion=failure
+Duración de las corridas fallidas      : ~3 segundos (created_at ≈ completed_at)
+Causa identificada     : Falla ocurre antes de completar steps básicos (checkout/pip
+                         install no alcanzan a correr en 3s) → probable límite de
+                         cuota/concurrencia de Actions o problema de runner, NO un
+                         error de código en fetch_news.py/fetch_historical.py.
+                         Logs de los jobs fallidos no disponibles (HTTP 404, expirados).
+Fix aplicado            : Ninguno — requiere revisar configuración/cuota de GitHub
+                         Actions del repositorio (fuera del alcance de esta sesión).
+Estado post-fix         : Pendiente — recomendado ejecutar workflow_dispatch manual
+                         para confirmar si el fallo persiste.
+Ventanas GDELT          : 79 completadas, pero con solapamiento en el rango reciente
+                         (ventanas repetidas tipo "20260618_2026xxxx" con distinto fin) →
+                         el conteo ya no refleja backfill histórico neto; revisar lógica.
+Cola contaminada        : ≥13 artículos en pendientes con `source` mal etiquetado como
+                         "prensa.com" pero de dominios no-Panamá (Mozambique, Utah,
+                         Aragón/España, Brasil, Arabia Saudita, etc.) — bug de
+                         etiquetado en fetch_news.py, ver wiki/log.md 2026-09-10 00:05.
 ```
 
 ---
@@ -67,6 +81,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-09-10 | 5 (arroz/MIDA, La Prensa) | 39 | 0 falsos positivos en el lote; diagnóstico: Actions falla 3 días consecutivos (07-09 sep) + ≥13 falsos positivos sospechosos detectados en la cola pendiente (no ingestados) |
 
 ---
 
