@@ -2,11 +2,14 @@
 title: MIDA — Ministerio de Desarrollo Agropecuario
 type: entity
 tags: [gobierno, ministerio, politica-agropecuaria, plan-mulino, semillas, fitosanitario]
-last_updated: 2026-05-24
-article_count: 2
+last_updated: 2025-07-24
+article_count: 6
 sources:
   - "https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023"
   - "https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024"
+  - "https://www.prensa.com/politica/roberto-linares-revisara-los-subsidios-en-el-mida/"
+  - "https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/"
+  - "https://www.prensa.com/economia/panama-proyecta-sembrar-cerca-de-90-mil-hectareas-de-arroz-para-el-ciclo-2022-2023/"
 related: [entities/idiap.md, entities/bda.md, topics/politicas_agropecuarias.md, topics/arroz.md, topics/plagas_enfermedades.md]
 ---
 
@@ -36,6 +39,15 @@ El Ministerio de Desarrollo Agropecuario (MIDA) es la institución rectora del s
 - Presupuesto IDIAP triplicado: B/. 15M → **B/. 45M/año**
 - Plan de Semillas: **40,000 productores** con semillas certificadas
 
+### Transición de Gobierno 2024
+- **2024-06-07**: Primera reunión de transición entre el ministro saliente **Augusto Valderrama** y el titular designado **Roberto José Linares**, previo al cambio de gobierno; entre los temas tratados, la revisión de los subsidios agropecuarios vigentes [prensa.com, 2024-06-07](https://www.prensa.com/politica/roberto-linares-revisara-los-subsidios-en-el-mida/)
+
+### Proyección de Siembra de Arroz 2022-2023
+- Reporte de MIDA proyectó sembrar cerca de **90,000 hectáreas** de arroz en el ciclo 2022-2023, de las cuales **79,600 ha** en secano [prensa.com, 2022-05-24](https://www.prensa.com/economia/panama-proyecta-sembrar-cerca-de-90-mil-hectareas-de-arroz-para-el-ciclo-2022-2023/)
+
+### Reclamos de Productores — Compensaciones Pendientes
+- **2024-06-13**: Productores de arroz de Panamá Este y Darién protestaron en la sede central de MIDA exigiendo el pago de compensaciones correspondientes a 2023 [prensa.com, 2024-06-13](https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/)
+
 ### Crisis Arroz 2023
 - Declaró Plan de Emergencia Arrocera ante caída del **18%** en producción (230,000 TM vs. 280,000 TM en 2022) [MIDA, 2023-09-15]
 - Distribución de semilla certificada IDIAP-Esperanza a productores afectados
@@ -56,11 +68,16 @@ El Ministerio de Desarrollo Agropecuario (MIDA) es la institución rectora del s
 - Capacidad de ejecución históricamente por debajo del presupuesto asignado
 - Laboratorios de diagnóstico fitosanitario subutilizados o desactualizados
 - Cobertura limitada en zonas remotas (comarcas, Darién)
+- Retrasos en pagos/compensaciones a productores (caso arroceros Panamá Este y Darién, 2023-2024)
+- Gremios denuncian en 2025 eliminación de subsidios y permisos de importación coincidentes con la cosecha nacional de arroz
 
 ## Referencias
 
 - [MIDA, 2023 — Producción de arroz](https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023)
 - [MIDA, 2024 — Plan Agropecuario Mulino 2024-2029](https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024)
+- [prensa.com, 2024 — Transición Valderrama-Linares, revisión de subsidios](https://www.prensa.com/politica/roberto-linares-revisara-los-subsidios-en-el-mida/)
+- [prensa.com, 2024 — Productores de Panamá Este y Darién exigen pago de compensaciones](https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/)
+- [prensa.com, 2022 — Proyección de siembra 90,000 ha ciclo 2022-2023](https://www.prensa.com/economia/panama-proyecta-sembrar-cerca-de-90-mil-hectareas-de-arroz-para-el-ciclo-2022-2023/)
 
 ## Ver también
 - [IDIAP](idiap.md) — investigación agropecuaria

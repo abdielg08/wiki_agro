@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-09-11
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,39 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Artículos en sources/ | 57 | ↑ continuo |
+| Artículos reales ingestados | 18 | = total sin falsos positivos |
+| Pendientes de ingesta | 39 | 0 |
+| Falsos positivos acumulados | 7 | **0 nuevos** (0 detectados en esta sesión) |
+| Páginas en wiki/ | 25 | ↑ continuo |
+| Cobertura temporal | artículos ingestados hoy: 2022, 2024, 2025 | 2015 → hoy real |
+| Ventanas GDELT completadas | 79 / ~45 estimadas | 45+ (rango histórico ya cubierto) |
+| Días sin artículos nuevos en sources/ | **5** (último: 2026-09-06) | máx 3 antes de diagnosticar → **UMBRAL SUPERADO** |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida EXITOSA con push  : 2026-09-06 (run #103) — 6 artículos nuevos
+Últimas 4 corridas (#104-#107)   : 2026-09-07, 09-08, 09-09, 09-10 → FALLAN, conclusion=failure
+Duración de las corridas fallidas: ~4 segundos (vs. ~5-6 min en corridas exitosas)
+Diagnóstico                      : runner_id=0, runner_name="" en las 4 corridas fallidas →
+                                    el job nunca llegó a asignarse a un runner; falla antes del
+                                    paso "actions/checkout" (no es un fallo del script Python ni
+                                    de GDELT/RSS). Logs del job no disponibles (HTTP 404 al
+                                    descargarlos), consistente con un job que nunca inició
+                                    ejecución real.
+Causa raíz más probable           : límite de minutos/cuota de GitHub Actions agotado, o restricción
+                                    a nivel de repositorio/organización sobre runners — requiere
+                                    revisión en GitHub Settings → Actions/Billing por el dueño del
+                                    repositorio (fuera del alcance de esta sesión de Claude Code).
+Corrida de hoy (2026-09-11)       : aún no se había disparado al momento de este diagnóstico
+                                    (cron 11:00 UTC / ~6:00 AM Panamá)
+Acción recomendada                : el usuario debe verificar en
+                                    github.com/abdielg08/wiki_agro/settings/actions y en la
+                                    facturación de Actions si hay minutos agotados o ejecuciones
+                                    bloqueadas; también revisar disponibilidad del runner ubuntu-latest.
 ```
 
 ---
@@ -67,6 +80,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-09-11 | 5 | 39 | Sesión automatizada; 0 falsos positivos; diagnosticado fallo del fetch diario de Actions (4 corridas consecutivas fallidas desde 09-07, ~4s cada una, sin runner asignado) |
 
 ---
 

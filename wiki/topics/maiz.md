@@ -2,10 +2,11 @@
 title: Maíz en Panamá
 type: topic
 tags: [maiz, gusano-cogollero, plagas, mida, idiap, oirsa, seguridad-alimentaria]
-last_updated: 2026-05-24
-article_count: 1
+last_updated: 2024-11-07
+article_count: 2
 sources:
   - "https://www.prensa.com/economia/gusano-cogollero-crisis-maiz-panama-2018"
+  - "https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/"
 related: [topics/plagas_enfermedades.md, topics/seguridad_alimentaria.md, topics/cambio_climatico.md, entities/mida.md, entities/idiap.md]
 ---
 
@@ -23,6 +24,9 @@ El maíz es un cultivo fundamental para la seguridad alimentaria y la economía 
 - Distribución gratuita de insecticidas a **12,000 productores** de pequeña escala
 - Inversión gubernamental de emergencia: **B/. 3.2 millones** [MIDA, 2018]
 - Coordinación MIDA + OIRSA para respuesta fitosanitaria nacional
+
+### Inundaciones en Veraguas — Noviembre 2024
+- Fuertes lluvias de fin de semana dañaron cultivos de maíz en Veraguas, junto con arroz, pastizales y ganadería [prensa.com, 2024-11-07](https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/)
 
 ### Origen y Difusión del Cogollero
 - *Spodoptera frugiperda*: plaga originaria de África subsahariana → Colombia → Centroamérica → Panamá (c. 2016-2018)
