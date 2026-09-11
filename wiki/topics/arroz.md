@@ -1,11 +1,16 @@
 ---
 title: Arroz en Panamá
 type: topic
-tags: [arroz, produccion, seguridad-alimentaria, sequia, precios, mida, idiap]
-last_updated: 2025-05-24
-article_count: 1
-sources: ["https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023"]
-related: [topics/seguridad_alimentaria.md, topics/cambio_climatico.md, topics/precios_mercados.md, topics/credito_financiamiento.md, entities/mida.md, entities/idiap.md, entities/bda.md]
+tags: [arroz, produccion, seguridad-alimentaria, sequia, precios, mida, idiap, subsidios, importaciones, inundaciones]
+last_updated: 2025-07-24
+article_count: 5
+sources:
+  - "https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023"
+  - "https://www.prensa.com/economia/que-ocurre-con-el-arroz-en-panama-productores-temen-perdidas-en-la-cosecha-mientras-la-industria-justifica-las-importaciones/"
+  - "https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/"
+  - "https://www.prensa.com/economia/panama-proyecta-sembrar-cerca-de-90-mil-hectareas-de-arroz-para-el-ciclo-2022-2023/"
+  - "https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/"
+related: [topics/seguridad_alimentaria.md, topics/cambio_climatico.md, topics/precios_mercados.md, topics/credito_financiamiento.md, topics/politicas_agropecuarias.md, entities/mida.md, entities/idiap.md, entities/bda.md]
 ---
 
 # Arroz en Panamá
@@ -22,6 +27,10 @@ El arroz es el alimento básico por excelencia de la dieta panameña y un cultiv
 - **2016**: Caída del **65%** en rendimientos en Los Santos durante sequía El Niño 2015-2016 [TVN, 2016]
 - Importaciones: entre el **20-30%** del consumo nacional, vía TLC con EE.UU. y acuerdos regionales
 - Zonas de producción: Coclé, Veraguas, Los Santos (70% nacional); también Chiriquí y áreas del Caribe
+- **2022-05-24**: MIDA proyectó sembrar **cerca de 90,000 hectáreas** de arroz para el ciclo 2022-2023, de las cuales **79,600 ha** en secano (sin riego) [MIDA vía La Prensa, 2022](https://www.prensa.com/economia/panama-proyecta-sembrar-cerca-de-90-mil-hectareas-de-arroz-para-el-ciclo-2022-2023/)
+- **2024-06-13**: productores de arroz de **Panamá Este y Darién** exigieron al MIDA el pago de compensaciones adeudadas desde 2023; protesta en la sede principal del MIDA [La Prensa, 2024](https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/)
+- **2024-11-07**: fuertes lluvias de fin de semana dañaron sembradíos de arroz en **Veraguas**, junto con maíz, pastizales y ganadería vacuna/porcina; MIDA evaluaba pérdidas [La Prensa, 2024](https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/)
+- **2025-07-24**: gremios de productores denunciaron importaciones masivas de arroz **durante la cosecha nacional**, con caída de precios y eliminación de subsidios; la industria arrocera justificó las importaciones — tensión sectorial descrita como una de las peores en años [La Prensa, 2025](https://www.prensa.com/economia/que-ocurre-con-el-arroz-en-panama-productores-temen-perdidas-en-la-cosecha-mientras-la-industria-justifica-las-importaciones/)
 
 ## Tendencias (2015–2025)
 
@@ -30,6 +39,9 @@ El arroz es el alimento básico por excelencia de la dieta panameña y un cultiv
 - **Dependencia de importaciones**: estructura persistente que debilita la soberanía alimentaria
 - **Tecnificación gradual**: adopción de variedades mejoradas IDIAP (IDIAP-Esperanza, IDIAP-Changuinola)
 - **Meta Plan Mulino 2024-2029**: incrementar autoabastecimiento alimentario del 68% al 80%
+- **Conflicto recurrente con importaciones**: denuncias de productores en 2023 y 2025 sobre importaciones durante la cosecha nacional y eliminación de subsidios
+- **Disputas por pagos pendientes**: reclamos de productores (Panamá Este, Darién) por compensaciones no pagadas a tiempo por el MIDA (2024)
+- **Eventos climáticos extremos recurrentes**: sequías (2015-16, 2023) e inundaciones (2024) afectan la producción en años alternos
 
 ## Retos
 
@@ -38,6 +50,9 @@ El arroz es el alimento básico por excelencia de la dieta panameña y un cultiv
 - Altos costos de insumos (fertilizantes, agroquímicos, diesel para bombeo)
 - Envejecimiento de la población productora; falta de relevo generacional
 - Escasa mecanización en pequeñas fincas (<20 ha)
+- Tensión estructural entre gremios de productores y la industria/importadores sobre el momento y volumen de las importaciones
+- Retrasos del MIDA en el pago de compensaciones a productores (caso Panamá Este/Darién, 2024)
+- Exposición simultánea a riesgo climático opuesto: sequía (2015-16, 2023) e inundación (2024)
 
 ## Variedades IDIAP Relevantes
 
@@ -49,10 +64,15 @@ El arroz es el alimento básico por excelencia de la dieta panameña y un cultiv
 
 - [MIDA, 2023 — Producción de arroz cae 18%](https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023)
 - [TVN, 2016 — Sequía El Niño en Azuero](https://www.tvn-2.com/nacionales/sequia-azuero-el-nino-2015-2016)
+- [La Prensa, 2022 — Proyección de siembra ciclo 2022-2023](https://www.prensa.com/economia/panama-proyecta-sembrar-cerca-de-90-mil-hectareas-de-arroz-para-el-ciclo-2022-2023/)
+- [La Prensa, 2024 — Productores de Panamá Este y Darién exigen compensaciones](https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/)
+- [La Prensa, 2024 — Inundaciones afectan arroz, maíz y ganadería](https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/)
+- [La Prensa, 2025 — Tensión por importaciones durante la cosecha](https://www.prensa.com/economia/que-ocurre-con-el-arroz-en-panama-productores-temen-perdidas-en-la-cosecha-mientras-la-industria-justifica-las-importaciones/)
 
 ## Ver también
 
 - [Seguridad Alimentaria](seguridad_alimentaria.md)
 - [Cambio Climático](cambio_climatico.md)
 - [Precios y Mercados](precios_mercados.md)
+- [Políticas Agropecuarias](politicas_agropecuarias.md)
 - [MIDA](../entities/mida.md) | [IDIAP](../entities/idiap.md) | [BDA](../entities/bda.md)
