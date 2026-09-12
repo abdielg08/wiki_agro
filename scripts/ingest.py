@@ -27,6 +27,11 @@ from core import (
     load_wiki_index, append_log, article_entries, SOURCES_DIR, WIKI_DIR, ROOT
 )
 
+# Recuerda exactamente qué URLs mostró el último `ingest`, para que
+# `mark-all-ingested` marque ese mismo lote y no una selección distinta
+# (find_pending() ordena por nombre de archivo; `ingest` prioriza por score).
+LAST_BATCH_FILE = ROOT / "sources" / ".last_ingest_batch.json"
+
 
 def find_pending(limit: int = 0, reprocess: bool = False) -> list[tuple[Path, dict]]:
     """Return list of (path, article) for articles not yet ingested."""
@@ -128,6 +133,13 @@ def run_prepare(
     ingest_file = ROOT / "pending_ingest.md"
     ingest_file.write_text(full_prompt, encoding="utf-8")
 
+    # Remember exactly which URLs were shown, so mark-all-ingested marks
+    # this same batch instead of recomputing a (possibly different) one.
+    LAST_BATCH_FILE.write_text(
+        json.dumps([article.get("url", "") for _, article in pending], ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
     console.print(Panel(
         f"[bold]{len(pending)} artículos listos para ingestar.[/bold]\n\n"
         f"El prompt ha sido guardado en [cyan]pending_ingest.md[/cyan]\n\n"
@@ -142,6 +154,8 @@ def mark_ingested(url_or_slug: str) -> bool:
     """Mark an article as ingested in processed.json."""
     processed = load_processed()
     for url, meta in processed.items():
+        if not isinstance(meta, dict):
+            continue  # p.ej. la clave interna "_gdelt_windows" guarda una lista
         if url == url_or_slug or url_or_slug in meta.get("path", ""):
             meta["ingested"] = True
             meta["ingested_at"] = datetime.now().isoformat()
@@ -153,17 +167,46 @@ def mark_ingested(url_or_slug: str) -> bool:
 
 
 def mark_all_ingested(limit: int = 0) -> int:
-    """Mark the first `limit` pending articles as ingested (after Claude processed them)."""
+    """
+    Mark as ingested the articles from the most recent `ingest` batch
+    (after Claude processed them).
+
+    Uses the URL list saved by run_prepare() so this marks exactly what was
+    shown to Claude. Falls back to plain find_pending() — which is NOT
+    guaranteed to match the prioritized batch `ingest` produced — only if
+    no batch file exists yet (e.g. first run, or manual mark-all-ingested
+    without a preceding `ingest`).
+    """
     processed = load_processed()
     articles = article_entries(processed)
-    pending = find_pending(limit=limit)
-    count = 0
-    for _, article in pending:
-        url = article.get("url", "")
-        if url in articles:
-            processed[url]["ingested"] = True
-            processed[url]["ingested_at"] = datetime.now().isoformat()
-            count += 1
+
+    urls = None
+    if LAST_BATCH_FILE.exists():
+        try:
+            urls = json.loads(LAST_BATCH_FILE.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            urls = None
+
+    if urls is not None:
+        if limit:
+            urls = urls[:limit]
+        count = 0
+        for url in urls:
+            if url in articles and not processed[url].get("ingested"):
+                processed[url]["ingested"] = True
+                processed[url]["ingested_at"] = datetime.now().isoformat()
+                count += 1
+        LAST_BATCH_FILE.unlink(missing_ok=True)
+    else:
+        pending = find_pending(limit=limit)
+        count = 0
+        for _, article in pending:
+            url = article.get("url", "")
+            if url in articles:
+                processed[url]["ingested"] = True
+                processed[url]["ingested_at"] = datetime.now().isoformat()
+                count += 1
+
     save_processed(processed)
     append_log(
         f"INGEST: {count} artículos marcados como ingestados por sesión Claude Code"

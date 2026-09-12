@@ -32,6 +32,14 @@ HIGH_PRIORITY_TERMS = [
     "ganadería", "bovino", "porcino", "avicultura", "acuicultura",
 ]
 
+# Palabras que indican que el artículo trata específicamente de Panamá
+# (independientes de HIGH_PRIORITY_TERMS, que son temáticos, no geográficos)
+PANAMA_TERMS = [
+    "panam", "mida", "idiap", "anagan", "arap", "cna panam",
+    "darien", "darién", "chiriqui", "chiriquí", "azuero", "veraguas",
+    "cocle", "coclé", "bocas del toro", "los santos", "herrera",
+]
+
 # Fuentes con mayor valor informativo
 SOURCE_WEIGHT = {
     "MIDA": 10,
@@ -79,6 +87,22 @@ def score_article(article: dict) -> float:
     return round(score, 1)
 
 
+def looks_like_false_positive(article: dict) -> bool:
+    """
+    GDELT etiqueta muchos artículos con source="prensa.com" de forma genérica
+    sin que el contenido sea realmente de Panamá (p.ej. noticias agro de
+    España, Brasil, Arabia Saudita o EE.UU. capturadas por coincidencia de
+    palabra clave). Estos artículos no mencionan Panamá ni ningún término
+    temático del sector y no deben aparecer priorizados en `ingest`.
+    """
+    if article.get("source") != "prensa.com":
+        return False
+    text = (article.get("title", "") + " " + (article.get("summary_raw") or "")).lower()
+    has_topic_hit = any(t.lower() in text for t in HIGH_PRIORITY_TERMS)
+    has_panama_hit = any(t in text for t in PANAMA_TERMS)
+    return not has_topic_hit and not has_panama_hit
+
+
 def get_wiki_coverage(wiki_dir: Path) -> dict[str, int]:
     """Count how many articles have been ingested per topic/year."""
     coverage: dict[str, int] = defaultdict(int)
@@ -116,6 +140,10 @@ def prioritize(
     """
     scored = []
     for path, article in pending:
+        # Filtro de falsos positivos: contenido genérico sin señal de Panamá
+        if looks_like_false_positive(article):
+            continue
+
         # Year filter
         if year_filter:
             date_str = article.get("date", "")
