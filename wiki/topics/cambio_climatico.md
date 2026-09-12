@@ -1,12 +1,13 @@
 ---
 title: Cambio Climático e Impacto en el Agro Panameño
 type: topic
-tags: [cambio-climatico, sequia, el-nino, adaptacion, resiliencia, azuero, ganaderia]
-last_updated: 2026-05-24
-article_count: 1
+tags: [cambio-climatico, sequia, el-nino, la-nina, inundaciones, adaptacion, resiliencia, azuero, veraguas, ganaderia]
+last_updated: 2024-11-07
+article_count: 2
 sources:
   - "https://www.tvn-2.com/nacionales/sequia-azuero-el-nino-2015-2016"
-related: [topics/agua_riego.md, topics/seguridad_alimentaria.md, topics/arroz.md, topics/ganaderia_bovina.md, topics/plagas_enfermedades.md, entities/mida.md, entities/idiap.md]
+  - "https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/"
+related: [topics/agua_riego.md, topics/seguridad_alimentaria.md, topics/arroz.md, topics/maiz.md, topics/ganaderia_bovina.md, topics/plagas_enfermedades.md, entities/mida.md, entities/idiap.md]
 ---
 
 # Cambio Climático e Impacto en el Agro Panameño
@@ -35,10 +36,15 @@ El cambio climático es uno de los principales retos del sector agropecuario pan
 - Costos de producción arroz: B/. 8.50 → B/. 12.00 por quintal (+41%)
 - Regiones más afectadas: Azuero (Los Santos), Coclé, Veraguas
 
+### Inundaciones de Noviembre 2024 — Veraguas
+- Lluvias intensas de fin de semana dañaron sembradíos de arroz y maíz, y afectaron pastizales y ganadería vacuna/porcina en **Veraguas** [prensa.com, 2024-11-07]
+- Sin cifras oficiales de pérdidas disponibles en la fuente; autoridades en fase de evaluación
+
 ## Regiones Más Vulnerables
 - **Azuero** (Los Santos, Herrera): sequía estructural y ganadería dependiente de lluvias
 - **Coclé y Veraguas**: producción de arroz afectada sistemáticamente por sequías
 - **Comarcas Indígenas**: alta vulnerabilidad, baja capacidad de adaptación
+- **Veraguas**: expuesta tanto a sequía (arroz) como a inundaciones por lluvias intensas (2024)
 
 ## Tendencias (2015–2025)
 
@@ -65,9 +71,11 @@ El cambio climático es uno de los principales retos del sector agropecuario pan
 
 - [TVN, 2016 — Sequía El Niño 2015-2016 en Azuero](https://www.tvn-2.com/nacionales/sequia-azuero-el-nino-2015-2016)
 - [MIDA, 2023 — Producción de arroz cae 18%](https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023)
+- [prensa.com, 2024-11-07 — Inundaciones afectan arroz, maíz y ganadería en Veraguas](https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/)
 
 ## Ver también
 - [Arroz en Panamá](arroz.md)
+- [Maíz en Panamá](maiz.md)
 - [Ganadería Bovina](ganaderia_bovina.md)
 - [Agua y Riego](agua_riego.md)
 - [Seguridad Alimentaria](seguridad_alimentaria.md)
