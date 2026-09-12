@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-09-12
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,42 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Artículos en sources/ | 57 | ↑ continuo |
+| Artículos reales ingestados | 18 | = total sin falsos positivos |
+| Pendientes de ingesta | 39 | 0 |
+| Falsos positivos acumulados | 7 | **0 nuevos** (0 nuevos esta sesión) |
+| Páginas en wiki/ | 25 (8 topics, 3 entities, 11 summaries, 3 overview) | ↑ continuo |
+| Cobertura temporal | 2015-2026 (backfill en curso) | 2015 → hoy real |
+| Ventanas GDELT completadas | 79 (ver nota en log 2026-09-12) | cobertura continua, no requiere expansión |
+| Días sin artículos nuevos | **6** (última descarga: 2026-09-06) | máx 3 antes de diagnosticar — **⚠ ALARMA ACTIVA** |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida exitosa (con artículos) : 2026-09-06 (run #103, 6 artículos nuevos)
+Última corrida exitosa (0 artículos)   : 2026-09-06 (run #103 mismo día, steps completos)
+Corridas fallidas consecutivas         : 2026-09-07 → 2026-09-11 (runs #104-#108, 5/5 failure)
+Días sin artículos nuevos hoy          : 6 (⚠ supera umbral de 3 días)
+
+Causa raíz (confirmada vía GitHub Actions API, no es bug de código):
+  Los 5 runs fallidos duran ~3 segundos cada uno y no ejecutan ningún step
+  (get_workflow_run_usage → duration_ms: 0; list_workflow_jobs no reporta steps).
+  Esta firma = el runner nunca se aprovisiona, típico de cuota de minutos de
+  GitHub Actions agotada o "spending limit" en $0. fetch_news.py NUNCA llegó
+  a ejecutarse en esos 5 días — no hay nada que corregir en el script.
+
+Acción requerida (fuera del alcance de un commit — requiere el dueño del repo):
+  Revisar GitHub → Settings → Billing and plans → Actions y/o el spending
+  limit de la cuenta/organización. Una vez restablecido, la próxima corrida
+  programada de wiki_daily.yml debería volver a completar normalmente.
+
+Nota sobre ventanas GDELT: 79 ventanas completadas en sources/processed.json,
+pero esto NO significa que el rango 2015→2027 esté agotado. La ventana final
+usa min(config_end, utcnow()-1d), que cambia de fecha cada día que el fetch
+corre con éxito, generando una clave nueva cada vez. No requiere expansión
+de config/sources.yaml.
 ```
 
 ---
@@ -67,6 +83,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-09-12 | 5 | 39 | Routine automatizada; 0 falsos positivos; diagnóstico: fetch diario falla 5 días seguidos por límite de minutos/spending limit de GitHub Actions (no requiere fix de código) |
 
 ---
 

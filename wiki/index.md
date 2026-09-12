@@ -98,7 +98,12 @@ article_count: 0
 | 2022-04-10 | IICA | [Vigilancia Fusarium TR4 bananeras](summaries/20220410_iica_platano-banano-exportaciones-fusarium.md) | 56M cajas, US$ 500M en riesgo |
 | 2021-08-15 | BDA | [Crédito pandemia 2020-2021](summaries/20210815_bda_credito-agropecuario-pandemia-2020-2021.md) | B/. 320M, 28K productores |
 | 2024-03-05 | MIDA | [Plan Agropecuario Mulino 2024-2029](summaries/20240305_mida_politica-agropecuaria-mulino-2024.md) | B/. 850M, meta 80% autoabastecimiento |
+| 2022-05-24 | La Prensa | [Siembra arroz 90,000 ha ciclo 2022-2023](summaries/20220524_prensacom_siembra-arroz-90000ha-2022-2023.md) | MIDA proyecta 79,600 ha en secano |
+| 2024-06-07 | La Prensa | [Transición MIDA: Linares revisará subsidios](summaries/20240607_prensacom_transicion-mida-linares-subsidios.md) | Valderrama → Linares, junio 2024 |
+| 2024-06-13 | La Prensa | [Productores Panamá Este/Darién exigen compensaciones](summaries/20240613_prensacom_productores-arroz-panama-este-darien-compensaciones.md) | Pago de compensaciones 2023 pendiente |
+| 2024-11-07 | La Prensa | [Inundaciones dañan arroz, maíz y ganadería en Veraguas](summaries/20241107_prensacom_inundaciones-arroz-maiz-ganaderia-veraguas.md) | Lluvias de fin de semana, pérdidas en evaluación |
+| 2025-07-24 | La Prensa | [Tensión arrocera: importaciones y fin de subsidios](summaries/20250724_prensacom_tension-arrocera-importaciones-subsidios.md) | Gremios denuncian importaciones en cosecha |
 
 ---
 
-*Última actualización del índice: 2026-05-24*
+*Última actualización del índice: 2026-09-12*
