@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-09-13
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,40 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Artículos en sources/ | 57 | ↑ continuo |
+| Artículos reales ingestados | 18 | = total sin falsos positivos |
+| Pendientes de ingesta | 39 | 0 |
+| Falsos positivos acumulados | 7 (previos, ya excluidos vía skip_reason) | **0 nuevos esta sesión** |
+| Páginas en wiki/ | 27 (10 topics, 3 entidades, 11 resúmenes, 3 overview) | ↑ continuo |
+| Cobertura temporal | 2015-2026 (parcial) | 2015 → hoy real |
+| Ventanas GDELT completadas | 79 | 45+ (rango agotado, ver diagnóstico) |
+| Días sin artículos nuevos en sources/articles | **7** (última descarga real: 2026-09-06) | máx 3 antes de diagnosticar → **UMBRAL SUPERADO** |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida EXITOSA (con commit)  : 2026-09-06 (run #103) — 6 artículos nuevos
+Corridas desde entonces               : #104 (09-07) a #109 (09-12) — 6 corridas CONSECUTIVAS
+                                         con conclusion="failure"
+Duración de las corridas fallidas     : ~3 segundos (13:48:24 → 13:48:27), sin runner_id asignado
+Causa identificada                    : STARTUP FAILURE — el job nunca llega a ejecutar ningún step
+                                         (ni siquiera actions/checkout). No es un fallo de código
+                                         (GDELT/RSS) ni de timeout de red: el runner nunca se asigna.
+                                         Los logs del job ya no están disponibles vía API (404) por
+                                         ser demasiado cortos/antiguos para inspección detallada.
+Hipótesis más probable                : límite de minutos incluidos de GitHub Actions agotado o
+                                         "spending limit" en $0 para la cuenta/organización, o
+                                         Actions deshabilitado a nivel de repo/cuenta — esto requiere
+                                         revisión MANUAL en GitHub (Settings → Actions / Billing),
+                                         no es corregible desde el código del repositorio.
+Ventanas GDELT                        : 79 completadas (>45) → el rango histórico configurado está
+                                         agotado; en cuanto el fetch se restablezca, evaluar expandir
+                                         el rango de años en fetch-historical.
+Acción pendiente del usuario           : revisar en GitHub → Settings → Actions → General si Actions
+                                         está habilitado, y en Settings → Billing si hay minutos o
+                                         "spending limit" disponibles para Actions.
 ```
 
 ---
@@ -67,6 +81,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-09-13 | 5 | 39 | 0 falsos positivos; creadas topics/precios_mercados.md y topics/subsidios_programas.md; detectado fallo de GitHub Actions (6 corridas consecutivas con startup_failure desde 2026-09-07) |
 
 ---
 
