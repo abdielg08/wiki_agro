@@ -2,8 +2,8 @@
 title: Índice del Wiki Agropecuario de Panamá
 type: overview
 tags: [indice, navegacion]
-last_updated: 2025-05-24
-article_count: 0
+last_updated: 2026-09-14
+article_count: 11
 ---
 
 # Wiki Agropecuario de Panamá
@@ -52,12 +52,13 @@ article_count: 0
 | [tecnologia_innovacion.md](topics/tecnologia_innovacion.md) | Agricultura de precisión, semillas mejoradas, IDIAP |
 | [agua_riego.md](topics/agua_riego.md) | Sistemas de riego, gestión hídrica, sequía |
 | [comercio_exterior.md](topics/comercio_exterior.md) | TLC, exportaciones, competitividad |
+| [precios_mercados.md](topics/precios_mercados.md) | Volatilidad de precios, importaciones durante cosecha, subsidios |
 
 ### Políticas y Gobernanza
 | Página | Descripción |
 |--------|-------------|
 | [politicas_agropecuarias.md](topics/politicas_agropecuarias.md) | Leyes, Plan Mulino B/. 850M 2024-2029, planes de gobierno |
-| [subsidios_programas.md](topics/subsidios_programas.md) | Plan de Semillas, Agroalimentos, programas de apoyo |
+| [subsidios_programas.md](topics/subsidios_programas.md) | Plan de Semillas, transición de gobierno 2024, compensaciones pendientes |
 
 ### Regiones Agrícolas
 | Página | Descripción |
@@ -98,7 +99,12 @@ article_count: 0
 | 2022-04-10 | IICA | [Vigilancia Fusarium TR4 bananeras](summaries/20220410_iica_platano-banano-exportaciones-fusarium.md) | 56M cajas, US$ 500M en riesgo |
 | 2021-08-15 | BDA | [Crédito pandemia 2020-2021](summaries/20210815_bda_credito-agropecuario-pandemia-2020-2021.md) | B/. 320M, 28K productores |
 | 2024-03-05 | MIDA | [Plan Agropecuario Mulino 2024-2029](summaries/20240305_mida_politica-agropecuaria-mulino-2024.md) | B/. 850M, meta 80% autoabastecimiento |
+| 2022-05-24 | La Prensa | [Proyección siembra arroz 2022-2023](summaries/20220524_prensacom_proyeccion-siembra-arroz-2022-2023.md) | ~90,000 ha proyectadas, 79,600 ha secano |
+| 2024-06-07 | La Prensa | [Linares revisará subsidios en el MIDA](summaries/20240607_prensacom_linares-revisa-subsidios-mida.md) | Transición Valderrama → Linares, revisión de subsidios |
+| 2024-06-13 | La Prensa | [Productores de Panamá Este/Darién exigen compensaciones](summaries/20240613_prensacom_productores-arroz-panama-este-darien-compensaciones.md) | Pago pendiente de compensaciones 2023 |
+| 2024-11-07 | La Prensa | [Pérdidas por inundaciones en arroz, maíz y ganadería](summaries/20241107_prensacom_perdidas-inundaciones-arroz-maiz-ganaderia.md) | Veraguas: arroz, maíz, pastizales afectados |
+| 2025-07-24 | La Prensa | [Crisis arrocera: importaciones durante la cosecha](summaries/20250724_prensacom_crisis-arroz-importaciones-cosecha.md) | Caída de precios, eliminación de subsidios |
 
 ---
 
-*Última actualización del índice: 2026-05-24*
+*Última actualización del índice: 2026-09-14*
