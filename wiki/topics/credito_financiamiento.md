@@ -1,11 +1,12 @@
 ---
 title: Crédito y Financiamiento Agropecuario en Panamá
 type: topic
-tags: [credito, financiamiento, bda, pandemia, covid19, ganaderia, arroz, tasas, digitalizacion]
-last_updated: 2026-05-24
-article_count: 1
+tags: [credito, financiamiento, bda, pandemia, covid19, ganaderia, arroz, tasas, digitalizacion, compensaciones, mida]
+last_updated: 2024-06-13
+article_count: 2
 sources:
   - "https://www.bda.gob.pa/noticias/credito-agropecuario-pandemia-resultados-2021"
+  - "https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/"
 related: [topics/ganaderia_bovina.md, topics/arroz.md, topics/seguridad_alimentaria.md, entities/bda.md, entities/mida.md]
 ---
 
@@ -42,6 +43,11 @@ El Banco de Desarrollo Agropecuario (BDA) es el principal instrumento de financi
 - Tiempo de aprobación reducido: **45 → 15 días** mediante digitalización
 - **40%** de solicitudes recibidas en línea (2020-2021)
 
+### Retrasos en Compensaciones del MIDA (2024)
+- **2024-06-13**: productores de arroz de **Panamá Este y Darién** se presentaron en la sede del MIDA a exigir el pago de compensaciones **pendientes desde 2023** [prensa.com, 2024-06-13]
+- El artículo fuente no detalla el monto adeudado ni el mecanismo de compensación específico
+- Evidencia fricciones en la ejecución oportuna de programas de apoyo/compensación a productores de zonas periféricas
+
 ### Plan Mulino 2024-2029 — Refuerzo Financiero
 - Refuerzo BDA: **B/. 150 millones** adicionales [MIDA, 2024-03-05]
 - Crédito especial jóvenes y mujeres: **3% anual** (nuevo fondo)
@@ -60,11 +66,13 @@ El Banco de Desarrollo Agropecuario (BDA) es el principal instrumento de financi
 - Pequeños productores en áreas remotas con acceso limitado a sucursales y plataformas digitales
 - Garantías: productores informales o sin título de tierra excluidos del crédito formal
 - Brecha de género: mujeres productoras históricamente subrepresentadas en carteras de crédito
+- Retrasos en el desembolso de compensaciones estatales a productores (Panamá Este, Darién, 2024)
 
 ## Referencias
 
 - [BDA, 2021 — Crédito agropecuario pandemia 2020-2021](https://www.bda.gob.pa/noticias/credito-agropecuario-pandemia-resultados-2021)
 - [MIDA, 2024 — Plan Agropecuario Mulino 2024-2029](https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024)
+- [prensa.com, 2024 — Productores de Panamá Este y Darién exigen compensaciones](https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/)
 
 ## Ver también
 

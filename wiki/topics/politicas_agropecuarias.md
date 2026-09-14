@@ -1,12 +1,14 @@
 ---
 title: Políticas Agropecuarias en Panamá
 type: topic
-tags: [politica-agropecuaria, plan-mulino, mida, bda, idiap, seguridad-alimentaria, riego, semillas, 2024]
-last_updated: 2026-05-24
-article_count: 1
+tags: [politica-agropecuaria, plan-mulino, mida, bda, idiap, seguridad-alimentaria, riego, semillas, subsidios, transicion-gobierno, 2024]
+last_updated: 2025-07-24
+article_count: 3
 sources:
   - "https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024"
-related: [topics/subsidios_programas.md, topics/tecnologia_innovacion.md, topics/agua_riego.md, topics/credito_financiamiento.md, entities/mida.md, entities/bda.md, entities/idiap.md]
+  - "https://www.prensa.com/politica/roberto-linares-revisara-los-subsidios-en-el-mida/"
+  - "https://www.prensa.com/economia/que-ocurre-con-el-arroz-en-panama-productores-temen-perdidas-en-la-cosecha-mientras-la-industria-justifica-las-importaciones/"
+related: [topics/subsidios_programas.md, topics/tecnologia_innovacion.md, topics/agua_riego.md, topics/credito_financiamiento.md, topics/precios_mercados.md, topics/arroz.md, entities/mida.md, entities/bda.md, entities/idiap.md]
 ---
 
 # Políticas Agropecuarias en Panamá
@@ -28,6 +30,11 @@ Las políticas agropecuarias panameñas de 2015-2025 han evolucionado de interve
 - Centros agroindustriales: **20 nuevos** en zonas rurales
 - Apoyo técnico: IICA, FAO, BID en formulación del plan
 - Respaldo gremial: ANAGAN, CNA, Federación de Cooperativas Agropecuarias
+
+### Transición de Gobierno y Revisión de Subsidios (2024-2025)
+- **2024-06-07**: primera reunión de transición en el MIDA entre el ministro saliente **Augusto Valderrama** y el ministro designado **Roberto José Linares**, con la revisión de subsidios agropecuarios como uno de los temas tratados [prensa.com, 2024-06-07]
+- **2025-07-24**: productores de arroz denuncian la **eliminación de subsidios** en medio de una temporada de cosecha marcada por importaciones masivas y caída de precios [prensa.com, 2025-07-24]
+- El artículo fuente no detalla qué subsidios específicos fueron eliminados ni el proceso formal seguido para hacerlo
 
 ### Contexto Estructural
 - **85%** de los productores panameños tienen fincas menores de 20 ha (agricultura familiar dominante)
@@ -68,6 +75,8 @@ Las políticas agropecuarias panameñas de 2015-2025 han evolucionado de interve
 ## Referencias
 
 - [MIDA, 2024 — Plan Agropecuario Gobierno Mulino 2024-2029](https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024)
+- [prensa.com, 2024 — Roberto Linares revisará los subsidios en el Mida](https://www.prensa.com/politica/roberto-linares-revisara-los-subsidios-en-el-mida/)
+- [prensa.com, 2025 — Tensión arrocera: importaciones y eliminación de subsidios](https://www.prensa.com/economia/que-ocurre-con-el-arroz-en-panama-productores-temen-perdidas-en-la-cosecha-mientras-la-industria-justifica-las-importaciones/)
 
 ## Ver también
 
@@ -75,4 +84,6 @@ Las políticas agropecuarias panameñas de 2015-2025 han evolucionado de interve
 - [Agua y Riego](agua_riego.md)
 - [Tecnología e Innovación](tecnologia_innovacion.md)
 - [Crédito y Financiamiento](credito_financiamiento.md)
+- [Precios y Mercados](precios_mercados.md)
+- [Arroz en Panamá](arroz.md)
 - [MIDA](../entities/mida.md) | [BDA](../entities/bda.md) | [IDIAP](../entities/idiap.md)

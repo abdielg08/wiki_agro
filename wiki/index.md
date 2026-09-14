@@ -2,8 +2,8 @@
 title: Índice del Wiki Agropecuario de Panamá
 type: overview
 tags: [indice, navegacion]
-last_updated: 2025-05-24
-article_count: 0
+last_updated: 2025-07-24
+article_count: 11
 ---
 
 # Wiki Agropecuario de Panamá
@@ -47,7 +47,7 @@ article_count: 0
 | [cambio_climatico.md](topics/cambio_climatico.md) | Sequías, El Niño, inundaciones, adaptación |
 | [seguridad_alimentaria.md](topics/seguridad_alimentaria.md) | Autoabastecimiento, pobreza rural, déficit |
 | [plagas_enfermedades.md](topics/plagas_enfermedades.md) | Gusano cogollero, roya del café, enfermedades |
-| [precios_mercados.md](topics/precios_mercados.md) | Volatilidad de precios, importaciones vs. producción local |
+| [precios_mercados.md](topics/precios_mercados.md) | Volatilidad de precios, importaciones vs. producción local, tensión arrocera 2025 |
 | [credito_financiamiento.md](topics/credito_financiamiento.md) | BDA, crédito agrícola, récord B/. 320M pandemia, digitalización |
 | [tecnologia_innovacion.md](topics/tecnologia_innovacion.md) | Agricultura de precisión, semillas mejoradas, IDIAP |
 | [agua_riego.md](topics/agua_riego.md) | Sistemas de riego, gestión hídrica, sequía |
@@ -98,7 +98,12 @@ article_count: 0
 | 2022-04-10 | IICA | [Vigilancia Fusarium TR4 bananeras](summaries/20220410_iica_platano-banano-exportaciones-fusarium.md) | 56M cajas, US$ 500M en riesgo |
 | 2021-08-15 | BDA | [Crédito pandemia 2020-2021](summaries/20210815_bda_credito-agropecuario-pandemia-2020-2021.md) | B/. 320M, 28K productores |
 | 2024-03-05 | MIDA | [Plan Agropecuario Mulino 2024-2029](summaries/20240305_mida_politica-agropecuaria-mulino-2024.md) | B/. 850M, meta 80% autoabastecimiento |
+| 2025-07-24 | prensa.com | [Tensión arrocera: importaciones y eliminación de subsidios](summaries/20250724_prensacom_tension-arrocera-importaciones-2025.md) | Gremios denuncian importaciones en cosecha, caída de precios |
+| 2024-11-07 | prensa.com | [Inundaciones en Veraguas afectan arroz, maíz y ganadería](summaries/20241107_prensacom_inundaciones-arroz-maiz-ganaderia-2024.md) | Lluvias dañan sembradíos y pastizales |
+| 2022-05-24 | prensa.com | [Proyección de siembra 90 mil ha de arroz 2022-2023](summaries/20220524_prensacom_siembra-arroz-90mil-hectareas-2022.md) | 79,600 ha en secano, reporte MIDA |
+| 2024-06-07 | prensa.com | [Roberto Linares revisará los subsidios en el Mida](summaries/20240607_prensacom_linares-mida-revision-subsidios-2024.md) | Transición ministerial Valderrama → Linares |
+| 2024-06-13 | prensa.com | [Productores de Panamá Este y Darién exigen compensaciones](summaries/20240613_prensacom_arroz-panama-este-darien-compensaciones-2024.md) | Pagos pendientes de 2023 |
 
 ---
 
-*Última actualización del índice: 2026-05-24*
+*Última actualización del índice: 2025-07-24*
