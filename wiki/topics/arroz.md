@@ -1,10 +1,15 @@
 ---
 title: Arroz en Panamá
 type: topic
-tags: [arroz, produccion, seguridad-alimentaria, sequia, precios, mida, idiap]
-last_updated: 2025-05-24
-article_count: 1
-sources: ["https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023"]
+tags: [arroz, produccion, seguridad-alimentaria, sequia, precios, importaciones, subsidios, mida, idiap]
+last_updated: 2026-09-14
+article_count: 6
+sources:
+  - "https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023"
+  - "https://www.prensa.com/economia/que-ocurre-con-el-arroz-en-panama-productores-temen-perdidas-en-la-cosecha-mientras-la-industria-justifica-las-importaciones/"
+  - "https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/"
+  - "https://www.prensa.com/economia/panama-proyecta-sembrar-cerca-de-90-mil-hectareas-de-arroz-para-el-ciclo-2022-2023/"
+  - "https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/"
 related: [topics/seguridad_alimentaria.md, topics/cambio_climatico.md, topics/precios_mercados.md, topics/credito_financiamiento.md, entities/mida.md, entities/idiap.md, entities/bda.md]
 ---
 
@@ -22,6 +27,10 @@ El arroz es el alimento básico por excelencia de la dieta panameña y un cultiv
 - **2016**: Caída del **65%** en rendimientos en Los Santos durante sequía El Niño 2015-2016 [TVN, 2016]
 - Importaciones: entre el **20-30%** del consumo nacional, vía TLC con EE.UU. y acuerdos regionales
 - Zonas de producción: Coclé, Veraguas, Los Santos (70% nacional); también Chiriquí y áreas del Caribe
+- **2022**: MIDA proyectó sembrar **cerca de 90,000 hectáreas** de arroz para el ciclo 2022-2023 (79,600 ha en secano, resto bajo riego) [prensa.com, 2022-05-24]
+- **2024-06-13**: Productores de arroz de Panamá Este y Darién exigieron al MIDA el pago de compensaciones pendientes de 2023, presentándose en la sede principal del ministerio [prensa.com, 2024-06-13]
+- **2024-11-07**: Fuertes lluvias en Veraguas dañaron sembradíos de arroz (junto con maíz y pastizales) y afectaron ganadería vacuna y porcina de la zona [prensa.com, 2024-11-07]
+- **2025-07-24**: Gremios de productores denunciaron importaciones masivas de arroz coincidiendo con la cosecha nacional, con caída de precios internos y eliminación de subsidios; la industria justificó las importaciones por necesidades de abasto [prensa.com, 2025-07-24]
 
 ## Tendencias (2015–2025)
 
@@ -38,6 +47,9 @@ El arroz es el alimento básico por excelencia de la dieta panameña y un cultiv
 - Altos costos de insumos (fertilizantes, agroquímicos, diesel para bombeo)
 - Envejecimiento de la población productora; falta de relevo generacional
 - Escasa mecanización en pequeñas fincas (<20 ha)
+- Vulnerabilidad a inundaciones en temporada lluviosa (Veraguas, 2024)
+- Conflicto recurrente entre gremios de productores e importadores por el calendario de importaciones frente a la cosecha nacional (2025)
+- Pagos de compensaciones y subsidios pendientes que generan protestas de productores (Panamá Este, Darién, 2024)
 
 ## Variedades IDIAP Relevantes
 
@@ -49,6 +61,10 @@ El arroz es el alimento básico por excelencia de la dieta panameña y un cultiv
 
 - [MIDA, 2023 — Producción de arroz cae 18%](https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023)
 - [TVN, 2016 — Sequía El Niño en Azuero](https://www.tvn-2.com/nacionales/sequia-azuero-el-nino-2015-2016)
+- [prensa.com, 2022 — Panamá proyecta sembrar 90 mil ha de arroz 2022-2023](https://www.prensa.com/economia/panama-proyecta-sembrar-cerca-de-90-mil-hectareas-de-arroz-para-el-ciclo-2022-2023/)
+- [prensa.com, 2024 — Productores de Panamá Este y Darién exigen compensaciones](https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/)
+- [prensa.com, 2024 — Pérdidas por inundaciones en Veraguas](https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/)
+- [prensa.com, 2025 — Tensión por importaciones durante la cosecha](https://www.prensa.com/economia/que-ocurre-con-el-arroz-en-panama-productores-temen-perdidas-en-la-cosecha-mientras-la-industria-justifica-las-importaciones/)
 
 ## Ver también
 
