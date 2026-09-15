@@ -142,7 +142,9 @@
     "source": "prensa.com",
     "ingested": true,
     "skipped": true,
-    "skip_reason": "falso positivo: fuente malasia (thestar.com.my), no relacionado con Panama"
+    "skip_reason": "falso positivo: fuente malasia (thestar.com.my), no relacionado con Panama",
+    "false_positive": true,
+    "false_positive_reason": "MIDA = Malaysian Investment Development Authority; no relacionado con Panamá."
   },
   "https://www.thestar.com.my/business/business-news/2026/01/13/mida-sees-broader-investment-pipeline-beyond-data-centres-in-2026": {
     "saved_at": "2026-05-30T12:01:27.208195",
@@ -152,7 +154,9 @@
     "source": "prensa.com",
     "ingested": true,
     "skipped": true,
-    "skip_reason": "falso positivo: fuente malasia (thestar.com.my), MIDA = Malaysian Investment Development Authority"
+    "skip_reason": "falso positivo: fuente malasia (thestar.com.my), MIDA = Malaysian Investment Development Authority",
+    "false_positive": true,
+    "false_positive_reason": "MIDA = Malaysian Investment Development Authority; no relacionado con Panamá."
   },
   "https://www.thestar.com.my/business/business-news/2026/04/22/malaysia-should-reform-recalibrate-response-to-global-changes-says-tengku-zafrul": {
     "saved_at": "2026-05-30T12:01:27.208950",
@@ -162,7 +166,9 @@
     "source": "prensa.com",
     "ingested": true,
     "skipped": true,
-    "skip_reason": "falso positivo: fuente malasia (thestar.com.my), sin relacion con Panama"
+    "skip_reason": "falso positivo: fuente malasia (thestar.com.my), sin relacion con Panama",
+    "false_positive": true,
+    "false_positive_reason": "Noticia de política económica de Malasia; sin relación con Panamá."
   },
   "https://www.fox13now.com/news/local-news/box-elder-county/mida-violated-state-law-in-approval-process-of-box-elder-county-data-center-group-claims": {
     "saved_at": "2026-06-04T13:54:27.115663",
@@ -172,7 +178,9 @@
     "source": "prensa.com",
     "ingested": true,
     "skipped": true,
-    "skip_reason": "falso positivo: fox13now.com (Utah, EEUU), sin relacion con Panama"
+    "skip_reason": "falso positivo: fox13now.com (Utah, EEUU), sin relacion con Panama",
+    "false_positive": true,
+    "false_positive_reason": "MIDA = Military Installation Development Authority de Utah, EE.UU.; no relacionado con Panamá."
   },
   "https://www.worldbank.org/ext/en/development-topics": {
     "saved_at": "2026-06-08T14:43:01.400687",
@@ -182,7 +190,9 @@
     "source": "prensa.com",
     "ingested": true,
     "skipped": true,
-    "skip_reason": "falso positivo: pagina generica de worldbank.org, sin contenido agropecuario Panama"
+    "skip_reason": "falso positivo: pagina generica de worldbank.org, sin contenido agropecuario Panama",
+    "false_positive": true,
+    "false_positive_reason": "Página genérica de temas de desarrollo del Banco Mundial, sin contenido específico sobre agro panameño."
   },
   "https://www.thestar.com.my/business/business-news/2025/12/18/i-bhd039s-first-ai-experience-centre-opens-at-i-city": {
     "saved_at": "2026-06-11T14:31:45.817248",
@@ -192,7 +202,9 @@
     "source": "prensa.com",
     "ingested": true,
     "skipped": true,
-    "skip_reason": "falso positivo: fuente malasia (thestar.com.my), centro de IA Malasia"
+    "skip_reason": "falso positivo: fuente malasia (thestar.com.my), centro de IA Malasia",
+    "false_positive": true,
+    "false_positive_reason": "Noticia de negocios de Malasia; sin relación con Panamá."
   },
   "https://ieeexplore.ieee.org/document/11018750": {
     "saved_at": "2026-06-19T13:58:42.404601",
@@ -202,7 +214,9 @@
     "source": "prensa.com",
     "ingested": true,
     "skipped": true,
-    "skip_reason": "falso positivo: ieeexplore.ieee.org, articulo de robotica sin relacion con agro Panama"
+    "skip_reason": "falso positivo: ieeexplore.ieee.org, articulo de robotica sin relacion con agro Panama",
+    "false_positive": true,
+    "false_positive_reason": "Paper académico sin relación con Panamá."
   },
   "https://www.spa.gov.sa/en/N2096157": {
     "saved_at": "2026-06-26T13:04:28.458471",
@@ -210,7 +224,10 @@
     "title": "'Reef Saudi', a Successful Program Based on Rain-Fed Agriculture",
     "date": "2026-06-24",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-15T08:21:51.228604",
+    "false_positive": true,
+    "false_positive_reason": "Programa de agricultura de secano 'Reef Saudi' en Arabia Saudita; no relacionado con Panamá."
   },
   "https://www.sltrib.com/news/2026/05/19/kevin-oleary-data-center-timeline/": {
     "saved_at": "2026-06-27T12:05:20.042626",
@@ -218,7 +235,10 @@
     "title": "Timeline: How the Kevin O’Leary data center plan came to be, and what’s happened since",
     "date": "2026-05-19",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-15T08:21:51.228604",
+    "false_positive": true,
+    "false_positive_reason": "Centro de datos en Utah, EE.UU. (coincide con 'MIDA' = Military Installation Development Authority de Utah, no con MIDA de Panamá)."
   },
   "https://www.sltrib.com/news/environment/2026/05/29/utah-governor-issues-order-protect/": {
     "saved_at": "2026-06-27T12:05:20.043697",
@@ -226,7 +246,10 @@
     "title": "Utah Gov. Cox issues order to protect Great Salt Lake, air quality from data centers",
     "date": "2026-05-29",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-15T08:21:51.228604",
+    "false_positive": true,
+    "false_positive_reason": "Orden del gobernador de Utah sobre centros de datos y calidad del aire; no relacionada con Panamá."
   },
   "https://www.sltrib.com/news/2026/05/27/box-elder-data-center-opponents/": {
     "saved_at": "2026-06-27T12:05:20.044648",
@@ -234,7 +257,10 @@
     "title": "Box Elder data center opponents hope for a vote — but are ready for a legal fight",
     "date": "2026-05-27",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-15T08:21:51.228604",
+    "false_positive": true,
+    "false_positive_reason": "Centro de datos en Utah, EE.UU.; misma confusión de acrónimo MIDA."
   },
   "https://www.nyfb.org/": {
     "saved_at": "2026-06-29T14:42:54.312073",
@@ -242,7 +268,10 @@
     "title": "New York Farm Bureau",
     "date": "2026-06-17",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-15T08:21:51.228604",
+    "false_positive": true,
+    "false_positive_reason": "New York Farm Bureau (EE.UU.); no relacionado con Panamá."
   },
   "https://www.sltrib.com/news/environment/2025/06/12/utah-nuclear-energy-state/": {
     "saved_at": "2026-07-02T12:53:53.066448",
@@ -250,7 +279,10 @@
     "title": "Utah wants to process uranium on the Wasatch Front for nuclear energy. Here’s where.",
     "date": "2025-06-13",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-15T08:21:51.228604",
+    "false_positive": true,
+    "false_positive_reason": "Noticia sobre energía nuclear/uranio en Utah, EE.UU.; no relacionada con agro panameño."
   },
   "https://whc.unesco.org/en/list/1506": {
     "saved_at": "2026-07-10T13:04:57.003757",
@@ -258,7 +290,10 @@
     "title": "The Persian Qanat",
     "date": "2026-07-07",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-15T08:21:51.228604",
+    "false_positive": true,
+    "false_positive_reason": "Sitio de patrimonio UNESCO 'Persian Qanat' (Irán); no relacionado con agro panameño."
   },
   "https://paultan.org/2026/07/07/miti-working-on-simplified-ncm-customised-incentive-mechanism-to-build-real-local-industrial-capabilities/": {
     "saved_at": "2026-07-14T12:06:00.385283",
@@ -266,7 +301,10 @@
     "title": "MITI working on simplified NCM customised incentive mechanism to build real local industrial capabilities",
     "date": "2026-07-08",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-15T08:21:51.228604",
+    "false_positive": true,
+    "false_positive_reason": "Política industrial de MITI Malasia; coincide con 'MIDA' de Malasia (Malaysian Investment Development Authority), no con Panamá."
   },
   "https://ieeexplore.ieee.org/document/10945742": {
     "saved_at": "2026-07-15T12:10:08.462784",
@@ -274,7 +312,10 @@
     "title": "Ambient IoT: Communications Enabling Precision Agriculture",
     "date": "2025-03-31",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-15T08:21:51.228604",
+    "false_positive": true,
+    "false_positive_reason": "Paper académico genérico sobre IoT/agricultura de precisión, sin mención a Panamá."
   },
   "https://www.msn.com/en-us/news/other/cultural-rules-for-staying-with-locals-abroad/ss-AA1QWARj?ocid=BingNewsVerp": {
     "saved_at": "2026-07-20T13:01:08.501359",
@@ -282,7 +323,10 @@
     "title": "Cultural Rules For Staying With Locals Abroad",
     "date": "2026-03-07",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-15T08:21:51.228604",
+    "false_positive": true,
+    "false_positive_reason": "Artículo de viajes/cultura sin relación con agro panameño."
   },
   "https://archive.org/details/Cataloguedipter2SaoP": {
     "saved_at": "2026-07-20T13:01:08.502291",
@@ -290,7 +334,10 @@
     "title": "Catalogue of the diptera of the Americas South of United States",
     "date": "2016-05-13",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-15T08:17:57.939395",
+    "false_positive": true,
+    "false_positive_reason": "No es sobre agro panameño: catálogo zoológico de dípteros de Brasil/América del Sur (Secretaria da Agricultura), sin relación con Panamá."
   },
   "https://www.heraldo.es/noticias/aragon/2026/05/03/luis-biendicho-vox-asume-consejeria-medio-ambiente-con-un-inaga-bajo-lupa-investigacion-judicial-por-caso-forestalia-2017165.html": {
     "saved_at": "2026-07-29T12:56:00.851198",
@@ -298,7 +345,10 @@
     "title": "Luis Biendicho asume la consejería de Medio Ambiente, con un Inaga bajo la lupa por el caso Forestalia",
     "date": "2026-05-03",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-15T08:21:51.228604",
+    "false_positive": true,
+    "false_positive_reason": "Política ambiental de Aragón, España (INAGA); no relacionada con Panamá."
   },
   "https://www.heraldo.es/noticias/economia/2025/11/25/aragon-celebra-sentencia-supremo-tumba-ampliacion-obligatoria-espacio-cerdo-granjas-1873321.html": {
     "saved_at": "2026-07-29T12:56:00.852732",
@@ -306,7 +356,10 @@
     "title": "Aragón celebra la sentencia del Supremo que tumba ampliación obligatoria del espacio por cerdo en las granjas",
     "date": "2025-11-25",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-15T08:21:51.228604",
+    "false_positive": true,
+    "false_positive_reason": "Noticia sobre granjas porcinas en Aragón, España; no relacionada con Panamá."
   },
   "https://www.heraldo.es/noticias/economia/2026/06/08/aega-pide-elecciones-campo-aragon-consejera-agricultura-le-responde-que-no-esta-dispuesta-gastar-un-millon-euros-2027313.html": {
     "saved_at": "2026-07-30T12:24:28.020434",
@@ -314,7 +367,10 @@
     "title": "AEGA pide elecciones al campo en Aragón y la consejera de Agricultura le responde que no está dispuesta a gastar un millón",
     "date": "2026-06-08",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-15T08:21:51.228604",
+    "false_positive": true,
+    "false_positive_reason": "Política agrícola de Aragón, España; no relacionada con Panamá."
   },
   "https://agenciabrasil.ebc.com.br/economia/noticia/2026-07/finep-vai-pagar-r-220-milhoes-para-inovacoes-em-agricultura-familiar": {
     "saved_at": "2026-07-30T12:24:28.021551",
@@ -322,7 +378,10 @@
     "title": "Finep vai pagar R$ 220 milhões para inovações em agricultura familiar",
     "date": "2026-07-02",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-15T08:21:51.228604",
+    "false_positive": true,
+    "false_positive_reason": "Financiamiento a agricultura familiar en Brasil (Finep); no relacionado con Panamá."
   },
   "https://www.heraldo.es/noticias/economia/2026/06/23/arvensis-agro-amplia-sus-instalaciones-preve-aumentar-un-50-su-facturacion-2030-2031462.html": {
     "saved_at": "2026-07-30T12:24:28.022755",
@@ -330,7 +389,10 @@
     "title": "Arvensis Agro amplía sus instalaciones y prevé aumentar un 50 % su facturación en 2030",
     "date": "2026-06-23",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-15T08:21:51.228604",
+    "false_positive": true,
+    "false_positive_reason": "Empresa agrícola en Aragón, España; no relacionada con Panamá."
   },
   "https://www.maine.gov/dacf/ard/index.shtml": {
     "saved_at": "2026-08-19T11:16:57.209199",
@@ -338,7 +400,10 @@
     "title": "Agricultural Resource Development Division",
     "date": "2026-08-13",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-15T08:21:51.228604",
+    "false_positive": true,
+    "false_positive_reason": "División de Desarrollo de Recursos Agrícolas del estado de Maine, EE.UU.; no relacionada con Panamá."
   },
   "https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/": {
     "saved_at": "2026-08-24T11:18:59.203710",
@@ -346,7 +411,8 @@
     "title": "Evalúan pérdidas en producción de arroz, maíz y ganadería por las inundaciones",
     "date": "2024-11-07",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-15T08:18:02.160246"
   },
   "https://www.prensa.com/impresa/economia/Agroturismo-temporada-cosecha_0_5442205773.html": {
     "saved_at": "2026-08-24T11:18:59.204975",
@@ -370,7 +436,10 @@
     "title": "Mida debe mejorar el sistema de diagnóstico",
     "date": "2010-07-04",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-15T08:17:57.939419",
+    "out_of_scope": true,
+    "out_of_scope_reason": "Fecha 2010-07-04, anterior a la cobertura objetivo del wiki (2015-02-19 -> hoy)."
   },
   "https://www.prensa.com/impresa/economia/plagas-agricultura_0_2148535259.html": {
     "saved_at": "2026-08-24T11:18:59.207747",
@@ -378,7 +447,10 @@
     "title": "Las seis plagas de la agricultura",
     "date": "2007-11-04",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-15T08:17:57.939417",
+    "out_of_scope": true,
+    "out_of_scope_reason": "Fecha 2007-11-04, anterior a la cobertura objetivo del wiki (2015-02-19 -> hoy)."
   },
   "https://www.prensa.com/economia/cartera-de-credito-agropecuario-de-banco-nacional-de-panama-alcanzo-los-7141-millones-en-2024/": {
     "saved_at": "2026-08-24T11:18:59.208497",
@@ -402,7 +474,8 @@
     "title": "Panamá: de la agricultura de subsistencia a la agricultura de precisión exportadora",
     "date": "2026-02-24",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-15T08:25:25.611923"
   },
   "https://www.prensa.com/provincias/mida-adopta-medidas-de-prevencion-en-panama-oeste-ante-gripe-aviar/": {
     "saved_at": "2026-08-24T11:18:59.211126",
@@ -410,7 +483,8 @@
     "title": "Mida adopta medidas de prevención en Panamá Oeste ante gripe aviar",
     "date": "2023-02-16",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-15T08:25:25.611922"
   },
   "https://www.prensa.com/economia/panama-proyecta-sembrar-cerca-de-90-mil-hectareas-de-arroz-para-el-ciclo-2022-2023/": {
     "saved_at": "2026-08-24T11:18:59.211939",
@@ -418,7 +492,8 @@
     "title": "Panamá proyecta sembrar cerca de 90 mil hectáreas de arroz para el ciclo 2022-2023",
     "date": "2022-05-24",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-15T08:18:02.160248"
   },
   "https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/": {
     "saved_at": "2026-08-24T11:18:59.212833",
@@ -426,7 +501,8 @@
     "title": "Productores de arroz de Panamá este y Darién exigen al Mida el pago de compensaciones",
     "date": "2024-06-13",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-15T08:18:02.160250"
   },
   "https://www.prensa.com/economia/mida-confirma-la-llegada-de-20-mil-quintales-de-cebolla-importada/": {
     "saved_at": "2026-08-24T11:18:59.213571",
@@ -442,7 +518,8 @@
     "title": "Boquete: Mida inicia evaluación de áreas afectadas tras las lluvias",
     "date": "2025-10-07",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-15T08:25:25.611926"
   },
   "https://www.prensa.com/economia/mida-refuerza-controles-por-brote-de-influenza-aviar-en-frontera-con-colombia/": {
     "saved_at": "2026-08-24T11:18:59.215371",
@@ -450,7 +527,8 @@
     "title": "MIDA refuerza controles por brote de influenza aviar en frontera con Colombia",
     "date": "2022-10-22",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-15T08:25:25.611924"
   },
   "https://www.prensa.com/politica/roberto-linares-revisara-los-subsidios-en-el-mida/": {
     "saved_at": "2026-08-24T11:18:59.216211",
@@ -458,7 +536,8 @@
     "title": "Roberto Linares revisará los subsidios en el Mida",
     "date": "2024-06-07",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-15T08:18:02.160249"
   },
   "https://www.prensa.com/economia/Ministro-Valderrama-irregularidades-planilla-Mida_0_5446705379.html": {
     "saved_at": "2026-08-24T11:18:59.217028",
@@ -482,7 +561,8 @@
     "title": "Nombran a nuevo viceministro del Mida tras renuncia de Francisco Ameglio",
     "date": "2026-03-03",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-15T08:25:25.611912"
   },
   "https://www.prensa.com/sociedad/ministerio-de-desarrollo-agropecuario-emite-alerta-zoosanitaria-ante-riesgo-de-influenza-aviar/": {
     "saved_at": "2026-08-24T11:18:59.219543",
@@ -506,15 +586,17 @@
     "title": "Mozambique: More than 1M doses of foot-and-mouth vaccine over next year and half",
     "date": "2026-08-21",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-15T08:21:51.228604",
+    "false_positive": true,
+    "false_positive_reason": "Vacunación de fiebre aftosa en Mozambique; no relacionada con Panamá."
   },
   "https://www.prensa.com/impresa/economia/rol-trazabilidad-agricultura-moderna_0_5358214179.html": {
     "saved_at": "2026-09-06T13:51:13.337888",
     "path": "/home/runner/work/wiki_agro/wiki_agro/sources/articles/20190726_prensacom_impresa-economia-rol-trazabilidad-agricultura-moderna_0_5358.json",
     "title": "El rol de la trazabilidad en la agricultura moderna",
     "date": "2019-07-26",
-    "source": "prensa.com",
-    "ingested": false
+    "source": "prensa.com"
   },
   "https://www.prensa.com/impresa/economia/Impulsan-desarrollo-agricultura-familiar_0_5415958417.html": {
     "saved_at": "2026-09-06T13:51:13.339425",
@@ -529,8 +611,7 @@
     "path": "/home/runner/work/wiki_agro/wiki_agro/sources/articles/20190825_prensacom_opinion-horizonte-agropecuario_0_5380711932-html.json",
     "title": "Horizonte agropecuario",
     "date": "2019-08-25",
-    "source": "prensa.com",
-    "ingested": false
+    "source": "prensa.com"
   },
   "https://www.prensa.com/economia/que-ocurre-con-el-arroz-en-panama-productores-temen-perdidas-en-la-cosecha-mientras-la-industria-justifica-las-importaciones/": {
     "saved_at": "2026-09-06T13:51:13.341138",
@@ -538,7 +619,8 @@
     "title": "¿Qué ocurre con el arroz en Panamá? Productores temen pérdidas en la cosecha mientras la industria justifica las importaciones",
     "date": "2025-07-24",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-15T08:18:02.160237"
   },
   "https://www.prensa.com/provincias/MIDA-presenta-plan-contingencia-verano_0_5419707981.html": {
     "saved_at": "2026-09-06T13:51:13.342310",

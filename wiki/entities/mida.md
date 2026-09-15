@@ -1,13 +1,21 @@
 ---
 title: MIDA — Ministerio de Desarrollo Agropecuario
 type: entity
-tags: [gobierno, ministerio, politica-agropecuaria, plan-mulino, semillas, fitosanitario]
-last_updated: 2026-05-24
-article_count: 2
+tags: [gobierno, ministerio, politica-agropecuaria, plan-mulino, semillas, fitosanitario, subsidios, transicion-gobierno, avicultura]
+last_updated: 2026-09-15
+article_count: 10
 sources:
   - "https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023"
   - "https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024"
-related: [entities/idiap.md, entities/bda.md, topics/politicas_agropecuarias.md, topics/arroz.md, topics/plagas_enfermedades.md]
+  - "https://www.prensa.com/economia/que-ocurre-con-el-arroz-en-panama-productores-temen-perdidas-en-la-cosecha-mientras-la-industria-justifica-las-importaciones/"
+  - "https://www.prensa.com/economia/panama-proyecta-sembrar-cerca-de-90-mil-hectareas-de-arroz-para-el-ciclo-2022-2023/"
+  - "https://www.prensa.com/politica/roberto-linares-revisara-los-subsidios-en-el-mida/"
+  - "https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/"
+  - "https://www.prensa.com/politica/nombran-a-nuevo-viceministro-del-mida-tras-renuncia-de-francisco-ameglio/"
+  - "https://www.prensa.com/provincias/mida-adopta-medidas-de-prevencion-en-panama-oeste-ante-gripe-aviar/"
+  - "https://www.prensa.com/economia/mida-refuerza-controles-por-brote-de-influenza-aviar-en-frontera-con-colombia/"
+  - "https://www.prensa.com/economia/boquete-mida-inicia-evaluacion-de-areas-afectadas-tras-las-lluvias/"
+related: [entities/idiap.md, entities/bda.md, topics/politicas_agropecuarias.md, topics/arroz.md, topics/subsidios_programas.md, topics/precios_mercados.md, topics/plagas_enfermedades.md, topics/avicultura.md, topics/chirique.md]
 ---
 
 # MIDA — Ministerio de Desarrollo Agropecuario
@@ -45,6 +53,26 @@ El Ministerio de Desarrollo Agropecuario (MIDA) es la institución rectora del s
 - **2018**: Plan emergencia gusano cogollero — B/. 3.2 millones en insecticidas, 12,000 productores atendidos
 - **2022**: Refuerzo vigilancia Fusarium TR4 — inspecciones semanales en fronteras, coordinación con IICA
 
+### Planificación de Siembra
+- **2022**: proyectó cerca de **90,000 hectáreas** de arroz para el ciclo 2022-2023, con **79,600 ha** en secano [MIDA vía La Prensa, 2022-05-24](https://www.prensa.com/economia/panama-proyecta-sembrar-cerca-de-90-mil-hectareas-de-arroz-para-el-ciclo-2022-2023/)
+
+### Transición de Gobierno 2024 y Revisión de Subsidios
+- **7 de junio de 2024**: reunión de transición entre el ministro saliente Augusto Valderrama y el designado Roberto José Linares; se anunció revisión de los subsidios del MIDA [La Prensa, 2024-06-07](https://www.prensa.com/politica/roberto-linares-revisara-los-subsidios-en-el-mida/)
+- **13 de junio de 2024**: productores de arroz de Panamá Este y Darién protestaron en la sede del MIDA por falta de pago de compensaciones de 2023 [La Prensa, 2024-06-13](https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/)
+
+### Tensión por Importaciones (2025)
+- Gremios de productores de arroz denuncian importaciones masivas autorizadas durante la cosecha nacional, caída de precios y eliminación de subsidios; la industria molinera defiende las importaciones como necesarias para el abastecimiento [La Prensa, 2025-07-24](https://www.prensa.com/economia/que-ocurre-con-el-arroz-en-panama-productores-temen-perdidas-en-la-cosecha-mientras-la-industria-justifica-las-importaciones/)
+
+### Vigilancia Zoosanitaria — Influenza Aviar
+- **2022**: la Dirección de Salud Animal del MIDA reforzó controles en la frontera con Colombia tras un brote de influenza aviar en ese país [La Prensa, 2022-10-22](https://www.prensa.com/economia/mida-refuerza-controles-por-brote-de-influenza-aviar-en-frontera-con-colombia/)
+- **2023**: la Dirección Nacional de Salud Animal emitió medidas preventivas en Panamá Oeste ante riesgo de gripe aviar [La Prensa, 2023-02-16](https://www.prensa.com/provincias/mida-adopta-medidas-de-prevencion-en-panama-oeste-ante-gripe-aviar/)
+
+### Cambio de Viceministro (2026)
+- El presidente José Raúl Mulino nombró a **José Aníbal Rincón Stanziola** como nuevo viceministro del MIDA tras la renuncia de Francisco José Ameglio [La Prensa, 2026-03-03](https://www.prensa.com/politica/nombran-a-nuevo-viceministro-del-mida-tras-renuncia-de-francisco-ameglio/)
+
+### Evaluación de Daños por Lluvias — Boquete, Chiriquí (2025)
+- Técnicos del MIDA se trasladaron a Boquete (Chiriquí) para evaluar en campo plantaciones agropecuarias afectadas por lluvias intensas [La Prensa, 2025-10-07](https://www.prensa.com/economia/boquete-mida-inicia-evaluacion-de-areas-afectadas-tras-las-lluvias/)
+
 ## Programas Relevantes (2015–2025)
 - **Plan de Emergencia Arrocera** (2023): semillas + crédito ante sequía El Niño
 - **Plan Nacional de Atención a la Sequía** (2016): respuesta al El Niño 2015-2016 en Azuero
@@ -56,14 +84,28 @@ El Ministerio de Desarrollo Agropecuario (MIDA) es la institución rectora del s
 - Capacidad de ejecución históricamente por debajo del presupuesto asignado
 - Laboratorios de diagnóstico fitosanitario subutilizados o desactualizados
 - Cobertura limitada en zonas remotas (comarcas, Darién)
+- Retrasos en el pago de compensaciones y subsidios comprometidos a productores (Panamá Este y Darién, 2023-2024)
+- Tensión entre política de importaciones y calendario de cosecha nacional (arroz, 2025)
 
 ## Referencias
 
 - [MIDA, 2023 — Producción de arroz](https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023)
 - [MIDA, 2024 — Plan Agropecuario Mulino 2024-2029](https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024)
+- [La Prensa, 2022 — Proyección de siembra ciclo 2022-2023](https://www.prensa.com/economia/panama-proyecta-sembrar-cerca-de-90-mil-hectareas-de-arroz-para-el-ciclo-2022-2023/)
+- [La Prensa, 2024 — Roberto Linares revisará los subsidios en el Mida](https://www.prensa.com/politica/roberto-linares-revisara-los-subsidios-en-el-mida/)
+- [La Prensa, 2024 — Productores exigen pago de compensaciones](https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/)
+- [La Prensa, 2025 — Productores temen pérdidas por importaciones](https://www.prensa.com/economia/que-ocurre-con-el-arroz-en-panama-productores-temen-perdidas-en-la-cosecha-mientras-la-industria-justifica-las-importaciones/)
+- [La Prensa, 2026 — Nuevo viceministro del Mida](https://www.prensa.com/politica/nombran-a-nuevo-viceministro-del-mida-tras-renuncia-de-francisco-ameglio/)
+- [La Prensa, 2023 — Medidas de prevención en Panamá Oeste ante gripe aviar](https://www.prensa.com/provincias/mida-adopta-medidas-de-prevencion-en-panama-oeste-ante-gripe-aviar/)
+- [La Prensa, 2022 — Controles reforzados por brote de influenza aviar en Colombia](https://www.prensa.com/economia/mida-refuerza-controles-por-brote-de-influenza-aviar-en-frontera-con-colombia/)
+- [La Prensa, 2025 — Boquete: Mida evalúa áreas afectadas tras lluvias](https://www.prensa.com/economia/boquete-mida-inicia-evaluacion-de-areas-afectadas-tras-las-lluvias/)
 
 ## Ver también
 - [IDIAP](idiap.md) — investigación agropecuaria
 - [BDA](bda.md) — financiamiento al sector
 - [Políticas Agropecuarias](../topics/politicas_agropecuarias.md)
 - [Arroz en Panamá](../topics/arroz.md)
+- [Subsidios y Programas](../topics/subsidios_programas.md)
+- [Precios y Mercados](../topics/precios_mercados.md)
+- [Avicultura](../topics/avicultura.md)
+- [Chiriquí](../topics/chirique.md)

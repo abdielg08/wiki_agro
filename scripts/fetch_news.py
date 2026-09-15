@@ -289,6 +289,12 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
         body = r.get("body") or r.get("excerpt", "")
         if not is_agro_relevant(title, body, config):
             continue
+        # DDG's `site:` operator isn't reliably honored once the query has
+        # OR clauses (e.g. "... OR MIDA OR ..."), so results can leak in from
+        # unrelated domains/countries (Malaysia's MIDA, Utah's MIDA, etc.).
+        # Apply the same Panama-relevance guard used by the RSS/GDELT paths.
+        if _is_blocked_domain(url) or not _is_panama_related(title, url):
+            continue
         yield {
             "url": url,
             "title": title,

@@ -2,7 +2,7 @@
 title: Índice del Wiki Agropecuario de Panamá
 type: overview
 tags: [indice, navegacion]
-last_updated: 2025-05-24
+last_updated: 2026-09-15
 article_count: 0
 ---
 
@@ -98,7 +98,17 @@ article_count: 0
 | 2022-04-10 | IICA | [Vigilancia Fusarium TR4 bananeras](summaries/20220410_iica_platano-banano-exportaciones-fusarium.md) | 56M cajas, US$ 500M en riesgo |
 | 2021-08-15 | BDA | [Crédito pandemia 2020-2021](summaries/20210815_bda_credito-agropecuario-pandemia-2020-2021.md) | B/. 320M, 28K productores |
 | 2024-03-05 | MIDA | [Plan Agropecuario Mulino 2024-2029](summaries/20240305_mida_politica-agropecuaria-mulino-2024.md) | B/. 850M, meta 80% autoabastecimiento |
+| 2022-05-24 | La Prensa | [Proyección siembra arroz 2022-2023](summaries/20220524_prensacom_siembra-90mil-hectareas-arroz-2022-2023.md) | ~90K ha proyectadas, 79.6K ha en secano |
+| 2024-06-07 | La Prensa | [Linares revisará subsidios en el Mida](summaries/20240607_prensacom_linares-revisa-subsidios-mida.md) | Transición Valderrama → Linares |
+| 2024-06-13 | La Prensa | [Productores exigen pago de compensaciones](summaries/20240613_prensacom_productores-arroz-panama-este-darien-compensaciones.md) | Panamá Este y Darién, compensaciones 2023 pendientes |
+| 2024-11-07 | La Prensa | [Pérdidas por inundaciones en Veraguas](summaries/20241107_prensacom_perdidas-arroz-maiz-ganaderia-inundaciones.md) | Arroz, maíz, ganadería afectados |
+| 2025-07-24 | La Prensa | [Productores temen pérdidas por importaciones](summaries/20250724_prensacom_arroz-productores-temen-perdidas.md) | Importaciones en cosecha, caída de precios, subsidios eliminados |
+| 2022-10-22 | La Prensa | [MIDA refuerza controles influenza aviar frontera Colombia](summaries/20221022_prensacom_mida-controles-influenza-aviar-frontera-colombia.md) | Brote en Colombia, refuerzo fronterizo |
+| 2023-02-16 | La Prensa | [Mida previene gripe aviar en Panamá Oeste](summaries/20230216_prensacom_mida-prevencion-panama-oeste-gripe-aviar.md) | Resolución preventiva zona avícola |
+| 2025-10-07 | La Prensa | [Boquete: Mida evalúa áreas afectadas por lluvias](summaries/20251007_prensacom_boquete-mida-evaluacion-lluvias.md) | Chiriquí, plantaciones agropecuarias |
+| 2026-02-24 | La Prensa | [De la agricultura de subsistencia a la de precisión exportadora](summaries/20260224_prensacom_opinion-agricultura-precision-exportadora.md) | Opinión: subsidios vs. agricultura de precisión |
+| 2026-03-03 | La Prensa | [Nuevo viceministro del Mida](summaries/20260303_prensacom_nuevo-viceministro-mida-renuncia-ameglio.md) | José Aníbal Rincón Stanziola reemplaza a Ameglio |
 
 ---
 
-*Última actualización del índice: 2026-05-24*
+*Última actualización del índice: 2026-09-15*
