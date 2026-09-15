@@ -48,3 +48,44 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-09-15 00:00
+ROUTINE: Ingesta de 5 artículos (sesión Claude Code — routine automatizada)
+  Diagnóstico inicial: 57 descargados, 13 ingestados, 44 pendientes
+  Artículos ingestados (todos verificados 100% sobre agro de Panamá, 0 falsos positivos):
+    - 20220524_prensacom_panama-proyecta-sembrar-cerca-de-90-mil-hectareas-d → summaries/ + topics/arroz.md actualizado + entities/mida.md actualizado
+    - 20240607_prensacom_roberto-linares-revisara-los-subsidios-en-el-mida → summaries/ + topics/politicas_agropecuarias.md actualizado + topics/subsidios_programas.md creado + entities/mida.md actualizado
+    - 20240613_prensacom_productores-de-arroz-de-panama-este-y-darien-exigen → summaries/ + topics/arroz.md actualizado + topics/subsidios_programas.md actualizado + entities/mida.md actualizado
+    - 20241107_prensacom_evaluan-perdidas-en-produccion-de-arroz-maiz-y-gana → summaries/ + topics/arroz.md + topics/maiz.md + topics/cambio_climatico.md actualizados
+    - 20250724_prensacom_que-ocurre-con-el-arroz-en-panama-productores-temen → summaries/ + topics/arroz.md actualizado + topics/precios_mercados.md creado + topics/subsidios_programas.md actualizado + entities/mida.md actualizado
+  Páginas creadas: topics/precios_mercados.md, topics/subsidios_programas.md
+  Páginas actualizadas: topics/arroz.md, topics/maiz.md, topics/cambio_climatico.md, topics/politicas_agropecuarias.md, entities/mida.md, index.md
+  Summaries: 5 nuevos archivos en wiki/summaries/
+  Nota: los 5 artículos solo contaban con `summary_raw` truncado (full_text: null) en sources/articles/;
+  los resúmenes y hechos clave se limitaron estrictamente a la información disponible en el extracto,
+  sin inventar cifras no confirmadas.
+  Marcados como ingestados vía `mark-all-ingested --limit 5`.
+  Pendientes restantes tras esta sesión: 39
+
+DIAGNÓSTICO AVANZADO (fetch de GitHub Actions):
+  - Último commit con artículos nuevos en sources/: 2026-09-06 (6 artículos) → 9 días sin
+    artículos nuevos al momento de esta sesión (umbral de falla: 3 días). SISTEMA EN FALLA
+    según criterio de wiki/CLAUDE.md.
+  - Revisadas las corridas del workflow "Wiki Agropecuario — Fetch Diario" vía GitHub API:
+    8 corridas consecutivas fallidas (runs #104 a #111, 2026-09-07 a 2026-09-14), cada una
+    con duración de solo ~3-5 segundos y `runner_id: 0` — el job nunca llegó a asignarse un
+    runner real de GitHub Actions (falla antes del checkout).
+  - Esto descarta un error del código de fetch (GDELT/RSS) como causa: es una firma típica de
+    cuota de minutos de GitHub Actions agotada o un problema de facturación/plan del
+    repositorio u organización.
+  - Ventanas GDELT en processed.json: 79 completadas (por encima del umbral estimado de 45),
+    pero esta cifra refleja corridas exitosas previas al 2026-09-06, no permite concluir que
+    el backfill histórico esté agotado dado el corte reciente en el fetch automático.
+  - Acción requerida: revisar en GitHub → Settings → Billing/Actions del repositorio u
+    organización si se agotaron los minutos gratuitos de Actions, fuera del alcance de esta
+    sesión de Claude Code (sin acceso a configuración de facturación).
+  - Detalle completo en wiki/metrics.md, sección "Estado del Fetch (GitHub Actions) —
+    Diagnóstico 2026-09-15".
+
+## 2026-09-15 00:15
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code
