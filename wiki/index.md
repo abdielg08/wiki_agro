@@ -2,8 +2,8 @@
 title: Índice del Wiki Agropecuario de Panamá
 type: overview
 tags: [indice, navegacion]
-last_updated: 2025-05-24
-article_count: 0
+last_updated: 2026-09-15
+article_count: 11
 ---
 
 # Wiki Agropecuario de Panamá
@@ -98,7 +98,12 @@ article_count: 0
 | 2022-04-10 | IICA | [Vigilancia Fusarium TR4 bananeras](summaries/20220410_iica_platano-banano-exportaciones-fusarium.md) | 56M cajas, US$ 500M en riesgo |
 | 2021-08-15 | BDA | [Crédito pandemia 2020-2021](summaries/20210815_bda_credito-agropecuario-pandemia-2020-2021.md) | B/. 320M, 28K productores |
 | 2024-03-05 | MIDA | [Plan Agropecuario Mulino 2024-2029](summaries/20240305_mida_politica-agropecuaria-mulino-2024.md) | B/. 850M, meta 80% autoabastecimiento |
+| 2022-05-24 | prensa.com | [Proyección siembra ~90,000 ha arroz 2022-2023](summaries/20220524_prensa_siembra-90000ha-arroz-2022-2023.md) | 79,600 ha en secano, reporte MIDA |
+| 2024-06-07 | prensa.com | [Linares revisará subsidios en el MIDA](summaries/20240607_prensa_linares-revisa-subsidios-mida-2024.md) | Transición ministerial Valderrama → Linares |
+| 2024-06-13 | prensa.com | [Productores Panamá Este/Darién exigen compensaciones](summaries/20240613_prensa_productores-arroz-panama-este-darien-compensaciones-2024.md) | Compensaciones 2023 pendientes de pago |
+| 2024-11-07 | prensa.com | [Pérdidas por inundaciones en Veraguas](summaries/20241107_prensa_perdidas-arroz-maiz-ganaderia-inundaciones-2024.md) | Arroz, maíz y ganadería afectados |
+| 2025-07-24 | prensa.com | [Tensión arrocera por importaciones en cosecha 2025](summaries/20250724_prensa_arroz-importaciones-cosecha-2025.md) | Caída de precios, eliminación de subsidios |
 
 ---
 
-*Última actualización del índice: 2026-05-24*
+*Última actualización del índice: 2026-09-15*
