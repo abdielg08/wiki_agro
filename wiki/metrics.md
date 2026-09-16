@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-09-16
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,46 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Artículos en sources/ | 57 | ↑ continuo |
+| Artículos ingestados | 18 | = total sin falsos positivos |
+| Pendientes de ingesta | 39 | 0 |
+| Falsos positivos acumulados | 7 (histórico) + ≥5 detectados hoy sin marcar (ver nota) | **0 nuevos ingestados como agro-PA** |
+| Páginas en wiki/ | 27 (10 topics, 3 entidades, 11 resúmenes, 3 overview) | ↑ continuo |
+| Cobertura temporal | 2015-2025 (artículos reales: 2015-2025) | 2015 → hoy real |
+| Ventanas GDELT completadas | 79 / ~45 estimadas | 45 (2015→hoy) — **umbral superado** |
+| Días sin artículos nuevos en sources/ | **10** (último commit de fetch con contenido: 2026-09-06) | máx 3 antes de diagnosticar |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions      : 2026-09-15 (run #112, "Wiki Agropecuario — Fetch Diario")
+Resultado                   : FALLA — conclusion="failure"
+Racha de fallas             : 9 corridas diarias consecutivas en failure (runs #104 a #112,
+                               2026-09-07 → 2026-09-15). Última corrida exitosa: run #103,
+                               2026-09-06 (6 artículos descargados).
+Causa identificada          : No se pudo determinar la causa exacta — los logs del job ya no
+                               están disponibles para descarga (HTTP 404 al pedirlos vía API
+                               de GitHub Actions / blob storage; WebFetch a ese dominio también
+                               bloqueado por el proxy de egress de esta sesión). Los pasos
+                               "Fetch artículos nuevos" y "Estadísticas" del workflow tienen
+                               `continue-on-error: true`, así que la falla probablemente ocurre
+                               en checkout / setup-python / pip install / o en el paso final
+                               "Commit artículos nuevos" (git add/commit/push), que SÍ puede
+                               abortar el job.
+Hallazgo adicional           : `_gdelt_windows` en sources/processed.json ya tiene **79**
+                               ventanas completadas, por encima del umbral de ~45 estimado en
+                               CLAUDE.md para "rango de fechas agotado". Aun si el workflow se
+                               arregla, GDELT puede estar devolviendo cada vez menos artículos
+                               nuevos porque el rango 2015→hoy ya fue mayormente recorrido.
+Acción recomendada           : (1) Revisar manualmente el run en
+                               https://github.com/abdielg08/wiki_agro/actions/runs/34987787411
+                               desde la UI de GitHub (esta sesión no tiene acceso a los logs
+                               crudos). (2) Si el fallo es en el commit/push, revisar permisos
+                               del token/branch protection en `main`. (3) Considerar expandir el
+                               rango de ventanas GDELT o activar más fuentes RSS dado que el
+                               backfill histórico está cerca de agotarse.
 ```
 
 ---
@@ -67,6 +87,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-09-16 | 5 (todos arroz/MIDA, 100% verificados agro-PA) | 39 | Routine automatizada. Fetch Diario en falla 9 días seguidos; GDELT en 79 ventanas (>45). Fuentes de estos 5 artículos sin `full_text` (solo extracto truncado) — ver wiki/log.md |
 
 ---
 

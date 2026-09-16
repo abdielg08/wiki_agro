@@ -1,11 +1,12 @@
 ---
 title: Cambio Climático e Impacto en el Agro Panameño
 type: topic
-tags: [cambio-climatico, sequia, el-nino, adaptacion, resiliencia, azuero, ganaderia]
-last_updated: 2026-05-24
-article_count: 1
+tags: [cambio-climatico, sequia, el-nino, inundaciones, adaptacion, resiliencia, azuero, veraguas, ganaderia]
+last_updated: 2026-09-16
+article_count: 2
 sources:
   - "https://www.tvn-2.com/nacionales/sequia-azuero-el-nino-2015-2016"
+  - "https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/"
 related: [topics/agua_riego.md, topics/seguridad_alimentaria.md, topics/arroz.md, topics/ganaderia_bovina.md, topics/plagas_enfermedades.md, entities/mida.md, entities/idiap.md]
 ---
 
@@ -34,6 +35,11 @@ El cambio climático es uno de los principales retos del sector agropecuario pan
 - Producción nacional de arroz cayó **18%** (280,000 → 230,000 toneladas métricas) [MIDA, 2023]
 - Costos de producción arroz: B/. 8.50 → B/. 12.00 por quintal (+41%)
 - Regiones más afectadas: Azuero (Los Santos), Coclé, Veraguas
+
+### Inundaciones en Veraguas — Noviembre 2024
+- Lluvias intensas de fin de semana dañaron sembradíos de arroz y maíz, pastizales y áreas de ganadería vacuna y porcina en **Veraguas** [prensa.com, 2024-11-07]
+- Autoridades iniciaron evaluación de pérdidas; cifras específicas no disponibles en la fuente procesada
+- Confirma el patrón de riesgo dual (sequía/inundación) que enfrenta el sector arrocero panameño, ya documentado con El Niño en Azuero
 
 ## Regiones Más Vulnerables
 - **Azuero** (Los Santos, Herrera): sequía estructural y ganadería dependiente de lluvias
@@ -65,6 +71,7 @@ El cambio climático es uno de los principales retos del sector agropecuario pan
 
 - [TVN, 2016 — Sequía El Niño 2015-2016 en Azuero](https://www.tvn-2.com/nacionales/sequia-azuero-el-nino-2015-2016)
 - [MIDA, 2023 — Producción de arroz cae 18%](https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023)
+- [prensa.com, 2024-11-07 — Pérdidas por inundaciones en Veraguas](https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/)
 
 ## Ver también
 - [Arroz en Panamá](arroz.md)
