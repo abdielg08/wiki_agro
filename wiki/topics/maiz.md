@@ -1,12 +1,13 @@
 ---
 title: Maíz en Panamá
 type: topic
-tags: [maiz, gusano-cogollero, plagas, mida, idiap, oirsa, seguridad-alimentaria]
-last_updated: 2026-05-24
-article_count: 1
+tags: [maiz, gusano-cogollero, plagas, mida, idiap, oirsa, seguridad-alimentaria, inundaciones]
+last_updated: 2026-09-16
+article_count: 2
 sources:
   - "https://www.prensa.com/economia/gusano-cogollero-crisis-maiz-panama-2018"
-related: [topics/plagas_enfermedades.md, topics/seguridad_alimentaria.md, topics/cambio_climatico.md, entities/mida.md, entities/idiap.md]
+  - "https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/"
+related: [topics/plagas_enfermedades.md, topics/seguridad_alimentaria.md, topics/cambio_climatico.md, topics/arroz.md, entities/mida.md, entities/idiap.md]
 ---
 
 # Maíz en Panamá
@@ -27,6 +28,10 @@ El maíz es un cultivo fundamental para la seguridad alimentaria y la economía 
 ### Origen y Difusión del Cogollero
 - *Spodoptera frugiperda*: plaga originaria de África subsahariana → Colombia → Centroamérica → Panamá (c. 2016-2018)
 - Calificada por MIDA como la peor invasión de esta plaga en la última década
+
+### Inundaciones 2024
+- **2024-11-07**: lluvias intensas de fin de semana dañaron cultivos de maíz en Veraguas, junto con arroz, pastizales y áreas de ganadería vacuna y porcina [La Prensa, 2024-11-07]
+- Evaluación oficial de pérdidas iniciada en los tres rubros afectados
 
 ### Respuesta Técnica — Manejo Integrado
 - **IDIAP**: Programa Nacional de Manejo Integrado del Gusano Cogollero
@@ -51,10 +56,12 @@ El maíz es un cultivo fundamental para la seguridad alimentaria y la economía 
 ## Referencias
 
 - [La Prensa, 2018 — Crisis del gusano cogollero](https://www.prensa.com/economia/gusano-cogollero-crisis-maiz-panama-2018)
+- [La Prensa, 2024 — Inundaciones dañan arroz, maíz y ganadería en Veraguas](../summaries/20241107_prensacom_inundaciones-arroz-maiz-ganaderia.md)
 
 ## Ver también
 
 - [Plagas y Enfermedades](plagas_enfermedades.md)
 - [Seguridad Alimentaria](seguridad_alimentaria.md)
 - [Cambio Climático](cambio_climatico.md)
+- [Arroz en Panamá](arroz.md)
 - [MIDA](../entities/mida.md) | [IDIAP](../entities/idiap.md)

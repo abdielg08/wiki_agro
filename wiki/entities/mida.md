@@ -1,13 +1,17 @@
 ---
 title: MIDA — Ministerio de Desarrollo Agropecuario
 type: entity
-tags: [gobierno, ministerio, politica-agropecuaria, plan-mulino, semillas, fitosanitario]
-last_updated: 2026-05-24
-article_count: 2
+tags: [gobierno, ministerio, politica-agropecuaria, plan-mulino, semillas, fitosanitario, subsidios, transicion]
+last_updated: 2026-09-16
+article_count: 6
 sources:
   - "https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023"
   - "https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024"
-related: [entities/idiap.md, entities/bda.md, topics/politicas_agropecuarias.md, topics/arroz.md, topics/plagas_enfermedades.md]
+  - "https://www.prensa.com/economia/panama-proyecta-sembrar-cerca-de-90-mil-hectareas-de-arroz-para-el-ciclo-2022-2023/"
+  - "https://www.prensa.com/politica/roberto-linares-revisara-los-subsidios-en-el-mida/"
+  - "https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/"
+  - "https://www.prensa.com/economia/que-ocurre-con-el-arroz-en-panama-productores-temen-perdidas-en-la-cosecha-mientras-la-industria-justifica-las-importaciones/"
+related: [entities/idiap.md, entities/bda.md, topics/politicas_agropecuarias.md, topics/arroz.md, topics/plagas_enfermedades.md, topics/subsidios_programas.md, topics/darien_comarca.md]
 ---
 
 # MIDA — Ministerio de Desarrollo Agropecuario
@@ -45,6 +49,16 @@ El Ministerio de Desarrollo Agropecuario (MIDA) es la institución rectora del s
 - **2018**: Plan emergencia gusano cogollero — B/. 3.2 millones en insecticidas, 12,000 productores atendidos
 - **2022**: Refuerzo vigilancia Fusarium TR4 — inspecciones semanales en fronteras, coordinación con IICA
 
+### Siembra de Arroz 2022-2023
+- Proyección de siembra: **cerca de 90,000 ha** de arroz, de las cuales **79,600 ha** en secano [La Prensa, 2022-05-24]
+
+### Transición Ministerial 2024
+- **2024-06-07**: reunión de transición entre el ministro saliente Augusto Valderrama y el designado Roberto José Linares, con revisión de subsidios en agenda [La Prensa, 2024-06-07]
+- **2024-06-13**: productores de arroz de Panamá Este y Darién protestaron en la sede del MIDA por falta de pago de compensaciones de 2023 [La Prensa, 2024-06-13]
+
+### Tensión por Importaciones 2025
+- **2025-07-24**: gremios de arroceros denunciaron importaciones masivas durante la cosecha, caída de precios y eliminación de subsidios [La Prensa, 2025-07-24]
+
 ## Programas Relevantes (2015–2025)
 - **Plan de Emergencia Arrocera** (2023): semillas + crédito ante sequía El Niño
 - **Plan Nacional de Atención a la Sequía** (2016): respuesta al El Niño 2015-2016 en Azuero
@@ -56,14 +70,22 @@ El Ministerio de Desarrollo Agropecuario (MIDA) es la institución rectora del s
 - Capacidad de ejecución históricamente por debajo del presupuesto asignado
 - Laboratorios de diagnóstico fitosanitario subutilizados o desactualizados
 - Cobertura limitada en zonas remotas (comarcas, Darién)
+- Retrasos en pago de compensaciones a productores, generando protestas (Panamá Este, Darién, 2024)
+- Continuidad de subsidios sujeta a revisión en cada transición ministerial
 
 ## Referencias
 
 - [MIDA, 2023 — Producción de arroz](https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023)
 - [MIDA, 2024 — Plan Agropecuario Mulino 2024-2029](https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024)
+- [La Prensa, 2022 — Siembra proyectada 90,000 ha ciclo 2022-2023](../summaries/20220524_prensacom_siembra-arroz-90mil-hectareas-2022-2023.md)
+- [La Prensa, 2024 — Transición ministerial y revisión de subsidios](../summaries/20240607_prensacom_transicion-mida-linares-subsidios.md)
+- [La Prensa, 2024 — Productores Darién exigen compensaciones](../summaries/20240613_prensacom_arroceros-darien-compensaciones-mida.md)
+- [La Prensa, 2025 — Tensión por importaciones masivas](../summaries/20250724_prensacom_arroz-tension-importaciones-2025.md)
 
 ## Ver también
 - [IDIAP](idiap.md) — investigación agropecuaria
 - [BDA](bda.md) — financiamiento al sector
 - [Políticas Agropecuarias](../topics/politicas_agropecuarias.md)
+- [Subsidios y Programas](../topics/subsidios_programas.md)
 - [Arroz en Panamá](../topics/arroz.md)
+- [Darién y Panamá Este](../topics/darien_comarca.md)
