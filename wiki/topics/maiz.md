@@ -2,11 +2,12 @@
 title: Maíz en Panamá
 type: topic
 tags: [maiz, gusano-cogollero, plagas, mida, idiap, oirsa, seguridad-alimentaria]
-last_updated: 2026-05-24
-article_count: 1
+last_updated: 2026-09-17
+article_count: 2
 sources:
   - "https://www.prensa.com/economia/gusano-cogollero-crisis-maiz-panama-2018"
-related: [topics/plagas_enfermedades.md, topics/seguridad_alimentaria.md, topics/cambio_climatico.md, entities/mida.md, entities/idiap.md]
+  - "https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/"
+related: [topics/plagas_enfermedades.md, topics/seguridad_alimentaria.md, topics/cambio_climatico.md, topics/arroz.md, entities/mida.md, entities/idiap.md]
 ---
 
 # Maíz en Panamá
@@ -34,12 +35,16 @@ El maíz es un cultivo fundamental para la seguridad alimentaria y la economía 
 - IDIAP + CIMMYT: desarrollo de variedades de maíz con resistencia genética al cogollero
 - Transición gradual desde insecticidas químicos hacia control biológico integrado
 
+### Inundaciones 2024 en Veraguas
+- Fuertes lluvias de fin de semana afectaron sembradíos de maíz en Veraguas, junto con arroz y pastizales para ganadería vacuna y porcina [La Prensa, 2024-11-07]
+
 ## Tendencias (2015–2025)
 
 - Emergencia del gusano cogollero (2018) como plaga crónica del sector maicero
 - Resistencia creciente a insecticidas en poblaciones de *S. frugiperda*
 - Adopción gradual de variedades mejoradas con tolerancia a sequía y resistencia a plagas
 - Presión de maíz importado más barato vía TLC afecta rentabilidad del productor local
+- Exposición recurrente a eventos climáticos extremos: sequías (El Niño) e inundaciones (La Niña) en zonas maiceras
 
 ## Retos
 
@@ -51,10 +56,12 @@ El maíz es un cultivo fundamental para la seguridad alimentaria y la economía 
 ## Referencias
 
 - [La Prensa, 2018 — Crisis del gusano cogollero](https://www.prensa.com/economia/gusano-cogollero-crisis-maiz-panama-2018)
+- [La Prensa, 2024 — Evalúan pérdidas en arroz, maíz y ganadería por inundaciones](https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/)
 
 ## Ver también
 
 - [Plagas y Enfermedades](plagas_enfermedades.md)
 - [Seguridad Alimentaria](seguridad_alimentaria.md)
 - [Cambio Climático](cambio_climatico.md)
+- [Arroz en Panamá](arroz.md)
 - [MIDA](../entities/mida.md) | [IDIAP](../entities/idiap.md)
