@@ -2,7 +2,7 @@
 title: Índice del Wiki Agropecuario de Panamá
 type: overview
 tags: [indice, navegacion]
-last_updated: 2025-05-24
+last_updated: 2026-09-17
 article_count: 0
 ---
 
@@ -98,7 +98,12 @@ article_count: 0
 | 2022-04-10 | IICA | [Vigilancia Fusarium TR4 bananeras](summaries/20220410_iica_platano-banano-exportaciones-fusarium.md) | 56M cajas, US$ 500M en riesgo |
 | 2021-08-15 | BDA | [Crédito pandemia 2020-2021](summaries/20210815_bda_credito-agropecuario-pandemia-2020-2021.md) | B/. 320M, 28K productores |
 | 2024-03-05 | MIDA | [Plan Agropecuario Mulino 2024-2029](summaries/20240305_mida_politica-agropecuaria-mulino-2024.md) | B/. 850M, meta 80% autoabastecimiento |
+| 2025-07-24 | prensa.com | [Tensión cadena arrocera: importaciones y subsidios](summaries/20250724_prensacom_arroz-importaciones-precios-subsidios-2025.md) | Gremios denuncian importaciones, caída de precios y eliminación de subsidios |
+| 2024-11-07 | prensa.com | [Inundaciones afectan arroz, maíz y ganadería en Veraguas](summaries/20241107_prensacom_inundaciones-arroz-maiz-ganaderia-veraguas.md) | Lluvias dañan sembradíos y pastizales; pérdidas en evaluación |
+| 2022-05-24 | prensa.com | [MIDA proyecta 90 mil ha de arroz ciclo 2022-2023](summaries/20220524_prensacom_siembra-90000ha-arroz-2022-2023.md) | 79,600 ha bajo secano |
+| 2024-06-07 | prensa.com | [Transición MIDA: Linares revisará subsidios](summaries/20240607_prensacom_linares-revision-subsidios-mida.md) | Cambio de gobierno 2024; revisión de subsidios anunciada |
+| 2024-06-13 | prensa.com | [Productores de Panamá Este y Darién exigen compensaciones](summaries/20240613_prensacom_arroz-panama-este-darien-compensaciones.md) | Pago de compensaciones de 2023 pendiente |
 
 ---
 
-*Última actualización del índice: 2026-05-24*
+*Última actualización del índice: 2026-09-17*
