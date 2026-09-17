@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-09-17
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,50 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Artículos descargados (sources/) | 57 | ↑ continuo |
+| Artículos ingestados (wiki/) | 18 | = total sin falsos positivos |
+| Pendientes de ingesta | 39 | 0 |
+| Falsos positivos acumulados | 7 (previos) + posibles nuevos sin auditar en pendientes (ver nota) | **0 nuevos ingestados** |
+| Páginas en wiki/ | 27 (10 topics, 3 entidades, 11 resúmenes) | ↑ continuo |
+| Cobertura temporal | 2015-2025 (parcial, con huecos) | 2015 → hoy real |
+| Ventanas GDELT completadas | 79 (ver nota de calidad abajo) | 45-46 (2015→hoy) |
+| Días sin artículos nuevos en sources/ | **11 días** (último commit: 2026-09-06) | máx 3 antes de diagnosticar — **UMBRAL SUPERADO** |
 
 ---
 
-## Estado del Fetch (GitHub Actions)
+## Estado del Fetch (GitHub Actions) — ⚠️ FALLA DETECTADA 2026-09-17
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Último commit a sources/ : 2026-09-06 13:56 UTC ("6 artículos nuevos descargados")
+Hoy                        : 2026-09-17
+Días sin nuevos artículos  : 11 (supera el umbral de 3 días de CLAUDE.md)
+Diagnóstico                : GitHub Actions no ha vuelto a commitear a sources/ desde el 06-09.
+                              No es un caso de "0 artículos nuevos" (que sí se commitea igual con
+                              [skip ci]) — es AUSENCIA TOTAL de commits, lo que sugiere que el
+                              workflow (.github/workflows/wiki_daily.yml o wiki_historical.yml)
+                              dejó de ejecutarse o está fallando antes de llegar al paso de commit.
+Acción recomendada         : Revisar manualmente el historial de ejecuciones de Actions en GitHub
+                              (pestaña Actions del repo) para el workflow wiki_daily.yml — esta
+                              sesión no tiene acceso a esa pestaña vía CLI/API disponible.
+
+Calidad de las ventanas GDELT (_gdelt_windows en processed.json):
+  - 79 ventanas registradas (por encima de las ~45-46 esperadas para cubrir 2015→hoy),
+    pero el formato es inconsistente: hay ventanas trimestrales normales (ej. 20220922_20221221)
+    mezcladas con decenas de ventanas de 1-2 días todas ancladas a 20260618_2026MMDD.
+    Esto sugiere un posible bug en fetch_gdelt_historical() generando micro-ventanas en vez de
+    trimestres al acercarse a la fecha actual, lo que podría estar inflando el conteo de
+    "ventanas completadas" sin aportar cobertura histórica real.
+
+Falsos positivos potenciales en sources/articles/ (pendientes, NO ingestados):
+  - Se detectaron URLs en sources/processed.json claramente ajenas al agro panameño, ej.:
+    thestar.com.my (MIDA = Malaysian Investment Development Authority, no el ministerio panameño),
+    fox13now.com / sltrib.com (data centers en Utah), heraldo.es (política aragonesa, España),
+    agenciabrasil.ebc.com.br (Brasil), clubofmozambique.com (Mozambique), whc.unesco.org, etc.
+  - Causa probable: colisión de acrónimo "MIDA" y/o keywords genéricas de "agro"/"agricultura"
+    sin filtro de país (country=PA) o de contexto panameño en el paso de descarga/relevancia.
+  - Estos NO fueron ingestados en esta sesión. Deben marcarse como falso positivo (NO ingestar)
+    cuando aparezcan en un futuro pending_ingest.md, y se recomienda ajustar el filtro de
+    relevancia del fetcher para exigir mención explícita de Panamá.
 ```
 
 ---
@@ -67,6 +91,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-09-17 | 5 (0 falsos positivos) | 39 | Ingesta de 5 artículos sobre arroz/MIDA. Diagnóstico: GitHub Actions sin commits a sources/ desde hace 11 días (umbral superado); posibles falsos positivos sin auditar en el resto de pendientes (colisión "MIDA" Malasia/Panamá) |
 
 ---
 

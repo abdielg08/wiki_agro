@@ -1,11 +1,16 @@
 ---
 title: Arroz en Panamá
 type: topic
-tags: [arroz, produccion, seguridad-alimentaria, sequia, precios, mida, idiap]
-last_updated: 2025-05-24
-article_count: 1
-sources: ["https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023"]
-related: [topics/seguridad_alimentaria.md, topics/cambio_climatico.md, topics/precios_mercados.md, topics/credito_financiamiento.md, entities/mida.md, entities/idiap.md, entities/bda.md]
+tags: [arroz, produccion, seguridad-alimentaria, sequia, precios, subsidios, importaciones, inundaciones, mida, idiap]
+last_updated: 2026-09-17
+article_count: 5
+sources:
+  - "https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023"
+  - "https://www.prensa.com/economia/que-ocurre-con-el-arroz-en-panama-productores-temen-perdidas-en-la-cosecha-mientras-la-industria-justifica-las-importaciones/"
+  - "https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/"
+  - "https://www.prensa.com/economia/panama-proyecta-sembrar-cerca-de-90-mil-hectareas-de-arroz-para-el-ciclo-2022-2023/"
+  - "https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/"
+related: [topics/seguridad_alimentaria.md, topics/cambio_climatico.md, topics/precios_mercados.md, topics/subsidios_programas.md, topics/credito_financiamiento.md, topics/maiz.md, entities/mida.md, entities/idiap.md, entities/bda.md]
 ---
 
 # Arroz en Panamá
@@ -22,6 +27,10 @@ El arroz es el alimento básico por excelencia de la dieta panameña y un cultiv
 - **2016**: Caída del **65%** en rendimientos en Los Santos durante sequía El Niño 2015-2016 [TVN, 2016]
 - Importaciones: entre el **20-30%** del consumo nacional, vía TLC con EE.UU. y acuerdos regionales
 - Zonas de producción: Coclé, Veraguas, Los Santos (70% nacional); también Chiriquí y áreas del Caribe
+- **2022**: MIDA proyectó sembrar cerca de **90,000 hectáreas** de arroz para el ciclo 2022-2023, de las cuales **79,600 ha** en secano [MIDA vía La Prensa, 2022-05-24]
+- **Junio 2024**: productores de arroz de Panamá Este y Darién exigieron al MIDA el pago de compensaciones pendientes de 2023 [La Prensa, 2024-06-13]
+- **Noviembre 2024**: fuertes lluvias en Veraguas afectaron sembradíos de arroz (junto a maíz y ganadería); evaluación de pérdidas en curso [La Prensa, 2024-11-07]
+- **Julio 2025**: gremios de productores denunciaron importaciones masivas durante la cosecha nacional, caída de precios al productor y eliminación de subsidios; la industria molinera defendió las importaciones [La Prensa, 2025-07-24]
 
 ## Tendencias (2015–2025)
 
@@ -30,14 +39,17 @@ El arroz es el alimento básico por excelencia de la dieta panameña y un cultiv
 - **Dependencia de importaciones**: estructura persistente que debilita la soberanía alimentaria
 - **Tecnificación gradual**: adopción de variedades mejoradas IDIAP (IDIAP-Esperanza, IDIAP-Changuinola)
 - **Meta Plan Mulino 2024-2029**: incrementar autoabastecimiento alimentario del 68% al 80%
+- **2024-2025**: tensión creciente entre productores y sector importador/molinero por precios, subsidios y compensaciones pendientes
 
 ## Retos
 
 - Competitividad frente a arroz importado más barato
-- Vulnerabilidad a sequías en las principales zonas productoras (Azuero, Coclé)
+- Vulnerabilidad a sequías e inundaciones en las principales zonas productoras (Azuero, Coclé, Veraguas)
 - Altos costos de insumos (fertilizantes, agroquímicos, diesel para bombeo)
 - Envejecimiento de la población productora; falta de relevo generacional
 - Escasa mecanización en pequeñas fincas (<20 ha)
+- Atrasos en pagos de compensación a productores (ej. Panamá Este y Darién, 2023-2024)
+- Coordinación de ventanas de importación con la cosecha nacional, para evitar caídas de precio al productor
 
 ## Variedades IDIAP Relevantes
 
@@ -49,10 +61,16 @@ El arroz es el alimento básico por excelencia de la dieta panameña y un cultiv
 
 - [MIDA, 2023 — Producción de arroz cae 18%](https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023)
 - [TVN, 2016 — Sequía El Niño en Azuero](https://www.tvn-2.com/nacionales/sequia-azuero-el-nino-2015-2016)
+- [La Prensa, 2022-05-24 — Panamá proyecta sembrar 90 mil hectáreas de arroz](https://www.prensa.com/economia/panama-proyecta-sembrar-cerca-de-90-mil-hectareas-de-arroz-para-el-ciclo-2022-2023/)
+- [La Prensa, 2024-06-13 — Productores de Panamá Este y Darién exigen compensaciones](https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/)
+- [La Prensa, 2024-11-07 — Inundaciones afectan arroz, maíz y ganadería en Veraguas](https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/)
+- [La Prensa, 2025-07-24 — ¿Qué ocurre con el arroz en Panamá?](https://www.prensa.com/economia/que-ocurre-con-el-arroz-en-panama-productores-temen-perdidas-en-la-cosecha-mientras-la-industria-justifica-las-importaciones/)
 
 ## Ver también
 
 - [Seguridad Alimentaria](seguridad_alimentaria.md)
 - [Cambio Climático](cambio_climatico.md)
 - [Precios y Mercados](precios_mercados.md)
+- [Subsidios y Programas](subsidios_programas.md)
+- [Maíz en Panamá](maiz.md)
 - [MIDA](../entities/mida.md) | [IDIAP](../entities/idiap.md) | [BDA](../entities/bda.md)

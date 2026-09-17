@@ -2,7 +2,7 @@
 title: Log de Actividad del Wiki
 type: overview
 tags: [log, actividad]
-last_updated: 2025-05-24
+last_updated: 2026-09-17
 ---
 
 # Log de Actividad
@@ -48,3 +48,31 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-09-17 00:00
+ROUTINE: Diagnóstico — `python wiki_agro.py stats` reportó 57 descargados, 13 ingestados,
+  44 pendientes de ingesta. Se ejecutó `ingest --limit 5`.
+
+INGEST: 5 artículos procesados (todos sobre arroz/MIDA panameño, 0 falsos positivos)
+  Artículos:
+    - 20250724_prensacom_que-ocurre-con-el-arroz-en-panama → summaries/20250724_prensacom_crisis-arrocera-importaciones-subsidios.md
+      + topics/arroz.md actualizado + topics/precios_mercados.md creado + topics/subsidios_programas.md creado + entities/mida.md actualizado
+    - 20241107_prensacom_evaluan-perdidas-arroz-maiz-ganaderia → summaries/20241107_prensacom_inundaciones-perdidas-arroz-maiz-ganaderia.md
+      + topics/cambio_climatico.md actualizado + topics/arroz.md actualizado + topics/maiz.md actualizado
+    - 20220524_prensacom_panama-proyecta-sembrar-90-mil-hectareas → summaries/20220524_prensacom_siembra-90mil-hectareas-arroz-2022-2023.md
+      + topics/arroz.md actualizado + entities/mida.md actualizado
+    - 20240607_prensacom_roberto-linares-revisara-subsidios → summaries/20240607_prensacom_linares-revision-subsidios-mida.md
+      + topics/subsidios_programas.md actualizado + entities/mida.md actualizado
+    - 20240613_prensacom_productores-arroz-panama-este-darien → summaries/20240613_prensacom_productores-arroz-panama-este-darien-compensaciones.md
+      + topics/arroz.md actualizado + entities/mida.md actualizado
+  Páginas creadas: topics/subsidios_programas.md, topics/precios_mercados.md (cerraban enlaces rotos ya referenciados desde index.md)
+  Páginas actualizadas: arroz.md, maiz.md, cambio_climatico.md, entities/mida.md
+  Summaries: 5 nuevos archivos en wiki/summaries/
+  Nota: los 5 artículos fuente tienen `full_text: null` en sources/articles/ — solo se dispone de `summary_raw` truncado
+  (~250 caracteres). Los resúmenes y páginas creados documentan explícitamente esta limitación y evitan inventar
+  cifras o detalles no presentes en el extracto disponible.
+
+DIAGNÓSTICO: Pendientes tras esta sesión: 44 - 5 = 39 (ver `mark-all-ingested --limit 5` a continuación)
+
+## 2026-09-17 08:15
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code
