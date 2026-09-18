@@ -1,12 +1,16 @@
 ---
 title: MIDA — Ministerio de Desarrollo Agropecuario
 type: entity
-tags: [gobierno, ministerio, politica-agropecuaria, plan-mulino, semillas, fitosanitario]
-last_updated: 2026-05-24
-article_count: 2
+tags: [gobierno, ministerio, politica-agropecuaria, plan-mulino, semillas, fitosanitario, subsidios, transicion]
+last_updated: 2026-09-18
+article_count: 6
 sources:
   - "https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023"
   - "https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024"
+  - "https://www.prensa.com/politica/roberto-linares-revisara-los-subsidios-en-el-mida/"
+  - "https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/"
+  - "https://www.prensa.com/economia/panama-proyecta-sembrar-cerca-de-90-mil-hectareas-de-arroz-para-el-ciclo-2022-2023/"
+  - "https://www.prensa.com/politica/nombran-a-nuevo-viceministro-del-mida-tras-renuncia-de-francisco-ameglio/"
 related: [entities/idiap.md, entities/bda.md, topics/politicas_agropecuarias.md, topics/arroz.md, topics/plagas_enfermedades.md]
 ---
 
@@ -45,6 +49,19 @@ El Ministerio de Desarrollo Agropecuario (MIDA) es la institución rectora del s
 - **2018**: Plan emergencia gusano cogollero — B/. 3.2 millones en insecticidas, 12,000 productores atendidos
 - **2022**: Refuerzo vigilancia Fusarium TR4 — inspecciones semanales en fronteras, coordinación con IICA
 
+### Planificación y Proyecciones
+- **2022**: Reporte del MIDA proyectó siembra de cerca de **90,000 hectáreas** de arroz para el ciclo 2022-2023 (79,600 ha en secano) [prensa.com, 2022-05-24]
+
+### Transición Ministerial 2024
+- **7 de junio de 2024**: primera reunión de transición entre el ministro saliente Augusto Valderrama y el ministro designado Roberto José Linares, en el marco del cambio de gobierno; Linares anunció que revisaría los subsidios del MIDA [prensa.com, 2024-06-07]
+
+### Cambios de Personal
+- **2026-03-03**: el presidente José Raúl Mulino nombró a José Aníbal Rincón Stanziola como nuevo viceministro de Desarrollo Agropecuario, tras la renuncia de Francisco José Ameglio [prensa.com, 2026-03-03]
+
+### Reclamos de Productores
+- **Junio 2024**: productores de arroz de Panamá Este y Darién exigieron en la sede del MIDA el pago de compensaciones pendientes de 2023 [prensa.com, 2024-06-13]
+- **Julio 2025**: gremios de productores de arroz denunciaron importaciones masivas durante la cosecha nacional, caída de precios y eliminación de subsidios; el sector importador/industrial justificó las importaciones [prensa.com, 2025-07-24]
+
 ## Programas Relevantes (2015–2025)
 - **Plan de Emergencia Arrocera** (2023): semillas + crédito ante sequía El Niño
 - **Plan Nacional de Atención a la Sequía** (2016): respuesta al El Niño 2015-2016 en Azuero
@@ -61,6 +78,10 @@ El Ministerio de Desarrollo Agropecuario (MIDA) es la institución rectora del s
 
 - [MIDA, 2023 — Producción de arroz](https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023)
 - [MIDA, 2024 — Plan Agropecuario Mulino 2024-2029](https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024)
+- [prensa.com, 2022 — Proyección de siembra de arroz 2022-2023](https://www.prensa.com/economia/panama-proyecta-sembrar-cerca-de-90-mil-hectareas-de-arroz-para-el-ciclo-2022-2023/)
+- [prensa.com, 2024 — Transición ministerial: Linares revisará subsidios](https://www.prensa.com/politica/roberto-linares-revisara-los-subsidios-en-el-mida/)
+- [prensa.com, 2024 — Productores de Panamá Este y Darién exigen compensaciones](https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/)
+- [prensa.com, 2026 — Nombran nuevo viceministro tras renuncia de Ameglio](https://www.prensa.com/politica/nombran-a-nuevo-viceministro-del-mida-tras-renuncia-de-francisco-ameglio/)
 
 ## Ver también
 - [IDIAP](idiap.md) — investigación agropecuaria

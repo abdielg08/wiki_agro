@@ -218,7 +218,10 @@
     "title": "Timeline: How the Kevin O’Leary data center plan came to be, and what’s happened since",
     "date": "2026-05-19",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-18T08:19:00.099010",
+    "skipped": true,
+    "skip_reason": "falso positivo: sltrib.com (Utah, EEUU), articulo sobre centros de datos, sin relacion con agro Panama"
   },
   "https://www.sltrib.com/news/environment/2026/05/29/utah-governor-issues-order-protect/": {
     "saved_at": "2026-06-27T12:05:20.043697",
@@ -226,7 +229,10 @@
     "title": "Utah Gov. Cox issues order to protect Great Salt Lake, air quality from data centers",
     "date": "2026-05-29",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-18T08:19:00.099014",
+    "skipped": true,
+    "skip_reason": "falso positivo: sltrib.com (Utah, EEUU), orden ambiental de Utah, sin relacion con agro Panama"
   },
   "https://www.sltrib.com/news/2026/05/27/box-elder-data-center-opponents/": {
     "saved_at": "2026-06-27T12:05:20.044648",
@@ -234,7 +240,10 @@
     "title": "Box Elder data center opponents hope for a vote — but are ready for a legal fight",
     "date": "2026-05-27",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-18T08:19:00.099012",
+    "skipped": true,
+    "skip_reason": "falso positivo: sltrib.com (Utah, EEUU), articulo sobre centros de datos, sin relacion con agro Panama"
   },
   "https://www.nyfb.org/": {
     "saved_at": "2026-06-29T14:42:54.312073",
@@ -266,7 +275,10 @@
     "title": "MITI working on simplified NCM customised incentive mechanism to build real local industrial capabilities",
     "date": "2026-07-08",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-18T08:19:00.098993",
+    "skipped": true,
+    "skip_reason": "falso positivo: paultan.org, MITI = Ministerio de Comercio e Industria de Malasia, sin relacion con Panama"
   },
   "https://ieeexplore.ieee.org/document/10945742": {
     "saved_at": "2026-07-15T12:10:08.462784",
@@ -290,7 +302,10 @@
     "title": "Catalogue of the diptera of the Americas South of United States",
     "date": "2016-05-13",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-18T08:15:42.445103",
+    "skipped": true,
+    "skip_reason": "falso positivo: catalogo de zoologia/entomologia (Museo Nacional de Rio de Janeiro, archive.org), sin relacion con agro Panama"
   },
   "https://www.heraldo.es/noticias/aragon/2026/05/03/luis-biendicho-vox-asume-consejeria-medio-ambiente-con-un-inaga-bajo-lupa-investigacion-judicial-por-caso-forestalia-2017165.html": {
     "saved_at": "2026-07-29T12:56:00.851198",
@@ -346,7 +361,8 @@
     "title": "Evalúan pérdidas en producción de arroz, maíz y ganadería por las inundaciones",
     "date": "2024-11-07",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-18T08:17:54.901368"
   },
   "https://www.prensa.com/impresa/economia/Agroturismo-temporada-cosecha_0_5442205773.html": {
     "saved_at": "2026-08-24T11:18:59.204975",
@@ -418,7 +434,8 @@
     "title": "Panamá proyecta sembrar cerca de 90 mil hectáreas de arroz para el ciclo 2022-2023",
     "date": "2022-05-24",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-18T08:17:55.030541"
   },
   "https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/": {
     "saved_at": "2026-08-24T11:18:59.212833",
@@ -426,7 +443,8 @@
     "title": "Productores de arroz de Panamá este y Darién exigen al Mida el pago de compensaciones",
     "date": "2024-06-13",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-18T08:17:55.284286"
   },
   "https://www.prensa.com/economia/mida-confirma-la-llegada-de-20-mil-quintales-de-cebolla-importada/": {
     "saved_at": "2026-08-24T11:18:59.213571",
@@ -458,7 +476,8 @@
     "title": "Roberto Linares revisará los subsidios en el Mida",
     "date": "2024-06-07",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-18T08:17:55.158700"
   },
   "https://www.prensa.com/economia/Ministro-Valderrama-irregularidades-planilla-Mida_0_5446705379.html": {
     "saved_at": "2026-08-24T11:18:59.217028",
@@ -482,7 +501,8 @@
     "title": "Nombran a nuevo viceministro del Mida tras renuncia de Francisco Ameglio",
     "date": "2026-03-03",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-18T08:18:51.961738"
   },
   "https://www.prensa.com/sociedad/ministerio-de-desarrollo-agropecuario-emite-alerta-zoosanitaria-ante-riesgo-de-influenza-aviar/": {
     "saved_at": "2026-08-24T11:18:59.219543",
@@ -538,7 +558,8 @@
     "title": "¿Qué ocurre con el arroz en Panamá? Productores temen pérdidas en la cosecha mientras la industria justifica las importaciones",
     "date": "2025-07-24",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-18T08:17:54.776416"
   },
   "https://www.prensa.com/provincias/MIDA-presenta-plan-contingencia-verano_0_5419707981.html": {
     "saved_at": "2026-09-06T13:51:13.342310",
