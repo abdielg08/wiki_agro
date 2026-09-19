@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-09-19
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,45 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
+| Artículos en sources/ | 57 | ↑ continuo |
+| Artículos reales ingestados | 18 | = total sin falsos positivos |
+| Pendientes de ingesta | 39 | 0 |
 | Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Páginas en wiki/ | 28 (11 topics, 3 entities, 11 resúmenes, 3 overview) | ↑ continuo |
+| Cobertura temporal | 2015-2026 (semilla + ingestas manuales) | 2015 → hoy real |
+| Ventanas GDELT completadas | 79 / ~45 estimadas | 45 (2015→hoy) — **rango agotado, necesita expansión** |
+| Días sin artículos nuevos en sources/ | **13** (último commit sources/: 2026-09-06) | máx 3 antes de diagnosticar — **⚠ UMBRAL SUPERADO** |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida wiki_daily.yml     : 2026-09-18 14:42 UTC — conclusion: FAILURE
+Historial reciente (2026-09-09 → 2026-09-18): 10/10 corridas FALLARON consecutivamente
+Duración de cada corrida fallida  : ~3-7 segundos (demasiado rápido para un fetch real de red)
+Último commit exitoso en sources/ : 2026-09-06 (13 días sin artículos nuevos al 2026-09-19)
+wiki_historical.yml               : 0 corridas registradas — NUNCA se ha ejecutado (ni manual ni programada)
+
+Causa identificada  : Falla estructural, no rate-limit de GDELT. El job muere en segundos, lo
+                      que apunta a un error temprano de script/config (ej. excepción sin
+                      capturar, dependencia rota, o argumento inválido a wiki_agro.py fetch)
+                      en lugar de un timeout de red — el paso "Fetch artículos nuevos" tiene
+                      continue-on-error:true, así que la falla del job debe originarse en el
+                      paso "Commit artículos nuevos" (git add/commit/push) u otro paso previo
+                      sin continue-on-error.
+                      Logs de las corridas fallidas ya expiraron (404 al intentar leerlos),
+                      por lo que no se pudo confirmar el stack trace exacto desde esta sesión.
+Ventanas GDELT      : 79/45 completadas — el rango histórico ya está "agotado" según la
+                      heurística de CLAUDE.md, pero esto es irrelevante mientras el job falle
+                      antes de llegar a ejecutar el fetch.
+Acción recomendada  : Un mantenedor humano debe disparar wiki_daily.yml manualmente
+                      (workflow_dispatch) y revisar el log del job "Fetch artículos → Commit a
+                      sources/" mientras esté fresco, para identificar el error exacto. No se
+                      aplicó ningún cambio al workflow desde esta sesión: no hay evidencia
+                      suficiente para diagnosticar la causa raíz exacta sin ver un log en vivo,
+                      y modificar el YAML a ciegas podría empeorar el problema.
+Estado post-fix     : Sin resolver — pendiente de intervención manual
 ```
 
 ---
@@ -67,6 +86,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-09-19 | 5 (0 falsos positivos) | 39 | wiki_daily.yml lleva 10/10 corridas fallidas (2026-09-09→18); sin artículos nuevos en sources/ desde 2026-09-06 (13 días, umbral de 3 superado) |
 
 ---
 

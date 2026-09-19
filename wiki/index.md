@@ -47,7 +47,7 @@ article_count: 0
 | [cambio_climatico.md](topics/cambio_climatico.md) | Sequías, El Niño, inundaciones, adaptación |
 | [seguridad_alimentaria.md](topics/seguridad_alimentaria.md) | Autoabastecimiento, pobreza rural, déficit |
 | [plagas_enfermedades.md](topics/plagas_enfermedades.md) | Gusano cogollero, roya del café, enfermedades |
-| [precios_mercados.md](topics/precios_mercados.md) | Volatilidad de precios, importaciones vs. producción local |
+| [precios_mercados.md](topics/precios_mercados.md) | Volatilidad de precios, importaciones durante cosecha, eliminación de subsidios (2025) |
 | [credito_financiamiento.md](topics/credito_financiamiento.md) | BDA, crédito agrícola, récord B/. 320M pandemia, digitalización |
 | [tecnologia_innovacion.md](topics/tecnologia_innovacion.md) | Agricultura de precisión, semillas mejoradas, IDIAP |
 | [agua_riego.md](topics/agua_riego.md) | Sistemas de riego, gestión hídrica, sequía |
@@ -57,7 +57,7 @@ article_count: 0
 | Página | Descripción |
 |--------|-------------|
 | [politicas_agropecuarias.md](topics/politicas_agropecuarias.md) | Leyes, Plan Mulino B/. 850M 2024-2029, planes de gobierno |
-| [subsidios_programas.md](topics/subsidios_programas.md) | Plan de Semillas, Agroalimentos, programas de apoyo |
+| [subsidios_programas.md](topics/subsidios_programas.md) | Plan de Semillas, Agroalimentos, compensaciones, revisión de subsidios transición 2024 |
 
 ### Regiones Agrícolas
 | Página | Descripción |
@@ -67,7 +67,7 @@ article_count: 0
 | [veraguas.md](topics/veraguas.md) | Diversidad productiva, palma africana |
 | [cocle.md](topics/cocle.md) | Caña de azúcar, piña, ganadería |
 | [bocas_del_toro.md](topics/bocas_del_toro.md) | Banano (Chiquita/Fyffes), cacao, turismo rural |
-| [darien_comarca.md](topics/darien_comarca.md) | Frontera, agricultura indígena, palma africana |
+| [darien_comarca.md](topics/darien_comarca.md) | Frontera, agricultura indígena, palma africana, compensaciones arroceras 2024 |
 
 ---
 
@@ -98,7 +98,12 @@ article_count: 0
 | 2022-04-10 | IICA | [Vigilancia Fusarium TR4 bananeras](summaries/20220410_iica_platano-banano-exportaciones-fusarium.md) | 56M cajas, US$ 500M en riesgo |
 | 2021-08-15 | BDA | [Crédito pandemia 2020-2021](summaries/20210815_bda_credito-agropecuario-pandemia-2020-2021.md) | B/. 320M, 28K productores |
 | 2024-03-05 | MIDA | [Plan Agropecuario Mulino 2024-2029](summaries/20240305_mida_politica-agropecuaria-mulino-2024.md) | B/. 850M, meta 80% autoabastecimiento |
+| 2022-05-24 | La Prensa | [Proyección siembra 90 mil ha arroz 2022-2023](summaries/20220524_prensacom_siembra-90mil-hectareas-arroz-2022-2023.md) | 90,000 ha proyectadas, 79,600 ha en secano |
+| 2024-06-07 | La Prensa | [Linares revisará subsidios en el Mida](summaries/20240607_prensacom_linares-revisara-subsidios-mida.md) | Transición gobierno Mulino, revisión de subsidios |
+| 2024-06-13 | La Prensa | [Productores arroz Panamá Este/Darién exigen compensaciones](summaries/20240613_prensacom_productores-arroz-darien-compensaciones.md) | Pago pendiente de compensaciones 2023 |
+| 2024-11-07 | La Prensa | [Pérdidas por inundaciones arroz/maíz/ganadería](summaries/20241107_prensacom_inundaciones-perdidas-arroz-maiz-ganaderia.md) | Lluvias dañan cultivos y ganadería en Veraguas |
+| 2025-07-24 | La Prensa | [Importaciones de arroz durante cosecha](summaries/20250724_prensacom_arroz-importaciones-cosecha-tension.md) | Caída de precios, eliminación de subsidios |
 
 ---
 
-*Última actualización del índice: 2026-05-24*
+*Última actualización del índice: 2026-09-19*

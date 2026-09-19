@@ -48,3 +48,36 @@ MAINTENANCE: Verificación automática de artículos pendientes
   Sin artículos pendientes — 6/6 artículos ya ingestados
   Total páginas wiki: 19 (8 topics, 3 entities, 6 summaries, 2 overview)
   Fuentes con cobertura: MIDA (2), TVNNoticias (1), LaPrensaEco (1), BDA (1), IICA (1)
+
+## 2026-09-19 00:10
+ROUTINE: Sesión automatizada — 5 artículos ingestados (todos prensa.com, 0% falsos positivos)
+  Artículos:
+    - 20250724_prensacom (Importaciones de arroz durante cosecha, eliminación de subsidios) → summaries/ + topics/arroz.md + topics/precios_mercados.md (nuevo) + topics/subsidios_programas.md (nuevo) + entities/mida.md
+    - 20241107_prensacom (Inundaciones dañan arroz, maíz y ganadería en Veraguas) → summaries/ + topics/arroz.md + topics/maiz.md + topics/cambio_climatico.md
+    - 20220524_prensacom (Proyección siembra 90 mil ha arroz ciclo 2022-2023) → summaries/ + topics/arroz.md + entities/mida.md
+    - 20240607_prensacom (Roberto Linares revisará subsidios del Mida — transición gobierno Mulino) → summaries/ + topics/politicas_agropecuarias.md + topics/subsidios_programas.md + entities/mida.md
+    - 20240613_prensacom (Productores de arroz Panamá Este/Darién exigen compensaciones 2023) → summaries/ + topics/arroz.md + topics/subsidios_programas.md + topics/darien_comarca.md (nuevo) + entities/mida.md
+  Páginas creadas: precios_mercados.md, subsidios_programas.md, darien_comarca.md
+  Páginas actualizadas: arroz.md, maiz.md, cambio_climatico.md, politicas_agropecuarias.md, entities/mida.md, index.md
+  Summaries: 5 nuevos archivos en wiki/summaries/
+  Nota: los textos fuente disponibles en pending_ingest.md están truncados a ~250 caracteres (campo full_text vacío en los JSON de sources/articles/); los resúmenes se limitaron a los hechos explícitos en el extracto disponible, sin inventar cifras adicionales.
+  Verificación de falsos positivos: los 5 artículos son 100% sobre agro panameño (arroz, Mida, subsidios) — ninguno descartado.
+
+## 2026-09-19 00:12
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code
+
+## 2026-09-19 00:15
+DIAGNÓSTICO: Fetch automático de GitHub Actions — FALLA CONFIRMADA
+  Último commit en sources/: 2026-09-06 (13 días antes de hoy, 2026-09-19)
+  Esto excede el umbral de 3 días consecutivos sin nuevos artículos — señal de falla del sistema (ver CLAUDE.md, sección MÉTRICAS)
+  Ventanas GDELT completadas: 79 (>= 45) → rango de fechas GDELT "agotado" según heurística de CLAUDE.md, pero irrelevante: el job falla antes de llegar a ejecutar el fetch (ver abajo)
+  Pendientes de ingesta tras esta sesión: 39 (de 57 descargados, 18 ingestados)
+
+  Causa raíz (verificada vía GitHub Actions API):
+    - wiki_daily.yml: 10/10 corridas fallaron consecutivamente entre 2026-09-09 y 2026-09-18 (última: 2026-09-18 14:42 UTC, conclusion=failure)
+    - Cada corrida falla en ~3-7 segundos — demasiado rápido para un fetch real de red, indica error temprano de script/config
+    - El paso "Fetch artículos nuevos" tiene continue-on-error:true, por lo que la falla del job debe originarse en un paso posterior sin esa protección (candidato principal: "Commit artículos nuevos" — git add/commit/push — o un fallo previo en checkout/pip install)
+    - wiki_historical.yml: 0 corridas registradas — nunca se ha ejecutado, ni manual ni programado; no contribuye al backfill histórico
+    - Logs de las corridas fallidas ya expiraron (404) — no se pudo confirmar el stack trace exacto desde esta sesión
+  Acción recomendada: un mantenedor humano debe disparar wiki_daily.yml manualmente (workflow_dispatch) y revisar el log del job mientras esté fresco. No se modificó el workflow YAML desde esta sesión por falta de evidencia suficiente para un diagnóstico certero — un cambio a ciegas al pipeline de CI podría empeorar el problema.
+  Detalle completo en wiki/metrics.md → "Estado del Fetch (GitHub Actions)"

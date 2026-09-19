@@ -2,12 +2,16 @@
 title: MIDA — Ministerio de Desarrollo Agropecuario
 type: entity
 tags: [gobierno, ministerio, politica-agropecuaria, plan-mulino, semillas, fitosanitario]
-last_updated: 2026-05-24
-article_count: 2
+last_updated: 2025-07-24
+article_count: 7
 sources:
   - "https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023"
   - "https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024"
-related: [entities/idiap.md, entities/bda.md, topics/politicas_agropecuarias.md, topics/arroz.md, topics/plagas_enfermedades.md]
+  - "https://www.prensa.com/economia/panama-proyecta-sembrar-cerca-de-90-mil-hectareas-de-arroz-para-el-ciclo-2022-2023/"
+  - "https://www.prensa.com/politica/roberto-linares-revisara-los-subsidios-en-el-mida/"
+  - "https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/"
+  - "https://www.prensa.com/economia/que-ocurre-con-el-arroz-en-panama-productores-temen-perdidas-en-la-cosecha-mientras-la-industria-justifica-las-importaciones/"
+related: [entities/idiap.md, entities/bda.md, topics/politicas_agropecuarias.md, topics/arroz.md, topics/plagas_enfermedades.md, topics/subsidios_programas.md, topics/precios_mercados.md, topics/darien_comarca.md]
 ---
 
 # MIDA — Ministerio de Desarrollo Agropecuario
@@ -41,6 +45,19 @@ El Ministerio de Desarrollo Agropecuario (MIDA) es la institución rectora del s
 - Distribución de semilla certificada IDIAP-Esperanza a productores afectados
 - Créditos BDA al 4% anual para reactivación del sector
 
+### Planificación de Siembra — Arroz 2022-2023
+- Proyectó sembrar cerca de **90,000 hectáreas** de arroz para el ciclo 2022-2023, de las cuales **79,600 ha** en secano [La Prensa, 2022-05-24]
+
+### Transición de Gobierno 2024
+- **2024-06-07**: Reunión de transición entre el ministro saliente Augusto Valderrama y el ministro designado **Roberto José Linares** (gobierno de José Raúl Mulino); se anunció **revisión de los subsidios** del MIDA [La Prensa, 2024-06-07]
+- **2024-06-13**: Productores de arroz de **Panamá Este y Darién** exigieron en la sede del MIDA el pago de **compensaciones pendientes de 2023** [La Prensa, 2024-06-13]
+
+### Inundaciones 2024
+- **2024-11-07**: Evaluación de pérdidas en arroz, maíz y ganadería tras fuertes lluvias en Veraguas [La Prensa, 2024-11-07]
+
+### Tensión por Importaciones de Arroz (2025)
+- **2025-07-24**: Gremios de productores denuncian importaciones masivas de arroz durante la cosecha nacional y eliminación de subsidios; la industria arrocera justifica las importaciones [La Prensa, 2025-07-24]
+
 ### Emergencias Fitosanitarias
 - **2018**: Plan emergencia gusano cogollero — B/. 3.2 millones en insecticidas, 12,000 productores atendidos
 - **2022**: Refuerzo vigilancia Fusarium TR4 — inspecciones semanales en fronteras, coordinación con IICA
@@ -56,14 +73,24 @@ El Ministerio de Desarrollo Agropecuario (MIDA) es la institución rectora del s
 - Capacidad de ejecución históricamente por debajo del presupuesto asignado
 - Laboratorios de diagnóstico fitosanitario subutilizados o desactualizados
 - Cobertura limitada en zonas remotas (comarcas, Darién)
+- Retrasos en pago de compensaciones a productores en zonas de frontera (Panamá Este, Darién)
+- Revisiones de subsidios en cada transición de gobierno generan incertidumbre en el sector
 
 ## Referencias
 
 - [MIDA, 2023 — Producción de arroz](https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023)
 - [MIDA, 2024 — Plan Agropecuario Mulino 2024-2029](https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024)
+- [La Prensa, 2022 — Proyección de siembra 90 mil ha ciclo 2022-2023](https://www.prensa.com/economia/panama-proyecta-sembrar-cerca-de-90-mil-hectareas-de-arroz-para-el-ciclo-2022-2023/)
+- [La Prensa, 2024 — Roberto Linares revisará los subsidios](https://www.prensa.com/politica/roberto-linares-revisara-los-subsidios-en-el-mida/)
+- [La Prensa, 2024 — Productores de Panamá Este y Darién exigen compensaciones](https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/)
+- [La Prensa, 2024 — Pérdidas por inundaciones en arroz, maíz y ganadería](https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/)
+- [La Prensa, 2025 — Importaciones durante cosecha y eliminación de subsidios](https://www.prensa.com/economia/que-ocurre-con-el-arroz-en-panama-productores-temen-perdidas-en-la-cosecha-mientras-la-industria-justifica-las-importaciones/)
 
 ## Ver también
 - [IDIAP](idiap.md) — investigación agropecuaria
 - [BDA](bda.md) — financiamiento al sector
 - [Políticas Agropecuarias](../topics/politicas_agropecuarias.md)
 - [Arroz en Panamá](../topics/arroz.md)
+- [Subsidios y Programas](../topics/subsidios_programas.md)
+- [Precios y Mercados](../topics/precios_mercados.md)
+- [Darién y Comarca](../topics/darien_comarca.md)
