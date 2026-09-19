@@ -290,7 +290,8 @@
     "title": "Catalogue of the diptera of the Americas South of United States",
     "date": "2016-05-13",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-19T08:15:31.487520"
   },
   "https://www.heraldo.es/noticias/aragon/2026/05/03/luis-biendicho-vox-asume-consejeria-medio-ambiente-con-un-inaga-bajo-lupa-investigacion-judicial-por-caso-forestalia-2017165.html": {
     "saved_at": "2026-07-29T12:56:00.851198",
@@ -370,7 +371,8 @@
     "title": "Mida debe mejorar el sistema de diagnóstico",
     "date": "2010-07-04",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-19T08:15:31.487519"
   },
   "https://www.prensa.com/impresa/economia/plagas-agricultura_0_2148535259.html": {
     "saved_at": "2026-08-24T11:18:59.207747",
@@ -378,7 +380,8 @@
     "title": "Las seis plagas de la agricultura",
     "date": "2007-11-04",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-19T08:15:31.487503"
   },
   "https://www.prensa.com/economia/cartera-de-credito-agropecuario-de-banco-nacional-de-panama-alcanzo-los-7141-millones-en-2024/": {
     "saved_at": "2026-08-24T11:18:59.208497",
@@ -514,7 +517,8 @@
     "title": "El rol de la trazabilidad en la agricultura moderna",
     "date": "2019-07-26",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-19T08:15:31.487521"
   },
   "https://www.prensa.com/impresa/economia/Impulsan-desarrollo-agricultura-familiar_0_5415958417.html": {
     "saved_at": "2026-09-06T13:51:13.339425",
@@ -530,7 +534,8 @@
     "title": "Horizonte agropecuario",
     "date": "2019-08-25",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-19T08:15:31.487523"
   },
   "https://www.prensa.com/economia/que-ocurre-con-el-arroz-en-panama-productores-temen-perdidas-en-la-cosecha-mientras-la-industria-justifica-las-importaciones/": {
     "saved_at": "2026-09-06T13:51:13.341138",

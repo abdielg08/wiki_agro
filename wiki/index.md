@@ -2,7 +2,7 @@
 title: Índice del Wiki Agropecuario de Panamá
 type: overview
 tags: [indice, navegacion]
-last_updated: 2025-05-24
+last_updated: 2026-09-19
 article_count: 0
 ---
 
@@ -57,7 +57,7 @@ article_count: 0
 | Página | Descripción |
 |--------|-------------|
 | [politicas_agropecuarias.md](topics/politicas_agropecuarias.md) | Leyes, Plan Mulino B/. 850M 2024-2029, planes de gobierno |
-| [subsidios_programas.md](topics/subsidios_programas.md) | Plan de Semillas, Agroalimentos, programas de apoyo |
+| [subsidios_programas.md](topics/subsidios_programas.md) | Plan de Semillas, Agroalimentos, compensaciones arroceras 2023-2025 |
 
 ### Regiones Agrícolas
 | Página | Descripción |
@@ -67,7 +67,7 @@ article_count: 0
 | [veraguas.md](topics/veraguas.md) | Diversidad productiva, palma africana |
 | [cocle.md](topics/cocle.md) | Caña de azúcar, piña, ganadería |
 | [bocas_del_toro.md](topics/bocas_del_toro.md) | Banano (Chiquita/Fyffes), cacao, turismo rural |
-| [darien_comarca.md](topics/darien_comarca.md) | Frontera, agricultura indígena, palma africana |
+| [darien_comarca.md](topics/darien_comarca.md) | Frontera, agricultura indígena, palma africana, arroz Panamá Este |
 
 ---
 
@@ -98,7 +98,12 @@ article_count: 0
 | 2022-04-10 | IICA | [Vigilancia Fusarium TR4 bananeras](summaries/20220410_iica_platano-banano-exportaciones-fusarium.md) | 56M cajas, US$ 500M en riesgo |
 | 2021-08-15 | BDA | [Crédito pandemia 2020-2021](summaries/20210815_bda_credito-agropecuario-pandemia-2020-2021.md) | B/. 320M, 28K productores |
 | 2024-03-05 | MIDA | [Plan Agropecuario Mulino 2024-2029](summaries/20240305_mida_politica-agropecuaria-mulino-2024.md) | B/. 850M, meta 80% autoabastecimiento |
+| 2022-05-24 | La Prensa | [Siembra 90 mil ha arroz 2022-2023](summaries/20220524_prensacom_siembra-90mil-hectareas-arroz-2022-2023.md) | 79,600 ha en secano, resto bajo riego |
+| 2024-06-07 | La Prensa | [Linares revisará subsidios en el MIDA](summaries/20240607_prensacom_linares-revisa-subsidios-mida.md) | Transición ministerial Valderrama → Linares |
+| 2024-06-13 | La Prensa | [Productores de Darién exigen compensaciones](summaries/20240613_prensacom_productores-arroz-darien-compensaciones.md) | Reclamo de pago pendiente de 2023 |
+| 2024-11-07 | La Prensa | [Pérdidas por inundaciones de noviembre](summaries/20241107_prensacom_perdidas-inundaciones-arroz-maiz-ganaderia.md) | Arroz, maíz y ganadería afectados en Veraguas |
+| 2025-07-24 | La Prensa | [Tensión arrocera por importaciones](summaries/20250724_prensacom_tension-arrocera-importaciones-2025.md) | Importaciones en cosecha, caída de precios, subsidios eliminados |
 
 ---
 
-*Última actualización del índice: 2026-05-24*
+*Última actualización del índice: 2026-09-19*
