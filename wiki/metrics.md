@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-09-20
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,55 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Artículos en sources/ (descargados) | 57 | ↑ continuo |
+| Artículos reales ingestados | 18 | = total sin falsos positivos |
+| Artículos pendientes de ingesta | 39 | 0 |
+| Falsos positivos acumulados (sesión) | 0 nuevos (5/5 verificados 100% agro-Panamá) | **0 nuevos** |
+| Páginas en wiki/ | 27 (10 topics, 3 entities, 11 summaries, 3 overview) | ↑ continuo |
+| Cobertura temporal | 2015-2026 | 2015 → hoy real |
+| Ventanas GDELT completadas | 79 | 45 (2015→hoy) — **umbral superado, rango agotado** |
+| Días sin artículos nuevos en sources/ | **14** (último commit: 2026-09-06) | máx 3 antes de diagnosticar — **🚨 ALARMA ACTIVA** |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida Actions           : 2026-09-19 14:02 UTC (run #116) — CORRIÓ pero FALLÓ
+Resultado                        : 0 artículos nuevos (falla antes de ejecutar el fetch)
+Último commit real en sources/   : 2026-09-06 (run #103, exitoso) → 14 días sin artículos nuevos
+
+Diagnóstico (2026-09-20):
+  - Runs #104-#116 (2026-09-07 → 2026-09-19): 13 corridas CONSECUTIVAS con
+    conclusion=failure, cada una completada en ~3-4 segundos.
+  - Ese tiempo de ejecución es demasiado corto para llegar siquiera al paso
+    "pip install" (mucho menos a fetch/stats/commit), lo que descarta un bug
+    en wiki_agro.py o en la lógica de fetch — el job falla antes de correr
+    ningún step real.
+  - No hubo cambios recientes en .github/workflows/wiki_daily.yml (verificado
+    con git log) que expliquen la ruptura.
+  - Los runs #94-#97 (2026-08-28 → 2026-08-31) ya mostraban fallas
+    intermitentes con la misma firma (~3-4s), antes de volverse 100%
+    consistentes desde el run #104 en adelante.
+  - No fue posible descargar los logs del job (`get_job_logs` → HTTP 404;
+    descarga directa del ZIP de logs bloqueada por la política de red del
+    proxy de este entorno) para confirmar la causa exacta.
+  - Hipótesis más probable dado el patrón (fallo uniforme e inmediato, sin
+    relación con el código): límite de minutos/gasto de GitHub Actions
+    alcanzado en la cuenta, o un cambio en permisos/configuración de Actions
+    a nivel de repositorio u organización.
+  - Ventanas GDELT ya en 79 (≥45): el rango de fechas GDELT también está
+    agotado y requeriría expansión una vez que el fetch vuelva a correr.
+
+Acción recomendada (requiere acceso humano al dashboard de GitHub):
+  1. Revisar Settings → Actions → General del repo (¿Actions deshabilitado
+     o restringido?)
+  2. Revisar Billing → Plans and usage → Actions minutes (¿se agotó la
+     cuota incluida o el spending limit configurado?)
+  3. Una vez resuelto, disparar manualmente el workflow (workflow_dispatch)
+     para confirmar que vuelve a completar el fetch real
+  4. Expandir el rango de ventanas GDELT más allá de lo ya cubierto (79
+     ventanas completadas)
 ```
 
 ---
@@ -67,6 +96,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-09-20 | 5 (0 falsos positivos) | 39 | Routine automática; diagnosticado GitHub Actions fallando 13 corridas consecutivas desde 2026-09-07 |
 
 ---
 

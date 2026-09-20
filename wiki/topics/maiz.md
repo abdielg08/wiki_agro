@@ -2,11 +2,12 @@
 title: Maíz en Panamá
 type: topic
 tags: [maiz, gusano-cogollero, plagas, mida, idiap, oirsa, seguridad-alimentaria]
-last_updated: 2026-05-24
-article_count: 1
+last_updated: 2026-09-20
+article_count: 2
 sources:
   - "https://www.prensa.com/economia/gusano-cogollero-crisis-maiz-panama-2018"
-related: [topics/plagas_enfermedades.md, topics/seguridad_alimentaria.md, topics/cambio_climatico.md, entities/mida.md, entities/idiap.md]
+  - "https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/"
+related: [topics/plagas_enfermedades.md, topics/seguridad_alimentaria.md, topics/cambio_climatico.md, topics/arroz.md, entities/mida.md, entities/idiap.md]
 ---
 
 # Maíz en Panamá
@@ -23,6 +24,10 @@ El maíz es un cultivo fundamental para la seguridad alimentaria y la economía 
 - Distribución gratuita de insecticidas a **12,000 productores** de pequeña escala
 - Inversión gubernamental de emergencia: **B/. 3.2 millones** [MIDA, 2018]
 - Coordinación MIDA + OIRSA para respuesta fitosanitaria nacional
+
+### Inundaciones de Noviembre 2024
+- Fuertes lluvias de fin de semana afectaron sembradíos de maíz y arroz en **Veraguas**, junto con pastizales y ganadería bovina y porcina [La Prensa, 2024-11-07]
+- Autoridades iniciaron evaluación de pérdidas en la zona; sin cifras oficiales de hectáreas afectadas en la fuente disponible
 
 ### Origen y Difusión del Cogollero
 - *Spodoptera frugiperda*: plaga originaria de África subsahariana → Colombia → Centroamérica → Panamá (c. 2016-2018)
@@ -47,14 +52,17 @@ El maíz es un cultivo fundamental para la seguridad alimentaria y la economía 
 - Resistencia a insecticidas en poblaciones del gusano cogollero
 - Pequeños productores sin recursos para medidas preventivas o manejo integrado
 - Dependencia de subsidios e insumos de emergencia ante cada crisis fitosanitaria
+- Vulnerabilidad a inundaciones en temporada lluviosa (Veraguas, 2024)
 
 ## Referencias
 
 - [La Prensa, 2018 — Crisis del gusano cogollero](https://www.prensa.com/economia/gusano-cogollero-crisis-maiz-panama-2018)
+- [La Prensa, 2024 — Inundaciones afectan arroz, maíz y ganadería en Veraguas](https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/)
 
 ## Ver también
 
 - [Plagas y Enfermedades](plagas_enfermedades.md)
 - [Seguridad Alimentaria](seguridad_alimentaria.md)
 - [Cambio Climático](cambio_climatico.md)
+- [Arroz](arroz.md)
 - [MIDA](../entities/mida.md) | [IDIAP](../entities/idiap.md)
