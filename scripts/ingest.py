@@ -141,10 +141,10 @@ def run_prepare(
 def mark_ingested(url_or_slug: str) -> bool:
     """Mark an article as ingested in processed.json."""
     processed = load_processed()
-    for url, meta in processed.items():
+    for url, meta in article_entries(processed).items():
         if url == url_or_slug or url_or_slug in meta.get("path", ""):
-            meta["ingested"] = True
-            meta["ingested_at"] = datetime.now().isoformat()
+            processed[url]["ingested"] = True
+            processed[url]["ingested_at"] = datetime.now().isoformat()
             save_processed(processed)
             console.print(f"[green]✓ Marcado como ingestado: {url[:60]}[/green]")
             return True
@@ -153,12 +153,21 @@ def mark_ingested(url_or_slug: str) -> bool:
 
 
 def mark_all_ingested(limit: int = 0) -> int:
-    """Mark the first `limit` pending articles as ingested (after Claude processed them)."""
+    """Mark the first `limit` pending articles as ingested (after Claude processed them).
+
+    Uses the same score-based priority order as `ingest` (run_prepare's default
+    strategy), so the articles marked here match the ones Claude was actually
+    shown in pending_ingest.md — not an unrelated alphabetical slice of the queue.
+    """
+    from prioritize import prioritize
+
     processed = load_processed()
     articles = article_entries(processed)
-    pending = find_pending(limit=limit)
+    all_pending = find_pending(limit=0)
+    scored = prioritize(all_pending, strategy="score")
+    pending = scored[:limit] if limit else scored
     count = 0
-    for _, article in pending:
+    for _, article, _ in pending:
         url = article.get("url", "")
         if url in articles:
             processed[url]["ingested"] = True

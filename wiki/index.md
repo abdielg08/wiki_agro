@@ -2,7 +2,7 @@
 title: Índice del Wiki Agropecuario de Panamá
 type: overview
 tags: [indice, navegacion]
-last_updated: 2025-05-24
+last_updated: 2026-09-20
 article_count: 0
 ---
 
@@ -52,6 +52,7 @@ article_count: 0
 | [tecnologia_innovacion.md](topics/tecnologia_innovacion.md) | Agricultura de precisión, semillas mejoradas, IDIAP |
 | [agua_riego.md](topics/agua_riego.md) | Sistemas de riego, gestión hídrica, sequía |
 | [comercio_exterior.md](topics/comercio_exterior.md) | TLC, exportaciones, competitividad |
+| [precios_mercados.md](topics/precios_mercados.md) | Volatilidad de precios, importaciones vs. cosecha nacional, subsidios |
 
 ### Políticas y Gobernanza
 | Página | Descripción |
@@ -98,7 +99,12 @@ article_count: 0
 | 2022-04-10 | IICA | [Vigilancia Fusarium TR4 bananeras](summaries/20220410_iica_platano-banano-exportaciones-fusarium.md) | 56M cajas, US$ 500M en riesgo |
 | 2021-08-15 | BDA | [Crédito pandemia 2020-2021](summaries/20210815_bda_credito-agropecuario-pandemia-2020-2021.md) | B/. 320M, 28K productores |
 | 2024-03-05 | MIDA | [Plan Agropecuario Mulino 2024-2029](summaries/20240305_mida_politica-agropecuaria-mulino-2024.md) | B/. 850M, meta 80% autoabastecimiento |
+| 2022-05-24 | prensa.com | [Proyección siembra arroz 2022-2023](summaries/20220524_prensacom_proyeccion-siembra-arroz-2022-2023.md) | ~90,000 ha proyectadas (79,600 secano + riego) |
+| 2024-06-07 | prensa.com | [Transición MIDA — Linares revisará subsidios](summaries/20240607_prensacom_transicion-mida-linares-subsidios.md) | Cambio de ministro, revisión de subsidios anunciada |
+| 2024-06-13 | prensa.com | [Productores arroz Panamá Este/Darién exigen pago](summaries/20240613_prensacom_productores-arroz-panama-este-darien-compensaciones.md) | Compensaciones 2023 pendientes de pago |
+| 2024-11-07 | prensa.com | [Inundaciones dañan arroz, maíz y ganadería en Veraguas](summaries/20241107_prensacom_inundaciones-perdidas-arroz-maiz-ganaderia.md) | Lluvias fuertes afectan cultivos y pastizales |
+| 2025-07-24 | prensa.com | [Tensión por importaciones de arroz en cosecha](summaries/20250724_prensacom_arroz-tension-importaciones-cosecha.md) | Importaciones, caída de precios, fin de subsidios |
 
 ---
 
-*Última actualización del índice: 2026-05-24*
+*Última actualización del índice: 2026-09-20*
