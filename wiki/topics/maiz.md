@@ -1,11 +1,12 @@
 ---
 title: Maíz en Panamá
 type: topic
-tags: [maiz, gusano-cogollero, plagas, mida, idiap, oirsa, seguridad-alimentaria]
-last_updated: 2026-05-24
-article_count: 1
+tags: [maiz, gusano-cogollero, plagas, inundaciones, mida, idiap, oirsa, seguridad-alimentaria]
+last_updated: 2024-11-07
+article_count: 2
 sources:
   - "https://www.prensa.com/economia/gusano-cogollero-crisis-maiz-panama-2018"
+  - "https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/"
 related: [topics/plagas_enfermedades.md, topics/seguridad_alimentaria.md, topics/cambio_climatico.md, entities/mida.md, entities/idiap.md]
 ---
 
@@ -34,12 +35,17 @@ El maíz es un cultivo fundamental para la seguridad alimentaria y la economía 
 - IDIAP + CIMMYT: desarrollo de variedades de maíz con resistencia genética al cogollero
 - Transición gradual desde insecticidas químicos hacia control biológico integrado
 
+### Inundaciones de Noviembre 2024
+- Fuertes lluvias de fin de semana afectaron cultivos de maíz junto con arroz (Veraguas) y pastizales [prensa.com, 2024-11-07]
+- Autoridades iniciaron evaluación de pérdidas; no hay cifras públicas de área afectada en la fuente consultada
+
 ## Tendencias (2015–2025)
 
 - Emergencia del gusano cogollero (2018) como plaga crónica del sector maicero
 - Resistencia creciente a insecticidas en poblaciones de *S. frugiperda*
 - Adopción gradual de variedades mejoradas con tolerancia a sequía y resistencia a plagas
 - Presión de maíz importado más barato vía TLC afecta rentabilidad del productor local
+- Eventos climáticos extremos (inundaciones 2024) se suman a las plagas como amenaza recurrente
 
 ## Retos
 
@@ -51,6 +57,7 @@ El maíz es un cultivo fundamental para la seguridad alimentaria y la economía 
 ## Referencias
 
 - [La Prensa, 2018 — Crisis del gusano cogollero](https://www.prensa.com/economia/gusano-cogollero-crisis-maiz-panama-2018)
+- [prensa.com, 2024 — Evalúan pérdidas por inundaciones](https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/)
 
 ## Ver también
 
