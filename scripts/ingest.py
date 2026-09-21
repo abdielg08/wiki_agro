@@ -153,17 +153,48 @@ def mark_ingested(url_or_slug: str) -> bool:
 
 
 def mark_all_ingested(limit: int = 0) -> int:
-    """Mark the first `limit` pending articles as ingested (after Claude processed them)."""
+    """
+    Mark as ingested the articles that were actually listed in the last
+    `pending_ingest.md` (the ones Claude Code was shown and processed).
+
+    IMPORTANT: this does NOT recompute `find_pending()`, because that list is
+    sorted by filename while `ingest`/`run_prepare` selects and orders articles
+    by `prioritize(strategy=...)` (score by default). Recomputing here would
+    silently mark a different, unrelated set of articles as ingested. Instead,
+    we parse the `mark-ingested '<url>'` commands embedded at the bottom of
+    pending_ingest.md, which record exactly which URLs were shown to Claude.
+    """
+    import re
+
     processed = load_processed()
     articles = article_entries(processed)
-    pending = find_pending(limit=limit)
+
+    ingest_file = ROOT / "pending_ingest.md"
+    urls: list[str] = []
+    if ingest_file.exists():
+        text = ingest_file.read_text(encoding="utf-8")
+        urls = re.findall(r"mark-ingested '([^']+)'", text)
+        if limit:
+            urls = urls[:limit]
+
     count = 0
-    for _, article in pending:
-        url = article.get("url", "")
-        if url in articles:
-            processed[url]["ingested"] = True
-            processed[url]["ingested_at"] = datetime.now().isoformat()
-            count += 1
+    if urls:
+        for url in urls:
+            if url in articles:
+                processed[url]["ingested"] = True
+                processed[url]["ingested_at"] = datetime.now().isoformat()
+                count += 1
+    else:
+        # Fallback: no pending_ingest.md to source URLs from — use find_pending
+        # (may not match a prior `ingest` call's ordering/strategy).
+        pending = find_pending(limit=limit)
+        for _, article in pending:
+            url = article.get("url", "")
+            if url in articles:
+                processed[url]["ingested"] = True
+                processed[url]["ingested_at"] = datetime.now().isoformat()
+                count += 1
+
     save_processed(processed)
     append_log(
         f"INGEST: {count} artículos marcados como ingestados por sesión Claude Code"

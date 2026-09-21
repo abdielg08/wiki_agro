@@ -1,12 +1,14 @@
 ---
 title: Crédito y Financiamiento Agropecuario en Panamá
 type: topic
-tags: [credito, financiamiento, bda, pandemia, covid19, ganaderia, arroz, tasas, digitalizacion]
-last_updated: 2026-05-24
-article_count: 1
+tags: [credito, financiamiento, bda, pandemia, covid19, ganaderia, arroz, tasas, digitalizacion, subsidios, compensaciones]
+last_updated: 2026-09-21
+article_count: 3
 sources:
   - "https://www.bda.gob.pa/noticias/credito-agropecuario-pandemia-resultados-2021"
-related: [topics/ganaderia_bovina.md, topics/arroz.md, topics/seguridad_alimentaria.md, entities/bda.md, entities/mida.md]
+  - "https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/"
+  - "https://www.prensa.com/economia/que-ocurre-con-el-arroz-en-panama-productores-temen-perdidas-en-la-cosecha-mientras-la-industria-justifica-las-importaciones/"
+related: [topics/ganaderia_bovina.md, topics/arroz.md, topics/seguridad_alimentaria.md, topics/politicas_agropecuarias.md, entities/bda.md, entities/mida.md]
 ---
 
 # Crédito y Financiamiento Agropecuario en Panamá
@@ -47,6 +49,10 @@ El Banco de Desarrollo Agropecuario (BDA) es el principal instrumento de financi
 - Crédito especial jóvenes y mujeres: **3% anual** (nuevo fondo)
 - Fondo de Modernización Agropecuaria: **B/. 200 millones**
 
+### Compensaciones y Subsidios Estatales al Arroz
+- **2024-06-13**: productores de arroz de Panamá Este y Darién exigieron al Mida el pago de compensaciones pendientes de **2023**, evidenciando atrasos en desembolsos estatales [La Prensa, 2024-06-13]
+- **2025-07-24**: gremios arroceros denuncian **eliminación de subsidios** al sector, en paralelo a una caída de precios atribuida a importaciones durante la cosecha [La Prensa, 2025-07-24]
+
 ## Tendencias (2015–2025)
 
 - Expansión del crédito agropecuario en crisis (pandemia, sequías) como instrumento contracíclico
@@ -60,11 +66,14 @@ El Banco de Desarrollo Agropecuario (BDA) es el principal instrumento de financi
 - Pequeños productores en áreas remotas con acceso limitado a sucursales y plataformas digitales
 - Garantías: productores informales o sin título de tierra excluidos del crédito formal
 - Brecha de género: mujeres productoras históricamente subrepresentadas en carteras de crédito
+- Atrasos en pagos estatales de compensaciones (caso arroceros de Panamá Este y Darién, 2023-2024)
 
 ## Referencias
 
 - [BDA, 2021 — Crédito agropecuario pandemia 2020-2021](https://www.bda.gob.pa/noticias/credito-agropecuario-pandemia-resultados-2021)
 - [MIDA, 2024 — Plan Agropecuario Mulino 2024-2029](https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024)
+- [La Prensa, 2024 — Productores de Panamá Este y Darién exigen compensaciones](https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/)
+- [La Prensa, 2025 — Crisis arrocera: importaciones durante la cosecha](https://www.prensa.com/economia/que-ocurre-con-el-arroz-en-panama-productores-temen-perdidas-en-la-cosecha-mientras-la-industria-justifica-las-importaciones/)
 
 ## Ver también
 
