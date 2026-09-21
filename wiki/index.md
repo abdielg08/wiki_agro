@@ -2,7 +2,7 @@
 title: Índice del Wiki Agropecuario de Panamá
 type: overview
 tags: [indice, navegacion]
-last_updated: 2025-05-24
+last_updated: 2025-07-24
 article_count: 0
 ---
 
@@ -56,8 +56,9 @@ article_count: 0
 ### Políticas y Gobernanza
 | Página | Descripción |
 |--------|-------------|
-| [politicas_agropecuarias.md](topics/politicas_agropecuarias.md) | Leyes, Plan Mulino B/. 850M 2024-2029, planes de gobierno |
-| [subsidios_programas.md](topics/subsidios_programas.md) | Plan de Semillas, Agroalimentos, programas de apoyo |
+| [politicas_agropecuarias.md](topics/politicas_agropecuarias.md) | Leyes, Plan Mulino B/. 850M 2024-2029, transición ministerial 2024 |
+| [subsidios_programas.md](topics/subsidios_programas.md) | Compensaciones adeudadas, revisión y eliminación de subsidios (2024-2025) |
+| [precios_mercados.md](topics/precios_mercados.md) | Importaciones vs. cosecha nacional, volatilidad de precios del arroz |
 
 ### Regiones Agrícolas
 | Página | Descripción |
@@ -98,7 +99,12 @@ article_count: 0
 | 2022-04-10 | IICA | [Vigilancia Fusarium TR4 bananeras](summaries/20220410_iica_platano-banano-exportaciones-fusarium.md) | 56M cajas, US$ 500M en riesgo |
 | 2021-08-15 | BDA | [Crédito pandemia 2020-2021](summaries/20210815_bda_credito-agropecuario-pandemia-2020-2021.md) | B/. 320M, 28K productores |
 | 2024-03-05 | MIDA | [Plan Agropecuario Mulino 2024-2029](summaries/20240305_mida_politica-agropecuaria-mulino-2024.md) | B/. 850M, meta 80% autoabastecimiento |
+| 2025-07-24 | La Prensa | [Importaciones masivas y eliminación de subsidios en arroz](summaries/20250724_prensacom_arroz-importaciones-crisis-cosecha.md) | Caída de precios, subsidios eliminados |
+| 2024-11-07 | La Prensa | [Inundaciones afectan arroz, maíz y ganadería](summaries/20241107_prensacom_inundaciones-perdidas-arroz-maiz-ganaderia.md) | Veraguas, evaluación de pérdidas |
+| 2022-05-24 | La Prensa | [Proyección de siembra de arroz 2022-2023](summaries/20220524_prensacom_proyeccion-siembra-arroz-2022-2023.md) | ~90,000 ha, 79,600 ha en secano |
+| 2024-06-07 | La Prensa | [Roberto Linares revisará subsidios en el MIDA](summaries/20240607_prensacom_transicion-mida-linares-subsidios.md) | Transición ministerial |
+| 2024-06-13 | La Prensa | [Productores de arroz exigen pago de compensaciones](summaries/20240613_prensacom_productores-arroz-panama-este-darien-compensaciones.md) | Panamá Este y Darién, deuda 2023 |
 
 ---
 
-*Última actualización del índice: 2026-05-24*
+*Última actualización del índice: 2025-07-24*

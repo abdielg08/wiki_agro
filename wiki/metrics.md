@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-09-21
 ---
 
 # Dashboard de Métricas
@@ -14,50 +14,59 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
+| Artículos en sources/ (descargados) | 57 | ↑ continuo |
+| Artículos reales ingestados | 18 | = total sin falsos positivos |
+| Pendientes de ingesta | 39 | 0 |
 | Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Páginas en wiki/ | 27 (10 topics, 3 entidades, 11 summaries, 2 overview) | ↑ continuo |
+| Cobertura temporal | 2015-2026 (semilla + backfill parcial) | 2015 → hoy real |
+| Ventanas GDELT completadas | 79 (38 trimestres únicos, algunos con reintentos) | ~45 trimestres (2015→hoy) |
+| Días sin artículos nuevos en sources/ | **15 días** (último commit de fetch: 2026-09-06) | máx 3 antes de diagnosticar — **⚠ ALARMA ACTIVA** |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida EXITOSA        : 2026-09-06 (run #103, conclusion: success, 0 artículos nuevos)
+Última corrida con commit     : 2026-09-06 (run #103, head_sha 24cfc3c, 6 artículos — commit previo)
+Corridas desde entonces       : 14 corridas diarias programadas (run #104 → #117, 2026-09-07 → 2026-09-20)
+Resultado                     : TODAS fallando — conclusion: failure, en ~3 segundos cada una
+Diagnóstico                   : El job "Fetch artículos → Commit a sources/" termina en ~3s
+                                 (created_at ≈ completed_at), tiempo insuficiente para siquiera
+                                 completar actions/checkout + setup-python. Los logs del job
+                                 devuelven HTTP 404 (no disponibles / nunca se generaron).
+                                 Patrón consistente con: runner no asignado, límite de minutos/
+                                 gasto de GitHub Actions agotado, o Actions deshabilitado a nivel
+                                 de repositorio/organización — NO es un bug de fetch_gdelt.py ni
+                                 de las fuentes RSS, porque el job nunca llega a ejecutar ese código.
+Acción requerida               : Revisar en GitHub → Settings → Actions (general / billing) si
+                                 Actions está habilitado y si hay minutos/gasto disponibles.
+                                 Esto requiere acceso a la configuración del repositorio/cuenta,
+                                 fuera del alcance de esta sesión de Claude Code.
+Ventanas GDELT                 : 79 ventanas registradas mapean a solo 38 trimestres únicos
+                                 (2017-Q1 → 2026-Q2), es decir, hay reintentos/duplicados.
+                                 Los trimestres 2015-Q1 a 2017-Q1 (~8 trimestres, 2015-02-19 a
+                                 2017-03-29) AÚN NO tienen ninguna ventana registrada — el
+                                 backfill histórico real está incompleto en su tramo más antiguo,
+                                 aunque el conteo bruto de "ventanas" ya supere el estimado de 45.
+                                 El estancamiento de los últimos 15 días es 100% atribuible a la
+                                 falla del runner de Actions descrita arriba, no a GDELT en sí.
 ```
 
 ---
 
 ## Progreso del Backfill GDELT (2015 → hoy)
 
-| Período | Ventanas | Artículos | Estado |
-|---------|----------|-----------|--------|
-| 2015 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2016 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2017 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2018 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2019 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2020 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2021 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2022 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2023 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2024 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2025 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2026 Q1-Q2 | 0/2 | ? | Pendiente |
-| **TOTAL** | **0/46** | **0** | **Backfill no iniciado** |
+| Período | Ventanas | Estado |
+|---------|----------|--------|
+| 2015 Q1 – 2017 Q1 (~8 trimestres) | 0/8 | **Pendiente — sin cobertura** |
+| 2017 Q1 – 2026 Q2 (38 trimestres) | 38/38 (con reintentos, 79 registros) | Completado |
+| **TOTAL estimado** | **38/~46** | **Backfill histórico incompleto en el tramo 2015-2017** |
 
-> Una vez que Actions corra con el código corregido, actualizar esta tabla con los datos reales.
-> El rendimiento real de GDELT (artículos/trimestre) determinará la duración del backfill.
+> Fuente: `sources/processed.json._gdelt_windows` (79 registros → 38 fechas de inicio únicas, todas ≥ 2017-03-30).
+> Nada en processed.json cubre 2015-02-19 a 2017-03-29; ese tramo requiere ventanas GDELT nuevas una vez
+> que el runner de Actions vuelva a funcionar (ver "Estado del Fetch" arriba).
 
 ---
 
@@ -67,6 +76,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-09-21 | 5 | 39 | Routine automatizada. Diagnóstico: Actions falla 100% desde 2026-09-07 (14 corridas, conclusion=failure en ~3s); logs 404; requiere revisión de billing/permisos de Actions fuera de esta sesión |
 
 ---
 
