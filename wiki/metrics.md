@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-09-22
 ---
 
 # Dashboard de Métricas
@@ -14,26 +14,44 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Artículos en sources/ | 57 | ↑ continuo |
+| Artículos reales ingestados | 18 | = total sin falsos positivos |
+| Pendientes de ingesta | 39 (incluye contaminación — ver Estado del Fetch) | 0 |
+| Falsos positivos acumulados | 7+ (ver hallazgo 2026-09-22 en log.md; cola actual tiene más sin marcar) | **0 nuevos** |
+| Páginas en wiki/ | 28 (11 topics, 3 entities, 11 summaries, 3 overview) | ↑ continuo |
+| Cobertura temporal | 2015-2025 (parcial, ver backfill) | 2015 → hoy real |
+| Ventanas GDELT completadas | 38 fechas de inicio únicas / ~45 estimadas | 45 (2015→hoy) |
+| Días sin artículos nuevos en sources/ | **16 días** (último commit: 2026-09-06) | máx 3 antes de diagnosticar — **ALERTA ACTIVA** |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida con commit a sources/ : 2026-09-06 (commit 24cfc3c, "6 artículos nuevos")
+Días sin commits a sources/          : 16 (hoy: 2026-09-22) — ALERTA: supera umbral de 3 días
+Diferencia vs. fallos previos        : corridas anteriores SÍ commiteaban aunque fuera "0 artículos
+                                        nuevos"; aquí no hay commits en absoluto → sospecha de que el
+                                        workflow dejó de correr o falla antes del paso de commit,
+                                        no solo que no encuentra artículos.
+Backfill GDELT                       : 38 fechas de inicio de ventana únicas de ~45 estimadas
+                                        (<45 ⇒ posible bloqueo/timeout, según umbral de CLAUDE.md)
+Hueco de cobertura                   : ventanas registradas van de 2017-03-30 a 2026-06-18;
+                                        el rango 2015-02-19 → 2017-03-29 (~8 trimestres) no tiene
+                                        NINGUNA ventana registrada — el backfill no ha llegado al
+                                        inicio real de la cobertura objetivo (2015).
+Patrón de reintentos                 : 41 de 79 entradas en _gdelt_windows comparten el mismo
+                                        inicio (20260618) con distintos fines — reintentos repetidos
+                                        atascados en la ventana más reciente.
+Contaminación de la cola             : inspección manual de pending_ingest detectó múltiples
+                                        falsos positivos evidentes en prensa.com (Utah data centers,
+                                        Aragón/España, Brasil, Mozambique, catálogo de dípteros, etc.)
+                                        — ver detalle en wiki/log.md 2026-09-22 00:05.
+Acción recomendada                   : (1) usuario debe revisar la pestaña Actions de GitHub para
+                                        confirmar si el workflow programado sigue activo;
+                                        (2) próxima sesión debe priorizar ventanas GDELT 2015-2017
+                                        sobre reintentar 2026-06-18;
+                                        (3) reforzar filtro de relevancia (Panamá) en el fetcher.
 ```
 
 ---
@@ -67,6 +85,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-09-22 | 5 (0 falsos positivos) | 39 (cola contaminada, ver Estado del Fetch) | Routine automatizada; detectado fetch de Actions detenido 16 días + hueco de backfill 2015-2017 |
 
 ---
 
