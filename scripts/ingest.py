@@ -13,6 +13,7 @@ Para marcar un artículo como ingestado después de que Claude lo procese:
 """
 
 import json
+import re
 import sys
 from pathlib import Path
 from datetime import datetime
@@ -153,17 +154,36 @@ def mark_ingested(url_or_slug: str) -> bool:
 
 
 def mark_all_ingested(limit: int = 0) -> int:
-    """Mark the first `limit` pending articles as ingested (after Claude processed them)."""
+    """Mark as ingested the exact articles listed in pending_ingest.md (the ones
+    actually shown to and processed by Claude), NOT a fresh call to find_pending().
+
+    find_pending() sorts alphabetically by filename, while `ingest` (run_prepare)
+    selects and orders articles via prioritize()'s score strategy. Re-deriving the
+    "pending" set here can therefore select a different set of articles than the
+    ones Claude was actually shown and processed, silently marking the wrong
+    articles as ingested while leaving the real ones pending.
+    """
+    ingest_file = ROOT / "pending_ingest.md"
+    if not ingest_file.exists():
+        console.print(
+            "[red]No se encontró pending_ingest.md — ejecuta 'ingest' primero.[/red]"
+        )
+        return 0
+    content = ingest_file.read_text(encoding="utf-8")
+    urls = re.findall(r"mark-ingested '([^']+)'", content)
+    if limit:
+        urls = urls[:limit]
+
     processed = load_processed()
     articles = article_entries(processed)
-    pending = find_pending(limit=limit)
     count = 0
-    for _, article in pending:
-        url = article.get("url", "")
+    for url in urls:
         if url in articles:
             processed[url]["ingested"] = True
             processed[url]["ingested_at"] = datetime.now().isoformat()
             count += 1
+        else:
+            console.print(f"[yellow]URL no encontrada en processed.json: {url[:60]}[/yellow]")
     save_processed(processed)
     append_log(
         f"INGEST: {count} artículos marcados como ingestados por sesión Claude Code"

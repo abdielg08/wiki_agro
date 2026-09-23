@@ -216,3 +216,63 @@ RECOVERY: El wiki construido por las routines nunca llegaba a main.
       (era la fuga de falsos positivos que GDELT/RSS ya bloqueaban).
     - NUEVO: .github/workflows/promote_wiki.yml — auto-promueve wiki/ +
       processed.json de ramas claude/** a main (arregla el Sísifo).
+
+## 2026-09-23 16:17
+LINT: 35 páginas revisadas, 40 issues encontrados
+  frontmatter:0, huérfanas:1, broken_links:29, stale:9, no_index:1
+
+## 2026-09-23 (sesión Claude Code — routine, DIAGNÓSTICO + FIX SIN INGESTA)
+
+DUPLICADO DETECTADO: `python wiki_agro.py ingest --limit 5` devolvió los mismos
+5 artículos que ya había procesado una sesión anterior el mismo día (08:17),
+publicados en el PR #307 (rama `claude/modest-galileo-21i61b`, aún abierto como
+draft, sin mergear a main): crédito Banco Nacional 2024 ($714.1M), medidas
+Covid-19 cosecha de café 2020-2021, "los subsidios acaparan los fondos del
+Mida" (2020), agroturismo temporada de cosecha (2019), MIDA/IMA presupuestos
+reducidos 2023. Esta sesión generó primero el mismo contenido de forma
+independiente (mismos 5 artículos, mismas páginas nuevas `cafe_cacao.md` y
+`agroturismo.md`) sin saber que el PR #307 ya existía, y lo descartó
+(`git checkout` + `git clean`) al descubrir el duplicado vía la API de GitHub
+Actions, para no crear un segundo PR redundante ni contenido en conflicto.
+**Acción recomendada al usuario**: revisar y mergear el PR #307
+(https://github.com/abdielg08/wiki_agro/pull/307) para que esos 5 artículos
+avancen a `main` y `Pendientes` baje de 14 a 9.
+
+FIX DE RAÍZ (independiente, verificado con código, no solo copiado del PR
+#307): `scripts/ingest.py::mark_all_ingested()` llamaba de nuevo a
+`find_pending()` (orden alfabético por nombre de archivo) en vez de leer las
+URLs reales que `ingest` ya había mostrado a Claude en `pending_ingest.md`
+(orden por `prioritize()`/score). Verificado experimentalmente: con el
+backlog actual, `find_pending(limit=5)` alfabético solo coincide en 1 de 5
+URLs con las que de verdad se mostraron a Claude — es decir, `mark-all-ingested`
+podía marcar 4 artículos equivocados como ingestados mientras los 5 reales
+quedaban pendientes (mismo bug ya corregido el 2026-09-15 y perdido en la
+recuperación de rama del 2026-09-22, y de nuevo corregido de forma
+independiente por el PR #307 en su propia rama). Corregido ahora en `main`:
+`mark_all_ingested()` parsea las URLs directamente de los comandos
+`mark-ingested` al final de `pending_ingest.md`. Probado: genera el mismo
+resultado que las URLs reales del pending_ingest.md vigente, revertido tras
+la prueba (no se marcó nada como ingestado en esta sesión).
+
+DIAGNÓSTICO AVANZADO — GitHub Actions (confirmado vía API, no solo por
+ausencia de commits):
+- `wiki_daily.yml`: 17+ corridas diarias consecutivas con `conclusion: failure`
+  desde 2026-09-07 (última corrida exitosa: run #103, 2026-09-06, 6 artículos).
+  Cada corrida falla en ~4 segundos (`created_at` ≈ `completed_at`), sin
+  `runner_id` asignado (`runner_id: 0`, `runner_name: ""`) y sin logs
+  descargables (404 inmediato) — firma típica de `startup_failure`, es decir
+  el job nunca llega a ejecutar ni un solo step (ni siquiera el checkout).
+- `promote_wiki.yml` (el workflow que promueve wiki/+processed.json de ramas
+  `claude/**` a `main`): mismo patrón exacto — sus 3 corridas hasta ahora
+  (incluida la del PR #307) fallan en ~3-4 segundos, `runner_id: 0`. Esto
+  confirma que el problema es de infraestructura de Actions a nivel de
+  repositorio/cuenta, no un bug de `fetch_news.py` ni de `promote_wiki.yml` —
+  y explica por qué el trabajo de rutinas sigue acumulándose en ramas/PRs sin
+  llegar nunca a `main` (el mismo "Sísifo" que ya se documentó el 2026-09-22).
+- Causa más probable: límite de gasto/minutos de GitHub Actions agotado en
+  Settings → Billing, o Actions deshabilitado a nivel de repo/cuenta. Fuera
+  del alcance de esta sesión — requiere revisión manual del usuario.
+
+Sin cambios a `wiki/summaries/`, `wiki/topics/` ni `wiki/entities/` en esta
+sesión (para no duplicar el contenido ya presente en el PR #307). Únicos
+cambios: fix en `scripts/ingest.py` y esta entrada de diagnóstico.
