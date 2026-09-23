@@ -1,11 +1,12 @@
 ---
 title: Maíz en Panamá
 type: topic
-tags: [maiz, gusano-cogollero, plagas, mida, idiap, oirsa, seguridad-alimentaria]
-last_updated: 2026-05-24
-article_count: 1
+tags: [maiz, gusano-cogollero, plagas, mida, idiap, oirsa, seguridad-alimentaria, inundaciones]
+last_updated: 2026-09-15
+article_count: 2
 sources:
   - "https://www.prensa.com/economia/gusano-cogollero-crisis-maiz-panama-2018"
+  - "https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/"
 related: [topics/plagas_enfermedades.md, topics/seguridad_alimentaria.md, topics/cambio_climatico.md, entities/mida.md, entities/idiap.md]
 ---
 
@@ -34,12 +35,17 @@ El maíz es un cultivo fundamental para la seguridad alimentaria y la economía 
 - IDIAP + CIMMYT: desarrollo de variedades de maíz con resistencia genética al cogollero
 - Transición gradual desde insecticidas químicos hacia control biológico integrado
 
+### Inundaciones 2024
+- **Noviembre 2024**: lluvias intensas de fin de semana dañaron cultivos de maíz en **Veraguas**, junto con arroz, pastizales y ganadería bovina/porcina [La Prensa, 2024-11-07](https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/)
+- Evaluación de pérdidas en curso al momento de la publicación; sin cifras finales disponibles
+
 ## Tendencias (2015–2025)
 
 - Emergencia del gusano cogollero (2018) como plaga crónica del sector maicero
 - Resistencia creciente a insecticidas en poblaciones de *S. frugiperda*
 - Adopción gradual de variedades mejoradas con tolerancia a sequía y resistencia a plagas
 - Presión de maíz importado más barato vía TLC afecta rentabilidad del productor local
+- Exposición recurrente a eventos climáticos extremos (sequías El Niño, inundaciones La Niña)
 
 ## Retos
 
@@ -47,10 +53,12 @@ El maíz es un cultivo fundamental para la seguridad alimentaria y la economía 
 - Resistencia a insecticidas en poblaciones del gusano cogollero
 - Pequeños productores sin recursos para medidas preventivas o manejo integrado
 - Dependencia de subsidios e insumos de emergencia ante cada crisis fitosanitaria
+- Vulnerabilidad a inundaciones en zonas de producción como Veraguas
 
 ## Referencias
 
 - [La Prensa, 2018 — Crisis del gusano cogollero](https://www.prensa.com/economia/gusano-cogollero-crisis-maiz-panama-2018)
+- [La Prensa, 2024 — Pérdidas por inundaciones en Veraguas](https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/)
 
 ## Ver también
 

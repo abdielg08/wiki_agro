@@ -286,8 +286,15 @@ def fetch_ddg_search(search_cfg: dict, config: dict) -> Iterator[dict]:
                 pub_date = dateparser.parse(str(date_raw)).strftime("%Y-%m-%d")
             except Exception:
                 pass
+        # DuckDuckGo news() frecuentemente ignora el operador site: y devuelve
+        # noticias de cualquier país → aplicar los mismos filtros que GDELT/RSS.
+        if _is_blocked_domain(url):
+            continue
         body = r.get("body") or r.get("excerpt", "")
         if not is_agro_relevant(title, body, config):
+            continue
+        # Exigir al menos un término geográfico inequívoco de Panamá en título o URL
+        if not _is_panama_related(title, url):
             continue
         yield {
             "url": url,

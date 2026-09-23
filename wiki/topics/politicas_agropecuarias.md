@@ -1,11 +1,13 @@
 ---
 title: Políticas Agropecuarias en Panamá
 type: topic
-tags: [politica-agropecuaria, plan-mulino, mida, bda, idiap, seguridad-alimentaria, riego, semillas, 2024]
-last_updated: 2026-05-24
-article_count: 1
+tags: [politica-agropecuaria, plan-mulino, mida, bda, idiap, seguridad-alimentaria, riego, semillas, 2024, 2026]
+last_updated: 2026-09-15
+article_count: 3
 sources:
   - "https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024"
+  - "https://www.prensa.com/politica/nombran-a-nuevo-viceministro-del-mida-tras-renuncia-de-francisco-ameglio/"
+  - "https://www.prensa.com/opinion/panama-de-la-agricultura-de-subsistencia-a-la-agricultura-de-precision-exportadora/"
 related: [topics/subsidios_programas.md, topics/tecnologia_innovacion.md, topics/agua_riego.md, topics/credito_financiamiento.md, entities/mida.md, entities/bda.md, entities/idiap.md]
 ---
 
@@ -51,12 +53,17 @@ Las políticas agropecuarias panameñas de 2015-2025 han evolucionado de interve
 - **2020-2021**: Línea COVID-19 BDA: B/. 85M al 2% anual; récord B/. 320M en créditos
 - **2023**: Plan de Emergencia Arrocera: semilla IDIAP-Esperanza + créditos BDA al 4% por caída -18% en arroz
 
+### Cambios de Liderazgo y Debate de Modelo (2024–2026)
+- **Marzo 2026**: el presidente José Raúl Mulino nombró a **José Aníbal Rincón Stanziola** como nuevo viceministro del MIDA, tras la renuncia de Francisco José Ameglio [La Prensa, 2026-03-03](https://www.prensa.com/politica/nombran-a-nuevo-viceministro-del-mida-tras-renuncia-de-francisco-ameglio/)
+- **Febrero 2026**: columna de opinión plantea que Panamá no superará la agricultura de subsistencia con subsidios permanentes ni políticas aisladas, proponiendo una transición hacia la agricultura de precisión exportadora [La Prensa, opinión, 2026-02-24](https://www.prensa.com/opinion/panama-de-la-agricultura-de-subsistencia-a-la-agricultura-de-precision-exportadora/)
+
 ## Tendencias (2015–2025)
 
 - Evolución desde respuestas reactivas de emergencia hacia planificación plurianual estructurada
 - Mayor énfasis en tecnificación (riego, semillas mejoradas, maquinaria) como respuesta al cambio climático
 - Políticas inclusivas para jóvenes, mujeres y pequeños productores
 - Fortalecimiento del IDIAP como eje de investigación y desarrollo tecnológico
+- Debate abierto (2026) entre continuidad de subsidios directos y transición hacia agricultura de precisión exportadora
 
 ## Retos
 
@@ -68,6 +75,8 @@ Las políticas agropecuarias panameñas de 2015-2025 han evolucionado de interve
 ## Referencias
 
 - [MIDA, 2024 — Plan Agropecuario Gobierno Mulino 2024-2029](https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024)
+- [La Prensa, 2026 — Nuevo viceministro del Mida](https://www.prensa.com/politica/nombran-a-nuevo-viceministro-del-mida-tras-renuncia-de-francisco-ameglio/)
+- [La Prensa, 2026 — De la agricultura de subsistencia a la agricultura de precisión exportadora](https://www.prensa.com/opinion/panama-de-la-agricultura-de-subsistencia-a-la-agricultura-de-precision-exportadora/)
 
 ## Ver también
 
