@@ -102,3 +102,5 @@ Al ejecutar, la routine DEBE:
 
 **Estado a 2026-09-15**: esta señal de alarma está ACTIVA (9 días sin artículos nuevos,
 8 ejecuciones de Actions fallando consecutivamente). Ver diagnóstico en wiki/log.md.
+
+<!-- promote-pipeline-test: 2026-09-23T03:32:47.291579Z -->
