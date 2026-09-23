@@ -13,6 +13,7 @@ Para marcar un artículo como ingestado después de que Claude lo procese:
 """
 
 import json
+import re
 import sys
 from pathlib import Path
 from datetime import datetime
@@ -153,14 +154,33 @@ def mark_ingested(url_or_slug: str) -> bool:
 
 
 def mark_all_ingested(limit: int = 0) -> int:
-    """Mark the first `limit` pending articles as ingested (after Claude processed them)."""
+    """
+    Mark the articles Claude actually processed as ingested.
+
+    Reads the `mark-ingested '<url>'` lines Claude is instructed to run at the
+    end of `pending_ingest.md` — the same file `run_prepare()` wrote using the
+    prioritized order. NOTE: `find_pending()` sorts alphabetically by file path,
+    while `run_prepare()` orders by `prioritize()` score, so re-deriving the
+    "first N pending" here (as a previous version of this function did) marks a
+    DIFFERENT set of articles than the ones actually shown to and processed by
+    Claude. See wiki/log.md, entries 2026-09-15 08:20 and 2026-09-23 08:20.
+    """
+    ingest_file = ROOT / "pending_ingest.md"
+    if not ingest_file.exists():
+        console.print(
+            "[red]No se encontró pending_ingest.md. Ejecuta 'ingest' primero.[/red]"
+        )
+        return 0
+
+    text = ingest_file.read_text(encoding="utf-8")
+    urls = re.findall(r"mark-ingested '([^']+)'", text)
+    if limit:
+        urls = urls[:limit]
+
     processed = load_processed()
-    articles = article_entries(processed)
-    pending = find_pending(limit=limit)
     count = 0
-    for _, article in pending:
-        url = article.get("url", "")
-        if url in articles:
+    for url in urls:
+        if url in processed:
             processed[url]["ingested"] = True
             processed[url]["ingested_at"] = datetime.now().isoformat()
             count += 1

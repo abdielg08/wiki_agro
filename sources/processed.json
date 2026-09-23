@@ -454,7 +454,8 @@
     "title": "Agroturismo en temporada de cosecha",
     "date": "2019-11-15",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-23T08:13:39.381232"
   },
   "https://www.prensa.com/provincias/fijan-medidas-para-prevenir-casos-de-la-covid-19-en-la-proxima-cosecha-de-cafe/": {
     "saved_at": "2026-08-24T11:18:59.205884",
@@ -462,7 +463,8 @@
     "title": "Fijan medidas para prevenir casos de la Covid-19 en la próxima cosecha de café",
     "date": "2020-08-01",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-23T08:16:10.371338"
   },
   "https://www.prensa.com/politica/Mida-debe-mejorar-sistema-diagnostico_0_2877462253.html": {
     "saved_at": "2026-08-24T11:18:59.206862",
@@ -492,7 +494,8 @@
     "title": "Cartera de crédito agropecuario de Banco Nacional de Panamá alcanzó los $714.1 millones en 2024",
     "date": "2025-02-28",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-23T08:16:10.371313"
   },
   "https://www.prensa.com/economia/panama-busca-fortalecer-cooperacion-agropecuaria-con-argentina-a-traves-del-iica/": {
     "saved_at": "2026-08-24T11:18:59.209347",
@@ -612,7 +615,8 @@
     "title": "El MIDA y el IMA quedan con presupuestos reducidos para 2023",
     "date": "2022-08-31",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-23T08:16:10.371348"
   },
   "https://clubofmozambique.com/news/mozambique-more-than-1m-doses-of-foot-and-mouth-vaccine-over-next-year-and-half/": {
     "saved_at": "2026-08-27T20:51:59.763046",
@@ -672,6 +676,7 @@
     "title": "Los subsidios acaparan los fondos del Mida",
     "date": "2020-08-27",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-23T08:16:10.371342"
   }
 }

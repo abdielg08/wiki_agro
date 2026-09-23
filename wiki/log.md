@@ -216,3 +216,111 @@ RECOVERY: El wiki construido por las routines nunca llegaba a main.
       (era la fuga de falsos positivos que GDELT/RSS ya bloqueaban).
     - NUEVO: .github/workflows/promote_wiki.yml — auto-promueve wiki/ +
       processed.json de ramas claude/** a main (arregla el Sísifo).
+
+## 2026-09-23 08:13
+INGEST: 5 artículos ingestados (sesión Claude Code — routine automatizada)
+  - Cartera de crédito agropecuario Banco Nacional 2024 ($714.1M, Darién)
+  - Medidas Covid-19 cosecha de café 2020-2021 (Chiriquí)
+  - Los subsidios acaparan los fondos del Mida (2020, MEF aprueba $618K de $3.3M)
+  - Agroturismo en temporada de cosecha (2019)
+  - MIDA e IMA con presupuestos reducidos para 2023 (2022)
+  Páginas nuevas: topics/cafe_cacao.md, topics/agroturismo.md
+  Páginas actualizadas: topics/credito_financiamiento.md, topics/subsidios_programas.md,
+    topics/precios_mercados.md, topics/chirique.md, entities/mida.md
+  Nota: los 5 artículos tenían únicamente `summary_raw` truncado (sin `full_text`)
+  en sources/articles/ — se documentó explícitamente en cada resumen que el texto
+  fuente está incompleto, sin inventar hechos no presentes en el texto disponible.
+  Todos verificados como 100% relacionados al agro panameño — 0 falsos positivos.
+
+## 2026-09-23 08:20
+DIAGNÓSTICO AVANZADO — confirmación vía GitHub Actions API del fallo persistente
+del fetch automático.
+
+`python wiki_agro.py stats` mostró 9 pendientes tras el ingest de este lote (no 0),
+pero como parte del diagnóstico de rutina se revisó igualmente el estado del fetch
+por la alarma ya activa desde 2026-09-15 (9 días sin artículos nuevos en esa fecha).
+
+Usando `mcp__github__actions_list`/`actions_get` sobre el repositorio:
+  - `wiki_daily.yml` (Fetch Diario): las corridas #110 a #119 (2026-09-13 →
+    2026-09-22, 10 corridas diarias consecutivas) tienen `conclusion: failure`.
+    El job "Fetch artículos → Commit a sources/" en cada una dura 3-4 segundos y
+    reporta `runner_id: 0`, `runner_name: ""` — el runner nunca llega a asignarse,
+    confirmando que NO es un bug de `fetch_news.py`/`fetch_historical.py` sino un
+    fallo de arranque del job a nivel de infraestructura/configuración de Actions.
+  - Los logs completos de la corrida más reciente (run 35746215613, job
+    106808407217) ya expiraron (HTTP 404 al intentar descargarlos), igual que en
+    el diagnóstico de 2026-09-15.
+  - `wiki_historical.yml` (Crawl Histórico 15 Años): **0 ejecuciones totales**
+    desde su creación (2026-05-26) — nunca ha corrido ni una sola vez. Esto amplía
+    el diagnóstico: el problema no es exclusivo del fetch diario, afecta a los
+    workflows programados (`schedule`) del repositorio en general.
+  - Ambos workflows figuran `state: active` (no están deshabilitados a nivel de
+    workflow), lo que apunta a causas a nivel de repositorio/organización: cuota
+    de minutos de GitHub Actions agotada, o Actions deshabilitado/restringido en
+    Settings → Actions → General. No se pudo verificar directamente porque esta
+    sesión no tiene acceso de administración a Settings/Billing vía API.
+
+**Última ejecución exitosa confirmada**: 2026-09-06 (commit 24cfc3c, 6 artículos).
+**Días sin artículos nuevos en sources/**: 17 (2026-09-06 → 2026-09-23).
+
+**Impacto en el backlog**: quedan 9 artículos genuinos pendientes de ingesta
+(~2 sesiones de routine más). Si el fetch no se restablece antes de agotar ese
+backlog, el backfill histórico 2015→hoy quedará completamente detenido, no solo
+ralentizado.
+
+**Acción requerida (fuera del alcance de esta sesión)**: el usuario debe revisar
+en GitHub: (1) Settings → Actions → General — confirmar que "Allow all actions"
+y los workflows programados estén habilitados; (2) Settings → Billing → Actions
+minutes — confirmar que no se agotó la cuota gratuita/asignada del plan.
+
+## 2026-09-23 08:13
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code
+
+## 2026-09-23 08:35
+BUG REGRESIÓN ENCONTRADO Y CORREGIDO (de nuevo): `mark-all-ingested` había vuelto
+a marcar el conjunto equivocado de artículos.
+
+Al ejecutar `python wiki_agro.py mark-all-ingested --limit 5` después del ingest de
+este lote, la revisión del diff de `sources/processed.json` mostró que solo 1 de
+los 5 artículos realmente procesados ("Agroturismo en temporada de cosecha") quedó
+marcado `ingested: true`; los otros 4 marcados fueron artículos completamente
+distintos que esta sesión nunca tocó ("El rol de la trazabilidad en la agricultura
+moderna", "Impulsan el desarrollo de agricultura familiar", "Horizonte
+agropecuario", "MIDA presenta plan de contingencia para el verano 2020").
+
+Es el mismo bug ya documentado y supuestamente corregido el 2026-09-15 08:20:
+`scripts/ingest.py::mark_all_ingested()` volvía a usar `find_pending(limit=limit)`
+(orden alfabético por ruta de archivo) en vez de leer las URLs reales que
+`pending_ingest.md` le mostró a Claude (orden por `prioritize()`/score). El fix
+documentado en esa fecha no estaba presente en el código — probablemente se perdió
+durante la recuperación de rama de esta misma sesión (`recover: wiki avanzado a
+main + fix fuga DDG + auto-promote`), que trajo a `main` una versión de
+`scripts/ingest.py` anterior al fix.
+
+**Fix aplicado (de nuevo, con más contexto en el docstring para evitar otra
+regresión)**: `mark_all_ingested()` ahora parsea las URLs directamente de las
+líneas `mark-ingested '<url>'` al final de `pending_ingest.md`, con un comentario
+explicando explícitamente por qué NO se debe volver a `find_pending()`. Ver
+`scripts/ingest.py`.
+
+**Corrección de datos**: se revirtieron a su estado original (pre-sesión) los 4
+artículos marcados por error, y se marcaron correctamente como `ingested: true`
+los 4 artículos reales de este lote que aún no lo estaban (el quinto,
+"Agroturismo en temporada de cosecha", ya había quedado correcto por coincidencia
+de orden). El total de artículos ingestados (48) y pendientes (9) no cambió — solo
+se corrigió CUÁLES artículos están marcados, evitando que 4 artículos ya
+procesados por esta sesión quedaran `ingested: false` para siempre (riesgo de
+reprocesarlos/duplicar contenido) y que 4 artículos nunca revisados quedaran
+marcados como ingestados sin haber pasado por ningún control.
+
+## 2026-09-23 08:16
+LINT: 42 páginas revisadas, 39 issues encontrados
+  frontmatter:0, huérfanas:1, broken_links:28, stale:9, no_index:1
+
+## 2026-09-23 08:16
+LINT: 42 páginas revisadas, 39 issues encontrados
+  frontmatter:0, huérfanas:1, broken_links:28, stale:9, no_index:1
+
+## 2026-09-23 08:16
+LINT: 42 páginas revisadas, 39 issues encontrados
+  frontmatter:0, huérfanas:1, broken_links:28, stale:9, no_index:1

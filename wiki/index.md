@@ -2,7 +2,7 @@
 title: Índice del Wiki Agropecuario de Panamá
 type: overview
 tags: [indice, navegacion]
-last_updated: 2026-09-15
+last_updated: 2026-09-23
 article_count: 0
 ---
 
@@ -57,7 +57,12 @@ article_count: 0
 | Página | Descripción |
 |--------|-------------|
 | [politicas_agropecuarias.md](topics/politicas_agropecuarias.md) | Leyes, Plan Mulino B/. 850M 2024-2029, planes de gobierno |
-| [subsidios_programas.md](topics/subsidios_programas.md) | Plan de Semillas, Agroalimentos, programas de apoyo |
+| [subsidios_programas.md](topics/subsidios_programas.md) | Plan de Semillas, Agroalimentos, programas de apoyo, presupuesto MIDA/IMA |
+
+### Otros Temas
+| Página | Descripción |
+|--------|-------------|
+| [agroturismo.md](topics/agroturismo.md) | Diversificación de ingresos rurales en temporada de cosecha |
 
 ### Regiones Agrícolas
 | Página | Descripción |
@@ -108,7 +113,12 @@ article_count: 0
 | 2025-10-07 | La Prensa | [Boquete: Mida evalúa áreas afectadas por lluvias](summaries/20251007_prensacom_boquete-mida-evaluacion-lluvias.md) | Chiriquí, plantaciones agropecuarias |
 | 2026-02-24 | La Prensa | [De la agricultura de subsistencia a la de precisión exportadora](summaries/20260224_prensacom_opinion-agricultura-precision-exportadora.md) | Opinión: subsidios vs. agricultura de precisión |
 | 2026-03-03 | La Prensa | [Nuevo viceministro del Mida](summaries/20260303_prensacom_nuevo-viceministro-mida-renuncia-ameglio.md) | José Aníbal Rincón Stanziola reemplaza a Ameglio |
+| 2025-02-28 | La Prensa | [Cartera de crédito agropecuario Banco Nacional 2024](summaries/20250228_prensacom_credito-agropecuario-banco-nacional-2024.md) | $714.1M, Encuentro Agropecuario BNP en Darién |
+| 2020-08-01 | La Prensa | [Medidas Covid-19 cosecha de café](summaries/20200801_prensacom_medidas-covid19-cosecha-cafe-chiriqui.md) | Bioseguridad y control migratorio en Chiriquí |
+| 2020-08-27 | La Prensa | [Los subsidios acaparan los fondos del Mida](summaries/20200827_prensacom_subsidios-acaparan-fondos-mida.md) | MEF aprueba $618K de $3.3M solicitados |
+| 2019-11-15 | La Prensa | [Agroturismo en temporada de cosecha](summaries/20191115_prensacom_agroturismo-temporada-cosecha.md) | Cosecha del primer trimestre como atractivo turístico |
+| 2022-08-31 | La Prensa | [MIDA e IMA con presupuestos reducidos 2023](summaries/20220831_prensacom_mida-ima-presupuestos-reducidos-2023.md) | IMA busca aumentar ferias de alimentos |
 
 ---
 
-*Última actualización del índice: 2026-09-15*
+*Última actualización del índice: 2026-09-23*

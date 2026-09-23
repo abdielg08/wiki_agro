@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-09-23
+last_updated: 2026-09-23 (08:13 UTC)
 ---
 
 # Dashboard de Métricas
@@ -15,32 +15,43 @@ last_updated: 2026-09-23
 | Métrica | Valor | Meta |
 |---------|-------|------|
 | Artículos en sources/ (descargados) | 57 | ↑ continuo |
-| Artículos reales ingestados (wiki) | 16 | = total sin falsos positivos |
+| Artículos reales ingestados (wiki) | 21 | = total sin falsos positivos |
 | Falsos positivos acumulados (documentados) | 25 | **0 nuevos** desde el fix de `fetch_ddg_search` |
 | Fuera de cobertura temporal (pre-2015) | 2 | — |
-| Pendientes de ingesta (genuinos, verificados) | 14 | 0 |
-| Páginas en wiki/ | 35 (13 topics, 3 entidades, 16 resúmenes, 3 overview) | ↑ continuo |
+| Pendientes de ingesta (genuinos, verificados) | 9 | 0 |
+| Páginas en wiki/ | 42 (15 topics, 3 entidades, 21 resúmenes, 3 overview) | ↑ continuo |
 | Cobertura temporal | 2015-2026 (parcial, concentrada en 2019-2026) | 2015-02-19 → hoy |
 | Ventanas GDELT completadas | 79 | 45+ (rango base ya cubierto) |
-| Días sin artículos nuevos en sources/ | 9 (último: 2026-09-06) | máx 3 antes de diagnosticar — **UMBRAL SUPERADO** |
+| Días sin artículos nuevos en sources/ | 17 (último: 2026-09-06) | máx 3 antes de diagnosticar — **UMBRAL SUPERADO** |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última ejecución EXITOSA  : 2026-09-06 (run #103) → 6 artículos nuevos
-Ejecuciones fallidas desde: 2026-09-07 → 2026-09-14 (8 corridas diarias consecutivas)
-Duración de las fallas    : ~3 segundos cada una (vs. ~5-6 min de una corrida normal)
-Diagnóstico               : patrón de fallo de arranque del job (no es un bug de
-                             fetch_news.py/fetch_historical.py); logs ya expirados
-                             (404) al momento del diagnóstico (2026-09-15)
+Última ejecución EXITOSA  : 2026-09-06 (run #103, commit 24cfc3c) → 6 artículos nuevos
+Ejecuciones fallidas desde: 2026-09-07 → 2026-09-22 (confirmado vía API: runs #110-#119,
+                             10 corridas diarias consecutivas con conclusion=failure,
+                             sin contar posibles corridas anteriores ya rotadas del historial)
+Duración de las fallas    : 3-4 segundos cada una (vs. ~5-6 min de una corrida normal);
+                             runner_id=0, runner_name="" en cada job — el job NUNCA
+                             llega a asignarse un runner, no es un fallo del script Python
+Diagnóstico (confirmado esta sesión vía GitHub Actions API, run #119 = 35746215613,
+job 106808407217): logs ya expirados (HTTP 404) para descarga completa, pero los
+metadatos del job confirman el mismo patrón de fallo de arranque reportado el
+2026-09-15 — persiste sin cambios 17 días después.
+Dato adicional            : wiki_historical.yml (crawl histórico 15 años) registra
+                             **0 ejecuciones totales** — nunca ha corrido ni una vez
+                             desde que se creó (2026-05-26); no es solo un fallo del
+                             fetch diario, sino de los workflows programados en general.
 Causas probables          : cuota de minutos de Actions agotada, cambio de permisos
-                             de GITHUB_TOKEN/protección de rama, o workflow pausado
-                             a nivel de repositorio — requiere revisión manual del
-                             usuario (fuera del alcance de esta sesión)
-Acción pendiente          : usuario debe revisar Settings → Actions / Billing en GitHub
-Ver diagnóstico completo  : wiki/log.md, entrada 2026-09-15 08:30
+                             de GITHUB_TOKEN/protección de rama, o Actions deshabilitado/
+                             pausado a nivel de repositorio u organización — requiere
+                             revisión manual del usuario (fuera del alcance de esta sesión;
+                             no hay acceso de administración de Settings/Billing vía API)
+Acción pendiente          : usuario debe revisar Settings → Actions → General (¿workflows
+                             habilitados?) y Settings → Billing → Actions minutes en GitHub
+Ver diagnóstico completo  : wiki/log.md, entradas 2026-09-15 08:30 y 2026-09-23 08:13
 ```
 
 ```
@@ -55,6 +66,12 @@ Bug adicional corregido   : mark_all_ingested() marcaba un conjunto de artículo
                              dos usaban órdenes de prioridad distintos). Corregido para
                              leer las URLs directamente de pending_ingest.md — ver
                              wiki/log.md 2026-09-15 08:20 y scripts/ingest.py.
+REGRESIÓN 2026-09-23      : el fix anterior de mark_all_ingested() no estaba en el
+                             código de main (se perdió en la recuperación de rama
+                             de esta sesión) — el bug volvió a marcar 4 artículos
+                             equivocados. Corregido de nuevo, con docstring
+                             explícito para evitar que se repita — ver
+                             wiki/log.md 2026-09-23 08:35 y scripts/ingest.py.
 ```
 
 ---
@@ -82,6 +99,7 @@ Bug adicional corregido   : mark_all_ingested() marcaba un conjunto de artículo
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
 | 2026-09-15 | 10 (2 lotes de 5) | 14 | Routine automatizada. Además: fix de bug crítico en `mark_all_ingested` (marcaba artículos equivocados), 17 falsos positivos nuevos detectados y documentados, 7 falsos positivos antiguos re-etiquetados, fix de raíz en `fetch_ddg_search` (faltaba filtro Panamá), y diagnóstico de 8 fallos consecutivos de GitHub Actions |
+| 2026-09-23 | 5 | 9 | Routine automatizada. Artículos con `summary_raw` truncado (0 falsos positivos); páginas nuevas: `topics/cafe_cacao.md`, `topics/agroturismo.md`. Diagnóstico avanzado confirmado vía GitHub Actions API: `wiki_daily.yml` lleva 10 corridas diarias consecutivas fallidas (09-13 a 09-22, runner nunca asignado) y `wiki_historical.yml` nunca ha corrido — requiere revisión manual de Settings/Billing por el usuario |
 
 ---
 
@@ -102,3 +120,12 @@ Al ejecutar, la routine DEBE:
 
 **Estado a 2026-09-15**: esta señal de alarma está ACTIVA (9 días sin artículos nuevos,
 8 ejecuciones de Actions fallando consecutivamente). Ver diagnóstico en wiki/log.md.
+
+**Estado a 2026-09-23**: la señal de alarma sigue ACTIVA y se agravó (17 días sin
+artículos nuevos en sources/, 10 corridas diarias consecutivas de `wiki_daily.yml`
+fallando con conclusion=failure según la API de GitHub Actions, y `wiki_historical.yml`
+sin ninguna ejecución registrada desde su creación). El backlog de 9 pendientes
+genuinos alcanza para ~2 sesiones de routine más antes de agotarse; si el fetch no
+se restablece, el backfill histórico 2015→hoy quedará detenido por completo. Acción
+requerida del usuario: revisar Settings → Actions → General y Settings → Billing →
+Actions en GitHub (fuera del alcance de esta sesión).
