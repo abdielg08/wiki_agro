@@ -26,34 +26,32 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+      # Checkout de la rama que hizo push, con historia completa.
+      # El commit disparador ($GITHUB_SHA) queda disponible localmente.
       - uses: actions/checkout@v4
         with:
-          ref: main
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Traer contenido de la rama que hizo push
+      - name: Promover contenido de wiki a main
         run: |
           set -e
-          SRC_SHA="${{ github.sha }}"
-          SRC_REF="${{ github.ref_name }}"
-          echo "Promoviendo desde $SRC_REF ($SRC_SHA)"
-          git fetch origin "$SRC_SHA" --depth=1
-
-          # Traer SOLO estas rutas (seguridad: nunca código ni workflows)
-          git checkout "$SRC_SHA" -- wiki/ sources/processed.json || true
+          SRC_SHA="${GITHUB_SHA}"
+          SRC_REF="${GITHUB_REF_NAME}"
+          echo "Promoviendo wiki desde $SRC_REF ($SRC_SHA)"
 
           git config user.name "wiki-agro-bot"
           git config user.email "wiki-agro-bot@users.noreply.github.com"
 
-          if git diff --staged --quiet && git diff --quiet; then
-            echo "ℹ Sin cambios de wiki para promover"
-            exit 0
-          fi
+          # Asegurar rama main local a partir de origin/main
+          git fetch origin main:refs/remotes/origin/main
+          git checkout -B main origin/main
 
-          git add wiki/ sources/processed.json
+          # Traer SOLO estas rutas desde el commit disparador (ya es local)
+          git checkout "$SRC_SHA" -- wiki/ sources/processed.json
+
           if git diff --staged --quiet; then
-            echo "ℹ Nada nuevo tras staging"
+            echo "ℹ Sin cambios de wiki para promover"
             exit 0
           fi
 
@@ -62,6 +60,12 @@ jobs:
 
           # Reintento con rebase por si otra promoción entró en paralelo
           for i in 1 2 3 4; do
-            git pull --rebase origin main && git push origin HEAD:main && break
-            echo "reintento $i..."; sleep $((i*3))
+            if git push origin HEAD:main; then
+              echo "✓ promovido a main"
+              break
+            fi
+            echo "reintento $i (rebase)..."
+            git fetch origin main
+            git rebase origin/main || git rebase --abort
+            sleep $((i*3))
           done
