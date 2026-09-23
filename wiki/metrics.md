@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-06-22
+last_updated: 2026-09-23
 ---
 
 # Dashboard de Métricas
@@ -14,50 +14,49 @@ last_updated: 2026-06-22
 
 | Métrica | Valor | Meta |
 |---------|-------|------|
-| Artículos en sources/ | 13 | ↑ continuo |
-| Artículos reales ingestados | 6 | = total sin falsos positivos |
-| Falsos positivos acumulados | 7 | **0 nuevos** |
-| Páginas en wiki/ | 19 | ↑ continuo |
-| Cobertura temporal | 2015-2026 (semilla) | 2015 → hoy real |
-| Ventanas GDELT completadas | 0 / ~45 estimadas | 45 (2015→hoy) |
-| Días sin artículos nuevos | — | máx 3 antes de diagnosticar |
+| Artículos descargados en sources/ | 57 | ↑ continuo |
+| Artículos ingestados al wiki | 36 | = total sin falsos positivos |
+| Pendientes de ingesta | 21 | 0 |
+| Falsos positivos acumulados (excluidos de la cola) | 24 (7 previos + 17 esta sesión) | **0 nuevos entrando al wiki** |
+| Páginas en wiki/ | 27 (10 topics, 3 entities, 11 summaries, 3 overview) | ↑ continuo |
+| Cobertura temporal | 2015-2025 (mezcla semilla + real) | 2015 → hoy real |
+| Ventanas GDELT completadas | 79 | 45+ (rango 2015→hoy agotado; ver nota) |
+| Días sin artículos nuevos (sources/) | **17** (último commit real: 2026-09-06) | máx 3 antes de diagnosticar — **EXCEDIDO** |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última corrida Actions : 2026-06-21
-Resultado              : 0 artículos nuevos
-Causa identificada     : GDELT ventanas 2026-2027 = fechas futuras → timeout/403
-                         RSS IICA y La Prensa devolvieron 0 entradas ese día
-Fix aplicado           : fetch_gdelt_historical() ahora limita end a datetime.utcnow()-1d
-                         Ventanas GDELT reseteadas a [] para backfill real
-Estado post-fix        : Pendiente validación en próxima corrida Actions
+Última corrida CON commit real  : 2026-09-06 (run #103, 0 artículos, pero job completó bien)
+Última corrida del cron         : 2026-09-22 (se ejecuta a diario sin falta, 11:00 UTC)
+Resultado últimas 16 corridas   : FALLA en ~3 segundos, runner_id=0 (nunca se asigna runner)
+Causa identificada              : NO es un bug del script de fetch ni de GDELT/RSS — el job
+                                   nunca llega a ejecutar ningún step (ni siquiera checkout).
+                                   Patrón típico de límite de gasto/minutos de Actions agotado,
+                                   o Actions deshabilitado a nivel de repo/organización.
+Ventanas GDELT                  : 79 completadas (por encima del umbral de 45 → el rango de
+                                   fechas 2015-hoy ya fue cubierto en corridas previas; el
+                                   estancamiento actual NO es por agotamiento de rango sino
+                                   por el fallo de infraestructura de Actions arriba descrito)
+Acción requerida                : Revisar Settings → Billing and plans → Actions (o
+                                   Settings → Actions → General) del repositorio en GitHub.
+                                   Ver detalle completo en wiki/log.md (entrada 2026-09-23,
+                                   "DIAGNÓSTICO CRÍTICO: GitHub Actions Fetch Diario roto").
+Estado                           : NO RESUELTO — requiere acción del owner del repositorio,
+                                   fuera del alcance de esta sesión de Claude Code.
 ```
 
 ---
 
 ## Progreso del Backfill GDELT (2015 → hoy)
 
-| Período | Ventanas | Artículos | Estado |
-|---------|----------|-----------|--------|
-| 2015 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2016 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2017 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2018 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2019 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2020 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2021 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2022 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2023 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2024 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2025 Q1-Q4 | 0/4 | ? | Pendiente |
-| 2026 Q1-Q2 | 0/2 | ? | Pendiente |
-| **TOTAL** | **0/46** | **0** | **Backfill no iniciado** |
-
-> Una vez que Actions corra con el código corregido, actualizar esta tabla con los datos reales.
-> El rendimiento real de GDELT (artículos/trimestre) determinará la duración del backfill.
+79 ventanas GDELT completadas (por encima de las ~45 estimadas para cubrir 2015→hoy). El
+backfill histórico avanzó considerablemente entre 2026-06-22 y 2026-09-06 vía las corridas
+exitosas de Actions (#90–#103), antes de que el fetch diario se rompiera (ver arriba). No se
+dispone de un desglose por trimestre en `processed.json` (solo se registra la lista de
+ventanas completadas); reconstruir esa tabla requeriría analizar los 79 rangos de fecha
+directamente, lo cual queda fuera del alcance de esta sesión.
 
 ---
 
@@ -67,6 +66,7 @@ Estado post-fix        : Pendiente validación en próxima corrida Actions
 |-------|---------------------|----------------------|------|
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
+| 2026-09-23 | 5 (arroz/MIDA: importaciones, inundaciones, siembra 2022-23, transición ministerial, compensaciones) | 21 | Corregidos 2 bugs críticos en `mark-ingested`/`mark-all-ingested` (ver log.md); excluidos 17 falsos positivos nuevos de la cola; diagnosticado fallo de GitHub Actions desde 2026-09-07 (requiere acción del owner) |
 
 ---
 
@@ -84,3 +84,9 @@ Al ejecutar, la routine DEBE:
 - Revisar el último log de GitHub Actions (ver wiki/log.md para contexto)
 - Identificar si el problema es GDELT rate-limit, RSS caído, o config
 - Documentar el diagnóstico en wiki/log.md con pasos para resolverlo
+
+**Nota permanente (desde 2026-09-23)**: si en una futura sesión "Días sin artículos nuevos"
+sigue creciendo y la corrida más reciente de Actions sigue fallando en segundos con
+`runner_id=0`, NO reabrir el diagnóstico de GDELT/RSS — el problema ya está identificado como
+de infraestructura de Actions (billing/permisos) y requiere acción manual del owner. Verificar
+primero si ya fue resuelto antes de re-diagnosticar desde cero.
