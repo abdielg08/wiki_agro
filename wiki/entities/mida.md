@@ -2,8 +2,8 @@
 title: MIDA — Ministerio de Desarrollo Agropecuario
 type: entity
 tags: [gobierno, ministerio, politica-agropecuaria, plan-mulino, semillas, fitosanitario, subsidios, transicion-gobierno, avicultura]
-last_updated: 2026-09-15
-article_count: 10
+last_updated: 2026-09-24
+article_count: 12
 sources:
   - "https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023"
   - "https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024"
@@ -15,6 +15,8 @@ sources:
   - "https://www.prensa.com/provincias/mida-adopta-medidas-de-prevencion-en-panama-oeste-ante-gripe-aviar/"
   - "https://www.prensa.com/economia/mida-refuerza-controles-por-brote-de-influenza-aviar-en-frontera-con-colombia/"
   - "https://www.prensa.com/economia/boquete-mida-inicia-evaluacion-de-areas-afectadas-tras-las-lluvias/"
+  - "https://www.prensa.com/impresa/economia/los-subsidios-acaparan-los-fondos-del-mida/"
+  - "https://www.prensa.com/economia/el-mida-y-el-ima-quedan-con-presupuestos-reducidos-para-2023/"
 related: [entities/idiap.md, entities/bda.md, topics/politicas_agropecuarias.md, topics/arroz.md, topics/subsidios_programas.md, topics/precios_mercados.md, topics/plagas_enfermedades.md, topics/avicultura.md, topics/chirique.md]
 ---
 
@@ -55,6 +57,10 @@ El Ministerio de Desarrollo Agropecuario (MIDA) es la institución rectora del s
 
 ### Planificación de Siembra
 - **2022**: proyectó cerca de **90,000 hectáreas** de arroz para el ciclo 2022-2023, con **79,600 ha** en secano [MIDA vía La Prensa, 2022-05-24](https://www.prensa.com/economia/panama-proyecta-sembrar-cerca-de-90-mil-hectareas-de-arroz-para-el-ciclo-2022-2023/)
+
+### Presupuesto — Subsidios vs. Productividad (2020) y Recorte 2023
+- **Agosto 2020**: de los **$161 millones** que el MEF recomendó para el MIDA, los subsidios acapararon la mayor parte del presupuesto; de los **$3.3 millones** requeridos para mejorar la productividad del sector, el MEF solo aprobó **$618 mil** [La Prensa, 2020-08-27](https://www.prensa.com/impresa/economia/los-subsidios-acaparan-los-fondos-del-mida/)
+- **Agosto 2022**: el MIDA y el Instituto de Mercadeo Agropecuario (IMA) quedaron con **presupuestos reducidos para 2023**; pese al recorte, el IMA proyectó aumentar las ferias de alimentos en el marco de los acuerdos de la mesa del diálogo de 2022 [La Prensa, 2022-08-31](https://www.prensa.com/economia/el-mida-y-el-ima-quedan-con-presupuestos-reducidos-para-2023/)
 
 ### Transición de Gobierno 2024 y Revisión de Subsidios
 - **7 de junio de 2024**: reunión de transición entre el ministro saliente Augusto Valderrama y el designado Roberto José Linares; se anunció revisión de los subsidios del MIDA [La Prensa, 2024-06-07](https://www.prensa.com/politica/roberto-linares-revisara-los-subsidios-en-el-mida/)
@@ -99,6 +105,8 @@ El Ministerio de Desarrollo Agropecuario (MIDA) es la institución rectora del s
 - [La Prensa, 2023 — Medidas de prevención en Panamá Oeste ante gripe aviar](https://www.prensa.com/provincias/mida-adopta-medidas-de-prevencion-en-panama-oeste-ante-gripe-aviar/)
 - [La Prensa, 2022 — Controles reforzados por brote de influenza aviar en Colombia](https://www.prensa.com/economia/mida-refuerza-controles-por-brote-de-influenza-aviar-en-frontera-con-colombia/)
 - [La Prensa, 2025 — Boquete: Mida evalúa áreas afectadas tras lluvias](https://www.prensa.com/economia/boquete-mida-inicia-evaluacion-de-areas-afectadas-tras-las-lluvias/)
+- [La Prensa, 2020 — Los subsidios acaparan los fondos del Mida](https://www.prensa.com/impresa/economia/los-subsidios-acaparan-los-fondos-del-mida/)
+- [La Prensa, 2022 — El MIDA y el IMA quedan con presupuestos reducidos para 2023](https://www.prensa.com/economia/el-mida-y-el-ima-quedan-con-presupuestos-reducidos-para-2023/)
 
 ## Ver también
 - [IDIAP](idiap.md) — investigación agropecuaria

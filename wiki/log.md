@@ -216,3 +216,52 @@ RECOVERY: El wiki construido por las routines nunca llegaba a main.
       (era la fuga de falsos positivos que GDELT/RSS ya bloqueaban).
     - NUEVO: .github/workflows/promote_wiki.yml — auto-promueve wiki/ +
       processed.json de ramas claude/** a main (arregla el Sísifo).
+
+## 2026-09-24 (sesión Claude Code — ROUTINE)
+INGEST: 5 artículos reales ingestados (0 falsos positivos detectados en este lote)
+  - `20250228_prensacom_...banco-nacional...` → Crédito y Financiamiento
+  - `20200827_prensacom_...subsidios-acaparan-fondos-mida` → Subsidios y Programas, Políticas Agropecuarias, MIDA
+  - `20200801_prensacom_...covid-19...cosecha-de-cafe` → Café y Cacao (página nueva), Chiriquí
+  - `20191115_prensacom_...agroturismo-temporada-cosecha` → Precios y Mercados (vínculo suave; extracto muy breve, sin cultivo/región específicos)
+  - `20220831_prensacom_...mida-y-el-ima...presupuestos-reducidos` → Políticas Agropecuarias, MIDA
+  - Nota: `sources/articles/*.json` de estos 5 artículos tienen `full_text: null`; el
+    contenido usado es el `summary_raw` truncado (~350 caracteres). Los resúmenes y
+    páginas de wiki quedan marcados explícitamente como basados en extracto, no en
+    texto completo.
+  - Página nueva creada: `wiki/topics/cafe_cacao.md` (estaba referenciada desde
+    `chirique.md` e `index.md` pero no existía — taxonomía de CLAUDE.md).
+  - `mark-all-ingested --limit 5` ejecutado correctamente: 48/57 ingestados, 9 pendientes.
+
+DIAGNÓSTICO AVANZADO — Fetch de GitHub Actions sigue caído (empeoró desde 09-15):
+  - Último `chore(sources)` con artículos nuevos: **2026-09-06** (commit `24cfc3c`).
+    Han pasado **18 días** sin artículos nuevos en `sources/articles/` (vs. 9 días
+    reportados el 2026-09-15). El umbral de 3 días sigue **ampliamente superado**.
+  - Verificado vía GitHub Actions API (`workflow_daily.yml`, id 283568372):
+    - Estado del workflow: `active` (no está deshabilitado).
+    - Runs #112 a #121 (2026-09-15 → 2026-09-24, 10 ejecuciones programadas
+      consecutivas): **todas** con `conclusion: failure`, completadas en 3-5
+      segundos cada una (vs. ~5-6 min de una corrida normal con artículos).
+    - Logs del job más reciente (run 36021398821, job 107706908313) ya no están
+      disponibles (HTTP 404 al descargarlos) — mismo patrón que en el diagnóstico
+      anterior: el job falla antes de producir logs útiles y estos expiran rápido.
+  - Conclusión reforzada: como el workflow está activo, corre en su horario, y el
+    fallo es sistemático e instantáneo (no depende del contenido de
+    `fetch_news.py`/`fetch_historical.py`, que ni siquiera llega a ejecutarse), la
+    causa más probable sigue siendo **cuota de minutos de GitHub Actions agotada**
+    (típico de repos privados en plan gratuito) o un bloqueo de facturación a nivel
+    de cuenta/organización. Un cambio de permisos de `GITHUB_TOKEN` es menos
+    probable dado que no hubo cambios de configuración del repo entre el 09-06 y
+    el 09-15 que coincidan con el inicio de las fallas.
+  - **Acción pendiente para el usuario** (fuera del alcance de esta sesión, requiere
+    acceso a facturación/configuración de la cuenta): revisar
+    https://github.com/settings/billing (cuota de minutos de Actions) y
+    Settings → Actions → General del repositorio `abdielg08/wiki_agro`.
+  - Impacto en el backlog: quedan 9 artículos genuinos pendientes de ingesta
+    (~2 sesiones de routine más). Si el fetch no se restablece, el backlog se
+    agotará en la próxima sesión o la siguiente, y el backfill histórico
+    2015→hoy quedará completamente detenido.
+
+COMMIT: wiki: ingest 5 artículos | pendientes: 9 | ventanas: 79
+
+## 2026-09-24 16:14
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code

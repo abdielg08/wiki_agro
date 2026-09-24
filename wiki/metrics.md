@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-09-23
+last_updated: 2026-09-24
 ---
 
 # Dashboard de Métricas
@@ -15,14 +15,14 @@ last_updated: 2026-09-23
 | Métrica | Valor | Meta |
 |---------|-------|------|
 | Artículos en sources/ (descargados) | 57 | ↑ continuo |
-| Artículos reales ingestados (wiki) | 16 | = total sin falsos positivos |
-| Falsos positivos acumulados (documentados) | 25 | **0 nuevos** desde el fix de `fetch_ddg_search` |
+| Artículos reales ingestados (wiki) | 21 | = total sin falsos positivos |
+| Falsos positivos acumulados (documentados) | 25 | **0 nuevos** desde el fix de `fetch_ddg_search` (0 nuevos detectados esta sesión) |
 | Fuera de cobertura temporal (pre-2015) | 2 | — |
-| Pendientes de ingesta (genuinos, verificados) | 14 | 0 |
-| Páginas en wiki/ | 35 (13 topics, 3 entidades, 16 resúmenes, 3 overview) | ↑ continuo |
+| Pendientes de ingesta (genuinos, verificados) | 9 | 0 |
+| Páginas en wiki/ | 41 (14 topics, 3 entidades, 21 resúmenes, 3 overview) | ↑ continuo |
 | Cobertura temporal | 2015-2026 (parcial, concentrada en 2019-2026) | 2015-02-19 → hoy |
 | Ventanas GDELT completadas | 79 | 45+ (rango base ya cubierto) |
-| Días sin artículos nuevos en sources/ | 9 (último: 2026-09-06) | máx 3 antes de diagnosticar — **UMBRAL SUPERADO** |
+| Días sin artículos nuevos en sources/ | 18 (último: 2026-09-06) | máx 3 antes de diagnosticar — **UMBRAL SUPERADO (empeoró vs. 09-15: 9 días)** |
 
 ---
 
@@ -30,17 +30,23 @@ last_updated: 2026-09-23
 
 ```
 Última ejecución EXITOSA  : 2026-09-06 (run #103) → 6 artículos nuevos
-Ejecuciones fallidas desde: 2026-09-07 → 2026-09-14 (8 corridas diarias consecutivas)
-Duración de las fallas    : ~3 segundos cada una (vs. ~5-6 min de una corrida normal)
-Diagnóstico               : patrón de fallo de arranque del job (no es un bug de
-                             fetch_news.py/fetch_historical.py); logs ya expirados
-                             (404) al momento del diagnóstico (2026-09-15)
-Causas probables          : cuota de minutos de Actions agotada, cambio de permisos
-                             de GITHUB_TOKEN/protección de rama, o workflow pausado
-                             a nivel de repositorio — requiere revisión manual del
-                             usuario (fuera del alcance de esta sesión)
-Acción pendiente          : usuario debe revisar Settings → Actions / Billing en GitHub
-Ver diagnóstico completo  : wiki/log.md, entrada 2026-09-15 08:30
+Ejecuciones fallidas desde: 2026-09-07 → 2026-09-24 (18 corridas diarias consecutivas,
+                             runs #104-#121; confirmado vía Actions API)
+Duración de las fallas    : ~3-5 segundos cada una (vs. ~5-6 min de una corrida normal)
+Estado del workflow       : "active" (NO deshabilitado) — confirmado vía API 2026-09-24
+Diagnóstico               : patrón de fallo de arranque del job, consistente en 18
+                             ejecuciones consecutivas; no es un bug de
+                             fetch_news.py/fetch_historical.py (el job falla antes de
+                             llegar a ese paso); logs expiran (404) en todos los casos
+                             revisados (2026-09-15 y 2026-09-24)
+Causa más probable         : cuota de minutos de GitHub Actions agotada (típico en
+                             repos privados en plan gratuito) o bloqueo de facturación
+                             a nivel de cuenta — el patrón sistemático e instantáneo
+                             descarta un bug de código
+Acción pendiente          : usuario debe revisar https://github.com/settings/billing
+                             (cuota de minutos de Actions) y Settings → Actions →
+                             General del repo abdielg08/wiki_agro
+Ver diagnóstico completo  : wiki/log.md, entradas 2026-09-15 08:30 y 2026-09-24
 ```
 
 ```
@@ -82,6 +88,7 @@ Bug adicional corregido   : mark_all_ingested() marcaba un conjunto de artículo
 | 2026-05-24 | 6 (semilla manual) | 0 | Datos semilla iniciales — no son fetches automáticos |
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
 | 2026-09-15 | 10 (2 lotes de 5) | 14 | Routine automatizada. Además: fix de bug crítico en `mark_all_ingested` (marcaba artículos equivocados), 17 falsos positivos nuevos detectados y documentados, 7 falsos positivos antiguos re-etiquetados, fix de raíz en `fetch_ddg_search` (faltaba filtro Panamá), y diagnóstico de 8 fallos consecutivos de GitHub Actions |
+| 2026-09-24 | 5 | 9 | Routine automatizada. 0 falsos positivos. Página nueva `topics/cafe_cacao.md`. Diagnóstico reforzado del fetch caído: confirmado vía Actions API que el workflow sigue activo pero acumula 18 corridas fallidas consecutivas (09-07 → 09-24); causa más probable: cuota de minutos de Actions agotada |
 
 ---
 
@@ -102,3 +109,11 @@ Al ejecutar, la routine DEBE:
 
 **Estado a 2026-09-15**: esta señal de alarma está ACTIVA (9 días sin artículos nuevos,
 8 ejecuciones de Actions fallando consecutivamente). Ver diagnóstico en wiki/log.md.
+
+**Estado a 2026-09-24**: la señal de alarma sigue ACTIVA y **ha empeorado** (18 días
+sin artículos nuevos, 18 ejecuciones de Actions fallando consecutivamente, runs
+#104-#121). El workflow está confirmado como `active` vía la API de GitHub Actions,
+por lo que se descarta que esté deshabilitado; el patrón de fallo instantáneo (3-5s)
+en todas las corridas apunta a cuota de minutos de Actions agotada o bloqueo de
+facturación. Requiere intervención del usuario en Settings → Billing / Actions de
+GitHub. Ver diagnóstico completo en wiki/log.md, entrada 2026-09-24.

@@ -2,7 +2,7 @@
 title: Índice del Wiki Agropecuario de Panamá
 type: overview
 tags: [indice, navegacion]
-last_updated: 2026-09-15
+last_updated: 2026-09-24
 article_count: 0
 ---
 
@@ -108,7 +108,12 @@ article_count: 0
 | 2025-10-07 | La Prensa | [Boquete: Mida evalúa áreas afectadas por lluvias](summaries/20251007_prensacom_boquete-mida-evaluacion-lluvias.md) | Chiriquí, plantaciones agropecuarias |
 | 2026-02-24 | La Prensa | [De la agricultura de subsistencia a la de precisión exportadora](summaries/20260224_prensacom_opinion-agricultura-precision-exportadora.md) | Opinión: subsidios vs. agricultura de precisión |
 | 2026-03-03 | La Prensa | [Nuevo viceministro del Mida](summaries/20260303_prensacom_nuevo-viceministro-mida-renuncia-ameglio.md) | José Aníbal Rincón Stanziola reemplaza a Ameglio |
+| 2025-02-28 | La Prensa | [Cartera de crédito agropecuario Banco Nacional 2024](summaries/20250228_prensacom_credito-agropecuario-banco-nacional-2024.md) | $714.1M en 2024, Segundo Encuentro Agropecuario 2025 |
+| 2020-08-27 | La Prensa | [Los subsidios acaparan los fondos del Mida](summaries/20200827_prensacom_subsidios-acaparan-fondos-mida.md) | De $3.3M requeridos para productividad, MEF aprobó $618K |
+| 2020-08-01 | La Prensa | [Medidas Covid-19 en cosecha de café](summaries/20200801_prensacom_medidas-covid19-cosecha-cafe-chiriqui.md) | Chiriquí, comités de bioseguridad, año agrícola 2020-2021 |
+| 2019-11-15 | La Prensa | [Agroturismo en temporada de cosecha](summaries/20191115_prensacom_agroturismo-temporada-cosecha.md) | Primer trimestre: mayor impulso de cosechas del país |
+| 2022-08-31 | La Prensa | [MIDA e IMA con presupuestos reducidos 2023](summaries/20220831_prensacom_mida-ima-presupuestos-reducidos-2023.md) | Recorte pese a acuerdos de la mesa del diálogo 2022 |
 
 ---
 
-*Última actualización del índice: 2026-09-15*
+*Última actualización del índice: 2026-09-24*
