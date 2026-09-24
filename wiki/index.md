@@ -2,7 +2,7 @@
 title: Índice del Wiki Agropecuario de Panamá
 type: overview
 tags: [indice, navegacion]
-last_updated: 2026-09-15
+last_updated: 2026-09-24
 article_count: 0
 ---
 
@@ -29,7 +29,7 @@ article_count: 0
 | [arroz.md](topics/arroz.md) | Producción, precios, variedades y retos del arroz panameño |
 | [maiz.md](topics/maiz.md) | Maíz: producción, gusano cogollero 2018, manejo integrado de plagas |
 | [platano_banano.md](topics/platano_banano.md) | Exportaciones, plagas (Sigatoka, Fusarium TR4) |
-| [cafe_cacao.md](topics/cafe_cacao.md) | Café de altura Chiriquí, cacao fino de aroma |
+| [cafe_cacao.md](topics/cafe_cacao.md) | Café de altura Chiriquí/David, bioseguridad Covid-19, agroturismo |
 | [cana_azucar.md](topics/cana_azucar.md) | Ingenios azucareros, producción nacional |
 | [hortalizas.md](topics/hortalizas.md) | Tomate, cebolla, tubérculos en Chiriquí y Azuero |
 
@@ -48,7 +48,7 @@ article_count: 0
 | [seguridad_alimentaria.md](topics/seguridad_alimentaria.md) | Autoabastecimiento, pobreza rural, déficit |
 | [plagas_enfermedades.md](topics/plagas_enfermedades.md) | Gusano cogollero, roya del café, enfermedades |
 | [precios_mercados.md](topics/precios_mercados.md) | Volatilidad de precios, importaciones vs. producción local |
-| [credito_financiamiento.md](topics/credito_financiamiento.md) | BDA, crédito agrícola, récord B/. 320M pandemia, digitalización |
+| [credito_financiamiento.md](topics/credito_financiamiento.md) | BDA, Banco Nacional, crédito agrícola, récord B/. 320M pandemia, digitalización |
 | [tecnologia_innovacion.md](topics/tecnologia_innovacion.md) | Agricultura de precisión, semillas mejoradas, IDIAP |
 | [agua_riego.md](topics/agua_riego.md) | Sistemas de riego, gestión hídrica, sequía |
 | [comercio_exterior.md](topics/comercio_exterior.md) | TLC, exportaciones, competitividad |
@@ -56,8 +56,8 @@ article_count: 0
 ### Políticas y Gobernanza
 | Página | Descripción |
 |--------|-------------|
-| [politicas_agropecuarias.md](topics/politicas_agropecuarias.md) | Leyes, Plan Mulino B/. 850M 2024-2029, planes de gobierno |
-| [subsidios_programas.md](topics/subsidios_programas.md) | Plan de Semillas, Agroalimentos, programas de apoyo |
+| [politicas_agropecuarias.md](topics/politicas_agropecuarias.md) | Leyes, Plan Mulino B/. 850M 2024-2029, planes de gobierno, restricciones presupuestarias |
+| [subsidios_programas.md](topics/subsidios_programas.md) | Plan de Semillas, Agroalimentos, programas de apoyo, presupuesto MIDA/IMA |
 
 ### Regiones Agrícolas
 | Página | Descripción |
@@ -67,7 +67,7 @@ article_count: 0
 | [veraguas.md](topics/veraguas.md) | Diversidad productiva, palma africana |
 | [cocle.md](topics/cocle.md) | Caña de azúcar, piña, ganadería |
 | [bocas_del_toro.md](topics/bocas_del_toro.md) | Banano (Chiquita/Fyffes), cacao, turismo rural |
-| [darien_comarca.md](topics/darien_comarca.md) | Frontera, agricultura indígena, palma africana |
+| [darien_comarca.md](topics/darien_comarca.md) | Frontera, agricultura indígena, crédito Banco Nacional en Chepigana |
 
 ---
 
@@ -108,7 +108,12 @@ article_count: 0
 | 2025-10-07 | La Prensa | [Boquete: Mida evalúa áreas afectadas por lluvias](summaries/20251007_prensacom_boquete-mida-evaluacion-lluvias.md) | Chiriquí, plantaciones agropecuarias |
 | 2026-02-24 | La Prensa | [De la agricultura de subsistencia a la de precisión exportadora](summaries/20260224_prensacom_opinion-agricultura-precision-exportadora.md) | Opinión: subsidios vs. agricultura de precisión |
 | 2026-03-03 | La Prensa | [Nuevo viceministro del Mida](summaries/20260303_prensacom_nuevo-viceministro-mida-renuncia-ameglio.md) | José Aníbal Rincón Stanziola reemplaza a Ameglio |
+| 2025-02-28 | La Prensa | [Cartera de crédito agropecuario Banco Nacional $714.1M 2024](summaries/20250228_prensacom_banco-nacional-credito-agropecuario-714m-2024.md) | Encuentro Agropecuario en Chepigana, Darién |
+| 2020-08-27 | La Prensa | [Los subsidios acaparan los fondos del Mida](summaries/20200827_prensacom_subsidios-acaparan-fondos-mida.md) | MEF aprobó solo $618K de $3.3M solicitados para productividad |
+| 2020-08-01 | La Prensa | [Medidas Covid-19 en cosecha de café](summaries/20200801_prensacom_medidas-covid-cosecha-cafe-chiriqui.md) | Bioseguridad en fincas de Chiriquí, cosecha 2020-2021 |
+| 2019-11-15 | La Prensa | [Agroturismo en temporada de cosecha](summaries/20191115_prensacom_agroturismo-temporada-cosecha.md) | Calendario de cosecha nacional, Q1 del año |
+| 2022-08-31 | La Prensa | [MIDA e IMA con presupuestos reducidos para 2023](summaries/20220831_prensacom_mida-ima-presupuestos-reducidos-2023.md) | IMA busca aumentar ferias de alimentos |
 
 ---
 
-*Última actualización del índice: 2026-09-15*
+*Última actualización del índice: 2026-09-24*

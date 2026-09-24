@@ -203,6 +203,37 @@ LINT: 35 páginas revisadas, 40 issues encontrados
 LINT: 35 páginas revisadas, 40 issues encontrados
   frontmatter:0, huérfanas:1, broken_links:29, stale:9, no_index:1
 
+## 2026-09-24 (rutina automatizada — sesión programada)
+INGEST: 5 artículos reales ingestados (prensa.com, todos verificados 100% sobre agro
+panameño, 0 falsos positivos).
+
+  - 20250228 — Cartera de crédito agropecuario Banco Nacional $714.1M en 2024 (Encuentro
+    Agropecuario en Chepigana, Darién) → summaries/ + topics/credito_financiamiento.md,
+    topics/darien_comarca.md (creado)
+  - 20200827 — Los subsidios acaparan los fondos del Mida (MEF aprobó $618K de $3.3M
+    solicitados para productividad) → summaries/ + topics/subsidios_programas.md,
+    topics/politicas_agropecuarias.md, entities/mida.md
+  - 20200801 — Medidas Covid-19 en la cosecha de café 2020-2021, Chiriquí (David) →
+    summaries/ + topics/cafe_cacao.md (creado), topics/chirique.md
+  - 20191115 — Agroturismo en temporada de cosecha → summaries/ + topics/cafe_cacao.md
+    (mención breve; texto fuente muy truncado, sin cultivos/regiones específicas)
+  - 20220831 — El MIDA y el IMA quedan con presupuestos reducidos para 2023 →
+    summaries/ + topics/subsidios_programas.md, topics/politicas_agropecuarias.md,
+    entities/mida.md
+
+Páginas creadas: topics/cafe_cacao.md, topics/darien_comarca.md
+Páginas actualizadas: topics/credito_financiamiento.md, topics/subsidios_programas.md,
+  topics/politicas_agropecuarias.md, topics/chirique.md, entities/mida.md, wiki/index.md
+Summaries: 5 nuevos archivos en wiki/summaries/
+
+Nota: el texto fuente de los 5 artículos venía truncado (`full_text: null`, solo
+`summary_raw` disponible, ~280 caracteres cada uno). Los resúmenes documentan
+explícitamente qué cifras/detalles no están disponibles en vez de inferirlos, siguiendo
+la práctica establecida en la sesión 2026-09-15, para sostener la tasa de falsos
+positivos en 0%.
+
+Pendientes después de esta sesión: 14 - 5 = 9 artículos genuinos por ingestar.
+
 ## 2026-09-23 (sesión Claude Code — RECUPERACIÓN + FIX TRANSMISIÓN)
 RECOVERY: El wiki construido por las routines nunca llegaba a main.
   Causa: sesiones de routine con outcome-branch propio + PR draft sin mergear.
@@ -216,3 +247,41 @@ RECOVERY: El wiki construido por las routines nunca llegaba a main.
       (era la fuga de falsos positivos que GDELT/RSS ya bloqueaban).
     - NUEVO: .github/workflows/promote_wiki.yml — auto-promueve wiki/ +
       processed.json de ramas claude/** a main (arregla el Sísifo).
+
+## 2026-09-24 08:13
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code
+
+## 2026-09-24 (rutina automatizada — diagnóstico avanzado del fetch)
+DIAGNÓSTICO — Confirmado: cuota de minutos de GitHub Actions agotada (billing).
+
+Se revisó el historial de `wiki_daily.yml` vía API de GitHub Actions:
+  - Último commit real con artículos nuevos en `sources/`: `24cfc3c` (2026-09-06,
+    run #103) → **18 días** sin artículos nuevos (umbral CLAUDE.md: 3 días).
+  - Runs #104 a #120 (2026-09-07 → 2026-09-23): **17 ejecuciones diarias consecutivas**
+    con `conclusion: failure`, cada una completada en ~3-5 segundos.
+  - **Nueva evidencia** (no disponible en el diagnóstico previo del 2026-09-15): se
+    consultó `get_workflow_run_usage` para el run #120 (2026-09-23, ejecutado hace
+    menos de 24h) → `"UBUNTU": {"total_ms": 0}` — el job reporta **0 ms de tiempo
+    facturable**. Esto confirma que el runner nunca llega a ejecutarse (no es un fallo
+    dentro de `fetch_news.py`/`fetch_historical.py`, ni un timeout de red).
+  - Los logs del job siguen devolviendo HTTP 404 incluso para el run de ayer (menos de
+    24h de antigüedad) — GitHub normalmente retiene logs 90 días, por lo que un 404 tan
+    rápido no es "expiración natural"; es consistente con un job bloqueado antes de
+    generar logs, típico cuando se agota la cuota de minutos incluidos y no hay método
+    de pago / límite de gasto configurado (GitHub bloquea el runner sin generar log).
+
+**Conclusión**: de las 3 causas hipotetizadas el 2026-09-15, la evidencia de esta sesión
+(0 ms facturables + logs inexistentes incluso para runs recientes) apunta con alta
+confianza a la **causa #1: cuota de minutos de Actions agotada o límite de gasto en $0**,
+descartando un problema de permisos de `GITHUB_TOKEN` (eso fallaría más tarde, en el
+paso de `git push`, no en 0ms) o de workflow deshabilitado (el workflow sí se dispara y
+genera un run, solo que sin runner asignado).
+
+**Acción requerida (fuera del alcance de esta sesión)**: el usuario (dueño de la cuenta/
+organización `abdielg08`) debe revisar GitHub → Settings → Billing and plans → Plans and
+usage → Actions, y verificar/ajustar el "spending limit" (agregar método de pago o subir
+el límite de $0) para que los runners puedan asignarse de nuevo.
+
+**Impacto en el backlog**: quedan 9 artículos genuinos pendientes de ingesta (suficiente
+para ~2 sesiones más de routine), pero sin fetch nuevo el backlog se agotará pronto y el
+backfill histórico 2015→hoy quedará detenido hasta que se resuelva la cuota de Actions.

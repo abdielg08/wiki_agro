@@ -1,13 +1,15 @@
 ---
 title: Políticas Agropecuarias en Panamá
 type: topic
-tags: [politica-agropecuaria, plan-mulino, mida, bda, idiap, seguridad-alimentaria, riego, semillas, 2024, 2026]
-last_updated: 2026-09-15
-article_count: 3
+tags: [politica-agropecuaria, plan-mulino, mida, ima, bda, idiap, mef, seguridad-alimentaria, riego, semillas, presupuesto, 2020, 2022, 2024, 2026]
+last_updated: 2026-09-24
+article_count: 5
 sources:
   - "https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024"
   - "https://www.prensa.com/politica/nombran-a-nuevo-viceministro-del-mida-tras-renuncia-de-francisco-ameglio/"
   - "https://www.prensa.com/opinion/panama-de-la-agricultura-de-subsistencia-a-la-agricultura-de-precision-exportadora/"
+  - "https://www.prensa.com/impresa/economia/los-subsidios-acaparan-los-fondos-del-mida/"
+  - "https://www.prensa.com/economia/el-mida-y-el-ima-quedan-con-presupuestos-reducidos-para-2023/"
 related: [topics/subsidios_programas.md, topics/tecnologia_innovacion.md, topics/agua_riego.md, topics/credito_financiamiento.md, entities/mida.md, entities/bda.md, entities/idiap.md]
 ---
 
@@ -57,6 +59,10 @@ Las políticas agropecuarias panameñas de 2015-2025 han evolucionado de interve
 - **Marzo 2026**: el presidente José Raúl Mulino nombró a **José Aníbal Rincón Stanziola** como nuevo viceministro del MIDA, tras la renuncia de Francisco José Ameglio [La Prensa, 2026-03-03](https://www.prensa.com/politica/nombran-a-nuevo-viceministro-del-mida-tras-renuncia-de-francisco-ameglio/)
 - **Febrero 2026**: columna de opinión plantea que Panamá no superará la agricultura de subsistencia con subsidios permanentes ni políticas aisladas, proponiendo una transición hacia la agricultura de precisión exportadora [La Prensa, opinión, 2026-02-24](https://www.prensa.com/opinion/panama-de-la-agricultura-de-subsistencia-a-la-agricultura-de-precision-exportadora/)
 
+### Restricciones Presupuestarias (2020–2022)
+- **Agosto 2020**: de $161 millones recomendados por el MEF para el MIDA, solo se aprobaron $618 mil de los $3.3 millones solicitados para productividad; los subsidios directos absorbieron la mayor parte del presupuesto [La Prensa, 2020-08-27](https://www.prensa.com/impresa/economia/los-subsidios-acaparan-los-fondos-del-mida/)
+- **Agosto 2022**: MIDA e IMA (Instituto de Mercadeo Agropecuario) quedaron con presupuestos reducidos para el año fiscal 2023 [La Prensa, 2022-08-31](https://www.prensa.com/economia/el-mida-y-el-ima-quedan-con-presupuestos-reducidos-para-2023/)
+
 ## Tendencias (2015–2025)
 
 - Evolución desde respuestas reactivas de emergencia hacia planificación plurianual estructurada
@@ -64,6 +70,7 @@ Las políticas agropecuarias panameñas de 2015-2025 han evolucionado de interve
 - Políticas inclusivas para jóvenes, mujeres y pequeños productores
 - Fortalecimiento del IDIAP como eje de investigación y desarrollo tecnológico
 - Debate abierto (2026) entre continuidad de subsidios directos y transición hacia agricultura de precisión exportadora
+- Restricciones presupuestarias recurrentes (2020, 2022) limitan la ejecución de partidas de productividad e institucionales vinculadas al MIDA
 
 ## Retos
 
@@ -77,6 +84,8 @@ Las políticas agropecuarias panameñas de 2015-2025 han evolucionado de interve
 - [MIDA, 2024 — Plan Agropecuario Gobierno Mulino 2024-2029](https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024)
 - [La Prensa, 2026 — Nuevo viceministro del Mida](https://www.prensa.com/politica/nombran-a-nuevo-viceministro-del-mida-tras-renuncia-de-francisco-ameglio/)
 - [La Prensa, 2026 — De la agricultura de subsistencia a la agricultura de precisión exportadora](https://www.prensa.com/opinion/panama-de-la-agricultura-de-subsistencia-a-la-agricultura-de-precision-exportadora/)
+- [La Prensa, 2020 — Los subsidios acaparan los fondos del Mida](https://www.prensa.com/impresa/economia/los-subsidios-acaparan-los-fondos-del-mida/)
+- [La Prensa, 2022 — El MIDA y el IMA quedan con presupuestos reducidos para 2023](https://www.prensa.com/economia/el-mida-y-el-ima-quedan-con-presupuestos-reducidos-para-2023/)
 
 ## Ver también
 
