@@ -2,7 +2,7 @@
 title: Log de Actividad del Wiki
 type: overview
 tags: [log, actividad]
-last_updated: 2025-05-24
+last_updated: 2026-09-24
 ---
 
 # Log de Actividad
@@ -216,3 +216,46 @@ RECOVERY: El wiki construido por las routines nunca llegaba a main.
       (era la fuga de falsos positivos que GDELT/RSS ya bloqueaban).
     - NUEVO: .github/workflows/promote_wiki.yml — auto-promueve wiki/ +
       processed.json de ramas claude/** a main (arregla el Sísifo).
+
+## 2026-09-24 (sesión de routine — SIN ingesta nueva, trabajo duplicado detectado)
+
+DIAGNÓSTICO: `python wiki_agro.py stats` mostró 14 pendientes al iniciar. `ingest --limit 5`
+devolvió el mismo lote de 5 artículos que ya habían sido procesados por **dos** sesiones de
+routine anteriores el mismo 2026-09-23, ambas todavía sin mergear a `main`:
+
+- **PR #307** (rama `claude/modest-galileo-21i61b`): contiene el trabajo real de ingesta —
+  los 5 resúmenes, `topics/cafe_cacao.md` (nuevo), y actualizaciones a
+  `credito_financiamiento.md`, `subsidios_programas.md`, `precios_mercados.md`, `chirique.md`,
+  `entities/mida.md`, `index.md`.
+- **PR #308** (rama `claude/modest-galileo-qsbryn`): contiene el fix de la regresión en
+  `scripts/ingest.py::mark_all_ingested()` (volvía a usar el orden alfabético de
+  `find_pending()` en vez de las URLs reales de `pending_ingest.md`, marcando artículos
+  equivocados como ingestados — el mismo bug ya corregido el 2026-09-15 y perdido en la
+  recuperación de rama del 2026-09-23).
+
+Esta sesión reprodujo *de forma independiente* ambos hallazgos (procesó los mismos 5
+artículos y encontró la misma regresión al correr `mark-all-ingested`, verificado en
+`sources/processed.json`: solo 1 de 5 URLs marcadas coincidía con los artículos realmente
+procesados). Para no sumar una tercera rama/PR con contenido duplicado —el mismo patrón de
+"Sísifo" (ramas huérfanas) que la recuperación del 2026-09-23 ya identificó como problema—
+esta sesión **descartó** su copia local de los resúmenes/topics/entities duplicados y
+**no** volvió a marcar nada en `processed.json` (main sigue en 14 pendientes hasta que se
+mergee el #307). Sí se conserva en esta rama el fix de `mark_all_ingested()` (idéntico en
+esencia al del #308) como respaldo, por si el #308 no se mergea.
+
+**Recomendación al usuario**: mergear el PR #307 primero (baja pendientes de 14 a 9 en
+`main`) y luego el #308 (fix de código), o combinarlos en un solo merge. Mientras estas
+ramas draft sigan abiertas, cada nueva sesión de routine seguirá reprocesando el mismo lote.
+
+DIAGNÓSTICO — GitHub Actions `wiki_daily.yml`: confirmado vía API que sigue fallando.
+Última ejecución exitosa: run #103 (2026-09-06). Runs #104 a #120 (2026-09-07 → 2026-09-23,
+17 corridas diarias consecutivas): `conclusion: failure`, cada una completada en ~4-5
+segundos (patrón de fallo de arranque del job, sin logs disponibles — mismo diagnóstico que
+el del 2026-09-15, ahora con 18 días sin artículos nuevos en `sources/`, muy por encima del
+umbral de 3 días de CLAUDE.md). `promote_wiki.yml` (el workflow que debería auto-promover
+`wiki/` + `processed.json` de ramas `claude/**` a `main`) también falla con el mismo patrón
+en sus 4 corridas hasta ahora — por lo que, aunque se mergeen los PRs #307/#308 manualmente
+vía GitHub, la promoción automática para *futuras* sesiones de routine seguirá bloqueada
+hasta que se resuelva la causa raíz (cuota/facturación de Actions o configuración del
+repositorio — fuera del alcance de esta sesión; requiere revisión manual del usuario en
+Settings → Actions / Billing).
