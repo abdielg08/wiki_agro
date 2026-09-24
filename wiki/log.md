@@ -263,5 +263,46 @@ DIAGNÓSTICO AVANZADO — Fetch de GitHub Actions sigue caído (empeoró desde 0
 
 COMMIT: wiki: ingest 5 artículos | pendientes: 9 | ventanas: 79
 
+## 2026-09-24 (sesión Claude Code — HALLAZGO CRÍTICO: cuota de Actions confirmada + 30 PRs sin mergear)
+Tras el push de esta sesión a `claude/modest-galileo-q45rpz`, se revisó si
+`promote_wiki.yml` (el workflow que promueve `wiki/` + `sources/processed.json` de
+ramas `claude/**` a `main`) se disparó correctamente. Hallazgos:
+
+- **Confirmación técnica de la causa raíz**: `get_workflow_run_usage` sobre el run
+  disparado por este mismo push (36026128678) devuelve **`total_ms: 0` facturables**
+  pese a `run_duration_ms: 4000`. Esto es la firma característica de una cuota de
+  minutos de GitHub Actions agotada (o cuenta bloqueada por facturación): el job se
+  encola y se mata antes de iniciar ejecución facturable. Confirma de forma
+  independiente el diagnóstico de esta misma sesión y el de una sesión previa
+  (2026-09-24 00:22, PR #309) que había llegado a la misma conclusión.
+- **`promote_wiki.yml` también está caído por la misma causa**: sus últimas 4
+  corridas (runs #4-#7, incluida la disparada por el push de esta sesión) terminan
+  en `failure` en segundos. Como este workflow es el que arregla el problema de
+  "Sísifo" (rama `claude/**` → `main`), su caída significa que **ninguna rama
+  `claude/**` con trabajo de wiki se está promoviendo a `main` desde que empezó el
+  agotamiento de cuota**, incluida la de esta sesión.
+- **Impacto acumulado**: hay **30 pull requests abiertos** (`#279`-`#304`, `#307`-
+  `#310`) sin mergear a `main`, cada uno con contenido de wiki de sesiones de
+  routine que nunca llegó a `main` por esta causa. Una sesión previa (PR #309,
+  2026-09-24 00:22) ya había detectado que #307 y #308 eran ingestas duplicadas
+  del mismo lote de 5 artículos por el mismo motivo (la rama de origen nunca se
+  promovió, así que el siguiente `ingest --limit 5` volvió a ofrecer el mismo lote).
+  El riesgo de duplicación de contenido **aumenta con cada sesión adicional** mientras
+  esta cadena de PRs siga sin resolverse.
+- **Fuera del alcance de esta sesión**: mergear manualmente 30 PRs sin revisión
+  individual sería riesgoso (posibles conflictos y contenido duplicado entre ramas
+  que divergieron en distintos puntos). Esta sesión no intentó mergearlos.
+
+**Acción pendiente crítica para el usuario**:
+1. Resolver la cuota/facturación de GitHub Actions en
+   https://github.com/settings/billing (o el nivel de organización si aplica).
+   Esto es el bloqueador raíz de fetch diario **y** de la promoción automática.
+2. Una vez resuelto, revisar y mergear (o cerrar los duplicados de) los PRs
+   `#279`-`#304` y `#307`-`#310` — probablemente en orden cronológico, revisando
+   duplicados como el caso #307/#308 ya documentado.
+3. Alternativa manual mientras se resuelve la facturación: mergear PRs vía la
+   interfaz web de GitHub (el merge en sí no requiere minutos de Actions, solo los
+   checks automáticos como `promote_wiki.yml` no correrán).
+
 ## 2026-09-24 16:14
 INGEST: 5 artículos marcados como ingestados por sesión Claude Code
