@@ -1,12 +1,13 @@
 ---
 title: Crédito y Financiamiento Agropecuario en Panamá
 type: topic
-tags: [credito, financiamiento, bda, pandemia, covid19, ganaderia, arroz, tasas, digitalizacion]
-last_updated: 2026-05-24
-article_count: 1
+tags: [credito, financiamiento, bda, pandemia, covid19, ganaderia, arroz, tasas, digitalizacion, banco-nacional]
+last_updated: 2026-09-25
+article_count: 2
 sources:
   - "https://www.bda.gob.pa/noticias/credito-agropecuario-pandemia-resultados-2021"
-related: [topics/ganaderia_bovina.md, topics/arroz.md, topics/seguridad_alimentaria.md, entities/bda.md, entities/mida.md]
+  - "https://www.prensa.com/economia/cartera-de-credito-agropecuario-de-banco-nacional-de-panama-alcanzo-los-7141-millones-en-2024/"
+related: [topics/ganaderia_bovina.md, topics/arroz.md, topics/seguridad_alimentaria.md, topics/darien_comarca.md, entities/bda.md, entities/mida.md]
 ---
 
 # Crédito y Financiamiento Agropecuario en Panamá
@@ -42,6 +43,11 @@ El Banco de Desarrollo Agropecuario (BDA) es el principal instrumento de financi
 - Tiempo de aprobación reducido: **45 → 15 días** mediante digitalización
 - **40%** de solicitudes recibidas en línea (2020-2021)
 
+### Banco Nacional de Panamá — Cartera Agropecuaria 2024
+- Cartera de crédito agropecuario del **Banco Nacional de Panamá**: **$714.1 millones** en 2024 [La Prensa, 2025-02-28](https://www.prensa.com/economia/cartera-de-credito-agropecuario-de-banco-nacional-de-panama-alcanzo-los-7141-millones-en-2024/)
+- Dato anunciado en el Segundo Encuentro Agropecuario del BNP (temporada 2025), lema "La ruta hacia la sostenibilidad agropecuaria", realizado en Chepigana, Darién
+- Fuente truncada: sin desglose por rubro ni comparación interanual disponible
+
 ### Plan Mulino 2024-2029 — Refuerzo Financiero
 - Refuerzo BDA: **B/. 150 millones** adicionales [MIDA, 2024-03-05]
 - Crédito especial jóvenes y mujeres: **3% anual** (nuevo fondo)
@@ -65,6 +71,7 @@ El Banco de Desarrollo Agropecuario (BDA) es el principal instrumento de financi
 
 - [BDA, 2021 — Crédito agropecuario pandemia 2020-2021](https://www.bda.gob.pa/noticias/credito-agropecuario-pandemia-resultados-2021)
 - [MIDA, 2024 — Plan Agropecuario Mulino 2024-2029](https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024)
+- [La Prensa, 2025 — Cartera de crédito agropecuario del Banco Nacional alcanzó $714.1M en 2024](https://www.prensa.com/economia/cartera-de-credito-agropecuario-de-banco-nacional-de-panama-alcanzo-los-7141-millones-en-2024/)
 
 ## Ver también
 
@@ -72,4 +79,5 @@ El Banco de Desarrollo Agropecuario (BDA) es el principal instrumento de financi
 - [Ganadería Bovina](ganaderia_bovina.md)
 - [Arroz en Panamá](arroz.md)
 - [Políticas Agropecuarias](politicas_agropecuarias.md)
+- [Darién y Comarca](darien_comarca.md)
 - [MIDA](../entities/mida.md)

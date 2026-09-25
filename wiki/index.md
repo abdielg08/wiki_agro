@@ -2,7 +2,7 @@
 title: Índice del Wiki Agropecuario de Panamá
 type: overview
 tags: [indice, navegacion]
-last_updated: 2026-09-15
+last_updated: 2026-09-25
 article_count: 0
 ---
 
@@ -79,6 +79,7 @@ article_count: 0
 | [mida.md](entities/mida.md) | Ministerio de Desarrollo Agropecuario |
 | [idiap.md](entities/idiap.md) | Instituto de Investigación Agropecuaria de Panamá |
 | [bda.md](entities/bda.md) | Banco de Desarrollo Agropecuario |
+| [ima.md](entities/ima.md) | Instituto de Mercadeo Agropecuario |
 
 ### Organizaciones Internacionales
 | Página | Descripción |
@@ -108,7 +109,12 @@ article_count: 0
 | 2025-10-07 | La Prensa | [Boquete: Mida evalúa áreas afectadas por lluvias](summaries/20251007_prensacom_boquete-mida-evaluacion-lluvias.md) | Chiriquí, plantaciones agropecuarias |
 | 2026-02-24 | La Prensa | [De la agricultura de subsistencia a la de precisión exportadora](summaries/20260224_prensacom_opinion-agricultura-precision-exportadora.md) | Opinión: subsidios vs. agricultura de precisión |
 | 2026-03-03 | La Prensa | [Nuevo viceministro del Mida](summaries/20260303_prensacom_nuevo-viceministro-mida-renuncia-ameglio.md) | José Aníbal Rincón Stanziola reemplaza a Ameglio |
+| 2025-02-28 | La Prensa | [Cartera de crédito agropecuario del Banco Nacional $714.1M en 2024](summaries/20250228_prensacom_economia-cartera-de-credito-agropecuario-de-banco-nacional-d.md) | Segundo Encuentro Agropecuario, Chepigana, Darién |
+| 2020-08-27 | La Prensa | [Los subsidios acaparan los fondos del Mida](summaries/20200827_prensacom_impresa-economia-los-subsidios-acaparan-los-fondos-del-mida.md) | MEF aprobó $618K de $3.3M solicitados |
+| 2020-08-01 | La Prensa | [Medidas Covid-19 en cosecha de café](summaries/20200801_prensacom_provincias-fijan-medidas-para-prevenir-casos-de-la-covid-19.md) | Chiriquí, comités de bioseguridad, cosecha 2020-2021 |
+| 2019-11-15 | La Prensa | [Agroturismo en temporada de cosecha](summaries/20191115_prensacom_impresa-economia-agroturismo-temporada-cosecha_0_5442205773.md) | Fuente muy truncada, referencia mínima |
+| 2022-08-31 | La Prensa | [El MIDA y el IMA quedan con presupuestos reducidos para 2023](summaries/20220831_prensacom_economia-el-mida-y-el-ima-quedan-con-presupuestos-reducidos.md) | Recorte presupuestario, IMA planea más ferias de alimentos |
 
 ---
 
-*Última actualización del índice: 2026-09-15*
+*Última actualización del índice: 2026-09-25*
