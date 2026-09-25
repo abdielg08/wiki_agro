@@ -114,6 +114,11 @@ article_count: 0
 | 2020-08-01 | La Prensa | [Medidas Covid-19 en cosecha de café](summaries/20200801_prensacom_provincias-fijan-medidas-para-prevenir-casos-de-la-covid-19.md) | Chiriquí, comités de bioseguridad, cosecha 2020-2021 |
 | 2019-11-15 | La Prensa | [Agroturismo en temporada de cosecha](summaries/20191115_prensacom_impresa-economia-agroturismo-temporada-cosecha_0_5442205773.md) | Fuente muy truncada, referencia mínima |
 | 2022-08-31 | La Prensa | [El MIDA y el IMA quedan con presupuestos reducidos para 2023](summaries/20220831_prensacom_economia-el-mida-y-el-ima-quedan-con-presupuestos-reducidos.md) | Recorte presupuestario, IMA planea más ferias de alimentos |
+| 2025-08-16 | La Prensa | [Panamá busca fortalecer cooperación agropecuaria con Argentina a través del IICA](summaries/20250816_prensacom_iica-cooperacion-agropecuaria-argentina.md) | Encuentro con IICA, MIDA y canciller de San Vicente y las Granadinas |
+| 2022-03-24 | La Prensa | [Mida emite alerta zoosanitaria por influenza aviar](summaries/20220324_prensacom_mida-alerta-zoosanitaria-influenza-aviar.md) | Riesgo detectado en Canadá y Estados Unidos |
+| 2024-08-28 | La Prensa | [Agricultura vertical del IICA: lechuga en 30 días](summaries/20240828_prensacom_agricultura-vertical-iica-lechuga.md) | Prototipo sin suelo ni sol, oficinas del IICA en Panamá |
+| 2020-07-31 | La Prensa | [MIDA confirma llegada de cebolla importada](summaries/20200731_prensacom_mida-llegada-cebolla-importada.md) | 20,000 quintales (titular) / 10 contenedores (texto) |
+| 2019-11-21 | La Prensa | [Ministro Valderrama niega irregularidades en planilla del Mida](summaries/20191121_prensacom_valderrama-niega-irregularidades-planilla-mida.md) | Negó dobles salarios en el MIDA |
 
 ---
 
