@@ -1,9 +1,9 @@
 ---
 title: MIDA — Ministerio de Desarrollo Agropecuario
 type: entity
-tags: [gobierno, ministerio, politica-agropecuaria, plan-mulino, semillas, fitosanitario, subsidios, transicion-gobierno, avicultura, presupuesto, ima]
+tags: [gobierno, ministerio, politica-agropecuaria, plan-mulino, semillas, fitosanitario, subsidios, transicion-gobierno, avicultura, presupuesto, ima, iica, cooperacion-internacional, hortalizas, gobernanza]
 last_updated: 2026-09-25
-article_count: 12
+article_count: 16
 sources:
   - "https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023"
   - "https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024"
@@ -17,7 +17,11 @@ sources:
   - "https://www.prensa.com/economia/boquete-mida-inicia-evaluacion-de-areas-afectadas-tras-las-lluvias/"
   - "https://www.prensa.com/impresa/economia/los-subsidios-acaparan-los-fondos-del-mida/"
   - "https://www.prensa.com/economia/el-mida-y-el-ima-quedan-con-presupuestos-reducidos-para-2023/"
-related: [entities/idiap.md, entities/bda.md, topics/politicas_agropecuarias.md, topics/arroz.md, topics/subsidios_programas.md, topics/precios_mercados.md, topics/plagas_enfermedades.md, topics/avicultura.md, topics/chirique.md]
+  - "https://www.prensa.com/economia/panama-busca-fortalecer-cooperacion-agropecuaria-con-argentina-a-traves-del-iica/"
+  - "https://www.prensa.com/sociedad/ministerio-de-desarrollo-agropecuario-emite-alerta-zoosanitaria-ante-riesgo-de-influenza-aviar/"
+  - "https://www.prensa.com/economia/mida-confirma-la-llegada-de-20-mil-quintales-de-cebolla-importada/"
+  - "https://www.prensa.com/economia/Ministro-Valderrama-irregularidades-planilla-Mida_0_5446705379.html"
+related: [entities/idiap.md, entities/bda.md, entities/iica_panama.md, topics/politicas_agropecuarias.md, topics/arroz.md, topics/subsidios_programas.md, topics/precios_mercados.md, topics/plagas_enfermedades.md, topics/avicultura.md, topics/hortalizas.md, topics/chirique.md]
 ---
 
 # MIDA — Ministerio de Desarrollo Agropecuario
@@ -66,8 +70,18 @@ El Ministerio de Desarrollo Agropecuario (MIDA) es la institución rectora del s
 - Gremios de productores de arroz denuncian importaciones masivas autorizadas durante la cosecha nacional, caída de precios y eliminación de subsidios; la industria molinera defiende las importaciones como necesarias para el abastecimiento [La Prensa, 2025-07-24](https://www.prensa.com/economia/que-ocurre-con-el-arroz-en-panama-productores-temen-perdidas-en-la-cosecha-mientras-la-industria-justifica-las-importaciones/)
 
 ### Vigilancia Zoosanitaria — Influenza Aviar
+- **24 de marzo de 2022**: el MIDA emitió una alerta zoosanitaria ante el riesgo de entrada de Influenza Aviar de Alta Patogenicidad (IAAP) detectada en Canadá y Estados Unidos [La Prensa, 2022-03-24](https://www.prensa.com/sociedad/ministerio-de-desarrollo-agropecuario-emite-alerta-zoosanitaria-ante-riesgo-de-influenza-aviar/)
 - **2022**: la Dirección de Salud Animal del MIDA reforzó controles en la frontera con Colombia tras un brote de influenza aviar en ese país [La Prensa, 2022-10-22](https://www.prensa.com/economia/mida-refuerza-controles-por-brote-de-influenza-aviar-en-frontera-con-colombia/)
 - **2023**: la Dirección Nacional de Salud Animal emitió medidas preventivas en Panamá Oeste ante riesgo de gripe aviar [La Prensa, 2023-02-16](https://www.prensa.com/provincias/mida-adopta-medidas-de-prevencion-en-panama-oeste-ante-gripe-aviar/)
+
+### Cooperación Internacional
+- **Agosto 2025**: participó, junto al ministro Roberto Linares, en un encuentro orientado a fortalecer la cooperación agropecuaria de Panamá con Argentina, mediado por el IICA; asistieron también el Director General del IICA (Manuel Otero) y el canciller de San Vicente y las Granadinas, lo que sugiere un evento de alcance multilateral [La Prensa, 2025-08-16](https://www.prensa.com/economia/panama-busca-fortalecer-cooperacion-agropecuaria-con-argentina-a-traves-del-iica/)
+
+### Importaciones Puntuales — Cebolla (2020)
+- **31 de julio de 2020**: el MIDA anunció la llegada de cebolla importada para normalizar el abastecimiento nacional; la fuente cita **20,000 quintales** (titular) y **10 contenedores** (cuerpo del texto) sin conciliar ambas cifras [La Prensa, 2020-07-31](https://www.prensa.com/economia/mida-confirma-la-llegada-de-20-mil-quintales-de-cebolla-importada/)
+
+### Gobernanza y Transparencia Institucional
+- **20 de noviembre de 2019**: el entonces ministro Augusto Valderrama negó públicamente que hubiera funcionarios del MIDA cobrando dos salarios, en el contexto de una revisión realizada al asumir el cargo [La Prensa, 2019-11-21](https://www.prensa.com/economia/Ministro-Valderrama-irregularidades-planilla-Mida_0_5446705379.html)
 
 ### Cambio de Viceministro (2026)
 - El presidente José Raúl Mulino nombró a **José Aníbal Rincón Stanziola** como nuevo viceministro del MIDA tras la renuncia de Francisco José Ameglio [La Prensa, 2026-03-03](https://www.prensa.com/politica/nombran-a-nuevo-viceministro-del-mida-tras-renuncia-de-francisco-ameglio/)
@@ -93,6 +107,8 @@ El Ministerio de Desarrollo Agropecuario (MIDA) es la institución rectora del s
 - Retrasos en el pago de compensaciones y subsidios comprometidos a productores (Panamá Este y Darién, 2023-2024)
 - Tensión entre política de importaciones y calendario de cosecha nacional (arroz, 2025)
 - Presión presupuestaria estructural: recursos limitados que priorizan subsidios sobre inversión en productividad (2020); recortes al MIDA y al IMA en años de ajuste fiscal (2022-2023)
+- Cuestionamientos periódicos sobre gobernanza interna (denuncias de dobles salarios, 2019), que el ministerio ha debido responder públicamente
+- Dependencia de importaciones puntuales para estabilizar el abastecimiento de productos como la cebolla (2020)
 
 ## Referencias
 
@@ -108,14 +124,20 @@ El Ministerio de Desarrollo Agropecuario (MIDA) es la institución rectora del s
 - [La Prensa, 2025 — Boquete: Mida evalúa áreas afectadas tras lluvias](https://www.prensa.com/economia/boquete-mida-inicia-evaluacion-de-areas-afectadas-tras-las-lluvias/)
 - [La Prensa, 2020 — Los subsidios acaparan los fondos del Mida](https://www.prensa.com/impresa/economia/los-subsidios-acaparan-los-fondos-del-mida/)
 - [La Prensa, 2022 — El MIDA y el IMA quedan con presupuestos reducidos para 2023](https://www.prensa.com/economia/el-mida-y-el-ima-quedan-con-presupuestos-reducidos-para-2023/)
+- [La Prensa, 2025 — Panamá busca fortalecer cooperación agropecuaria con Argentina a través del IICA](https://www.prensa.com/economia/panama-busca-fortalecer-cooperacion-agropecuaria-con-argentina-a-traves-del-iica/)
+- [La Prensa, 2022 — Alerta zoosanitaria ante riesgo de influenza aviar](https://www.prensa.com/sociedad/ministerio-de-desarrollo-agropecuario-emite-alerta-zoosanitaria-ante-riesgo-de-influenza-aviar/)
+- [La Prensa, 2020 — MIDA confirma la llegada de 20 mil quintales de cebolla importada](https://www.prensa.com/economia/mida-confirma-la-llegada-de-20-mil-quintales-de-cebolla-importada/)
+- [La Prensa, 2019 — Ministro Valderrama niega irregularidades en planilla del Mida](https://www.prensa.com/economia/Ministro-Valderrama-irregularidades-planilla-Mida_0_5446705379.html)
 
 ## Ver también
 - [IDIAP](idiap.md) — investigación agropecuaria
 - [BDA](bda.md) — financiamiento al sector
 - [IMA](ima.md) — mercadeo agropecuario
+- [IICA Panamá](iica_panama.md) — cooperación técnica internacional
 - [Políticas Agropecuarias](../topics/politicas_agropecuarias.md)
 - [Arroz en Panamá](../topics/arroz.md)
 - [Subsidios y Programas](../topics/subsidios_programas.md)
 - [Precios y Mercados](../topics/precios_mercados.md)
 - [Avicultura](../topics/avicultura.md)
+- [Hortalizas](../topics/hortalizas.md)
 - [Chiriquí](../topics/chirique.md)

@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-09-25
+last_updated: 2026-09-25 (sesión 2)
 ---
 
 # Dashboard de Métricas
@@ -15,43 +15,49 @@ last_updated: 2026-09-25
 | Métrica | Valor | Meta |
 |---------|-------|------|
 | Artículos en sources/ (descargados) | 57 | ↑ continuo |
-| Artículos reales ingestados (wiki) | 21 | = total sin falsos positivos |
+| Artículos reales ingestados (wiki) | 26 | = total sin falsos positivos |
 | Falsos positivos acumulados (documentados) | 25 | **0 nuevos** desde el fix de `fetch_ddg_search` |
 | Fuera de cobertura temporal (pre-2015) | 2 | — |
-| Pendientes de ingesta (genuinos, verificados) | 9 | 0 |
-| Páginas en wiki/ | 43 (15 topics, 4 entidades, 21 resúmenes, 3 overview) | ↑ continuo |
+| Pendientes de ingesta (genuinos, verificados) | 4 | 0 |
+| Páginas en wiki/ | 50 (16 topics, 5 entidades, 26 resúmenes, 3 overview) | ↑ continuo |
 | Cobertura temporal | 2015-2026 (parcial, concentrada en 2019-2026) | 2015-02-19 → hoy |
-| Ventanas GDELT completadas | 79 (sin cambio desde 2026-09-15) | 45+ (rango base ya cubierto) |
-| Días sin artículos nuevos en sources/ | 19 (último: 2026-09-06) | máx 3 antes de diagnosticar — **UMBRAL SUPERADO, empeorando** |
+| Ventanas GDELT completadas | 80 (+1 desde 2026-09-15, run #122) | 45+ (rango base ya cubierto) |
+| Días sin artículos NUEVOS descargados | 19 (último con contenido nuevo: 2026-09-06) | máx 3 antes de diagnosticar |
+| Estado del job de fetch (GitHub Actions) | **RECUPERADO hoy** (run #122, 2026-09-25, éxito, ~8m44s) tras 18 corridas fallidas consecutivas | corridas diarias exitosas |
 
 ---
 
 ## Estado del Fetch (GitHub Actions)
 
 ```
-Última ejecución EXITOSA  : 2026-09-06 (run #103, id 34037328987) → 6 artículos nuevos
-Ejecuciones fallidas desde: 2026-09-07 → 2026-09-24 (18 corridas diarias consecutivas,
-                             runs #104-#121; el problema NO se resolvió tras el
-                             diagnóstico de 2026-09-15 — empeoró de 8 a 18 fallos)
-Duración de las fallas    : 3-4 segundos cada una (vs. ~6-8 min de una corrida normal
-                             exitosa) — confirmado vía GitHub Actions API (mcp__github)
-Diagnóstico (2026-09-25)  : patrón de fallo de arranque del job confirmado nuevamente
-                             vía API (list_workflow_runs + list_workflow_jobs): el job
-                             único "Fetch artículos → Commit a sources/" completa en
-                             3-4s con conclusion=failure en TODAS las corridas desde
-                             el 2026-09-07. Los logs del job ya expiraron (HTTP 404 al
-                             intentar descargarlos vía get_job_logs), por lo que no se
-                             puede leer el mensaje de error exacto desde esta sesión.
-Causas probables          : cuota de minutos de Actions agotada, cambio de permisos
-                             de GITHUB_TOKEN/protección de rama, secreto faltante, o
-                             workflow pausado a nivel de repositorio — requiere
-                             revisión manual del usuario en GitHub (fuera del alcance
-                             de esta sesión; no hay acceso a Settings/Billing vía API)
-Acción pendiente          : usuario debe revisar Settings → Actions / Billing en GitHub
-                             y abrir el run más reciente (run #121,
-                             https://github.com/abdielg08/wiki_agro/actions/runs/36021398821)
-                             mientras los logs sigan disponibles en la UI de GitHub
-Ver diagnóstico completo  : wiki/log.md, entradas 2026-09-15 08:30 y 2026-09-25
+RECUPERADO (2026-09-25)   : Run #122 (id 36155796208, 2026-09-25 15:40:48-15:49:32 UTC,
+                             ~8m44s, conclusion=success) — primera corrida exitosa desde
+                             run #103 (2026-09-06). El paso interno "Fetch artículos
+                             nuevos" corrió ~8m22s (ciclo real GDELT/RSS, no un fallo de
+                             arranque), coincide con el avance de ventanas GDELT (79→80)
+                             y terminó con un commit normal "0 artículos nuevos
+                             descargados" (resultado legítimo — no todas las ventanas
+                             traen contenido nuevo, no es señal de fallo).
+Última ejecución EXITOSA
+  antes de la racha        : 2026-09-06 (run #103, id 34037328987) → 6 artículos nuevos
+Racha de fallos (cerrada)  : 2026-09-07 → 2026-09-24 (18 corridas diarias consecutivas,
+                             runs #104-#121; confirmado vía GitHub Actions API que TODAS
+                             completaron en 4-40s con conclusion=failure, patrón de
+                             fallo de arranque del job, nunca llegaron a ejecutar el
+                             fetch real)
+Causa raíz probable        : el run #121 (2026-09-24) incluyó el commit
+                             "fix(promote): checkout completo de rama en vez de fetch
+                             por SHA (#306)", pero ESE run igual falló en 4s — el efecto
+                             del fix solo se reflejó a partir del run #122 (2026-09-25).
+                             La causa exacta del fallo de arranque en #104-#121 sigue sin
+                             confirmarse desde esta sesión (logs de esas corridas ya
+                             expiraron), pero el problema desapareció al mismo tiempo que
+                             el fix de #306 tomó efecto.
+Acción recomendada         : monitorear las próximas 1-2 corridas diarias programadas
+                             (~15:40 UTC) para confirmar que la recuperación es estable
+                             y no un caso aislado.
+Ver diagnóstico completo   : wiki/log.md, entradas 2026-09-15 08:30, 2026-09-25 y
+                             2026-09-25 (sesión 2 — RECUPERACIÓN FETCH)
 ```
 
 ```
@@ -80,7 +86,7 @@ Re-fix (2026-09-25)       : el fix del 2026-09-15 arriba descrito NO estaba pres
 
 ## Progreso del Backfill GDELT (2015 → hoy)
 
-> 79 ventanas GDELT completadas según `sources/processed.json` (`_gdelt_windows`), por
+> 80 ventanas GDELT completadas según `sources/processed.json` (`_gdelt_windows`), por
 > encima del umbral de 45 que CLAUDE.md usa como señal de "rango base agotado". La
 > cobertura real de artículos, sin embargo, sigue concentrada en 2019-2026; años
 > 2015-2018 tienen cobertura escasa (solo los artículos semilla). Pendiente de una
@@ -102,6 +108,7 @@ Re-fix (2026-09-25)       : el fix del 2026-09-15 arriba descrito NO estaba pres
 | 2026-06-22 | 0 | 0 | Auditoría + fix de 7 falsos positivos + reset GDELT windows |
 | 2026-09-15 | 10 (2 lotes de 5) | 14 | Routine automatizada. Además: fix de bug crítico en `mark_all_ingested` (marcaba artículos equivocados), 17 falsos positivos nuevos detectados y documentados, 7 falsos positivos antiguos re-etiquetados, fix de raíz en `fetch_ddg_search` (faltaba filtro Panamá), y diagnóstico de 8 fallos consecutivos de GitHub Actions |
 | 2026-09-25 | 5 | 9 | Routine automatizada. 0 falsos positivos (los 5 artículos eran genuinamente sobre agro panameño, aunque con `full_text` truncado en la fuente). Páginas nuevas: topics/darien_comarca.md, topics/cafe_cacao.md, entities/ima.md (resuelven broken links preexistentes). Diagnóstico confirmado vía GitHub Actions API: 18 fallos consecutivos del fetch diario desde 2026-09-07 (empeoró de 8 a 18 desde el diagnóstico anterior) |
+| 2026-09-25 (sesión 2) | 5 | 4 | Routine automatizada. 0 falsos positivos (cooperación IICA-Argentina, alerta influenza aviar 2022, agricultura vertical IICA, cebolla importada, caso Valderrama). Páginas nuevas: entities/iica_panama.md, topics/hortalizas.md (resuelven 2 broken links preexistentes en index.md). Páginas actualizadas: topics/avicultura.md, topics/plagas_enfermedades.md, topics/tecnologia_innovacion.md, topics/precios_mercados.md, entities/mida.md. **Fetch de GitHub Actions RECUPERADO**: run #122 (2026-09-25) exitoso tras 18 corridas fallidas consecutivas (#104-#121, 2026-09-07 a 2026-09-24) — confirmado vía GitHub Actions API, duración real ~8m44s |
 
 ---
 
@@ -120,10 +127,15 @@ Al ejecutar, la routine DEBE:
 - Identificar si el problema es GDELT rate-limit, RSS caído, o config
 - Documentar el diagnóstico en wiki/log.md con pasos para resolverlo
 
-**Estado a 2026-09-25**: esta señal de alarma sigue ACTIVA y ha empeorado (19 días sin
-artículos nuevos, 18 ejecuciones de Actions fallando consecutivamente desde 2026-09-07,
-frente a 9 días / 8 fallos reportados el 2026-09-15). El backlog de 9 artículos
-pendientes genuinos alcanza para ~2 sesiones más de routine antes de agotarse. Se
-requiere intervención manual del usuario en GitHub Settings → Actions/Billing — no
-resoluble desde una sesión de Claude Code. Ver diagnóstico en wiki/log.md, entrada
-2026-09-25.
+**Estado a 2026-09-25 (sesión 2)**: el **job de fetch de GitHub Actions se recuperó**
+esta sesión — run #122 (2026-09-25, ~8m44s, éxito) rompió la racha de 18 corridas
+fallidas consecutivas (#104-#121, 2026-09-07 → 2026-09-24), confirmado vía GitHub
+Actions API con desglose por paso (el fetch real corrió ~8m22s, no fue un fallo de
+arranque). Sin embargo, la señal de "días sin artículos NUEVOS descargados" sigue en
+19 (último contenido nuevo: 2026-09-06), porque la corrida de hoy, aunque exitosa,
+no encontró artículos nuevos en la ventana procesada (resultado normal, no un fallo).
+El backlog de 4 artículos pendientes genuinos alcanza para ~1 sesión más de routine.
+**Acción recomendada**: monitorear las próximas 1-2 corridas diarias para confirmar
+que la recuperación del fetch es estable; si vuelven a aparecer fallos de 3-6s, revisar
+de nuevo cuota de Actions / permisos. Ver diagnóstico en wiki/log.md, entrada
+2026-09-25 (sesión 2 — RECUPERACIÓN FETCH).

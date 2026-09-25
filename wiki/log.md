@@ -303,3 +303,72 @@ FIX: se detectó que `python wiki_agro.py mark-all-ingested --limit 5` marcaba c
 
 ## 2026-09-25 08:20
 INGEST: 5 artículos marcados como ingestados por sesión Claude Code
+
+## 2026-09-25 (routine automatizada — INGEST, sesión 2)
+INGEST: 5 artículos procesados (todos verificados como genuinamente sobre agro/MIDA panameño, 0 falsos positivos)
+  Artículos:
+    - 20250816_prensacom_iica-cooperacion-agropecuaria-argentina → summaries/ + entities/iica_panama.md creado + entities/mida.md actualizado + topics/politicas_agropecuarias.md (referenciado, no editado en esta sesión)
+    - 20220324_prensacom_mida-alerta-zoosanitaria-influenza-aviar → summaries/ + topics/avicultura.md actualizado + topics/plagas_enfermedades.md actualizado + entities/mida.md actualizado
+    - 20240828_prensacom_agricultura-vertical-iica-lechuga → summaries/ + topics/tecnologia_innovacion.md actualizado + topics/hortalizas.md creado + entities/iica_panama.md actualizado
+    - 20200731_prensacom_mida-llegada-cebolla-importada → summaries/ + topics/hortalizas.md actualizado + topics/precios_mercados.md actualizado + entities/mida.md actualizado
+    - 20191121_prensacom_valderrama-niega-irregularidades-planilla-mida → summaries/ + entities/mida.md actualizado (sección nueva: Gobernanza y Transparencia Institucional)
+  Páginas creadas: entities/iica_panama.md (resuelve broken link preexistente en wiki/index.md), topics/hortalizas.md (resuelve broken link preexistente en wiki/index.md)
+  Páginas actualizadas: topics/avicultura.md, topics/plagas_enfermedades.md, topics/tecnologia_innovacion.md, topics/precios_mercados.md, entities/mida.md, wiki/index.md
+  Summaries: 5 nuevos archivos en wiki/summaries/
+  Nota sobre calidad de fuente: los 5 artículos de sources/articles/ solo tienen `summary_raw` truncado
+    (campo `full_text` es null en el JSON). El artículo de la alerta zoosanitaria de influenza aviar (2022-03-24)
+    fue una excepción con texto completo y verificable. Para el resto, los resúmenes documentan explícitamente
+    el truncamiento (p. ej. discrepancia sin conciliar entre "20,000 quintales" del titular y "10 contenedores"
+    del cuerpo en el artículo de cebolla) y evitan inventar cifras o hechos no verificables.
+
+## 2026-09-25 16:16
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code
+
+## 2026-09-25 16:17
+LINT: 50 páginas revisadas, 35 issues encontrados
+  frontmatter:0, huérfanas:1, broken_links:24, stale:9, no_index:1
+
+## 2026-09-25 16:17
+LINT: 50 páginas revisadas, 35 issues encontrados
+  frontmatter:0, huérfanas:1, broken_links:24, stale:9, no_index:1
+
+## 2026-09-25 (sesión 2 — DIAGNÓSTICO paso 5, RECUPERACIÓN FETCH)
+DIAGNÓSTICO: pendientes de ingesta = 4 tras esta sesión (no llegó a 0), pero se
+  verificó igualmente el estado del fetch por el diagnóstico previo aún activo.
+
+Vía `git log -- sources/`: apareció un nuevo commit `d2ce3db` "chore(sources): 0
+  artículos nuevos descargados [skip ci]" con timestamp 2026-09-25 15:49 — el primer
+  commit de `chore(sources)` desde `24cfc3c` (2026-09-06). Además, `_gdelt_windows`
+  en `sources/processed.json` subió de 79 a 80.
+
+Verificación vía GitHub Actions API (mcp__github__actions_list/actions_get) sobre el
+  workflow "Wiki Agropecuario — Fetch Diario" (wiki_daily.yml):
+  - **Run #122** (id 36155796208, 2026-09-25 15:40:48–15:49:32 UTC, **~8m44s**,
+    conclusion=**success**) — desglose por paso confirma que NO fue un falso positivo:
+    el paso "Fetch artículos nuevos" corrió 15:41:04→15:49:26 (~8m22s), un ciclo real
+    de GDELT/RSS, no un fallo de arranque. Terminó con un commit normal de "0 artículos
+    nuevos" — resultado legítimo (no toda ventana trae contenido), no una falla.
+  - Runs #104–#121 (2026-09-07 → 2026-09-24, 18 corridas): TODAS con conclusion=failure,
+    duración 4-40s (mayoría 4-6s) — confirma el patrón de fallo de arranque ya
+    diagnosticado el 2026-09-15 y el 2026-09-25 (sesión 1).
+  - El run #121 (2026-09-24) incluyó el commit "fix(promote): checkout completo de
+    rama en vez de fetch por SHA (#306)", pero ESE run igual falló en 4s. El efecto
+    del fix solo se reflejó a partir del run #122 al día siguiente — sugiere que #306
+    (o algo aplicado junto con él) fue la causa raíz del fallo de arranque, aunque no
+    se pudo confirmar el mecanismo exacto porque los logs de los runs #104-#121 ya
+    expiraron (HTTP 404 al intentar leerlos vía `get_job_logs`).
+
+**Conclusión**: el fetch automático de GitHub Actions está **RECUPERADO** a partir del
+  run #122 (2026-09-25), cerrando una racha de 18 fallos consecutivos (#104-#121,
+  2026-09-07 → 2026-09-24). El indicador "días sin artículos NUEVOS" permanece en 19
+  (sin cambio) porque la corrida de hoy, aunque exitosa, no encontró contenido nuevo en
+  la ventana procesada — esto es distinto de una falla del pipeline y no debe
+  confundirse con ella.
+
+**Acción recomendada**: monitorear las próximas 1-2 corridas diarias programadas
+  (~15:40 UTC) para confirmar que la recuperación es estable y no un caso aislado.
+  `wiki/metrics.md` actualizado con estas cifras.
+
+## 2026-09-25 16:17
+LINT: 50 páginas revisadas, 35 issues encontrados
+  frontmatter:0, huérfanas:1, broken_links:24, stale:9, no_index:1
