@@ -1,12 +1,13 @@
 ---
 title: Tecnología e Innovación en el Agro Panameño
 type: topic
-tags: [tecnologia, innovacion, agricultura-precision, exportacion, politica-agropecuaria]
-last_updated: 2026-09-15
-article_count: 1
+tags: [tecnologia, innovacion, agricultura-precision, agricultura-vertical, exportacion, politica-agropecuaria]
+last_updated: 2026-09-25
+article_count: 2
 sources:
   - "https://www.prensa.com/opinion/panama-de-la-agricultura-de-subsistencia-a-la-agricultura-de-precision-exportadora/"
-related: [topics/politicas_agropecuarias.md, topics/subsidios_programas.md, entities/mida.md, entities/idiap.md]
+  - "https://www.prensa.com/sociedad/agricultura-vertical-revoluciona-cultivo-en-panama-lechuga-en-30-dias-sin-sol-ni-tierra/"
+related: [topics/politicas_agropecuarias.md, topics/subsidios_programas.md, entities/mida.md, entities/idiap.md, entities/iica_panama.md]
 ---
 
 # Tecnología e Innovación en el Agro Panameño
@@ -18,6 +19,7 @@ Un debate recurrente en la política agropecuaria panameña es si el sector pued
 ## Hechos Clave
 
 - **Febrero 2026**: columna de opinión sostiene que Panamá no superará la agricultura de subsistencia con subsidios permanentes ni políticas aisladas, y plantea la **agricultura de precisión exportadora** como salida estructural [La Prensa, opinión, 2026-02-24](https://www.prensa.com/opinion/panama-de-la-agricultura-de-subsistencia-a-la-agricultura-de-precision-exportadora/)
+- **Agosto 2024**: se instaló un prototipo de **agricultura vertical en ambiente controlado** en las oficinas del IICA en Panamá, capaz de producir lechuga en 30 días sin sol ni tierra, con fines de demostración y sensibilización del sector [La Prensa, 2024-08-28](https://www.prensa.com/sociedad/agricultura-vertical-revoluciona-cultivo-en-panama-lechuga-en-30-dias-sin-sol-ni-tierra/)
 
 ## Tendencias (2015–2025)
 
@@ -31,9 +33,10 @@ Un debate recurrente en la política agropecuaria panameña es si el sector pued
 ## Referencias
 
 - [La Prensa, 2026 — De la agricultura de subsistencia a la agricultura de precisión exportadora](https://www.prensa.com/opinion/panama-de-la-agricultura-de-subsistencia-a-la-agricultura-de-precision-exportadora/)
+- [La Prensa, 2024 — Agricultura vertical revoluciona cultivo en Panamá](https://www.prensa.com/sociedad/agricultura-vertical-revoluciona-cultivo-en-panama-lechuga-en-30-dias-sin-sol-ni-tierra/)
 
 ## Ver también
 
 - [Políticas Agropecuarias](politicas_agropecuarias.md)
 - [Subsidios y Programas](subsidios_programas.md)
-- [MIDA](../entities/mida.md) | [IDIAP](../entities/idiap.md)
+- [MIDA](../entities/mida.md) | [IDIAP](../entities/idiap.md) | [IICA Panamá](../entities/iica_panama.md)

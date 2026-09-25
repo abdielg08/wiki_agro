@@ -216,3 +216,137 @@ RECOVERY: El wiki construido por las routines nunca llegaba a main.
       (era la fuga de falsos positivos que GDELT/RSS ya bloqueaban).
     - NUEVO: .github/workflows/promote_wiki.yml — auto-promueve wiki/ +
       processed.json de ramas claude/** a main (arregla el Sísifo).
+
+## 2026-09-25 (sesión Claude Code — ROUTINE, 2 lotes) — CRÍTICO: Sísifo reincidente
+
+Esta sesión de routine encontró que el problema de "Sísifo" documentado el 2026-09-23
+(ramas `claude/**` con trabajo de wiki que nunca llega a `main`) **volvió a ocurrir**,
+pese al fix de `promote_wiki.yml` de esa misma fecha. Detalle completo abajo.
+
+### Hallazgo 1 — 30 PRs abiertos con ingestas duplicadas, `promote_wiki.yml` caído
+
+Antes de ingerir nada, esta sesión verificó el estado de GitHub Actions y encontró:
+
+- **30 pull requests abiertos y sin mergear** contra `main` (`#280`-`#304`, `#307`-`#311`),
+  todos creados por sesiones de routine entre 2026-09-15 y 2026-09-24, cada uno con
+  contenido de wiki (resúmenes, topics, entities) que nunca llegó a `main`.
+- **`wiki_daily.yml`** (fetch diario): 19 corridas diarias consecutivas fallidas
+  (2026-09-07 → 2026-09-25, runs #104-#121), cada una completada en 3-5 segundos.
+  Último `chore(sources)` con artículos nuevos: **2026-09-06** (commit `24cfc3c`) —
+  **19 días** sin artículos nuevos en `sources/articles/`.
+- **`promote_wiki.yml`** (el workflow creado el 2026-09-23 para arreglar el Sísifo):
+  **sus 8 corridas han fallado**, incluidas las 4 disparadas por pushes de sesiones de
+  routine de ayer (2026-09-24) que ya habían identificado y documentado esta misma
+  causa en PRs #309, #310 y #311.
+- Causa raíz (confirmada por una sesión previa vía `get_workflow_run_usage`: `0 ms`
+  facturables pese a runs de ~4s): **cuota de minutos de GitHub Actions agotada** o
+  bloqueo de facturación a nivel de cuenta. Esto bloquea tanto el fetch diario como
+  la promoción automática — ningún mecanismo de CI puede escribir en `main` mientras
+  esto no se resuelva.
+- **PR #311** (rama `claude/modest-galileo-q45rpz`, creado 2026-09-24 16:17) contiene
+  una ingesta **idéntica** a la que esta sesión iba a producir de forma independiente:
+  los mismos 5 artículos (Banco Nacional, subsidios Mida 2020, café Covid-19, MIDA/IMA
+  2023). Confirma que al menos 2 sesiones (la de #311 y esta) llegaron al mismo lote
+  de "pendientes" porque ninguna ingesta previa se promovió a `main`.
+
+**Decisión de esta sesión**: no se creó un 31er PR duplicado con ese mismo lote de 5
+artículos. Tampoco se intentó mergear PRs existentes ni cerrar los duplicados — esta
+sesión no tiene mandato para aprobar/mergear pull requests. En su lugar:
+1. Se corrigieron localmente los 5 artículos del lote de #311 (contenido equivalente,
+   ver Hallazgo 3 sobre el bug de `mark_all_ingested`), y se avanzó además con un
+   **segundo lote de 5 artículos distintos** (ver más abajo) para que esta sesión
+   aporte progreso genuino y no una copia de #311.
+2. Se documenta aquí, de forma explícita, que **el usuario debe**:
+   - Resolver la cuota/facturación de GitHub Actions en
+     https://github.com/settings/billing (bloqueador raíz de todo lo demás).
+   - Revisar y mergear (o cerrar como duplicados) los PRs `#280`-`#304` y `#307`-`#311`
+     — probablemente empezando por los más recientes, ya que suelen incluir fixes de
+     los más antiguos; #311 en particular es el más reciente y ya incorpora el fix de
+     `mark_all_ingested` en su rama (aunque ese fix se perdió de nuevo en `main`, ver
+     Hallazgo 3).
+   - Considerar restringir la creación automática de una rama+PR nueva por cada sesión
+     de routine, o ampliar `promote_wiki.yml` para que además dispare un merge/cierre
+     de PRs redundantes, para que este patrón no seguir reproduciéndose cada pocas horas.
+
+### Hallazgo 2 — Lote 1 (5 artículos, equivalente al contenido de PR #311)
+
+Ingestados (0 falsos positivos): crédito agropecuario Banco Nacional 2024 ($714.1M),
+subsidios acaparan fondos del Mida (2020), medidas Covid-19 cosecha de café en
+Chiriquí (2020), agroturismo en temporada de cosecha (2019, vínculo suave —
+extracto muy breve sin cultivo/región concretos), y MIDA/IMA con presupuestos
+reducidos para 2023.
+  - Página nueva: `wiki/topics/cafe_cacao.md` (referenciada en `CLAUDE.md`,
+    `chirique.md` e `index.md` desde antes, pero nunca creada).
+  - Actualizados: `credito_financiamiento.md`, `subsidios_programas.md`,
+    `chirique.md`, `entities/mida.md`, `index.md`.
+  - Nota: los 5 artículos tienen `full_text: null` en `sources/articles/*.json`; el
+    contenido usado es `summary_raw` truncado (~250-350 caracteres). Los resúmenes
+    documentan explícitamente qué no está disponible en vez de inferirlo.
+
+### Hallazgo 3 — Bug reincidente en `mark_all_ingested()` (regresión del fix de 2026-09-15)
+
+Al marcar el Lote 1 con `mark-all-ingested --limit 5`, el resultado fue incorrecto:
+solo 1 de los 5 artículos reales quedó `ingested: true`, mientras que 4 artículos
+**no relacionados** (alfabéticamente primeros en `sources/articles/`) quedaron
+marcados como ingestados sin tener contenido de wiki creado para ellos.
+
+Causa: `scripts/ingest.py::mark_all_ingested()` seguía usando `find_pending(limit=limit)`
+(orden alfabético por archivo) en vez de las URLs reales que `run_prepare()` escribe en
+`pending_ingest.md` (orden por score de `prioritize()`). **Este es exactamente el mismo
+bug que se corrigió el 2026-09-15** (ver entrada de esa fecha, 08:20) y que **al menos 4
+sesiones distintas** (PRs #307, #308, #309, #311, todas entre 2026-09-23 y 2026-09-24)
+volvieron a encontrar y corregir en sus propias ramas de forma independiente.
+
+**Causa raíz del bug reincidente**: `promote_wiki.yml` solo promueve `wiki/**` y
+`sources/processed.json` a `main` (por diseño, "rutas restringidas por seguridad" según
+su propio comentario) — **nunca `scripts/`**. Cada fix a `scripts/ingest.py` vive y
+muere en su rama de origen; como esas ramas tampoco se mergean vía PR (Hallazgo 1),
+`main` conserva para siempre la versión con el bug, y cada sesión nueva que parte de
+`main` lo redescubre.
+
+**Fix aplicado esta sesión** (en `scripts/ingest.py`, `main`-relative): `mark_all_ingested()`
+ahora parsea las URLs directamente de las líneas `mark-ingested '<url>'` al final de
+`pending_ingest.md` (el mismo archivo/orden que Claude ya procesó), igual que las
+correcciones previas. Se corrigieron manualmente los datos afectados en
+`sources/processed.json` (revertidos los 4 artículos mal marcados, marcados
+correctamente los 4 reales que faltaban).
+
+**Riesgo si este fix tampoco llega a `main`**: dado que es un cambio en `scripts/` y
+`promote_wiki.yml` no lo transporta, **este fix requiere que su PR se mergee
+manualmente** (no basta con push a una rama `claude/**`) para no perderse otra vez.
+
+### Hallazgo 4 — Lote 2 (5 artículos nuevos, distintos de PR #311)
+
+Con el bug corregido, se generó un segundo lote genuinamente distinto (0 falsos
+positivos): cooperación agropecuaria Panamá-Argentina vía IICA (2025), alerta
+zoosanitaria del MIDA por riesgo de influenza aviar desde Canadá/EE.UU. (2022-03-24,
+antecede cronológicamente a los brotes de Colombia ya documentados), prototipo de
+agricultura vertical en oficinas del IICA (2024), importación de 20 mil quintales de
+cebolla por el MIDA (2020), y el entonces ministro Valderrama negando irregularidades
+en la planilla del MIDA (2019).
+  - Páginas nuevas: `wiki/entities/iica_panama.md` y `wiki/topics/hortalizas.md`
+    (ambas referenciadas desde `index.md`/taxonomía de `CLAUDE.md` pero nunca creadas).
+  - Actualizados: `avicultura.md`, `plagas_enfermedades.md`, `tecnologia_innovacion.md`,
+    `precios_mercados.md`, `politicas_agropecuarias.md`, `entities/mida.md`, `index.md`.
+
+### Resultado combinado de la sesión
+
+`python wiki_agro.py stats`: 57 descargados → **53 ingestados** (antes 43), **4
+pendientes** (antes 14), **48 páginas de wiki** (antes 35): 15 topics, 4 entidades,
+26 resúmenes. 0 falsos positivos detectados en ambos lotes.
+
+### Acción pendiente crítica para el usuario (repetida y reforzada)
+
+1. Resolver cuota/facturación de GitHub Actions — bloqueador raíz de fetch diario
+   **y** de `promote_wiki.yml`.
+2. Revisar y mergear/cerrar los ~31 PRs acumulados (`#280`-`#311` y el que genere esta
+   sesión), cuidando duplicados como el de #311 vs. el Lote 1 de esta sesión.
+3. Verificar específicamente que el fix de `mark_all_ingested()` de esta sesión llegue
+   a `main` vía merge de PR (no se promueve automáticamente por ser un cambio en
+   `scripts/`), o el bug volverá a reaparecer en la próxima sesión de routine.
+
+## 2026-09-25 00:15
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code
+
+## 2026-09-25 00:21
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code

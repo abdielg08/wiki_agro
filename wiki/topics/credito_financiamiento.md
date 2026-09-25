@@ -1,11 +1,12 @@
 ---
 title: Crédito y Financiamiento Agropecuario en Panamá
 type: topic
-tags: [credito, financiamiento, bda, pandemia, covid19, ganaderia, arroz, tasas, digitalizacion]
-last_updated: 2026-05-24
-article_count: 1
+tags: [credito, financiamiento, bda, banco-nacional, pandemia, covid19, ganaderia, arroz, tasas, digitalizacion]
+last_updated: 2026-09-25
+article_count: 2
 sources:
   - "https://www.bda.gob.pa/noticias/credito-agropecuario-pandemia-resultados-2021"
+  - "https://www.prensa.com/economia/cartera-de-credito-agropecuario-de-banco-nacional-de-panama-alcanzo-los-7141-millones-en-2024/"
 related: [topics/ganaderia_bovina.md, topics/arroz.md, topics/seguridad_alimentaria.md, entities/bda.md, entities/mida.md]
 ---
 
@@ -47,6 +48,11 @@ El Banco de Desarrollo Agropecuario (BDA) es el principal instrumento de financi
 - Crédito especial jóvenes y mujeres: **3% anual** (nuevo fondo)
 - Fondo de Modernización Agropecuaria: **B/. 200 millones**
 
+### Banco Nacional de Panamá (BNP) — Cartera Agropecuaria 2024
+- Cartera de crédito agropecuario del BNP: **$714.1 millones** en 2024 [La Prensa, 2025-02-28]
+- Presentado en el Segundo Encuentro Agropecuario temporada 2025 ("La ruta hacia la sostenibilidad agropecuaria"), en la finca de Eutimio Peralta Córdoba, Río Iglesias, Chepigana (Darién)
+- Desglose por rubro o región no disponible en el texto fuente (truncado)
+
 ## Tendencias (2015–2025)
 
 - Expansión del crédito agropecuario en crisis (pandemia, sequías) como instrumento contracíclico
@@ -65,6 +71,7 @@ El Banco de Desarrollo Agropecuario (BDA) es el principal instrumento de financi
 
 - [BDA, 2021 — Crédito agropecuario pandemia 2020-2021](https://www.bda.gob.pa/noticias/credito-agropecuario-pandemia-resultados-2021)
 - [MIDA, 2024 — Plan Agropecuario Mulino 2024-2029](https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024)
+- [La Prensa, 2025 — Cartera de crédito agropecuario del Banco Nacional alcanzó $714.1M en 2024](https://www.prensa.com/economia/cartera-de-credito-agropecuario-de-banco-nacional-de-panama-alcanzo-los-7141-millones-en-2024/)
 
 ## Ver también
 

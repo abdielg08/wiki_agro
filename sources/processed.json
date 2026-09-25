@@ -454,7 +454,8 @@
     "title": "Agroturismo en temporada de cosecha",
     "date": "2019-11-15",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-25T00:15:17.180858"
   },
   "https://www.prensa.com/provincias/fijan-medidas-para-prevenir-casos-de-la-covid-19-en-la-proxima-cosecha-de-cafe/": {
     "saved_at": "2026-08-24T11:18:59.205884",
@@ -462,7 +463,8 @@
     "title": "Fijan medidas para prevenir casos de la Covid-19 en la próxima cosecha de café",
     "date": "2020-08-01",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-25T00:18:19.809819"
   },
   "https://www.prensa.com/politica/Mida-debe-mejorar-sistema-diagnostico_0_2877462253.html": {
     "saved_at": "2026-08-24T11:18:59.206862",
@@ -492,7 +494,8 @@
     "title": "Cartera de crédito agropecuario de Banco Nacional de Panamá alcanzó los $714.1 millones en 2024",
     "date": "2025-02-28",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-25T00:18:19.809819"
   },
   "https://www.prensa.com/economia/panama-busca-fortalecer-cooperacion-agropecuaria-con-argentina-a-traves-del-iica/": {
     "saved_at": "2026-08-24T11:18:59.209347",
@@ -500,7 +503,8 @@
     "title": "Panamá busca fortalecer cooperación agropecuaria con Argentina a través del IICA",
     "date": "2025-08-16",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-25T00:21:33.359400"
   },
   "https://www.prensa.com/opinion/panama-de-la-agricultura-de-subsistencia-a-la-agricultura-de-precision-exportadora/": {
     "saved_at": "2026-08-24T11:18:59.210245",
@@ -544,7 +548,8 @@
     "title": "MIDA confirma la llegada de 20 mil quintales de cebolla importada",
     "date": "2020-07-31",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-25T00:21:33.359410"
   },
   "https://www.prensa.com/economia/boquete-mida-inicia-evaluacion-de-areas-afectadas-tras-las-lluvias/": {
     "saved_at": "2026-08-24T11:18:59.214442",
@@ -579,7 +584,8 @@
     "title": "Ministro Valderrama niega irregularidades en planilla del Mida",
     "date": "2019-11-21",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-25T00:21:33.359411"
   },
   "https://www.prensa.com/sociedad/agricultura-vertical-revoluciona-cultivo-en-panama-lechuga-en-30-dias-sin-sol-ni-tierra/": {
     "saved_at": "2026-08-24T11:18:59.217836",
@@ -587,7 +593,8 @@
     "title": "Agricultura vertical revoluciona cultivo en Panamá: lechuga en 30 días sin sol ni tierra",
     "date": "2024-08-28",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-25T00:21:33.359409"
   },
   "https://www.prensa.com/politica/nombran-a-nuevo-viceministro-del-mida-tras-renuncia-de-francisco-ameglio/": {
     "saved_at": "2026-08-24T11:18:59.218677",
@@ -604,7 +611,8 @@
     "title": "Ministerio de Desarrollo Agropecuario emite alerta zoosanitaria ante riesgo de influenza aviar",
     "date": "2022-03-24",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-25T00:21:33.359408"
   },
   "https://www.prensa.com/economia/el-mida-y-el-ima-quedan-con-presupuestos-reducidos-para-2023/": {
     "saved_at": "2026-08-24T11:18:59.220495",
@@ -612,7 +620,8 @@
     "title": "El MIDA y el IMA quedan con presupuestos reducidos para 2023",
     "date": "2022-08-31",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-25T00:18:19.809819"
   },
   "https://clubofmozambique.com/news/mozambique-more-than-1m-doses-of-foot-and-mouth-vaccine-over-next-year-and-half/": {
     "saved_at": "2026-08-27T20:51:59.763046",
@@ -632,7 +641,8 @@
     "path": "/home/runner/work/wiki_agro/wiki_agro/sources/articles/20190726_prensacom_impresa-economia-rol-trazabilidad-agricultura-moderna_0_5358.json",
     "title": "El rol de la trazabilidad en la agricultura moderna",
     "date": "2019-07-26",
-    "source": "prensa.com"
+    "source": "prensa.com",
+    "ingested": false
   },
   "https://www.prensa.com/impresa/economia/Impulsan-desarrollo-agricultura-familiar_0_5415958417.html": {
     "saved_at": "2026-09-06T13:51:13.339425",
@@ -647,7 +657,8 @@
     "path": "/home/runner/work/wiki_agro/wiki_agro/sources/articles/20190825_prensacom_opinion-horizonte-agropecuario_0_5380711932-html.json",
     "title": "Horizonte agropecuario",
     "date": "2019-08-25",
-    "source": "prensa.com"
+    "source": "prensa.com",
+    "ingested": false
   },
   "https://www.prensa.com/economia/que-ocurre-con-el-arroz-en-panama-productores-temen-perdidas-en-la-cosecha-mientras-la-industria-justifica-las-importaciones/": {
     "saved_at": "2026-09-06T13:51:13.341138",
@@ -672,6 +683,7 @@
     "title": "Los subsidios acaparan los fondos del Mida",
     "date": "2020-08-27",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-25T00:18:19.809819"
   }
 }

@@ -1,14 +1,16 @@
 ---
 title: Políticas Agropecuarias en Panamá
 type: topic
-tags: [politica-agropecuaria, plan-mulino, mida, bda, idiap, seguridad-alimentaria, riego, semillas, 2024, 2026]
-last_updated: 2026-09-15
-article_count: 3
+tags: [politica-agropecuaria, plan-mulino, mida, bda, idiap, iica, seguridad-alimentaria, riego, semillas, cooperacion-internacional, gobernanza, 2019, 2024, 2025, 2026]
+last_updated: 2026-09-25
+article_count: 5
 sources:
   - "https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024"
   - "https://www.prensa.com/politica/nombran-a-nuevo-viceministro-del-mida-tras-renuncia-de-francisco-ameglio/"
   - "https://www.prensa.com/opinion/panama-de-la-agricultura-de-subsistencia-a-la-agricultura-de-precision-exportadora/"
-related: [topics/subsidios_programas.md, topics/tecnologia_innovacion.md, topics/agua_riego.md, topics/credito_financiamiento.md, entities/mida.md, entities/bda.md, entities/idiap.md]
+  - "https://www.prensa.com/economia/panama-busca-fortalecer-cooperacion-agropecuaria-con-argentina-a-traves-del-iica/"
+  - "https://www.prensa.com/economia/Ministro-Valderrama-irregularidades-planilla-Mida_0_5446705379.html"
+related: [topics/subsidios_programas.md, topics/tecnologia_innovacion.md, topics/agua_riego.md, topics/credito_financiamiento.md, entities/mida.md, entities/bda.md, entities/idiap.md, entities/iica_panama.md]
 ---
 
 # Políticas Agropecuarias en Panamá
@@ -53,6 +55,12 @@ Las políticas agropecuarias panameñas de 2015-2025 han evolucionado de interve
 - **2020-2021**: Línea COVID-19 BDA: B/. 85M al 2% anual; récord B/. 320M en créditos
 - **2023**: Plan de Emergencia Arrocera: semilla IDIAP-Esperanza + créditos BDA al 4% por caída -18% en arroz
 
+### Cooperación Internacional (2025)
+- Panamá buscó fortalecer la cooperación agropecuaria con **Argentina** a través del **IICA**, con participación del Ministro de Desarrollo Agropecuario Roberto Linares y autoridades del IICA [La Prensa, 2025-08-16](https://www.prensa.com/economia/panama-busca-fortalecer-cooperacion-agropecuaria-con-argentina-a-traves-del-iica/)
+
+### Gobernanza Institucional (2019)
+- El entonces ministro **Augusto Valderrama** negó públicamente que hubiera funcionarios del MIDA cobrando dos salarios, tras revisar la planilla institucional al asumir el cargo [La Prensa, 2019-11-21](https://www.prensa.com/economia/Ministro-Valderrama-irregularidades-planilla-Mida_0_5446705379.html)
+
 ### Cambios de Liderazgo y Debate de Modelo (2024–2026)
 - **Marzo 2026**: el presidente José Raúl Mulino nombró a **José Aníbal Rincón Stanziola** como nuevo viceministro del MIDA, tras la renuncia de Francisco José Ameglio [La Prensa, 2026-03-03](https://www.prensa.com/politica/nombran-a-nuevo-viceministro-del-mida-tras-renuncia-de-francisco-ameglio/)
 - **Febrero 2026**: columna de opinión plantea que Panamá no superará la agricultura de subsistencia con subsidios permanentes ni políticas aisladas, proponiendo una transición hacia la agricultura de precisión exportadora [La Prensa, opinión, 2026-02-24](https://www.prensa.com/opinion/panama-de-la-agricultura-de-subsistencia-a-la-agricultura-de-precision-exportadora/)
@@ -77,6 +85,8 @@ Las políticas agropecuarias panameñas de 2015-2025 han evolucionado de interve
 - [MIDA, 2024 — Plan Agropecuario Gobierno Mulino 2024-2029](https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024)
 - [La Prensa, 2026 — Nuevo viceministro del Mida](https://www.prensa.com/politica/nombran-a-nuevo-viceministro-del-mida-tras-renuncia-de-francisco-ameglio/)
 - [La Prensa, 2026 — De la agricultura de subsistencia a la agricultura de precisión exportadora](https://www.prensa.com/opinion/panama-de-la-agricultura-de-subsistencia-a-la-agricultura-de-precision-exportadora/)
+- [La Prensa, 2025 — Panamá busca fortalecer cooperación agropecuaria con Argentina a través del IICA](https://www.prensa.com/economia/panama-busca-fortalecer-cooperacion-agropecuaria-con-argentina-a-traves-del-iica/)
+- [La Prensa, 2019 — Ministro Valderrama niega irregularidades en planilla del Mida](https://www.prensa.com/economia/Ministro-Valderrama-irregularidades-planilla-Mida_0_5446705379.html)
 
 ## Ver también
 
@@ -84,4 +94,4 @@ Las políticas agropecuarias panameñas de 2015-2025 han evolucionado de interve
 - [Agua y Riego](agua_riego.md)
 - [Tecnología e Innovación](tecnologia_innovacion.md)
 - [Crédito y Financiamiento](credito_financiamiento.md)
-- [MIDA](../entities/mida.md) | [BDA](../entities/bda.md) | [IDIAP](../entities/idiap.md)
+- [MIDA](../entities/mida.md) | [BDA](../entities/bda.md) | [IDIAP](../entities/idiap.md) | [IICA Panamá](../entities/iica_panama.md)

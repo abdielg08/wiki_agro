@@ -2,7 +2,7 @@
 title: Índice del Wiki Agropecuario de Panamá
 type: overview
 tags: [indice, navegacion]
-last_updated: 2026-09-15
+last_updated: 2026-09-25
 article_count: 0
 ---
 
@@ -108,7 +108,17 @@ article_count: 0
 | 2025-10-07 | La Prensa | [Boquete: Mida evalúa áreas afectadas por lluvias](summaries/20251007_prensacom_boquete-mida-evaluacion-lluvias.md) | Chiriquí, plantaciones agropecuarias |
 | 2026-02-24 | La Prensa | [De la agricultura de subsistencia a la de precisión exportadora](summaries/20260224_prensacom_opinion-agricultura-precision-exportadora.md) | Opinión: subsidios vs. agricultura de precisión |
 | 2026-03-03 | La Prensa | [Nuevo viceministro del Mida](summaries/20260303_prensacom_nuevo-viceministro-mida-renuncia-ameglio.md) | José Aníbal Rincón Stanziola reemplaza a Ameglio |
+| 2025-02-28 | La Prensa | [Cartera de crédito agropecuario del Banco Nacional 2024](summaries/20250228_prensacom_bnp-cartera-credito-agropecuario-2024.md) | $714.1M, Segundo Encuentro Agropecuario, Chepigana |
+| 2020-08-27 | La Prensa | [Los subsidios acaparan los fondos del Mida](summaries/20200827_prensacom_subsidios-acaparan-fondos-mida.md) | $618K de $3.3M aprobados para productividad |
+| 2020-08-01 | La Prensa | [Medidas Covid-19 en cosecha de café](summaries/20200801_prensacom_medidas-covid-cosecha-cafe-chiriqui.md) | Bioseguridad y control migratorio en Chiriquí |
+| 2019-11-15 | La Prensa | [Agroturismo en temporada de cosecha](summaries/20191115_prensacom_agroturismo-temporada-cosecha.md) | Primer trimestre, temporada seca, café |
+| 2022-08-31 | La Prensa | [Mida e IMA con presupuestos reducidos para 2023](summaries/20220831_prensacom_mida-ima-presupuestos-reducidos-2023.md) | Recorte presupuestario, ferias de alimentos |
+| 2025-08-16 | La Prensa | [Panamá-Argentina cooperación agropecuaria vía IICA](summaries/20250816_prensacom_panama-argentina-cooperacion-iica.md) | Roberto Linares, Manuel Otero (IICA) |
+| 2022-03-24 | La Prensa | [Alerta zoosanitaria por influenza aviar](summaries/20220324_prensacom_mida-alerta-zoosanitaria-influenza-aviar.md) | Riesgo desde Canadá y EE.UU. |
+| 2024-08-28 | La Prensa | [Agricultura vertical: lechuga en 30 días](summaries/20240828_prensacom_agricultura-vertical-lechuga-iica.md) | Prototipo en oficinas del IICA |
+| 2020-07-31 | La Prensa | [MIDA confirma llegada de cebolla importada](summaries/20200731_prensacom_mida-cebolla-importada-20mil-quintales.md) | 20 mil quintales, 10 contenedores |
+| 2019-11-21 | La Prensa | [Valderrama niega irregularidades en planilla del Mida](summaries/20191121_prensacom_valderrama-niega-irregularidades-planilla-mida.md) | Sin funcionarios con doble salario |
 
 ---
 
-*Última actualización del índice: 2026-09-15*
+*Última actualización del índice: 2026-09-25*
