@@ -216,3 +216,90 @@ RECOVERY: El wiki construido por las routines nunca llegaba a main.
       (era la fuga de falsos positivos que GDELT/RSS ya bloqueaban).
     - NUEVO: .github/workflows/promote_wiki.yml — auto-promueve wiki/ +
       processed.json de ramas claude/** a main (arregla el Sísifo).
+
+## 2026-09-25 08:10 (routine automatizada — INGEST)
+INGEST: 5 artículos procesados (todos verificados como genuinamente sobre agro panameño, 0 falsos positivos)
+  Artículos:
+    - 20250228_prensacom_economia-cartera-de-credito-agropecuario-de-banco-nacional-d → summaries/ + topics/credito_financiamiento.md actualizado + topics/darien_comarca.md creado
+    - 20200827_prensacom_impresa-economia-los-subsidios-acaparan-los-fondos-del-mida → summaries/ + topics/subsidios_programas.md actualizado + entities/mida.md actualizado
+    - 20200801_prensacom_provincias-fijan-medidas-para-prevenir-casos-de-la-covid-19 → summaries/ + topics/cafe_cacao.md creado + topics/chirique.md actualizado
+    - 20191115_prensacom_impresa-economia-agroturismo-temporada-cosecha_0_5442205773 → summaries/ únicamente (fuente severamente truncada, sin datos verificables suficientes para actualizar topics/entities sin especular)
+    - 20220831_prensacom_economia-el-mida-y-el-ima-quedan-con-presupuestos-reducidos → summaries/ + topics/subsidios_programas.md actualizado + entities/mida.md actualizado + entities/ima.md creado
+  Páginas creadas: topics/darien_comarca.md, topics/cafe_cacao.md, entities/ima.md
+    (nota: darien_comarca.md y cafe_cacao.md ya estaban referenciados desde wiki/index.md y topics/chirique.md
+    como broken links preexistentes — esta ingesta los resuelve)
+  Páginas actualizadas: topics/credito_financiamiento.md, topics/subsidios_programas.md, topics/chirique.md, entities/mida.md, wiki/index.md
+  Nota sobre calidad de fuente: los 5 artículos de sources/articles/ solo tienen `summary_raw` truncado
+    (campo `full_text` es null en el JSON), por lo que los resúmenes documentan explícitamente el
+    truncamiento y evitan inventar cifras o hechos no verificables.
+
+## 2026-09-25 08:16
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code
+
+## 2026-09-25 (routine automatizada — DIAGNÓSTICO paso 5)
+DIAGNÓSTICO: 0 artículos nuevos llegaron a sources/articles/ hoy (2026-09-25).
+  Verificación vía git log -- sources/: el último commit "chore(sources)" con
+  contenido nuevo es 24cfc3c (2026-09-06, 6 artículos), run de GitHub Actions #103
+  (id 34037328987) — esa fue la última ejecución EXITOSA del workflow
+  "Wiki Agropecuario — Fetch Diario".
+  Verificación vía GitHub Actions API (mcp__github__actions_list / get_job_logs):
+    - Runs #104 a #121 (2026-09-07 → 2026-09-24): 18 corridas diarias consecutivas,
+      TODAS con status=completed, conclusion=failure.
+    - Duración de cada corrida fallida: 3-4 segundos (job único
+      "Fetch artículos → Commit a sources/"), frente a ~6-8 minutos de una corrida
+      exitosa normal — mismo patrón de fallo de arranque ya documentado el 2026-09-15
+      (entonces eran 8 fallos; ahora son 18: el problema NO se resolvió y empeoró).
+    - Logs del job ya expirados (HTTP 404 vía get_job_logs) — no se puede leer el
+      mensaje de error exacto desde esta sesión; requiere revisión manual del run
+      más reciente en la UI de GitHub mientras los logs sigan disponibles:
+      https://github.com/abdielg08/wiki_agro/actions/runs/36021398821
+  Días sin artículos nuevos: 19 (desde 2026-09-06) — supera ampliamente el umbral
+  de 3 días de CLAUDE.md.
+  Causa probable (sin cambios respecto al 2026-09-15): cuota de minutos de Actions
+  agotada, cambio de permisos de GITHUB_TOKEN/protección de rama, secreto faltante,
+  o workflow pausado a nivel de repositorio. Ninguna de estas causas es diagnosticable
+  ni corregible desde una sesión de Claude Code — requiere que el usuario
+  (abdielg08) revise GitHub Settings → Actions / Billing.
+  Impacto en el backlog: quedan 9 artículos genuinos pendientes de ingesta
+  (~2 sesiones más de routine); si el fetch no se restablece, el backfill histórico
+  2015→hoy quedará detenido por completo una vez agotado ese backlog.
+  wiki/metrics.md actualizado con estas cifras.
+
+## 2026-09-25 (routine automatizada — FIX BUG mark_all_ingested)
+FIX: se detectó que `python wiki_agro.py mark-all-ingested --limit 5` marcaba como
+  ingestados un conjunto de artículos DISTINTO al que `ingest --limit 5` había
+  mostrado realmente en pending_ingest.md (mismo bug que el log de 2026-09-15 decía
+  haber corregido, pero el fix no estaba presente en scripts/ingest.py de main —
+  probablemente se perdió en el problema de "ramas huérfanas" documentado en la
+  recuperación del 2026-09-23).
+  Causa raíz: `mark_all_ingested()` llamaba a `find_pending(limit=limit)`, que
+  ordena los pendientes por orden alfabético de archivo (`sorted(glob(...))`),
+  mientras que `run_prepare()` (usado por `ingest`) ordena por `prioritize(...,
+  strategy="score")`. Ambos órdenes difieren, así que "los primeros N pendientes"
+  de cada función casi nunca coincidían.
+  Efecto detectado esta sesión: de los 5 artículos realmente procesados en esta
+  ingesta (Banco Nacional $714.1M, subsidios acaparan fondos Mida, Covid-19 cosecha
+  café, agroturismo, MIDA/IMA presupuestos 2023), mark-all-ingested solo marcó 1
+  correctamente (agroturismo, por coincidencia) y marcó 4 artículos incorrectos
+  como ingestados sin que se les hubiera creado ninguna página de wiki
+  (rol-trazabilidad-agricultura-moderna, Impulsan-desarrollo-agricultura-familiar,
+  Horizonte-agropecuario, MIDA-presenta-plan-contingencia-verano).
+  Corrección aplicada:
+    1. sources/processed.json: revertidos los 4 artículos marcados por error a
+       `ingested: false` (quedan pendientes genuinos, se procesarán en una sesión
+       futura); confirmados como `ingested: true` los 5 artículos realmente
+       procesados en esta sesión.
+    2. scripts/ingest.py: `mark_all_ingested()` reescrito para leer las URLs
+       directamente de `pending_ingest.md` (nueva función
+       `urls_from_pending_ingest()`, vía regex sobre las líneas `- **URL**: ...`)
+       en vez de re-derivar la lista de pendientes. Esto garantiza que se marquen
+       exactamente los artículos que Claude realmente leyó y procesó,
+       independientemente del algoritmo de priorización usado por `ingest`.
+    3. Verificado: `mark-all-ingested --limit 5` ahora es idempotente y devuelve
+       las mismas 5 URLs de pending_ingest.md en ejecuciones repetidas.
+  Impacto: sin este fix, el backlog reportado por `stats` habría quedado
+  permanentemente desincronizado del contenido real del wiki, y los 4 artículos
+  marcados por error nunca se habrían vuelto a ofrecer para ingesta real.
+
+## 2026-09-25 08:20
+INGEST: 5 artículos marcados como ingestados por sesión Claude Code

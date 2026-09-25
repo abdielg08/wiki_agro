@@ -1,9 +1,9 @@
 ---
 title: MIDA — Ministerio de Desarrollo Agropecuario
 type: entity
-tags: [gobierno, ministerio, politica-agropecuaria, plan-mulino, semillas, fitosanitario, subsidios, transicion-gobierno, avicultura]
-last_updated: 2026-09-15
-article_count: 10
+tags: [gobierno, ministerio, politica-agropecuaria, plan-mulino, semillas, fitosanitario, subsidios, transicion-gobierno, avicultura, presupuesto, ima]
+last_updated: 2026-09-25
+article_count: 12
 sources:
   - "https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023"
   - "https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024"
@@ -15,6 +15,8 @@ sources:
   - "https://www.prensa.com/provincias/mida-adopta-medidas-de-prevencion-en-panama-oeste-ante-gripe-aviar/"
   - "https://www.prensa.com/economia/mida-refuerza-controles-por-brote-de-influenza-aviar-en-frontera-con-colombia/"
   - "https://www.prensa.com/economia/boquete-mida-inicia-evaluacion-de-areas-afectadas-tras-las-lluvias/"
+  - "https://www.prensa.com/impresa/economia/los-subsidios-acaparan-los-fondos-del-mida/"
+  - "https://www.prensa.com/economia/el-mida-y-el-ima-quedan-con-presupuestos-reducidos-para-2023/"
 related: [entities/idiap.md, entities/bda.md, topics/politicas_agropecuarias.md, topics/arroz.md, topics/subsidios_programas.md, topics/precios_mercados.md, topics/plagas_enfermedades.md, topics/avicultura.md, topics/chirique.md]
 ---
 
@@ -73,6 +75,10 @@ El Ministerio de Desarrollo Agropecuario (MIDA) es la institución rectora del s
 ### Evaluación de Daños por Lluvias — Boquete, Chiriquí (2025)
 - Técnicos del MIDA se trasladaron a Boquete (Chiriquí) para evaluar en campo plantaciones agropecuarias afectadas por lluvias intensas [La Prensa, 2025-10-07](https://www.prensa.com/economia/boquete-mida-inicia-evaluacion-de-areas-afectadas-tras-las-lluvias/)
 
+### Presupuesto y Subsidios (2020, 2022)
+- **2020**: de $3.3 millones solicitados por el MIDA para mejorar la productividad del sector, el MEF solo aprobó **$618 mil**; de $161 millones recomendados por el MEF para el MIDA, el titular de la fuente indica que los subsidios acaparan la mayor parte de esos fondos [La Prensa, 2020-08-27](https://www.prensa.com/impresa/economia/los-subsidios-acaparan-los-fondos-del-mida/)
+- **2022**: el MIDA y el IMA quedaron con **presupuestos reducidos** en la propuesta para 2023; el IMA esperaba aumentar las ferias de alimentos como parte de la mesa del diálogo [La Prensa, 2022-08-31](https://www.prensa.com/economia/el-mida-y-el-ima-quedan-con-presupuestos-reducidos-para-2023/)
+
 ## Programas Relevantes (2015–2025)
 - **Plan de Emergencia Arrocera** (2023): semillas + crédito ante sequía El Niño
 - **Plan Nacional de Atención a la Sequía** (2016): respuesta al El Niño 2015-2016 en Azuero
@@ -86,6 +92,7 @@ El Ministerio de Desarrollo Agropecuario (MIDA) es la institución rectora del s
 - Cobertura limitada en zonas remotas (comarcas, Darién)
 - Retrasos en el pago de compensaciones y subsidios comprometidos a productores (Panamá Este y Darién, 2023-2024)
 - Tensión entre política de importaciones y calendario de cosecha nacional (arroz, 2025)
+- Presión presupuestaria estructural: recursos limitados que priorizan subsidios sobre inversión en productividad (2020); recortes al MIDA y al IMA en años de ajuste fiscal (2022-2023)
 
 ## Referencias
 
@@ -99,10 +106,13 @@ El Ministerio de Desarrollo Agropecuario (MIDA) es la institución rectora del s
 - [La Prensa, 2023 — Medidas de prevención en Panamá Oeste ante gripe aviar](https://www.prensa.com/provincias/mida-adopta-medidas-de-prevencion-en-panama-oeste-ante-gripe-aviar/)
 - [La Prensa, 2022 — Controles reforzados por brote de influenza aviar en Colombia](https://www.prensa.com/economia/mida-refuerza-controles-por-brote-de-influenza-aviar-en-frontera-con-colombia/)
 - [La Prensa, 2025 — Boquete: Mida evalúa áreas afectadas tras lluvias](https://www.prensa.com/economia/boquete-mida-inicia-evaluacion-de-areas-afectadas-tras-las-lluvias/)
+- [La Prensa, 2020 — Los subsidios acaparan los fondos del Mida](https://www.prensa.com/impresa/economia/los-subsidios-acaparan-los-fondos-del-mida/)
+- [La Prensa, 2022 — El MIDA y el IMA quedan con presupuestos reducidos para 2023](https://www.prensa.com/economia/el-mida-y-el-ima-quedan-con-presupuestos-reducidos-para-2023/)
 
 ## Ver también
 - [IDIAP](idiap.md) — investigación agropecuaria
 - [BDA](bda.md) — financiamiento al sector
+- [IMA](ima.md) — mercadeo agropecuario
 - [Políticas Agropecuarias](../topics/politicas_agropecuarias.md)
 - [Arroz en Panamá](../topics/arroz.md)
 - [Subsidios y Programas](../topics/subsidios_programas.md)
