@@ -503,3 +503,46 @@ Diagnóstico del fetch (GitHub Actions, `wiki_daily.yml`): sin cambios respecto 
   normal dentro de la ventana entre corridas diarias.
 
 `wiki/metrics.md` actualizado con estos hallazgos.
+
+## 2026-09-26 16:10 UTC (routine automatizada — DIAGNÓSTICO, sesión 3)
+`git pull origin main`: rama al día, sin commits nuevos que integrar.
+`python wiki_agro.py stats`: 0 pendientes de ingesta (57/57 artículos ingestados) →
+  se salta directo al diagnóstico avanzado (Paso 5 del prompt de routine), sin
+  ingesta nueva en esta sesión.
+
+**Bug de `mark_all_ingested()` — NO re-implementado (siguiendo la nota de la sesión
+anterior)**: se confirmó vía `grep urls_from_pending_ingest scripts/ingest.py` que el
+fix sigue ausente de `main` (quinta vez que se comprueba su ausencia). Tal como
+recomendó la sesión anterior, esta vez NO se reaplicó el parche — en su lugar se
+verificó si ya existe un PR con el fix pendiente de merge:
+  `list_pull_requests(state=open)` confirma que el PR **#316**
+  ("fix: mark_all_ingested lee URLs de pending_ingest.md (recurrencia #4) +
+  diagnóstico", rama `claude/modest-galileo-bpddlo`, abierto 2026-09-26T08:13Z) ya
+  contiene el fix, además de los 3 duplicados previos sin mergear: #313
+  (2026-09-25), #314 (2026-09-25), #315 (2026-09-26). El contenido de `wiki/` de los
+  4 ya está en `main` vía el bot de promoción; solo falta que un humano mergee **uno**
+  de los 4 (se recomienda #316 por ser el más reciente y el único que incluye el
+  diagnóstico de causa raíz completo) y cierre los otros 3 como duplicados. Abrir un
+  quinto PR con el mismo fix no aporta nada — el cuello de botella es 100% humano, no
+  técnico. No se tocó `scripts/ingest.py` en esta sesión.
+
+Diagnóstico del fetch (GitHub Actions, `wiki_daily.yml`): **corrida diaria
+programada SÍ ejecutó hoy** — run **#123** (id 36249766315, 2026-09-26T14:48:35Z–
+14:55:58Z, ~7m23s, conclusion=success), la segunda corrida exitosa consecutiva tras
+la recuperación confirmada en la sesión anterior (run #122). El commit resultante en
+`main` (`9834ab6`, "chore(sources): 0 artículos nuevos descargados [skip ci]")
+confirma que el job corrió el ciclo completo GDELT/RSS pero no encontró contenido
+nuevo que no estuviera ya en `sources/processed.json`. Verificado con
+`sources/processed.json`: `_gdelt_windows` subió de 80 → **82** (avanzó 2 ventanas
+más entre las corridas #122 y #123), pero el último artículo con `saved_at` real
+sigue siendo del 2026-09-06 — "Días sin artículos nuevos" sube a **20**. El fetch
+diario está funcionando de forma estable (2/2 corridas exitosas desde la
+recuperación), pero las ventanas GDELT que está explorando ahora ya no producen
+artículos nuevos: con 82 ventanas completadas (muy por encima del umbral de 45 de
+CLAUDE.md), esto es consistente con "rango de fechas agotado" — probablemente hace
+falta expandir el rango de búsqueda de GDELT (fechas más recientes o períodos
+2015-2018 con baja cobertura mediática) o revisar si las fuentes RSS (IICA, La
+Prensa) siguen devolviendo artículos nuevos. No es indicio de fallo del job, sino de
+saturación del backlog actual de ventanas.
+
+`wiki/metrics.md` actualizado con estos hallazgos.
