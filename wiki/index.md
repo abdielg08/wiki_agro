@@ -2,7 +2,7 @@
 title: Índice del Wiki Agropecuario de Panamá
 type: overview
 tags: [indice, navegacion]
-last_updated: 2026-09-25
+last_updated: 2026-09-26
 article_count: 0
 ---
 
@@ -119,7 +119,11 @@ article_count: 0
 | 2024-08-28 | La Prensa | [Agricultura vertical del IICA: lechuga en 30 días](summaries/20240828_prensacom_agricultura-vertical-iica-lechuga.md) | Prototipo sin suelo ni sol, oficinas del IICA en Panamá |
 | 2020-07-31 | La Prensa | [MIDA confirma llegada de cebolla importada](summaries/20200731_prensacom_mida-llegada-cebolla-importada.md) | 20,000 quintales (titular) / 10 contenedores (texto) |
 | 2019-11-21 | La Prensa | [Ministro Valderrama niega irregularidades en planilla del Mida](summaries/20191121_prensacom_valderrama-niega-irregularidades-planilla-mida.md) | Negó dobles salarios en el MIDA |
+| 2019-10-15 | La Prensa | [MIDA presenta plan de contingencia para el verano](summaries/20191015_prensacom_mida-plan-contingencia-verano-los-santos.md) | Los Santos (Azuero), abastecimiento de agua para ganado |
+| 2019-08-25 | La Prensa (opinión) | [Horizonte agropecuario](summaries/20190825_prensacom_horizonte-agropecuario-sequia-ganado-darien.md) | Sequía nov.2018-may.2019 en Panamá Este/Darién, 30% del hato nacional |
+| 2019-10-11 | La Prensa | [Impulsan el desarrollo de agricultura familiar](summaries/20191011_prensacom_impulsan-desarrollo-agricultura-familiar.md) | 246,000 productores, 80% agricultura familiar |
+| 2019-07-26 | La Prensa | [El rol de la trazabilidad en la agricultura moderna](summaries/20190726_prensacom_rol-trazabilidad-agricultura-moderna.md) | Trazabilidad como requisito creciente del consumidor |
 
 ---
 
-*Última actualización del índice: 2026-09-25*
+*Última actualización del índice: 2026-09-26*
