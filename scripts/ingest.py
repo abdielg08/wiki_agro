@@ -152,14 +152,34 @@ def mark_ingested(url_or_slug: str) -> bool:
     return False
 
 
+def urls_from_pending_ingest() -> list[str]:
+    """Extract the article URLs actually shown to Claude from pending_ingest.md.
+
+    `run_prepare` picks its 5 articles via `prioritize()` (score order), which
+    does NOT match the alphabetical/filename order `find_pending()` returns.
+    Marking must operate on the exact set Claude was shown, not a re-derived
+    pending list, or the wrong articles get flagged as ingested.
+    """
+    ingest_file = ROOT / "pending_ingest.md"
+    if not ingest_file.exists():
+        return []
+    urls = []
+    for line in ingest_file.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if line.startswith("- **URL**:"):
+            urls.append(line.split(":", 1)[1].strip())
+    return urls
+
+
 def mark_all_ingested(limit: int = 0) -> int:
-    """Mark the first `limit` pending articles as ingested (after Claude processed them)."""
+    """Mark the articles listed in pending_ingest.md as ingested (after Claude processed them)."""
     processed = load_processed()
     articles = article_entries(processed)
-    pending = find_pending(limit=limit)
+    urls = urls_from_pending_ingest()
+    if limit:
+        urls = urls[:limit]
     count = 0
-    for _, article in pending:
-        url = article.get("url", "")
+    for url in urls:
         if url in articles:
             processed[url]["ingested"] = True
             processed[url]["ingested_at"] = datetime.now().isoformat()

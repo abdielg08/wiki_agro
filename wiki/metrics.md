@@ -4,6 +4,12 @@ type: overview
 last_updated: 2026-09-26
 ---
 
+> **Actualización 2026-09-26 (sesión de diagnóstico, ~08:10 UTC)**: 0 pendientes de
+> ingesta (sin ingesta nueva esta sesión). Causa raíz del bug recurrente de
+> `mark_all_ingested()` finalmente confirmada — ver "Estado del Fetch" y `wiki/log.md`
+> para el detalle completo. Acción pendiente del usuario: mergear el PR con el fix de
+> `scripts/ingest.py` (o uno de los 3 duplicados #313/#314/#315) para romper el ciclo.
+
 # Dashboard de Métricas
 
 > Actualizado automáticamente por cada routine. La routine DEBE actualizar este archivo en cada sesión.
@@ -99,6 +105,23 @@ Re-fix #2 (2026-09-26)    : el mismo bug reapareció una TERCERA vez — el fix 
                              entrada "FIX BUG mark_all_ingested, recurrencia" — incluye
                              nota para que sesiones futuras verifiquen el código fuente
                              de scripts/ingest.py directamente, no solo el log.
+CAUSA RAÍZ CONFIRMADA
+  (2026-09-26, sesión 2)  : el fix seguía ausente de main una CUARTA vez. Esta sesión
+                             investigó el mecanismo en vez de solo re-parchar:
+                             `.github/workflows/promote_wiki.yml` promueve `wiki/**` y
+                             `sources/processed.json` de cualquier rama `claude/**` a
+                             `main` automáticamente, pero EXCLUYE `scripts/` a propósito
+                             ("rutas restringidas por seguridad"). Cualquier fix de
+                             código queda atrapado en el Pull Request de la sesión hasta
+                             que un humano lo mergea. Se confirmaron 3 PRs abiertos como
+                             draft con el mismo fix aplicado independientemente y nunca
+                             mergeados: #313, #314, #315 — su contenido de wiki/ ya está
+                             en main (vía el bot), pero su fix de scripts/ingest.py no.
+                             Esta sesión abrió un PR nuevo, limpio, solo con el fix de
+                             código (sin contenido de wiki duplicado) para minimizar
+                             conflictos de merge. **Requiere acción manual del usuario**:
+                             mergear ese PR (o #313/#314/#315) y cerrar los duplicados.
+                             Ver wiki/log.md 2026-09-26, entrada "DIAGNÓSTICO".
 ```
 
 ---
@@ -129,6 +152,7 @@ Re-fix #2 (2026-09-26)    : el mismo bug reapareció una TERCERA vez — el fix 
 | 2026-09-25 | 5 | 9 | Routine automatizada. 0 falsos positivos (los 5 artículos eran genuinamente sobre agro panameño, aunque con `full_text` truncado en la fuente). Páginas nuevas: topics/darien_comarca.md, topics/cafe_cacao.md, entities/ima.md (resuelven broken links preexistentes). Diagnóstico confirmado vía GitHub Actions API: 18 fallos consecutivos del fetch diario desde 2026-09-07 (empeoró de 8 a 18 desde el diagnóstico anterior) |
 | 2026-09-25 (sesión 2) | 5 | 4 | Routine automatizada. 0 falsos positivos (cooperación IICA-Argentina, alerta influenza aviar 2022, agricultura vertical IICA, cebolla importada, caso Valderrama). Páginas nuevas: entities/iica_panama.md, topics/hortalizas.md (resuelven 2 broken links preexistentes en index.md). Páginas actualizadas: topics/avicultura.md, topics/plagas_enfermedades.md, topics/tecnologia_innovacion.md, topics/precios_mercados.md, entities/mida.md. **Fetch de GitHub Actions RECUPERADO**: run #122 (2026-09-25) exitoso tras 18 corridas fallidas consecutivas (#104-#121, 2026-09-07 a 2026-09-24) — confirmado vía GitHub Actions API, duración real ~8m44s |
 | 2026-09-26 | 4 | 0 | Routine automatizada. 0 falsos positivos (plan de contingencia MIDA Los Santos, sequía ganadera Panamá Este/Darién, agricultura familiar, trazabilidad). Páginas nuevas: topics/agua_riego.md, topics/azuero.md, topics/ganaderia_bovina.md, topics/comercio_exterior.md (resuelven 4 broken links preexistentes). Páginas actualizadas: topics/cambio_climatico.md, topics/darien_comarca.md, topics/seguridad_alimentaria.md, topics/politicas_agropecuarias.md, topics/tecnologia_innovacion.md, entities/mida.md. **Bug de `mark_all_ingested` recurrió por tercera vez** (ver arriba) y fue corregido de nuevo. Fetch de GitHub Actions: sin corridas nuevas desde run #122 al momento de esta sesión (~00:19 UTC) |
+| 2026-09-26 (sesión 2) | 0 | 0 | Routine automatizada de solo-diagnóstico (0 pendientes al iniciar). **Causa raíz del bug recurrente de `mark_all_ingested` finalmente confirmada**: `promote_wiki.yml` excluye `scripts/` de la promoción automática por diseño; el fix de código queda atrapado en PRs de sesión que nadie ha mergeado (#313, #314, #315, todos duplicados del mismo fix). Re-aplicado el fix por cuarta vez y abierto un PR nuevo, limpio, solo de código. **Acción manual requerida del usuario**: mergear el PR y cerrar los duplicados. Fetch de GitHub Actions: sin corridas nuevas desde run #122 (próxima corrida diaria ~15:40 UTC aún no ocurre a esta hora, ~08:10 UTC) |
 
 ---
 
