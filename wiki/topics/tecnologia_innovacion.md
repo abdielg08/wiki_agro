@@ -1,13 +1,14 @@
 ---
 title: Tecnología e Innovación en el Agro Panameño
 type: topic
-tags: [tecnologia, innovacion, agricultura-precision, agricultura-vertical, iica, exportacion, politica-agropecuaria]
-last_updated: 2026-09-25
-article_count: 2
+tags: [tecnologia, innovacion, agricultura-precision, agricultura-vertical, trazabilidad, iica, exportacion, politica-agropecuaria]
+last_updated: 2026-09-26
+article_count: 3
 sources:
   - "https://www.prensa.com/opinion/panama-de-la-agricultura-de-subsistencia-a-la-agricultura-de-precision-exportadora/"
   - "https://www.prensa.com/sociedad/agricultura-vertical-revoluciona-cultivo-en-panama-lechuga-en-30-dias-sin-sol-ni-tierra/"
-related: [topics/politicas_agropecuarias.md, topics/subsidios_programas.md, topics/hortalizas.md, entities/mida.md, entities/idiap.md, entities/iica_panama.md]
+  - "https://www.prensa.com/impresa/economia/rol-trazabilidad-agricultura-moderna_0_5358214179.html"
+related: [topics/politicas_agropecuarias.md, topics/subsidios_programas.md, topics/hortalizas.md, topics/comercio_exterior.md, entities/mida.md, entities/idiap.md, entities/iica_panama.md]
 ---
 
 # Tecnología e Innovación en el Agro Panameño
@@ -20,6 +21,7 @@ Un debate recurrente en la política agropecuaria panameña es si el sector pued
 
 - **Febrero 2026**: columna de opinión sostiene que Panamá no superará la agricultura de subsistencia con subsidios permanentes ni políticas aisladas, y plantea la **agricultura de precisión exportadora** como salida estructural [La Prensa, opinión, 2026-02-24](https://www.prensa.com/opinion/panama-de-la-agricultura-de-subsistencia-a-la-agricultura-de-precision-exportadora/)
 - **Agosto 2024**: el IICA instaló en sus oficinas de Panamá un prototipo de **agricultura vertical en ambiente controlado** que produce lechuga en 30 días sin suelo ni luz solar, con el objetivo de demostrar la tecnología y sensibilizar a los actores del sector [La Prensa, 2024-08-28](https://www.prensa.com/sociedad/agricultura-vertical-revoluciona-cultivo-en-panama-lechuga-en-30-dias-sin-sol-ni-tierra/)
+- **Julio 2019**: una nota anterior ya planteaba la **trazabilidad de alimentos** como requisito creciente de los consumidores internacionales, señal temprana de la presión tecnológica hacia la agricultura de exportación; el texto disponible se corta al introducir el caso panameño, sin precisar el nivel de adopción [La Prensa, 2019-07-26](https://www.prensa.com/impresa/economia/rol-trazabilidad-agricultura-moderna_0_5358214179.html) (ver [Comercio Exterior](comercio_exterior.md))
 
 ## Tendencias (2015–2025)
 
@@ -35,10 +37,12 @@ Un debate recurrente en la política agropecuaria panameña es si el sector pued
 
 - [La Prensa, 2026 — De la agricultura de subsistencia a la agricultura de precisión exportadora](https://www.prensa.com/opinion/panama-de-la-agricultura-de-subsistencia-a-la-agricultura-de-precision-exportadora/)
 - [La Prensa, 2024 — Agricultura vertical revoluciona cultivo en Panamá](https://www.prensa.com/sociedad/agricultura-vertical-revoluciona-cultivo-en-panama-lechuga-en-30-dias-sin-sol-ni-tierra/)
+- [La Prensa, 2019 — El rol de la trazabilidad en la agricultura moderna](https://www.prensa.com/impresa/economia/rol-trazabilidad-agricultura-moderna_0_5358214179.html)
 
 ## Ver también
 
 - [Políticas Agropecuarias](politicas_agropecuarias.md)
 - [Subsidios y Programas](subsidios_programas.md)
 - [Hortalizas](hortalizas.md)
+- [Comercio Exterior](comercio_exterior.md)
 - [MIDA](../entities/mida.md) | [IDIAP](../entities/idiap.md) | [IICA Panamá](../entities/iica_panama.md)

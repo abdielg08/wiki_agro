@@ -2,12 +2,13 @@
 title: Políticas Agropecuarias en Panamá
 type: topic
 tags: [politica-agropecuaria, plan-mulino, mida, bda, idiap, seguridad-alimentaria, riego, semillas, 2024, 2026]
-last_updated: 2026-09-15
-article_count: 3
+last_updated: 2026-09-26
+article_count: 4
 sources:
   - "https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024"
   - "https://www.prensa.com/politica/nombran-a-nuevo-viceministro-del-mida-tras-renuncia-de-francisco-ameglio/"
   - "https://www.prensa.com/opinion/panama-de-la-agricultura-de-subsistencia-a-la-agricultura-de-precision-exportadora/"
+  - "https://www.prensa.com/impresa/economia/Impulsan-desarrollo-agricultura-familiar_0_5415958417.html"
 related: [topics/subsidios_programas.md, topics/tecnologia_innovacion.md, topics/agua_riego.md, topics/credito_financiamiento.md, entities/mida.md, entities/bda.md, entities/idiap.md]
 ---
 
@@ -32,7 +33,7 @@ Las políticas agropecuarias panameñas de 2015-2025 han evolucionado de interve
 - Respaldo gremial: ANAGAN, CNA, Federación de Cooperativas Agropecuarias
 
 ### Contexto Estructural
-- **85%** de los productores panameños tienen fincas menores de 20 ha (agricultura familiar dominante)
+- **85%** de los productores panameños tienen fincas menores de 20 ha (agricultura familiar dominante); consistente con el dato de 2019 de que **80%** de los 246,000 productores del país pertenecía a agricultura familiar [La Prensa, 2019-10-11](https://www.prensa.com/impresa/economia/Impulsan-desarrollo-agricultura-familiar_0_5415958417.html) (ver [Seguridad Alimentaria](seguridad_alimentaria.md))
 - Autoabastecimiento alimentario en 68% al inicio del período (2024)
 - Importaciones de alimentos básicos (arroz, maíz) entre 20-30% del consumo
 

@@ -372,3 +372,79 @@ Verificación vía GitHub Actions API (mcp__github__actions_list/actions_get) so
 ## 2026-09-25 16:17
 LINT: 50 páginas revisadas, 35 issues encontrados
   frontmatter:0, huérfanas:1, broken_links:24, stale:9, no_index:1
+
+## 2026-09-26 00:19
+INGEST: 4 artículos marcados como ingestados por sesión Claude Code
+
+## 2026-09-26 (routine automatizada — FIX BUG mark_all_ingested, recurrencia)
+FIX: el mismo bug de `mark_all_ingested()` ya documentado y "corregido" el 2026-09-25
+  (ver entrada "FIX BUG mark_all_ingested" de esa fecha) estaba de vuelta: al iniciar
+  esta sesión, `scripts/ingest.py` seguía llamando a `find_pending(limit=limit)` dentro
+  de `mark_all_ingested()`, es decir, el fix documentado nunca llegó a `main` (se perdió
+  de nuevo, probablemente en el mismo problema de ramas huérfanas de la recuperación
+  del 2026-09-23).
+  Evidencia del efecto: al ejecutar `stats`, los 4 "Pendientes de ingesta" resultaron
+  ser exactamente los 4 artículos que la sesión 2 del 2026-09-25 SÍ procesó por completo
+  (summaries + topics/entities creados: iica-cooperación-argentina, alerta zoosanitaria
+  influenza aviar, agricultura vertical IICA, cebolla importada), mientras que
+  `mark-all-ingested --limit 5` de esa sesión anterior había marcado como ingestados,
+  en su lugar, 4 artículos DISTINTOS sin ninguna página de wiki creada
+  (rol-trazabilidad-agricultura-moderna, Impulsan-desarrollo-agricultura-familiar,
+  Horizonte-agropecuario, MIDA-presenta-plan-contingencia-verano) — el mismo patrón de
+  desincronización, solo que con otro conjunto de artículos.
+  Corrección aplicada (esta vez verificada en el código, no solo en el log):
+    1. sources/processed.json: revertidos a `ingested: false` los 4 artículos marcados
+       por error (rol-trazabilidad, Impulsan-desarrollo-agricultura-familiar,
+       Horizonte-agropecuario, MIDA-presenta-plan-contingencia-verano); confirmados
+       `ingested: true` los 4 artículos realmente procesados en la sesión 2 del
+       2026-09-25 (iica-cooperación-argentina, alerta zoosanitaria, agricultura
+       vertical IICA, cebolla importada).
+    2. scripts/ingest.py: se implementó `urls_from_pending_ingest()` (regex sobre las
+       líneas `- **URL**: ...` de `pending_ingest.md`) y se reescribió
+       `mark_all_ingested()` para leer esas URLs directamente en vez de volver a llamar
+       a `find_pending()`. Esto es exactamente el fix que la entrada de log del
+       2026-09-25 decía haber aplicado, pero que no estaba presente en el archivo real.
+    3. Verificado en esta sesión: tras el fix, `mark-all-ingested --limit 5` marcó
+       exactamente los 4 artículos listados en el `pending_ingest.md` vigente (los 4
+       procesados hoy, ver entrada INGEST siguiente) — ninguno de más, ninguno de menos.
+  Nota para sesiones futuras: si este bug reaparece por tercera vez, revisar si el
+  archivo `scripts/ingest.py` de `main` realmente contiene `urls_from_pending_ingest`
+  antes de asumir que el fix sigue vigente — el mecanismo por el cual fixes previos se
+  han perdido dos veces (ramas huérfanas / problemas de merge a main) no se ha
+  diagnosticado ni resuelto de raíz.
+
+## 2026-09-26 (routine automatizada — INGEST)
+INGEST: 4 artículos procesados (todos verificados como genuinamente sobre agro
+  panameño, 0 falsos positivos)
+  Artículos:
+    - 20191015_prensacom_mida-plan-contingencia-verano-los-santos (MIDA, Los Santos/Azuero,
+      2019-10-15) → summaries/ + topics/agua_riego.md creado + topics/azuero.md creado +
+      topics/cambio_climatico.md actualizado + entities/mida.md actualizado
+    - 20190825_prensacom_horizonte-agropecuario-sequia-ganado-darien (opinión, Panamá
+      Este/Darién, 2019-08-25) → summaries/ + topics/ganaderia_bovina.md creado +
+      topics/cambio_climatico.md actualizado + topics/darien_comarca.md actualizado
+    - 20191011_prensacom_impulsan-desarrollo-agricultura-familiar (2019-10-11) →
+      summaries/ + topics/seguridad_alimentaria.md actualizado (completa placeholders
+      pendientes desde 2025-05-24) + topics/politicas_agropecuarias.md actualizado
+    - 20190726_prensacom_rol-trazabilidad-agricultura-moderna (2019-07-26) →
+      summaries/ + topics/comercio_exterior.md creado + topics/tecnologia_innovacion.md
+      actualizado
+  Páginas creadas: topics/agua_riego.md, topics/azuero.md, topics/ganaderia_bovina.md,
+    topics/comercio_exterior.md — las 4 resuelven broken links preexistentes en
+    wiki/index.md (ya referenciados desde la taxonomía de CLAUDE.md, señalados en el
+    LINT del 2026-09-25 como parte de los 24 broken_links)
+  Páginas actualizadas: topics/cambio_climatico.md, topics/darien_comarca.md,
+    topics/seguridad_alimentaria.md, topics/politicas_agropecuarias.md,
+    topics/tecnologia_innovacion.md, entities/mida.md, wiki/index.md
+  Summaries: 4 nuevos archivos en wiki/summaries/
+  Nota sobre calidad de fuente: los 4 artículos de sources/articles/ solo tienen
+    `summary_raw` truncado a ~300 caracteres (campo `full_text` es null en los 4 JSON).
+    Todos son de 2019, La Prensa. Los resúmenes y páginas de topics documentan
+    explícitamente el truncamiento en cada caso (p. ej. la nota de trazabilidad se corta
+    justo al introducir "En Panamá el...", y la de agricultura familiar no identifica la
+    institución responsable del "impulso" mencionado en el titular) y evitan inventar
+    cifras o atribuciones institucionales no verificables.
+  Nota de mantenimiento (no bloqueante): entities/mida.md ya excedía el límite de 800
+    palabras de CLAUDE.md antes de esta sesión (~1,234 palabras); la actualización de
+    hoy fue mínima (una entrada de 2 líneas) para no agravar la violación. Pendiente de
+    una sesión de LINT dedicada a dividir o resumir esa página.

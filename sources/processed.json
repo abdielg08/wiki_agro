@@ -504,7 +504,8 @@
     "title": "Panamá busca fortalecer cooperación agropecuaria con Argentina a través del IICA",
     "date": "2025-08-16",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-26T00:13:02.939891"
   },
   "https://www.prensa.com/opinion/panama-de-la-agricultura-de-subsistencia-a-la-agricultura-de-precision-exportadora/": {
     "saved_at": "2026-08-24T11:18:59.210245",
@@ -548,7 +549,8 @@
     "title": "MIDA confirma la llegada de 20 mil quintales de cebolla importada",
     "date": "2020-07-31",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-26T00:13:02.939891"
   },
   "https://www.prensa.com/economia/boquete-mida-inicia-evaluacion-de-areas-afectadas-tras-las-lluvias/": {
     "saved_at": "2026-08-24T11:18:59.214442",
@@ -592,7 +594,8 @@
     "title": "Agricultura vertical revoluciona cultivo en Panamá: lechuga en 30 días sin sol ni tierra",
     "date": "2024-08-28",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-26T00:13:02.939891"
   },
   "https://www.prensa.com/politica/nombran-a-nuevo-viceministro-del-mida-tras-renuncia-de-francisco-ameglio/": {
     "saved_at": "2026-08-24T11:18:59.218677",
@@ -609,7 +612,8 @@
     "title": "Ministerio de Desarrollo Agropecuario emite alerta zoosanitaria ante riesgo de influenza aviar",
     "date": "2022-03-24",
     "source": "prensa.com",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-09-26T00:13:02.939891"
   },
   "https://www.prensa.com/economia/el-mida-y-el-ima-quedan-con-presupuestos-reducidos-para-2023/": {
     "saved_at": "2026-08-24T11:18:59.220495",
@@ -640,7 +644,7 @@
     "date": "2019-07-26",
     "source": "prensa.com",
     "ingested": true,
-    "ingested_at": "2026-09-25T16:16:39.370156"
+    "ingested_at": "2026-09-26T00:19:07.600139"
   },
   "https://www.prensa.com/impresa/economia/Impulsan-desarrollo-agricultura-familiar_0_5415958417.html": {
     "saved_at": "2026-09-06T13:51:13.339425",
@@ -649,7 +653,7 @@
     "date": "2019-10-11",
     "source": "prensa.com",
     "ingested": true,
-    "ingested_at": "2026-09-25T16:16:39.370175"
+    "ingested_at": "2026-09-26T00:19:07.600138"
   },
   "https://www.prensa.com/opinion/Horizonte-agropecuario_0_5380711932.html": {
     "saved_at": "2026-09-06T13:51:13.340365",
@@ -658,7 +662,7 @@
     "date": "2019-08-25",
     "source": "prensa.com",
     "ingested": true,
-    "ingested_at": "2026-09-25T16:16:39.370173"
+    "ingested_at": "2026-09-26T00:19:07.600136"
   },
   "https://www.prensa.com/economia/que-ocurre-con-el-arroz-en-panama-productores-temen-perdidas-en-la-cosecha-mientras-la-industria-justifica-las-importaciones/": {
     "saved_at": "2026-09-06T13:51:13.341138",
@@ -676,7 +680,7 @@
     "date": "2019-10-15",
     "source": "prensa.com",
     "ingested": true,
-    "ingested_at": "2026-09-25T16:16:39.370177"
+    "ingested_at": "2026-09-26T00:19:07.600124"
   },
   "https://www.prensa.com/impresa/economia/los-subsidios-acaparan-los-fondos-del-mida/": {
     "saved_at": "2026-09-06T13:51:13.343164",

@@ -1,7 +1,7 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-09-25 (sesión 2)
+last_updated: 2026-09-26
 ---
 
 # Dashboard de Métricas
@@ -15,15 +15,15 @@ last_updated: 2026-09-25 (sesión 2)
 | Métrica | Valor | Meta |
 |---------|-------|------|
 | Artículos en sources/ (descargados) | 57 | ↑ continuo |
-| Artículos reales ingestados (wiki) | 26 | = total sin falsos positivos |
+| Artículos reales ingestados (wiki) | 30 | = total sin falsos positivos |
 | Falsos positivos acumulados (documentados) | 25 | **0 nuevos** desde el fix de `fetch_ddg_search` |
 | Fuera de cobertura temporal (pre-2015) | 2 | — |
-| Pendientes de ingesta (genuinos, verificados) | 4 | 0 |
-| Páginas en wiki/ | 50 (16 topics, 5 entidades, 26 resúmenes, 3 overview) | ↑ continuo |
+| Pendientes de ingesta (genuinos, verificados) | 0 | 0 |
+| Páginas en wiki/ | 58 (20 topics, 5 entidades, 30 resúmenes, 3 overview) | ↑ continuo |
 | Cobertura temporal | 2015-2026 (parcial, concentrada en 2019-2026) | 2015-02-19 → hoy |
-| Ventanas GDELT completadas | 80 (+1 desde 2026-09-15, run #122) | 45+ (rango base ya cubierto) |
-| Días sin artículos NUEVOS descargados | 19 (último con contenido nuevo: 2026-09-06) | máx 3 antes de diagnosticar |
-| Estado del job de fetch (GitHub Actions) | **RECUPERADO hoy** (run #122, 2026-09-25, éxito, ~8m44s) tras 18 corridas fallidas consecutivas | corridas diarias exitosas |
+| Ventanas GDELT completadas | 80 (sin cambio desde 2026-09-25, run #122) | 45+ (rango base ya cubierto) |
+| Días sin artículos NUEVOS descargados | 20 (último con contenido nuevo: 2026-09-06) | máx 3 antes de diagnosticar |
+| Estado del job de fetch (GitHub Actions) | Recuperado desde run #122 (2026-09-25, éxito); próxima corrida diaria programada aún no ha ocurrido al momento de esta sesión (~00:19 UTC) | corridas diarias exitosas |
 
 ---
 
@@ -58,6 +58,13 @@ Acción recomendada         : monitorear las próximas 1-2 corridas diarias prog
                              y no un caso aislado.
 Ver diagnóstico completo   : wiki/log.md, entradas 2026-09-15 08:30, 2026-09-25 y
                              2026-09-25 (sesión 2 — RECUPERACIÓN FETCH)
+Estado a 2026-09-26        : sin cambios respecto al 2026-09-25 (sesión 2). Verificado
+                             vía GitHub Actions API (actions_list) que el run #122 sigue
+                             siendo el más reciente (total_count=122) — la próxima
+                             corrida diaria programada (~15:40 UTC) aún no ha ocurrido al
+                             momento de esta sesión (~00:19 UTC del 2026-09-26). No hay
+                             evidencia nueva que confirmar o refutar la estabilidad de la
+                             recuperación todavía.
 ```
 
 ```
@@ -80,6 +87,18 @@ Re-fix (2026-09-25)       : el fix del 2026-09-15 arriba descrito NO estaba pres
                              (urls_from_pending_ingest() en scripts/ingest.py) y
                              corregido sources/processed.json manualmente. Ver
                              wiki/log.md 2026-09-25, entrada "FIX BUG mark_all_ingested".
+Re-fix #2 (2026-09-26)    : el mismo bug reapareció una TERCERA vez — el fix del
+                             2026-09-25 tampoco llegó a persistir en main (mismo
+                             mecanismo sospechado: pérdida en merges/ramas huérfanas).
+                             4 de los 5 artículos marcados el 2026-09-25 16:16 eran
+                             incorrectos (sin página de wiki creada); los 4 genuinos
+                             (iica-cooperación, alerta zoosanitaria, agricultura
+                             vertical IICA, cebolla) seguían en `ingested: false`.
+                             Re-aplicado el fix por tercera vez y corregido
+                             sources/processed.json. Ver wiki/log.md 2026-09-26,
+                             entrada "FIX BUG mark_all_ingested, recurrencia" — incluye
+                             nota para que sesiones futuras verifiquen el código fuente
+                             de scripts/ingest.py directamente, no solo el log.
 ```
 
 ---
@@ -109,6 +128,7 @@ Re-fix (2026-09-25)       : el fix del 2026-09-15 arriba descrito NO estaba pres
 | 2026-09-15 | 10 (2 lotes de 5) | 14 | Routine automatizada. Además: fix de bug crítico en `mark_all_ingested` (marcaba artículos equivocados), 17 falsos positivos nuevos detectados y documentados, 7 falsos positivos antiguos re-etiquetados, fix de raíz en `fetch_ddg_search` (faltaba filtro Panamá), y diagnóstico de 8 fallos consecutivos de GitHub Actions |
 | 2026-09-25 | 5 | 9 | Routine automatizada. 0 falsos positivos (los 5 artículos eran genuinamente sobre agro panameño, aunque con `full_text` truncado en la fuente). Páginas nuevas: topics/darien_comarca.md, topics/cafe_cacao.md, entities/ima.md (resuelven broken links preexistentes). Diagnóstico confirmado vía GitHub Actions API: 18 fallos consecutivos del fetch diario desde 2026-09-07 (empeoró de 8 a 18 desde el diagnóstico anterior) |
 | 2026-09-25 (sesión 2) | 5 | 4 | Routine automatizada. 0 falsos positivos (cooperación IICA-Argentina, alerta influenza aviar 2022, agricultura vertical IICA, cebolla importada, caso Valderrama). Páginas nuevas: entities/iica_panama.md, topics/hortalizas.md (resuelven 2 broken links preexistentes en index.md). Páginas actualizadas: topics/avicultura.md, topics/plagas_enfermedades.md, topics/tecnologia_innovacion.md, topics/precios_mercados.md, entities/mida.md. **Fetch de GitHub Actions RECUPERADO**: run #122 (2026-09-25) exitoso tras 18 corridas fallidas consecutivas (#104-#121, 2026-09-07 a 2026-09-24) — confirmado vía GitHub Actions API, duración real ~8m44s |
+| 2026-09-26 | 4 | 0 | Routine automatizada. 0 falsos positivos (plan de contingencia MIDA Los Santos, sequía ganadera Panamá Este/Darién, agricultura familiar, trazabilidad). Páginas nuevas: topics/agua_riego.md, topics/azuero.md, topics/ganaderia_bovina.md, topics/comercio_exterior.md (resuelven 4 broken links preexistentes). Páginas actualizadas: topics/cambio_climatico.md, topics/darien_comarca.md, topics/seguridad_alimentaria.md, topics/politicas_agropecuarias.md, topics/tecnologia_innovacion.md, entities/mida.md. **Bug de `mark_all_ingested` recurrió por tercera vez** (ver arriba) y fue corregido de nuevo. Fetch de GitHub Actions: sin corridas nuevas desde run #122 al momento de esta sesión (~00:19 UTC) |
 
 ---
 
@@ -127,15 +147,20 @@ Al ejecutar, la routine DEBE:
 - Identificar si el problema es GDELT rate-limit, RSS caído, o config
 - Documentar el diagnóstico en wiki/log.md con pasos para resolverlo
 
-**Estado a 2026-09-25 (sesión 2)**: el **job de fetch de GitHub Actions se recuperó**
-esta sesión — run #122 (2026-09-25, ~8m44s, éxito) rompió la racha de 18 corridas
-fallidas consecutivas (#104-#121, 2026-09-07 → 2026-09-24), confirmado vía GitHub
-Actions API con desglose por paso (el fetch real corrió ~8m22s, no fue un fallo de
-arranque). Sin embargo, la señal de "días sin artículos NUEVOS descargados" sigue en
-19 (último contenido nuevo: 2026-09-06), porque la corrida de hoy, aunque exitosa,
-no encontró artículos nuevos en la ventana procesada (resultado normal, no un fallo).
-El backlog de 4 artículos pendientes genuinos alcanza para ~1 sesión más de routine.
-**Acción recomendada**: monitorear las próximas 1-2 corridas diarias para confirmar
-que la recuperación del fetch es estable; si vuelven a aparecer fallos de 3-6s, revisar
-de nuevo cuota de Actions / permisos. Ver diagnóstico en wiki/log.md, entrada
-2026-09-25 (sesión 2 — RECUPERACIÓN FETCH).
+**Estado a 2026-09-26**: sin cambios en el fetch respecto al 2026-09-25 (sesión 2) — el
+run #122 (2026-09-25, éxito) sigue siendo la corrida más reciente; la siguiente corrida
+diaria programada (~15:40 UTC) todavía no ocurre al momento de esta sesión (~00:19 UTC).
+"Días sin artículos NUEVOS descargados" subió a 20 (último contenido nuevo: 2026-09-06).
+El backlog de artículos pendientes genuinos llegó a **0** esta sesión — el backfill
+histórico depende ahora enteramente de que el fetch automático (GDELT/RSS) siga
+trayendo artículos nuevos; sin corridas adicionales que confirmen la recuperación, no
+hay backlog de respaldo para la próxima sesión de routine.
+**Bug recurrente**: `mark_all_ingested()` volvió a desincronizarse por tercera vez esta
+sesión (ver "Bug adicional corregido" arriba) — el fix aplicado el 2026-09-15 y de
+nuevo el 2026-09-25 no había persistido en `scripts/ingest.py` de `main`. Re-aplicado.
+**Acción recomendada**: (1) monitorear la próxima corrida diaria (~15:40 UTC,
+2026-09-26) para confirmar que el fetch sigue estable; (2) en la próxima sesión,
+verificar con `grep urls_from_pending_ingest scripts/ingest.py` que el fix del bug de
+`mark_all_ingested` sigue presente en main antes de asumir que está resuelto. Ver
+diagnóstico en wiki/log.md, entradas 2026-09-25 (sesión 2 — RECUPERACIÓN FETCH) y
+2026-09-26 (FIX BUG mark_all_ingested, recurrencia).
