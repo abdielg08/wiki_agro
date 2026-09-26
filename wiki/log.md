@@ -448,3 +448,58 @@ INGEST: 4 artículos procesados (todos verificados como genuinamente sobre agro
     palabras de CLAUDE.md antes de esta sesión (~1,234 palabras); la actualización de
     hoy fue mínima (una entrada de 2 líneas) para no agravar la violación. Pendiente de
     una sesión de LINT dedicada a dividir o resumir esa página.
+
+## 2026-09-26 (routine automatizada — DIAGNÓSTICO)
+`python wiki_agro.py stats`: 0 pendientes de ingesta (57/57 artículos ingestados) →
+  se salta directo a diagnóstico avanzado (Paso 4/5 de CLAUDE.md), sin ingesta nueva
+  en esta sesión.
+
+**Causa raíz del bug recurrente de `mark_all_ingested()` — CONFIRMADA (cuarta
+recurrencia detectada, no corregida por tercera vez como se pensaba)**:
+  Al revisar `scripts/ingest.py` en `main` (tras `git pull origin main`), el fix
+  documentado como aplicado el 2026-09-15, 2026-09-25 y 2026-09-26 (sesión anterior,
+  PR #315) **seguía ausente** — `grep urls_from_pending_ingest scripts/ingest.py`
+  no encontró nada. Se re-implementó el fix por cuarta vez (idéntico a las anteriores).
+  Pero esta vez se investigó el mecanismo de pérdida en vez de solo re-aplicar el
+  parche:
+  - `.github/workflows/promote_wiki.yml` promueve automáticamente a `main` en cada
+    push a una rama `claude/**` que toque `wiki/**` o `sources/processed.json` — pero
+    la línea `git checkout "$SRC_SHA" -- wiki/ sources/processed.json` **excluye
+    deliberadamente `scripts/`** (comentario del propio archivo: "rutas restringidas
+    por seguridad").
+  - Cada sesión de routine arranca su rama desde `main` y hace push únicamente a esa
+    rama (no a `main` directamente); el contenido de `wiki/` llega a `main` vía el bot,
+    pero cualquier fix en `scripts/*.py` queda atrapado en un Pull Request que solo un
+    humano puede mergear.
+  - Se encontraron **3 Pull Requests abiertos como draft, sin mergear, cada uno con el
+    mismo fix de `mark_all_ingested()` aplicado de forma independiente**: #313
+    (2026-09-15/25), #314 (2026-09-25 sesión 2), #315 (2026-09-26 sesión anterior). El
+    contenido de `wiki/` de los tres ya llegó a `main` vía el bot de promoción (por eso
+    `stats` no muestra inconsistencias de contenido), pero el fix de código en
+    `scripts/ingest.py` de los tres sigue exclusivamente en sus ramas.
+  - **Esta es la causa raíz real de la recurrencia**: no es que el fix se pierda por
+    "ramas huérfanas" (hipótesis de sesiones anteriores), sino que el mecanismo de
+    promoción automática nunca tuvo alcance para promover `scripts/`, y ningún humano
+    ha mergeado todavía ninguno de los 3 PRs que sí contienen el fix.
+  Acción tomada: se abrió un PR nuevo y limpio (rama `claude/modest-galileo-bpddlo`,
+  base `main` actualizado) que contiene **solo** el fix de `scripts/ingest.py` (sin
+  contenido de wiki duplicado, para evitar conflictos de merge con los otros 3 PRs
+  obsoletos) — ver enlace del PR en el historial de GitHub. Se notificó al usuario que
+  se requiere una acción manual: mergear ese PR (o cualquiera de los 3 anteriores) y
+  cerrar los duplicados, o el bug volverá a aparecer en la próxima sesión con
+  pendientes > 0.
+  **Nota para sesiones futuras**: si este bug reaparece, el diagnóstico ya no es
+  necesario — el problema es 100% conocido (ver arriba). Verificar directamente si hay
+  un PR de `scripts/ingest.py` pendiente de mergear antes de re-implementar el fix por
+  quinta vez.
+
+Diagnóstico del fetch (GitHub Actions, `wiki_daily.yml`): sin cambios respecto a la
+  sesión anterior (2026-09-26, 00:2x UTC). Última corrida fue el run #122
+  (2026-09-25T15:40:48Z, éxito, ~8m44s, 0 artículos nuevos). Verificado vía
+  `actions_list` que no hay corridas nuevas desde entonces — consistente con que la
+  próxima corrida diaria programada (~15:40 UTC) todavía no ha ocurrido al momento de
+  esta sesión (~08:10 UTC del 2026-09-26). "Días sin artículos nuevos" se mantiene en
+  20 (último contenido nuevo: 2026-09-06). No hay evidencia de fallo — es una espera
+  normal dentro de la ventana entre corridas diarias.
+
+`wiki/metrics.md` actualizado con estos hallazgos.
