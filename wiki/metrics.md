@@ -4,11 +4,13 @@ type: overview
 last_updated: 2026-09-26
 ---
 
-> **Actualización 2026-09-26 (sesión de diagnóstico, ~08:10 UTC)**: 0 pendientes de
-> ingesta (sin ingesta nueva esta sesión). Causa raíz del bug recurrente de
-> `mark_all_ingested()` finalmente confirmada — ver "Estado del Fetch" y `wiki/log.md`
-> para el detalle completo. Acción pendiente del usuario: mergear el PR con el fix de
-> `scripts/ingest.py` (o uno de los 3 duplicados #313/#314/#315) para romper el ciclo.
+> **Actualización 2026-09-26 (sesión de diagnóstico 3, ~16:10 UTC)**: 0 pendientes de
+> ingesta (sin ingesta nueva esta sesión). El fetch diario (GitHub Actions) corrió hoy
+> con éxito por segunda vez consecutiva (run #123, 14:48-14:55 UTC) pero sin artículos
+> nuevos — 20 días sin contenido nuevo, ventanas GDELT en 82 (rango base agotado). El
+> PR **#316** ya contiene el fix del bug recurrente de `mark_all_ingested()`; esta
+> sesión NO abrió un quinto PR duplicado. Acción pendiente del usuario: mergear #316
+> y cerrar #313/#314/#315.
 
 # Dashboard de Métricas
 
@@ -27,9 +29,9 @@ last_updated: 2026-09-26
 | Pendientes de ingesta (genuinos, verificados) | 0 | 0 |
 | Páginas en wiki/ | 58 (20 topics, 5 entidades, 30 resúmenes, 3 overview) | ↑ continuo |
 | Cobertura temporal | 2015-2026 (parcial, concentrada en 2019-2026) | 2015-02-19 → hoy |
-| Ventanas GDELT completadas | 80 (sin cambio desde 2026-09-25, run #122) | 45+ (rango base ya cubierto) |
+| Ventanas GDELT completadas | 82 (↑2 desde 2026-09-25, runs #122-#123) | 45+ (rango base agotado — sin artículos nuevos en las últimas ventanas) |
 | Días sin artículos NUEVOS descargados | 20 (último con contenido nuevo: 2026-09-06) | máx 3 antes de diagnosticar |
-| Estado del job de fetch (GitHub Actions) | Recuperado desde run #122 (2026-09-25, éxito); próxima corrida diaria programada aún no ha ocurrido al momento de esta sesión (~00:19 UTC) | corridas diarias exitosas |
+| Estado del job de fetch (GitHub Actions) | Estable: 2/2 corridas exitosas desde la recuperación (run #122 2026-09-25, run #123 2026-09-26 14:48-14:55 UTC), ambas con 0 artículos nuevos | corridas diarias exitosas |
 
 ---
 
@@ -71,6 +73,22 @@ Estado a 2026-09-26        : sin cambios respecto al 2026-09-25 (sesión 2). Ver
                              momento de esta sesión (~00:19 UTC del 2026-09-26). No hay
                              evidencia nueva que confirmar o refutar la estabilidad de la
                              recuperación todavía.
+Estado a 2026-09-26
+  (sesión 3, ~16:10 UTC)    : CONFIRMADA la estabilidad de la recuperación. Run #123
+                             (id 36249766315, 2026-09-26T14:48:35-14:55:58 UTC, ~7m23s,
+                             conclusion=success) — segunda corrida diaria exitosa
+                             consecutiva desde el fix de #306. `_gdelt_windows` avanzó
+                             80→82. Igual que run #122, terminó con un commit normal
+                             "0 artículos nuevos descargados" (`9834ab6`) — resultado
+                             legítimo, no señal de fallo. El backlog de ventanas GDELT
+                             restantes ya no está produciendo artículos nuevos con
+                             regularidad (0 en las últimas 2 corridas); "días sin
+                             artículos nuevos" sube a 20. Recomendación para una
+                             próxima sesión de mantenimiento: evaluar si expandir el
+                             rango de fechas GDELT o revisar la cobertura de las
+                             fuentes RSS (IICA, La Prensa) ayudaría a destrabar el
+                             backfill, ya que el mecanismo de fetch en sí funciona
+                             correctamente.
 ```
 
 ```
@@ -122,6 +140,19 @@ CAUSA RAÍZ CONFIRMADA
                              conflictos de merge. **Requiere acción manual del usuario**:
                              mergear ese PR (o #313/#314/#315) y cerrar los duplicados.
                              Ver wiki/log.md 2026-09-26, entrada "DIAGNÓSTICO".
+NO re-implementado
+  (2026-09-26, sesión 3)   : siguiendo la nota dejada por la sesión anterior ("si este
+                             bug reaparece... verificar si hay un PR pendiente de
+                             mergear antes de re-implementar el fix por quinta vez"),
+                             esta sesión confirmó que el fix sigue ausente de
+                             `scripts/ingest.py` en `main` pero NO lo volvió a aplicar.
+                             En su lugar verificó que el PR **#316** (abierto
+                             2026-09-26T08:13Z, rama `claude/modest-galileo-bpddlo`)
+                             ya contiene el fix con el diagnóstico de causa raíz
+                             completo. Sigue habiendo 4 PRs abiertos sin mergear con el
+                             mismo fix (#313, #314, #315, #316) — el cuello de botella
+                             es exclusivamente humano (falta un merge manual), no
+                             técnico. Ver wiki/log.md 2026-09-26 (sesión 3).
 ```
 
 ---
@@ -153,6 +184,7 @@ CAUSA RAÍZ CONFIRMADA
 | 2026-09-25 (sesión 2) | 5 | 4 | Routine automatizada. 0 falsos positivos (cooperación IICA-Argentina, alerta influenza aviar 2022, agricultura vertical IICA, cebolla importada, caso Valderrama). Páginas nuevas: entities/iica_panama.md, topics/hortalizas.md (resuelven 2 broken links preexistentes en index.md). Páginas actualizadas: topics/avicultura.md, topics/plagas_enfermedades.md, topics/tecnologia_innovacion.md, topics/precios_mercados.md, entities/mida.md. **Fetch de GitHub Actions RECUPERADO**: run #122 (2026-09-25) exitoso tras 18 corridas fallidas consecutivas (#104-#121, 2026-09-07 a 2026-09-24) — confirmado vía GitHub Actions API, duración real ~8m44s |
 | 2026-09-26 | 4 | 0 | Routine automatizada. 0 falsos positivos (plan de contingencia MIDA Los Santos, sequía ganadera Panamá Este/Darién, agricultura familiar, trazabilidad). Páginas nuevas: topics/agua_riego.md, topics/azuero.md, topics/ganaderia_bovina.md, topics/comercio_exterior.md (resuelven 4 broken links preexistentes). Páginas actualizadas: topics/cambio_climatico.md, topics/darien_comarca.md, topics/seguridad_alimentaria.md, topics/politicas_agropecuarias.md, topics/tecnologia_innovacion.md, entities/mida.md. **Bug de `mark_all_ingested` recurrió por tercera vez** (ver arriba) y fue corregido de nuevo. Fetch de GitHub Actions: sin corridas nuevas desde run #122 al momento de esta sesión (~00:19 UTC) |
 | 2026-09-26 (sesión 2) | 0 | 0 | Routine automatizada de solo-diagnóstico (0 pendientes al iniciar). **Causa raíz del bug recurrente de `mark_all_ingested` finalmente confirmada**: `promote_wiki.yml` excluye `scripts/` de la promoción automática por diseño; el fix de código queda atrapado en PRs de sesión que nadie ha mergeado (#313, #314, #315, todos duplicados del mismo fix). Re-aplicado el fix por cuarta vez y abierto un PR nuevo, limpio, solo de código. **Acción manual requerida del usuario**: mergear el PR y cerrar los duplicados. Fetch de GitHub Actions: sin corridas nuevas desde run #122 (próxima corrida diaria ~15:40 UTC aún no ocurre a esta hora, ~08:10 UTC) |
+| 2026-09-26 (sesión 3) | 0 | 0 | Routine automatizada de solo-diagnóstico (0 pendientes al iniciar). **Fetch de GitHub Actions confirmado estable**: run #123 (2026-09-26, 14:48-14:55 UTC) exitoso, segunda corrida consecutiva desde la recuperación, pero 0 artículos nuevos (ventanas GDELT 80→82, backlog de ventanas agotándose). "Días sin artículos nuevos" sube a 20. **Bug de `mark_all_ingested` NO re-implementado**: siguiendo la nota de la sesión anterior, se verificó que el PR #316 ya contiene el fix (junto a 3 duplicados sin mergear: #313, #314, #315) — no se abrió un quinto PR. Acción manual requerida del usuario: mergear #316 y cerrar los duplicados. |
 
 ---
 
@@ -171,20 +203,25 @@ Al ejecutar, la routine DEBE:
 - Identificar si el problema es GDELT rate-limit, RSS caído, o config
 - Documentar el diagnóstico en wiki/log.md con pasos para resolverlo
 
-**Estado a 2026-09-26**: sin cambios en el fetch respecto al 2026-09-25 (sesión 2) — el
-run #122 (2026-09-25, éxito) sigue siendo la corrida más reciente; la siguiente corrida
-diaria programada (~15:40 UTC) todavía no ocurre al momento de esta sesión (~00:19 UTC).
-"Días sin artículos NUEVOS descargados" subió a 20 (último contenido nuevo: 2026-09-06).
-El backlog de artículos pendientes genuinos llegó a **0** esta sesión — el backfill
-histórico depende ahora enteramente de que el fetch automático (GDELT/RSS) siga
-trayendo artículos nuevos; sin corridas adicionales que confirmen la recuperación, no
-hay backlog de respaldo para la próxima sesión de routine.
-**Bug recurrente**: `mark_all_ingested()` volvió a desincronizarse por tercera vez esta
-sesión (ver "Bug adicional corregido" arriba) — el fix aplicado el 2026-09-15 y de
-nuevo el 2026-09-25 no había persistido en `scripts/ingest.py` de `main`. Re-aplicado.
-**Acción recomendada**: (1) monitorear la próxima corrida diaria (~15:40 UTC,
-2026-09-26) para confirmar que el fetch sigue estable; (2) en la próxima sesión,
-verificar con `grep urls_from_pending_ingest scripts/ingest.py` que el fix del bug de
-`mark_all_ingested` sigue presente en main antes de asumir que está resuelto. Ver
-diagnóstico en wiki/log.md, entradas 2026-09-25 (sesión 2 — RECUPERACIÓN FETCH) y
-2026-09-26 (FIX BUG mark_all_ingested, recurrencia).
+**Estado a 2026-09-26 (sesión 3, ~16:10 UTC)**: el fetch de GitHub Actions está
+confirmado estable — run #123 (2026-09-26, 14:48-14:55 UTC, éxito) es la segunda
+corrida diaria consecutiva exitosa desde la recuperación (run #122). Sin embargo,
+ambas corridas trajeron 0 artículos nuevos; "Días sin artículos NUEVOS descargados"
+subió a 20 (último contenido nuevo: 2026-09-06). Las ventanas GDELT completadas
+subieron a 82 (por encima del umbral de 45 de CLAUDE.md) sin producir artículos
+nuevos — el backlog de ventanas restantes parece agotado. El backlog de artículos
+pendientes genuinos sigue en **0** — el backfill histórico depende enteramente de que
+el fetch automático (GDELT/RSS) empiece a traer artículos nuevos otra vez; de lo
+contrario, puede valer la pena expandir el rango de fechas GDELT o revisar la
+cobertura real de las fuentes RSS (IICA, La Prensa).
+**Bug recurrente `mark_all_ingested`**: el fix sigue ausente de `scripts/ingest.py` en
+`main` (quinta vez confirmado, no re-aplicado esta sesión). El PR **#316** ya lo
+contiene, junto a 3 duplicados sin mergear (#313, #314, #315). **No re-implementar el
+fix una sexta vez** — es un problema 100% de merge humano pendiente, no técnico.
+**Acción recomendada**: (1) el usuario debe mergear el PR #316 (o cualquiera de
+#313/#314/#315) y cerrar los duplicados para desbloquear el fix de código de forma
+permanente; (2) en la próxima sesión, si `python wiki_agro.py stats` muestra
+`Pendientes > 0` de forma inconsistente con lo ingestado, verificar primero si el fix
+llegó a `main` con `grep urls_from_pending_ingest scripts/ingest.py` antes de asumir
+que hay que re-aplicarlo. Ver diagnóstico en wiki/log.md, entradas 2026-09-26 (sesión
+2 — causa raíz confirmada) y 2026-09-26 (sesión 3, ~16:10 UTC).
