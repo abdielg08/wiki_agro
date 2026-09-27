@@ -546,3 +546,42 @@ Prensa) siguen devolviendo artículos nuevos. No es indicio de fallo del job, si
 saturación del backlog actual de ventanas.
 
 `wiki/metrics.md` actualizado con estos hallazgos.
+
+## 2026-09-27 00:10 UTC (routine automatizada — DIAGNÓSTICO, sesión 4)
+`git pull origin main`: rama al día, sin commits nuevos que integrar.
+`python wiki_agro.py stats`: 0 pendientes de ingesta (57/57 artículos ingestados) →
+  se salta directo al diagnóstico avanzado (Paso 5), sin ingesta nueva en esta
+  sesión.
+
+**Bug de `mark_all_ingested()` — sigue sin fix en `main` (sexta comprobación)**:
+`grep urls_from_pending_ingest scripts/ingest.py` no encuentra coincidencias — el
+fix continúa ausente. Siguiendo la nota de sesiones anteriores, NO se reaplicó el
+parche. Se verificó `list_pull_requests(state=open)`: ahora hay **5 PRs abiertos
+como draft sin mergear**: #313 (2026-09-25), #314 (2026-09-25), #315 (2026-09-26),
+#316 (2026-09-26, contiene el fix + diagnóstico de causa raíz completo) y **#317**
+(nuevo desde la última sesión, 2026-09-26T16:12Z, "diagnóstico 2026-09-26 sesión 3,
+0 pendientes" — este último es solo diagnóstico, no reintroduce el fix). El
+contenido de `wiki/` de los 5 ya llegó a `main` vía el bot de promoción (por eso
+`stats` y los archivos de wiki reflejan las sesiones anteriores correctamente); el
+fix de `scripts/ingest.py` sigue exclusivamente en la rama de #316. **Sin acción de
+código en esta sesión** — se reitera la recomendación: el usuario debe mergear el
+PR #316 (o cualquiera de #313/#314/#315) y cerrar los 4 restantes como duplicados/
+obsoletos para desbloquear el fix de forma permanente. No abrir un sexto PR con el
+mismo fix.
+
+Diagnóstico del fetch (GitHub Actions, `wiki_daily.yml`): sin corridas nuevas desde
+el run **#123** (2026-09-26T14:48:35Z–14:55:58Z, éxito, ~7m23s, 0 artículos nuevos).
+Verificado vía `actions_list` (`total_count=123`, el run #123 sigue siendo el más
+reciente) — consistente con que la próxima corrida diaria programada (~15:40 UTC)
+aún no ha ocurrido al momento de esta sesión (~00:10 UTC del 2026-09-27).
+`sources/processed.json`: `_gdelt_windows` se mantiene en **82** (sin cambio desde
+la sesión anterior, como es esperable sin una corrida nueva). Último artículo con
+contenido genuinamente nuevo sigue siendo del 2026-09-06 (run #103) — "Días sin
+artículos nuevos" sube a **21**. No hay evidencia de fallo del job; es una espera
+normal dentro de la ventana entre corridas diarias, pero el backlog de ventanas
+GDELT sigue sin producir contenido nuevo desde hace 2 corridas consecutivas
+exitosas (#122, #123) — se mantiene la recomendación de evaluar expandir el rango
+de fechas GDELT o auditar la cobertura real de las fuentes RSS (IICA, La Prensa) en
+una futura sesión de mantenimiento.
+
+`wiki/metrics.md` actualizado con estos hallazgos.
