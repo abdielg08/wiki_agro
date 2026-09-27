@@ -1,17 +1,18 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-09-27
+last_updated: 2026-09-27 (sesión 5, ~08:10 UTC)
 ---
 
-> **Actualización 2026-09-27 (sesión de diagnóstico 4, ~00:10 UTC)**: 0 pendientes de
+> **Actualización 2026-09-27 (sesión de diagnóstico 5, ~08:10 UTC)**: 0 pendientes de
 > ingesta (sin ingesta nueva esta sesión). Sin corridas nuevas de GitHub Actions desde
 > el run #123 (2026-09-26, éxito, 0 artículos nuevos) — la corrida diaria de hoy
-> (~15:40 UTC) aún no ha ocurrido. 21 días sin contenido nuevo, ventanas GDELT sin
+> (~15:00-15:40 UTC) aún no ha ocurrido. 21 días sin contenido nuevo, ventanas GDELT sin
 > cambio en 82 (rango base agotado). El bug de `mark_all_ingested()` sigue sin fix en
-> `main`; ahora hay **5 PRs abiertos sin mergear** (#313-#317, el #316 con el fix
-> completo). Esta sesión NO abrió un sexto PR duplicado. Acción pendiente del usuario:
-> mergear #316 (o cualquiera de #313/#314/#315) y cerrar los 4 restantes.
+> `main`; ahora hay **6 PRs abiertos sin mergear** (#313-#318, el #316 con el fix
+> completo; #318 es el nuevo PR auto-creado de la sesión de diagnóstico anterior).
+> Esta sesión NO reaplicó el fix ni abrió un séptimo PR duplicado. Acción pendiente
+> del usuario: mergear #316 (o cualquiera de #313/#314/#315) y cerrar los 5 restantes.
 
 # Dashboard de Métricas
 
@@ -32,7 +33,7 @@ last_updated: 2026-09-27
 | Cobertura temporal | 2015-2026 (parcial, concentrada en 2019-2026) | 2015-02-19 → hoy |
 | Ventanas GDELT completadas | 82 (↑2 desde 2026-09-25, runs #122-#123) | 45+ (rango base agotado — sin artículos nuevos en las últimas ventanas) |
 | Días sin artículos NUEVOS descargados | 21 (último con contenido nuevo: 2026-09-06) | máx 3 antes de diagnosticar |
-| Estado del job de fetch (GitHub Actions) | Estable: 2/2 corridas exitosas desde la recuperación (run #122 2026-09-25, run #123 2026-09-26 14:48-14:55 UTC), ambas con 0 artículos nuevos. Sin corridas nuevas al 2026-09-27 ~00:10 UTC (corrida diaria de hoy aún no ocurre) | corridas diarias exitosas |
+| Estado del job de fetch (GitHub Actions) | Estable: 2/2 corridas exitosas desde la recuperación (run #122 2026-09-25, run #123 2026-09-26 14:48-14:55 UTC), ambas con 0 artículos nuevos. Sin corridas nuevas al 2026-09-27 ~08:10 UTC (corrida diaria de hoy aún no ocurre) | corridas diarias exitosas |
 
 ---
 
@@ -162,6 +163,17 @@ NO re-implementado
                              (2026-09-26T16:12Z, solo diagnóstico, no reintroduce el
                              fix). El cuello de botella sigue siendo 100% humano. Ver
                              wiki/log.md 2026-09-27 (sesión 4).
+NO re-implementado
+  (2026-09-27, sesión 5)   : séptima comprobación — el fix sigue ausente de `main`.
+                             NO se reaplicó (instrucción explícita de la sesión
+                             anterior: "no re-implementar el fix una séptima vez").
+                             Ahora hay **6 PRs abiertos**: #313, #314, #315, #316
+                             (fix completo), #317 y el nuevo #318 (auto-creado
+                             2026-09-27T00:11Z para la propia sesión de diagnóstico
+                             4, también sin fix de código). Sin corridas nuevas de
+                             GitHub Actions desde el run #123 (mismo día calendario
+                             que la sesión anterior). Ver wiki/log.md 2026-09-27
+                             (sesión 5).
 ```
 
 ---
@@ -195,6 +207,7 @@ NO re-implementado
 | 2026-09-26 (sesión 2) | 0 | 0 | Routine automatizada de solo-diagnóstico (0 pendientes al iniciar). **Causa raíz del bug recurrente de `mark_all_ingested` finalmente confirmada**: `promote_wiki.yml` excluye `scripts/` de la promoción automática por diseño; el fix de código queda atrapado en PRs de sesión que nadie ha mergeado (#313, #314, #315, todos duplicados del mismo fix). Re-aplicado el fix por cuarta vez y abierto un PR nuevo, limpio, solo de código. **Acción manual requerida del usuario**: mergear el PR y cerrar los duplicados. Fetch de GitHub Actions: sin corridas nuevas desde run #122 (próxima corrida diaria ~15:40 UTC aún no ocurre a esta hora, ~08:10 UTC) |
 | 2026-09-26 (sesión 3) | 0 | 0 | Routine automatizada de solo-diagnóstico (0 pendientes al iniciar). **Fetch de GitHub Actions confirmado estable**: run #123 (2026-09-26, 14:48-14:55 UTC) exitoso, segunda corrida consecutiva desde la recuperación, pero 0 artículos nuevos (ventanas GDELT 80→82, backlog de ventanas agotándose). "Días sin artículos nuevos" sube a 20. **Bug de `mark_all_ingested` NO re-implementado**: siguiendo la nota de la sesión anterior, se verificó que el PR #316 ya contiene el fix (junto a 3 duplicados sin mergear: #313, #314, #315) — no se abrió un quinto PR. Acción manual requerida del usuario: mergear #316 y cerrar los duplicados. |
 | 2026-09-27 (sesión 4) | 0 | 0 | Routine automatizada de solo-diagnóstico (0 pendientes al iniciar). Sin corridas nuevas de GitHub Actions desde run #123 (la corrida diaria de hoy ~15:40 UTC aún no ha ocurrido); ventanas GDELT sin cambio en 82; "Días sin artículos nuevos" sube a 21. **Bug de `mark_all_ingested` NO re-implementado** (sexta comprobación): fix sigue ausente de `main`; ahora 5 PRs abiertos sin mergear (#313-#317, el #316 con el fix completo, el #317 nuevo y solo diagnóstico). Acción manual requerida del usuario: mergear #316 (o #313/#314/#315) y cerrar los 4 restantes. |
+| 2026-09-27 (sesión 5) | 0 | 0 | Routine automatizada de solo-diagnóstico (0 pendientes al iniciar, mismo día calendario que sesión 4). Sin corridas nuevas de GitHub Actions desde run #123; ventanas GDELT sin cambio en 82; "Días sin artículos nuevos" se mantiene en 21. **Bug de `mark_all_ingested` NO re-implementado** (séptima comprobación, siguiendo instrucción explícita de la sesión anterior): fix sigue ausente de `main`; ahora 6 PRs abiertos sin mergear (#313-#318, el #316 con el fix completo; #318 es el PR auto-creado de la sesión 4). Acción manual requerida del usuario: mergear #316 (o #313/#314/#315) y cerrar los 5 restantes. |
 
 ---
 
@@ -213,24 +226,27 @@ Al ejecutar, la routine DEBE:
 - Identificar si el problema es GDELT rate-limit, RSS caído, o config
 - Documentar el diagnóstico en wiki/log.md con pasos para resolverlo
 
-**Estado a 2026-09-27 (sesión 4, ~00:10 UTC)**: sin corridas nuevas de GitHub Actions
+**Estado a 2026-09-27 (sesión 5, ~08:10 UTC)**: sin corridas nuevas de GitHub Actions
 desde el run #123 (2026-09-26, 14:48-14:55 UTC, éxito) — la corrida diaria de hoy
-(~15:40 UTC) aún no ha ocurrido al momento de esta sesión. "Días sin artículos NUEVOS
-descargados" sube a 21 (último contenido nuevo: 2026-09-06). Las ventanas GDELT
-completadas se mantienen en 82 (sin cambio, como es esperable sin una corrida nueva).
-El backlog de artículos pendientes genuinos sigue en **0** — el backfill histórico
-depende enteramente de que el fetch automático (GDELT/RSS) empiece a traer artículos
-nuevos otra vez; de lo contrario, puede valer la pena expandir el rango de fechas
-GDELT o revisar la cobertura real de las fuentes RSS (IICA, La Prensa).
+(~15:00-15:40 UTC) aún no ha ocurrido al momento de esta sesión (mismo día calendario
+que la sesión 4). "Días sin artículos NUEVOS descargados" se mantiene en 21 (último
+contenido nuevo: 2026-09-06). Las ventanas GDELT completadas se mantienen en 82 (sin
+cambio, como es esperable sin una corrida nueva). El backlog de artículos pendientes
+genuinos sigue en **0** — el backfill histórico depende enteramente de que el fetch
+automático (GDELT/RSS) empiece a traer artículos nuevos otra vez; de lo contrario,
+puede valer la pena expandir el rango de fechas GDELT o revisar la cobertura real de
+las fuentes RSS (IICA, La Prensa).
 **Bug recurrente `mark_all_ingested`**: el fix sigue ausente de `scripts/ingest.py` en
-`main` (sexta vez confirmado, no re-aplicado esta sesión). Ahora hay **5 PRs abiertos
-sin mergear**: #313, #314, #315, #316 (con el fix completo) y #317 (nuevo, solo
-diagnóstico, no reintroduce el fix). **No re-implementar el fix una séptima vez** —
-es un problema 100% de merge humano pendiente, no técnico.
+`main` (séptima vez confirmado, NO re-aplicado esta sesión, siguiendo la instrucción
+explícita dejada por la sesión anterior). Ahora hay **6 PRs abiertos sin mergear**:
+#313, #314, #315, #316 (con el fix completo), #317 y el nuevo #318 (auto-creado para
+la sesión de diagnóstico 4, tampoco reintroduce el fix). **No re-implementar el fix
+una octava vez** — es un problema 100% de merge humano pendiente, no técnico.
 **Acción recomendada**: (1) el usuario debe mergear el PR #316 (o cualquiera de
-#313/#314/#315) y cerrar los 4 restantes para desbloquear el fix de código de forma
-permanente; (2) en la próxima sesión, si `python wiki_agro.py stats` muestra
-`Pendientes > 0` de forma inconsistente con lo ingestado, verificar primero si el fix
-llegó a `main` con `grep urls_from_pending_ingest scripts/ingest.py` antes de asumir
-que hay que re-aplicarlo. Ver diagnóstico en wiki/log.md, entradas 2026-09-26 (sesión
-2 — causa raíz confirmada) y 2026-09-27 (sesión 4).
+#313/#314/#315) y cerrar los 5 restantes para desbloquear el fix de código de forma
+permanente y detener la acumulación de PRs huérfanos; (2) en la próxima sesión, si
+`python wiki_agro.py stats` muestra `Pendientes > 0` de forma inconsistente con lo
+ingestado, verificar primero si el fix llegó a `main` con
+`grep urls_from_pending_ingest scripts/ingest.py` antes de asumir que hay que
+re-aplicarlo. Ver diagnóstico en wiki/log.md, entradas 2026-09-26 (sesión 2 — causa
+raíz confirmada) y 2026-09-27 (sesiones 4 y 5).
