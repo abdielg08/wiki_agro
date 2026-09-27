@@ -1,18 +1,21 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-09-27 (sesión 5, ~08:10 UTC)
+last_updated: 2026-09-27 (sesión 6, ~16:12 UTC)
 ---
 
-> **Actualización 2026-09-27 (sesión de diagnóstico 5, ~08:10 UTC)**: 0 pendientes de
-> ingesta (sin ingesta nueva esta sesión). Sin corridas nuevas de GitHub Actions desde
-> el run #123 (2026-09-26, éxito, 0 artículos nuevos) — la corrida diaria de hoy
-> (~15:00-15:40 UTC) aún no ha ocurrido. 21 días sin contenido nuevo, ventanas GDELT sin
-> cambio en 82 (rango base agotado). El bug de `mark_all_ingested()` sigue sin fix en
-> `main`; ahora hay **6 PRs abiertos sin mergear** (#313-#318, el #316 con el fix
-> completo; #318 es el nuevo PR auto-creado de la sesión de diagnóstico anterior).
-> Esta sesión NO reaplicó el fix ni abrió un séptimo PR duplicado. Acción pendiente
-> del usuario: mergear #316 (o cualquiera de #313/#314/#315) y cerrar los 5 restantes.
+> **Actualización 2026-09-27 (sesión de diagnóstico 6, ~16:12 UTC)**: 0 pendientes de
+> ingesta (sin ingesta nueva esta sesión). La corrida diaria de hoy **SÍ ocurrió**: run
+> #124 (15:27-15:34 UTC, éxito, ciclo de fetch real ~6m42s) pero, por primera vez desde
+> la recuperación, no generó **ningún** commit — ni artículos nuevos ni avance de
+> ventanas GDELT (se mantienen en 82). 21 días sin contenido nuevo. Se documentó una
+> hipótesis de bug en la lógica de avance de ventanas GDELT cerca del presente (ver
+> "Estado del Fetch" y `wiki/log.md`), sin modificar código. El bug de
+> `mark_all_ingested()` sigue sin fix en `main`; ahora hay **7 PRs abiertos sin
+> mergear** (#313-#319, el #316 con el fix completo). Esta sesión NO reaplicó el fix
+> ni abrió un octavo PR duplicado a propósito (el push de esta sesión abrirá uno nuevo
+> por el mecanismo automático de la plataforma). Acción pendiente del usuario:
+> mergear #316 (o cualquiera de #313/#314/#315) y cerrar los 6 restantes.
 
 # Dashboard de Métricas
 
@@ -33,7 +36,7 @@ last_updated: 2026-09-27 (sesión 5, ~08:10 UTC)
 | Cobertura temporal | 2015-2026 (parcial, concentrada en 2019-2026) | 2015-02-19 → hoy |
 | Ventanas GDELT completadas | 82 (↑2 desde 2026-09-25, runs #122-#123) | 45+ (rango base agotado — sin artículos nuevos en las últimas ventanas) |
 | Días sin artículos NUEVOS descargados | 21 (último con contenido nuevo: 2026-09-06) | máx 3 antes de diagnosticar |
-| Estado del job de fetch (GitHub Actions) | Estable: 2/2 corridas exitosas desde la recuperación (run #122 2026-09-25, run #123 2026-09-26 14:48-14:55 UTC), ambas con 0 artículos nuevos. Sin corridas nuevas al 2026-09-27 ~08:10 UTC (corrida diaria de hoy aún no ocurre) | corridas diarias exitosas |
+| Estado del job de fetch (GitHub Actions) | Estable pero estancado: 3/3 corridas exitosas desde la recuperación (run #122 2026-09-25, #123 2026-09-26, **#124 2026-09-27 15:27-15:34 UTC**), las 3 con 0 artículos nuevos. La corrida #124 es la primera que no generó **ningún** commit (ni siquiera "0 artículos nuevos") — `_gdelt_windows` tampoco avanzó (82→82) | corridas diarias exitosas + avance real de ventanas |
 
 ---
 
@@ -174,6 +177,36 @@ NO re-implementado
                              GitHub Actions desde el run #123 (mismo día calendario
                              que la sesión anterior). Ver wiki/log.md 2026-09-27
                              (sesión 5).
+NO re-implementado
+  (2026-09-27, sesión 6)   : octava comprobación — el fix sigue ausente de `main`.
+                             NO se reaplicó. Ahora hay **7 PRs abiertos**: #313-#316
+                             (el #316 con el fix completo), #317, #318 y el nuevo
+                             #319 (auto-creado 2026-09-27T08:12Z para la sesión de
+                             diagnóstico 5). Run #124 (2026-09-27 15:27-15:34 UTC)
+                             SÍ ocurrió esta vez — éxito, ciclo de fetch real
+                             completo, pero 0 artículos y 0 avance de ventanas
+                             GDELT (82→82), primer "commit vacío" desde la
+                             recuperación. Se documentó una hipótesis de bug en la
+                             lógica de avance de ventanas GDELT cerca del presente
+                             (ver bloque siguiente) — sin modificar `scripts/`. Ver
+                             wiki/log.md 2026-09-27 (sesión 6).
+```
+
+```
+Hallazgo (sesión 6, 2026-09-27, sin fix aplicado): inspeccionando el CONTENIDO de
+`_gdelt_windows` (no solo el conteo) se observan decenas de ventanas con el mismo
+inicio `20260618_...` y fin incrementando de a ~1 día
+(`20260618_20260624`...`20260618_20260916`). En `fetch_gdelt_historical()`
+(`scripts/fetch_news.py`), `end = min(config_end, utcnow() - 1 día)` se recalcula
+cada corrida; cuando el cursor `current` ya alcanzó el borde del presente, la
+última ventana `[current, end)` cambia de `window_key` cada día (porque `end`
+avanza ~1 día por corrida) y nunca coincide con una ventana ya completada, así
+que se re-descarga sin que `current` avance de forma significativa. Podría
+explicar por qué el backlog se "agotó" cerca del presente en vez de seguir
+retrocediendo hacia 2015-2018 (cobertura aún escasa). Requiere validación de una
+sesión de mantenimiento futura; no se tocó código esta sesión porque cualquier
+fix de `scripts/` quedaría igual de atrapado en un PR sin mergear que el bug de
+`mark_all_ingested`.
 ```
 
 ---
@@ -208,6 +241,7 @@ NO re-implementado
 | 2026-09-26 (sesión 3) | 0 | 0 | Routine automatizada de solo-diagnóstico (0 pendientes al iniciar). **Fetch de GitHub Actions confirmado estable**: run #123 (2026-09-26, 14:48-14:55 UTC) exitoso, segunda corrida consecutiva desde la recuperación, pero 0 artículos nuevos (ventanas GDELT 80→82, backlog de ventanas agotándose). "Días sin artículos nuevos" sube a 20. **Bug de `mark_all_ingested` NO re-implementado**: siguiendo la nota de la sesión anterior, se verificó que el PR #316 ya contiene el fix (junto a 3 duplicados sin mergear: #313, #314, #315) — no se abrió un quinto PR. Acción manual requerida del usuario: mergear #316 y cerrar los duplicados. |
 | 2026-09-27 (sesión 4) | 0 | 0 | Routine automatizada de solo-diagnóstico (0 pendientes al iniciar). Sin corridas nuevas de GitHub Actions desde run #123 (la corrida diaria de hoy ~15:40 UTC aún no ha ocurrido); ventanas GDELT sin cambio en 82; "Días sin artículos nuevos" sube a 21. **Bug de `mark_all_ingested` NO re-implementado** (sexta comprobación): fix sigue ausente de `main`; ahora 5 PRs abiertos sin mergear (#313-#317, el #316 con el fix completo, el #317 nuevo y solo diagnóstico). Acción manual requerida del usuario: mergear #316 (o #313/#314/#315) y cerrar los 4 restantes. |
 | 2026-09-27 (sesión 5) | 0 | 0 | Routine automatizada de solo-diagnóstico (0 pendientes al iniciar, mismo día calendario que sesión 4). Sin corridas nuevas de GitHub Actions desde run #123; ventanas GDELT sin cambio en 82; "Días sin artículos nuevos" se mantiene en 21. **Bug de `mark_all_ingested` NO re-implementado** (séptima comprobación, siguiendo instrucción explícita de la sesión anterior): fix sigue ausente de `main`; ahora 6 PRs abiertos sin mergear (#313-#318, el #316 con el fix completo; #318 es el PR auto-creado de la sesión 4). Acción manual requerida del usuario: mergear #316 (o #313/#314/#315) y cerrar los 5 restantes. |
+| 2026-09-27 (sesión 6) | 0 | 0 | Routine automatizada de solo-diagnóstico (0 pendientes al iniciar, mismo día calendario que sesiones 4-5). **Run #124 confirmado** (2026-09-27 15:27-15:34 UTC, éxito, ciclo real ~6m42s) — primera corrida desde la recuperación que no generó ningún commit (0 artículos, 0 avance de ventanas GDELT, 82→82); "Días sin artículos nuevos" se mantiene en 21. **Hallazgo nuevo**: hipótesis de bug en `fetch_gdelt_historical()` que haría que las ventanas cerca del presente se re-descarguen sin avanzar el cursor hacia 2015-2018 (ver bloque "Estado del Fetch"); no se modificó código. **Bug de `mark_all_ingested` NO re-implementado** (octava comprobación): fix sigue ausente de `main`; ahora 7 PRs abiertos sin mergear (#313-#319, el #316 con el fix completo; #319 es el PR auto-creado de la sesión 5). Acción manual requerida del usuario: mergear #316 (o #313/#314/#315) y cerrar los 6 restantes. |
 
 ---
 
@@ -226,27 +260,34 @@ Al ejecutar, la routine DEBE:
 - Identificar si el problema es GDELT rate-limit, RSS caído, o config
 - Documentar el diagnóstico en wiki/log.md con pasos para resolverlo
 
-**Estado a 2026-09-27 (sesión 5, ~08:10 UTC)**: sin corridas nuevas de GitHub Actions
-desde el run #123 (2026-09-26, 14:48-14:55 UTC, éxito) — la corrida diaria de hoy
-(~15:00-15:40 UTC) aún no ha ocurrido al momento de esta sesión (mismo día calendario
-que la sesión 4). "Días sin artículos NUEVOS descargados" se mantiene en 21 (último
-contenido nuevo: 2026-09-06). Las ventanas GDELT completadas se mantienen en 82 (sin
-cambio, como es esperable sin una corrida nueva). El backlog de artículos pendientes
-genuinos sigue en **0** — el backfill histórico depende enteramente de que el fetch
-automático (GDELT/RSS) empiece a traer artículos nuevos otra vez; de lo contrario,
-puede valer la pena expandir el rango de fechas GDELT o revisar la cobertura real de
-las fuentes RSS (IICA, La Prensa).
+**Estado a 2026-09-27 (sesión 6, ~16:12 UTC)**: la corrida diaria de hoy **ya ocurrió**
+— run #124 (15:27-15:34 UTC, éxito, ciclo de fetch real ~6m42s) — pero no generó
+ningún commit (0 artículos, 0 avance de ventanas GDELT, 82→82). "Días sin artículos
+NUEVOS descargados" se mantiene en 21 (último contenido nuevo: 2026-09-06). El backlog
+de artículos pendientes genuinos sigue en **0**. Esta sesión encontró una posible
+causa técnica nueva (no solo "rango agotado" por conteo): el contenido de
+`_gdelt_windows` muestra decenas de ventanas con el mismo inicio (`20260618_...`) y
+fin incrementando ~1 día por corrida, consistente con que el cursor de avance
+trimestral en `fetch_gdelt_historical()` quedó "atascado" cerca del presente en vez
+de seguir retrocediendo hacia 2015-2018 (cobertura aún escasa). No se modificó
+`scripts/fetch_news.py` esta sesión — requiere validación de una sesión de
+mantenimiento futura o del usuario. Ver wiki/log.md 2026-09-27 (sesión 6) para el
+detalle completo.
 **Bug recurrente `mark_all_ingested`**: el fix sigue ausente de `scripts/ingest.py` en
-`main` (séptima vez confirmado, NO re-aplicado esta sesión, siguiendo la instrucción
-explícita dejada por la sesión anterior). Ahora hay **6 PRs abiertos sin mergear**:
-#313, #314, #315, #316 (con el fix completo), #317 y el nuevo #318 (auto-creado para
-la sesión de diagnóstico 4, tampoco reintroduce el fix). **No re-implementar el fix
-una octava vez** — es un problema 100% de merge humano pendiente, no técnico.
+`main` (octava vez confirmado, NO re-aplicado esta sesión). Ahora hay **7 PRs abiertos
+sin mergear**: #313, #314, #315, #316 (con el fix completo), #317, #318 y el nuevo
+#319 (auto-creado para la sesión de diagnóstico 5, tampoco reintroduce el fix). **No
+re-implementar el fix una novena vez** — es un problema 100% de merge humano
+pendiente, no técnico. El push de esta sesión probablemente abrirá un octavo PR
+(#320) por el mismo mecanismo automático de la plataforma (cada sesión abre un PR
+para su propia rama al finalizar) — esto es estructural, no un error de esta sesión.
 **Acción recomendada**: (1) el usuario debe mergear el PR #316 (o cualquiera de
-#313/#314/#315) y cerrar los 5 restantes para desbloquear el fix de código de forma
-permanente y detener la acumulación de PRs huérfanos; (2) en la próxima sesión, si
-`python wiki_agro.py stats` muestra `Pendientes > 0` de forma inconsistente con lo
-ingestado, verificar primero si el fix llegó a `main` con
+#313/#314/#315) y cerrar los 6 restantes (y el que abra esta sesión) para desbloquear
+el fix de código de forma permanente y detener la acumulación de PRs huérfanos; (2) en
+la próxima sesión, si `python wiki_agro.py stats` muestra `Pendientes > 0` de forma
+inconsistente con lo ingestado, verificar primero si el fix llegó a `main` con
 `grep urls_from_pending_ingest scripts/ingest.py` antes de asumir que hay que
-re-aplicarlo. Ver diagnóstico en wiki/log.md, entradas 2026-09-26 (sesión 2 — causa
-raíz confirmada) y 2026-09-27 (sesiones 4 y 5).
+re-aplicarlo; (3) considerar si vale la pena investigar/corregir el cursor de
+`fetch_gdelt_historical()` descrito arriba para desbloquear el backfill 2015-2018.
+Ver diagnóstico en wiki/log.md, entradas 2026-09-26 (sesión 2 — causa raíz
+confirmada) y 2026-09-27 (sesiones 4, 5 y 6).
