@@ -2,7 +2,7 @@
 title: Log de Actividad del Wiki
 type: overview
 tags: [log, actividad]
-last_updated: 2025-05-24
+last_updated: 2026-09-27
 ---
 
 # Log de Actividad
@@ -619,5 +619,62 @@ programada (~15:00-15:40 UTC) aún no ha ocurrido al momento de esta sesión
 (run #103) — "Días sin artículos nuevos" se mantiene en **21** (mismo día
 calendario, sin corrida nueva desde la última sesión). No hay evidencia de fallo
 del job; es una espera normal dentro de la ventana entre corridas diarias.
+
+`wiki/metrics.md` actualizado con estos hallazgos.
+
+## 2026-09-27 16:12 UTC (routine automatizada — DIAGNÓSTICO, sesión 6)
+`git fetch origin main` + `merge`: rama al día (`origin/main` ya estaba integrado
+en `claude/modest-galileo-xcmmar`).
+`python wiki_agro.py stats`: 0 pendientes de ingesta (57/57 artículos ingestados) →
+  se salta directo al diagnóstico avanzado, sin ingesta nueva en esta sesión.
+
+**Bug de `mark_all_ingested()` — sigue sin fix en `main` (octava comprobación)**:
+`grep urls_from_pending_ingest scripts/ingest.py` sigue sin encontrar el fix.
+Siguiendo la instrucción explícita de la sesión anterior ("no re-implementar el
+fix una octava vez"), esta sesión NO reaplicó el parche. `list_pull_requests`
+(`state=open`) muestra ahora **7 PRs abiertos sin mergear**: #313, #314, #315,
+#316 (fix completo + diagnóstico de causa raíz), #317, #318 y #319 (el nuevo,
+auto-creado 2026-09-27T08:12Z para la sesión de diagnóstico 5). El push de esta
+sesión probablemente generará un octavo PR (#320) por el mismo mecanismo — es un
+efecto estructural de que cada sesión de Claude Code abre un PR para su propia
+rama al finalizar, combinado con que `promote_wiki.yml` excluye `scripts/` de la
+promoción directa. **Sin acción de código en esta sesión.** Se reitera: el
+usuario debe mergear el PR #316 (o #313/#314/#315) y cerrar los 6 restantes
+(#313-#315 duplicados, #317-#319 solo diagnóstico) para desbloquear el fix de
+forma permanente y detener la acumulación de PRs huérfanos.
+
+**Diagnóstico del fetch (GitHub Actions, `wiki_daily.yml`) — corrida diaria de
+hoy CONFIRMADA vía `actions_list`**: run **#124** (id 36329626434,
+2026-09-27T15:27:37Z–15:34:35Z, ~6m54s, `conclusion=success`). El paso "Fetch
+artículos nuevos" corrió el ciclo real completo (~6m42s, no un fallo de
+arranque), pero el paso "Commit artículos nuevos" completó en 0s **sin generar
+ningún commit** — a diferencia de las corridas #122/#123, que sí produjeron un
+commit `chore(sources): 0 artículos nuevos descargados` (porque `_gdelt_windows`
+avanzaba). Esta vez ni siquiera `_gdelt_windows` cambió: se confirma en
+`sources/processed.json` que sigue en **82** ventanas, idéntico a antes de la
+corrida. Es decir, el fetch de hoy no generó ninguna ventana GDELT nueva ni
+ningún artículo RSS nuevo — el primer caso de "commit totalmente vacío" desde
+que se recuperó el job. Último artículo con contenido genuinamente nuevo sigue
+siendo del 2026-09-06 — "Días sin artículos nuevos" se mantiene en **21**.
+
+**Hallazgo nuevo (a investigar, sin código modificado esta sesión)**: al
+inspeccionar el contenido de `_gdelt_windows` (no solo el conteo), se observa un
+patrón sospechoso: decenas de entradas con el mismo inicio `20260618_...` pero
+fin incrementando de a ~1 día (`20260618_20260624`, `20260618_20260626`,
+`20260618_20260627`, `20260618_20260701`, `20260618_20260707`, ...,
+`20260618_20260916`). En `fetch_gdelt_historical()` (`scripts/fetch_news.py`),
+`end = min(config_end, datetime.utcnow() - timedelta(days=1))` se recalcula en
+cada corrida usando "ayer" como tope; cuando `current` (el cursor de avance
+trimestral) ya alcanzó el borde del presente, la ventana final del rango
+`[current, end)` se vuelve muy angosta y su `window_key` cambia cada día (porque
+`end` avanza ~1 día por corrida), así que nunca coincide con una ventana ya
+marcada completa y se re-descarga desde cero cada vez, sin que `current` avance
+más allá de ese punto de forma significativa. Esto podría explicar por qué el
+backlog "se agotó" cerca del presente (82 ventanas, muchas de ellas
+redundantes) en vez de seguir retrocediendo hacia 2015-2018 (que sigue con
+cobertura escasa según `metrics.md`). **No se modificó `scripts/fetch_news.py`
+esta sesión** — es solo una hipótesis a validar por una sesión de mantenimiento
+futura o por el usuario, dado que cualquier fix de `scripts/` quedaría atrapado
+en un PR sin mergear igual que el bug de `mark_all_ingested`.
 
 `wiki/metrics.md` actualizado con estos hallazgos.
