@@ -764,3 +764,50 @@ marcado `false_positive: true` desde la sesión del 2026-09-15 — no es un
 falso positivo nuevo, no requiere acción.
 
 `wiki/metrics.md` actualizado con estos hallazgos.
+
+## 2026-09-28 16:15 UTC (routine automatizada — DIAGNÓSTICO, sesión 9)
+`git pull origin main`: se trajo 1 commit nuevo desde la sesión anterior
+(`ca28f1b..35e9937`) — promoción automática de `wiki/` desde la rama
+`claude/modest-galileo-s0wggg` (sesión de diagnóstico 8, sin ingesta nueva,
+solo actualización de `metrics.md`/`log.md`).
+
+Dependencias de Python otra vez no persistían en este contenedor (mismo
+patrón que la sesión 8) — reinstaladas vía `pip install -r requirements.txt`.
+
+`python wiki_agro.py stats`: 0 pendientes de ingesta (57/57 artículos
+descargados ya ingestados, 58 páginas de wiki) → diagnóstico avanzado, sin
+ingesta nueva en esta sesión.
+
+**Bug de `mark_all_ingested()` — sigue sin fix en `main` (undécima
+comprobación)**: `grep -c urls_from_pending_ingest scripts/ingest.py` = 0.
+Siguiendo la instrucción explícita de la sesión 8 ("No re-implementar el fix
+una undécima vez"), esta sesión **NO reaplicó el parche**.
+`list_pull_requests` (`state=open`) muestra ahora **10 PRs abiertos sin
+mergear**: #313, #314, #315, #316 (fix completo + diagnóstico de causa raíz),
+#317, #318, #319, #320, #321 y el nuevo #322 (auto-creado 2026-09-28T08:20Z
+para la sesión de diagnóstico 8, tampoco reintroduce el fix). Ninguno fue
+mergeado ni cerrado desde la sesión anterior. **Sin acción de código en esta
+sesión.**
+
+**Diagnóstico del fetch (GitHub Actions, `wiki_daily.yml`)**: sin corridas
+nuevas desde el run **#124** (2026-09-27T15:27:37Z–15:34:35Z, éxito, "commit
+vacío"). Verificado vía `actions_list` (`total_count=124` — sigue siendo el
+mismo total que en la sesión 8, el run #124 sigue siendo el más reciente).
+**Hallazgo nuevo**: el cron del workflow es `"0 11 * * *"` (11:00 UTC = 6:00
+AM hora Panamá), pero las corridas reales de los últimos días se dispararon
+con ~4.5h de retraso (~15:27-15:49 UTC) — un patrón de delay de GitHub
+Actions ya observado. Esta sesión corre a las 16:15 UTC del 2026-09-28, **ya
+más de 5 horas después del cron programado y más tarde que la ventana de
+retraso habitual (~15:30-15:49 UTC)**, y aun así no hay corrida nueva para
+hoy — a diferencia de las sesiones 4-8 (que corrían más temprano en el día,
+~00:11-08:20 UTC, y por tanto razonablemente aún no veían la corrida
+diferida). Esto podría indicar que el fetch diario dejó de dispararse hoy
+(no solo de producir resultados), pero es un solo día de evidencia —
+requiere confirmación en la próxima sesión antes de escalar como fallo
+nuevo. `sources/processed.json`: `_gdelt_windows` se mantiene en **82** (sin
+cambio, confirmado con lectura directa del JSON, no solo el conteo).
+`sources/articles/`: 57 archivos, ninguno con fecha de descarga (mtime) de
+hoy. Último artículo con contenido genuinamente nuevo sigue siendo del
+2026-09-06 — "Días sin artículos nuevos" se mantiene en **22**.
+
+`wiki/metrics.md` actualizado con estos hallazgos.
