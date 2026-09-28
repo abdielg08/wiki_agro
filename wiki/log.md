@@ -2,7 +2,7 @@
 title: Log de Actividad del Wiki
 type: overview
 tags: [log, actividad]
-last_updated: 2026-09-27
+last_updated: 2026-09-28
 ---
 
 # Log de Actividad
@@ -676,5 +676,42 @@ cobertura escasa según `metrics.md`). **No se modificó `scripts/fetch_news.py`
 esta sesión** — es solo una hipótesis a validar por una sesión de mantenimiento
 futura o por el usuario, dado que cualquier fix de `scripts/` quedaría atrapado
 en un PR sin mergear igual que el bug de `mark_all_ingested`.
+
+## 2026-09-28 00:14 UTC (routine automatizada — DIAGNÓSTICO, sesión 7)
+`git fetch origin main`: rama de trabajo (`claude/modest-galileo-kqd5pd`) ya
+estaba al día con `main` (`b4e04ba`, mismo commit que la promoción de la sesión
+6 anterior).
+`python wiki_agro.py stats`: 0 pendientes de ingesta (57/57 artículos
+ingestados) → se salta directo al diagnóstico avanzado, sin ingesta nueva en
+esta sesión.
+
+**Bug de `mark_all_ingested()` — sigue sin fix en `main` (novena comprobación)**:
+`grep -c urls_from_pending_ingest scripts/ingest.py` devuelve 0. Siguiendo la
+instrucción explícita de las sesiones anteriores ("no re-implementar el fix"),
+esta sesión NO reaplicó el parche. `list_pull_requests` (`state=open`) muestra
+ahora **8 PRs abiertos sin mergear**: #313, #314, #315, #316 (fix completo +
+diagnóstico de causa raíz), #317, #318, #319 y el nuevo #320 (auto-creado
+2026-09-27T16:19Z para la sesión de diagnóstico 6, tampoco reintroduce el
+fix). Ninguno de los 8 ha sido mergeado ni cerrado desde la última sesión.
+**Sin acción de código en esta sesión.** Se reitera: el usuario debe mergear
+el PR #316 (o #313/#314/#315) y cerrar los 7 restantes para desbloquear el fix
+de forma permanente y detener la acumulación de PRs huérfanos — el push de
+esta sesión probablemente generará un noveno PR (#321) por el mismo mecanismo
+estructural ya documentado.
+
+**Diagnóstico del fetch (GitHub Actions, `wiki_daily.yml`)**: sin corridas
+nuevas desde el run **#124** (2026-09-27T15:27:37Z–15:34:35Z, éxito, "commit
+vacío" — 0 artículos, 0 avance de ventanas). Verificado vía `actions_list`
+(`total_count=124`, el run #124 sigue siendo el más reciente) — la corrida
+diaria programada de hoy (~15:30 UTC del 2026-09-28) aún no ha ocurrido al
+momento de esta sesión (~00:14 UTC). `sources/processed.json`: `_gdelt_windows`
+se mantiene en **82** (sin cambio). Último artículo con contenido genuinamente
+nuevo sigue siendo del 2026-09-06 — "Días sin artículos nuevos" sube a **22**.
+La hipótesis del cursor de `fetch_gdelt_historical()` atascado cerca del
+presente (documentada en la sesión 6) sigue sin validar; no se modificó
+`scripts/fetch_news.py` esta sesión por el mismo motivo estructural (PRs sin
+mergear).
+
+`wiki/metrics.md` actualizado con estos hallazgos.
 
 `wiki/metrics.md` actualizado con estos hallazgos.
