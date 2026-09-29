@@ -4,6 +4,13 @@ type: overview
 last_updated: 2026-09-29 (sesión 11)
 ---
 
+> **Actualización 2026-09-29 (sesión de diagnóstico 12, ~16:15 UTC)**: 0 pendientes
+> (57/57 ingestados), sin ingesta. Sin corridas nuevas de GitHub Actions desde el run
+> #125 (2026-09-28 18:18 UTC); último commit de `sources/` 2026-09-28 18:26 UTC. La
+> corrida de hoy aún no aparece a las 16:15 UTC (dentro de la ventana de retraso
+> observada, hasta ~18:30). Ventanas GDELT: 83 (sin cambio). Artículos nuevos hoy: 0.
+> "Días sin artículos nuevos": 23 (último: 2026-09-06). PR #316 sigue pendiente.
+
 > **Actualización 2026-09-29 (sesión de diagnóstico 11, ~08:10 UTC)**: 0 pendientes
 > (57/57 ingestados), sin ingesta. Sin corridas nuevas de GitHub Actions desde el run
 > #125 (2026-09-28 18:18 UTC, éxito, 0 artículos) — la corrida de hoy aún no ocurre
