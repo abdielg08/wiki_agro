@@ -811,3 +811,10 @@ hoy. Último artículo con contenido genuinamente nuevo sigue siendo del
 2026-09-06 — "Días sin artículos nuevos" se mantiene en **22**.
 
 `wiki/metrics.md` actualizado con estos hallazgos.
+
+## 2026-09-29 (routine automatizada — DIAGNÓSTICO, sesión 10)
+
+- `stats`: 57 descargados, 57 ingestados, 0 pendientes. Sin ingesta ni falsos positivos nuevos.
+- Fetch (GitHub Actions): run #125 (2026-09-28 18:18-18:26 UTC, `schedule`, éxito, "0 artículos nuevos") — refuta la hipótesis de la sesión 9 de que el cron dejó de dispararse; solo llega con ~7h de retraso. Aún no hay corrida del 2026-09-29.
+- Ventanas GDELT: 83 (+1). Artículos nuevos hoy: 0. Días sin artículos nuevos: 23 (último: 2026-09-06).
+- Bug `mark_all_ingested()`: sin fix en `main`; PR #316 pendiente de merge humano. No reaplicado.
