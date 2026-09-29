@@ -1,8 +1,15 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-09-29 (sesión 10)
+last_updated: 2026-09-29 (sesión 11)
 ---
+
+> **Actualización 2026-09-29 (sesión de diagnóstico 11, ~08:10 UTC)**: 0 pendientes
+> (57/57 ingestados), sin ingesta. Sin corridas nuevas de GitHub Actions desde el run
+> #125 (2026-09-28 18:18 UTC, éxito, 0 artículos) — la corrida de hoy aún no ocurre
+> (ventana habitual de retraso: 15:00-18:30 UTC). Ventanas GDELT: 83 (sin cambio).
+> Artículos nuevos hoy: 0. "Días sin artículos nuevos": 23 (último: 2026-09-06).
+> Bug `mark_all_ingested()`: sin fix en `main` (PR #316 pendiente de merge humano); no reaplicado.
 
 > **Actualización 2026-09-29 (sesión de diagnóstico 10)**: 0 pendientes (57/57
 > ingestados), sin ingesta. **Hipótesis de la sesión 9 refutada**: el run #125 del
@@ -305,6 +312,7 @@ fix de `scripts/` quedaría igual de atrapado en un PR sin mergear que el bug de
 | 2026-09-28 (sesión 8) | 0 | 0 | Routine automatizada de solo-diagnóstico (0 pendientes al iniciar, mismo día calendario que sesión 7). Dependencias de Python reinstaladas en el contenedor (no persistían entre sesiones). Sin corridas nuevas de GitHub Actions desde run #124; ventanas GDELT sin cambio en 82; "Días sin artículos nuevos" se mantiene en 22. **Bug de `mark_all_ingested` NO re-implementado** (décima comprobación, siguiendo instrucción explícita de la sesión anterior de no reintentarlo): fix sigue ausente de `main`; ahora 9 PRs abiertos sin mergear (#313-#321, el #316 con el fix completo; #321 es el PR auto-creado de la sesión 7). Ninguno de los 9 PRs fue mergeado ni cerrado desde la sesión anterior. Acción manual requerida del usuario: mergear #316 (o #313/#314/#315) y cerrar los 8 restantes. |
 | 2026-09-28 (sesión 9) | 0 | 0 | Routine automatizada de solo-diagnóstico (0 pendientes al iniciar, mismo día calendario que sesiones 7-8, disparada ~16:15 UTC). Dependencias de Python reinstaladas de nuevo (no persisten entre contenedores). Sin corridas nuevas de GitHub Actions desde run #124; ventanas GDELT sin cambio en 82; "Días sin artículos nuevos" se mantiene en 22. **Hallazgo nuevo**: esta sesión verificó después de la ventana habitual de retraso del cron (~15:30-15:49 UTC) sin encontrar corrida nueva — posible señal de que el disparador `schedule` dejó de dispararse hoy, pendiente de confirmar en la próxima sesión. **Bug de `mark_all_ingested` NO re-implementado** (undécima comprobación, siguiendo instrucción explícita de la sesión anterior): fix sigue ausente de `main`; ahora 10 PRs abiertos sin mergear (#313-#322, el #316 con el fix completo; #322 es el PR auto-creado de la sesión 8). Ninguno de los 10 PRs fue mergeado ni cerrado desde la sesión anterior. Acción manual requerida del usuario: mergear #316 (o #313/#314/#315) y cerrar los 9 restantes. |
 | 2026-09-29 (sesión 10) | 0 | 0 | Solo-diagnóstico (0 pendientes). Run #125 (2026-09-28 18:18 UTC, éxito, 0 artículos) confirma que el cron sigue disparando, con retraso de ~7h; ventanas GDELT 82→83; días sin artículos nuevos: 23. Fix de `mark_all_ingested` sigue sin mergear (#316); no reaplicado. |
+| 2026-09-29 (sesión 11) | 0 | 0 | Solo-diagnóstico (0 pendientes). Sin corridas nuevas desde run #125; ventanas GDELT 83 sin cambio; días sin artículos nuevos: 23. |
 
 ---
 
