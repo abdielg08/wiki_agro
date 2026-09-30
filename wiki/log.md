@@ -831,3 +831,9 @@ hoy. Último artículo con contenido genuinamente nuevo sigue siendo del
 - `stats`: 57 descargados, 57 ingestados, 0 pendientes. Sin ingesta ni falsos positivos nuevos.
 - Fetch: sin corrida nueva desde run #125 (2026-09-28 18:18 UTC). A las ~16:15 UTC aún no hay corrida de hoy (ventana de retraso habitual hasta ~18:30 UTC). Ventanas GDELT: 83. Artículos nuevos hoy: 0. Días sin artículos nuevos: 23.
 - Bug `mark_all_ingested()`: PR #316 pendiente de merge humano; no reaplicado.
+
+## 2026-09-30 (routine automatizada — DIAGNÓSTICO, sesión 13)
+
+- `stats`: 57 descargados, 57 ingestados, 0 pendientes. Sin ingesta ni falsos positivos nuevos.
+- Fetch: run #126 (2026-09-29 16:41 UTC, éxito) sin commit en `sources/` (0 artículos). Ventanas GDELT: 83 (sin cambio). Artículos nuevos hoy: 0. Días sin artículos nuevos: 24.
+- Bug `mark_all_ingested()`: PR #316 pendiente de merge humano; no reaplicado.
