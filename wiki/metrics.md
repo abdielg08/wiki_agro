@@ -4,6 +4,11 @@ type: overview
 last_updated: 2026-09-29 (sesión 11)
 ---
 
+> **Actualización 2026-10-02 (sesión de diagnóstico 18)**: 0 pendientes
+> (57/57 ingestados), sin ingesta. Nuevo run del fetch diario (2026-10-01 17:18 UTC, éxito,
+> 0 artículos; último commit de `sources/`). Ventanas GDELT: 85 (84 → 85). Artículos nuevos hoy: 0.
+> "Días sin artículos nuevos": 26 (último: 2026-09-06). PR #316 pendiente de merge humano.
+
 > **Actualización 2026-10-01 (sesión de diagnóstico 17)**: 0 pendientes
 > (57/57 ingestados), sin ingesta. Sin runs nuevos del fetch desde #127 (2026-09-30 16:41 UTC,
 > éxito, 0 artículos). Ventanas GDELT: 84 (sin cambio). Artículos nuevos hoy: 0.
