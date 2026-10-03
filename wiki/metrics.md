@@ -4,6 +4,11 @@ type: overview
 last_updated: 2026-09-29 (sesión 11)
 ---
 
+> **Actualización 2026-10-03 (sesión de diagnóstico 23)**: 0 pendientes
+> (57/57 ingestados), sin ingesta. Run #130 del fetch (2026-10-03 14:59-15:08 UTC, `schedule`, éxito) no generó
+> commit en `sources/` (0 artículos). Ventanas GDELT: 85 (sin cambio). Artículos nuevos hoy: 0.
+> "Días sin artículos nuevos": 27 (último: 2026-09-06). Backlog de fuentes agotado; PR #316 pendiente de merge humano.
+
 > **Actualización 2026-10-03 (sesión de diagnóstico 22)**: 0 pendientes
 > (57/57 ingestados), sin ingesta. Corrección: el fetch #129 (2026-10-02 16:24 UTC, éxito) sí corrió
 > pero trajo 0 artículos (sin commit en `sources/`). Ventanas GDELT: 85 (sin cambio). Artículos nuevos hoy: 0.
