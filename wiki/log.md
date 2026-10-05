@@ -918,3 +918,7 @@ hoy. Último artículo con contenido genuinamente nuevo sigue siendo del
 
 ## [2026-10-05] diagnostico | Sesión 27 (08:14 UTC)
 - 0 pendientes (57/57). Sin artículos nuevos hoy ni commits en `sources/` desde 2026-10-01. Ventanas GDELT: 85. Sin falsos positivos. Sin cambios de estado vs. sesión 26.
+
+## [2026-10-05] diagnóstico | sesión 28 (16:14 UTC)
+- Pendientes: 0 (57/57). Sin ingesta, sin falsos positivos.
+- Fetch de hoy aún no corre (último #131, 2026-10-04, 0 artículos). Ventanas GDELT: 85. Artículos nuevos hoy: 0.
