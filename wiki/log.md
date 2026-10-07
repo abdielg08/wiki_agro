@@ -934,3 +934,7 @@ hoy. Último artículo con contenido genuinamente nuevo sigue siendo del
 ## [2026-10-06] diagnóstico | sesión 31 (16:17 UTC)
 - Pendientes: 0 (57/57). Sin ingesta, sin falsos positivos.
 - Fetch: último run #132 (2026-10-05, éxito, 0 artículos); el de hoy aún no corre. Ventanas GDELT: 85. Artículos nuevos hoy: 0. Días sin artículos nuevos: 30. Backlog agotado — requiere ampliar fuentes/rango.
+
+## [2026-10-07] diagnóstico | sesión 32 (00:11 UTC)
+- Pendientes: 0 (57/57). Sin ingesta, sin falsos positivos.
+- Fetch: último run #133 (2026-10-06 16:59 UTC, éxito, 0 artículos); el de hoy aún no corre. Ventanas GDELT: 85. Artículos nuevos hoy: 0. Días sin artículos nuevos: 31. Backlog agotado — requiere ampliar fuentes/rango.
