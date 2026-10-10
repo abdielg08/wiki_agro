@@ -4,6 +4,11 @@ type: overview
 last_updated: 2026-09-29 (sesión 11)
 ---
 
+> **Actualización 2026-10-10 (sesión de diagnóstico 41, 00:11 UTC)**: 0 pendientes
+> (57/57 ingestados), sin ingesta ni falsos positivos. Último fetch: #136 (2026-10-09 17:14 UTC, `schedule`, éxito, 0 artículos nuevos en `sources/`);
+> el de hoy aún no corre. Sin commits en `sources/` desde 2026-10-01. Ventanas GDELT: 85. Artículos nuevos hoy: 0.
+> "Días sin artículos nuevos": 34 (último: 2026-09-06). Backlog agotado; requiere ampliar fuentes/rango.
+
 > **Actualización 2026-10-09 (sesión de diagnóstico 40, 16:16 UTC)**: 0 pendientes
 > (57/57 ingestados), sin ingesta ni falsos positivos. Último fetch: #135 (2026-10-08 17:39 UTC, `schedule`, éxito, 0 artículos nuevos en `sources/`);
 > el de hoy aún no corre. Sin commits en `sources/` desde 2026-10-01. Ventanas GDELT: 85. Artículos nuevos hoy: 0.
