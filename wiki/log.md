@@ -1002,3 +1002,7 @@ hoy. Último artículo con contenido genuinamente nuevo sigue siendo del
 - Marcados con `mark-ingested` por URL explícita (no `mark-all-ingested`, por el bug conocido de marcado incorrecto).
 - BUG: `scripts/ingest.py::mark_ingested` falla con `AttributeError: 'list' object has no attribute 'get'` porque itera la clave `_gdelt_windows` (lista) de `processed.json`. Se marcaron las 2 URLs editando `sources/processed.json` directamente. Fix pendiente en `scripts/` (requiere merge humano: `promote_wiki.yml` excluye `scripts/`): saltar claves cuyo valor no sea dict.
 - Artículos nuevos hoy en `sources/articles/`: 0 (último commit en sources: 2026-10-11 16:34 UTC, 2 artículos MIDA). Run de fetch de hoy aún no corre. Pendientes: 0 (59/59).
+
+## [2026-10-12] diagnóstico | sesión 48 (08:16 UTC)
+- Pendientes: 0 (59/59). Sin ingesta, sin falsos positivos.
+- Fetch: último run #138 (2026-10-11 16:27 UTC, éxito, 2 artículos MIDA); el de hoy aún no corre. Ventanas GDELT: 85 (rango agotado, no bloqueo). Artículos nuevos hoy: 0. Bug de `mark_ingested` aún sin fix.
