@@ -2,8 +2,8 @@
 title: Seguridad Alimentaria en Panamá
 type: topic
 tags: [seguridad-alimentaria, pobreza-rural, produccion-nacional, importaciones, agricultura-familiar]
-last_updated: 2026-09-26
-article_count: 1
+last_updated: 2026-10-12
+article_count: 2
 sources:
   - "https://www.prensa.com/impresa/economia/Impulsan-desarrollo-agricultura-familiar_0_5415958417.html"
 related: [topics/arroz.md, topics/maiz.md, topics/precios_mercados.md, topics/politicas_agropecuarias.md]
@@ -32,6 +32,7 @@ Panamá enfrenta una paradoja: es un país de ingresos medios-altos con alta des
 
 ## Referencias
 - [La Prensa, 2019 — Impulsan el desarrollo de agricultura familiar](https://www.prensa.com/impresa/economia/Impulsan-desarrollo-agricultura-familiar_0_5415958417.html)
+- [MIDA, 2026-02-25 — Personería jurídica a 14 productores de Atalaya (CODIDAF)](../summaries/20260225_midagobpa_personeria-juridica-productores-atalaya.md): fortalecimiento organizativo de agricultura familiar en Veraguas.
 
 ## Ver también
 - [Arroz](arroz.md)

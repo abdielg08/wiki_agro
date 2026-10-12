@@ -703,7 +703,8 @@
     "title": "En Chiriquí MIDA promueve el uso de microorganismos eficientes en la producción agrícola",
     "date": "2025-05-27",
     "source": "mida.gob.pa",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-10-12T00:13:01.067332"
   },
   "https://mida.gob.pa/2026/02/25/en-veraguas-mida-reconoce-labor-agricola-y-entrega-personeria-juridica-a-productores-de-atalaya/": {
     "saved_at": "2026-10-11T16:28:05.727129",
@@ -711,6 +712,7 @@
     "title": "En Veraguas, MIDA reconoce labor agrícola y entrega personería jurídica a productores de Atalaya",
     "date": "2026-02-25",
     "source": "mida.gob.pa",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-10-12T00:13:01.067353"
   }
 }
