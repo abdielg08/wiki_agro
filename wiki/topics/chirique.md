@@ -2,8 +2,8 @@
 title: Chiriquí — Agro en la Principal Zona Agrícola de Panamá
 type: topic
 tags: [chiriqui, boquete, hortalizas, cafe, ganaderia, mida, cambio-climatico, covid19]
-last_updated: 2026-09-25
-article_count: 2
+last_updated: 2026-10-12
+article_count: 3
 sources:
   - "https://www.prensa.com/economia/boquete-mida-inicia-evaluacion-de-areas-afectadas-tras-las-lluvias/"
   - "https://www.prensa.com/provincias/fijan-medidas-para-prevenir-casos-de-la-covid-19-en-la-proxima-cosecha-de-cafe/"
@@ -36,6 +36,7 @@ Chiriquí es la principal provincia agrícola de Panamá, con producción divers
 
 - [La Prensa, 2025 — Boquete: Mida evalúa áreas afectadas tras lluvias](https://www.prensa.com/economia/boquete-mida-inicia-evaluacion-de-areas-afectadas-tras-las-lluvias/)
 - [La Prensa, 2020 — Fijan medidas para prevenir casos de la Covid-19 en la próxima cosecha de café](https://www.prensa.com/provincias/fijan-medidas-para-prevenir-casos-de-la-covid-19-en-la-proxima-cosecha-de-cafe/)
+- [MIDA, 2025-05-27 — Microorganismos eficientes en Chiriquí](../summaries/20250527_midagobpa_microorganismos-eficientes-chiriqui.md)
 
 ## Ver también
 
