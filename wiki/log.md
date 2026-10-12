@@ -994,3 +994,11 @@ hoy. Último artículo con contenido genuinamente nuevo sigue siendo del
 ## [2026-10-11] diagnóstico | sesión 46 (16:10 UTC)
 - Pendientes: 0 (57/57). Sin ingesta, sin falsos positivos.
 - Fetch: último run #137 (2026-10-10 16:02 UTC, éxito, 0 artículos nuevos); el de hoy aún no figura en Actions. Ventanas GDELT: 85 (≥45: rango agotado, no bloqueo). Artículos nuevos hoy: 0. Días sin artículos nuevos: 35. Backlog agotado — requiere ampliar fuentes/rango.
+
+## [2026-10-12] ingest | sesión 47 (00:11 UTC)
+- Ingestados 2 artículos (ambos MIDA, 100% agro Panamá, sin falsos positivos; solo extracto disponible, `full_text` nulo):
+  - `summaries/20250527_midagobpa_microorganismos-eficientes-chiriqui.md` → topics: tecnologia_innovacion, chirique; entity: mida.
+  - `summaries/20260225_midagobpa_personeria-juridica-productores-atalaya.md` → topics: seguridad_alimentaria; entity: mida.
+- Marcados con `mark-ingested` por URL explícita (no `mark-all-ingested`, por el bug conocido de marcado incorrecto).
+- BUG: `scripts/ingest.py::mark_ingested` falla con `AttributeError: 'list' object has no attribute 'get'` porque itera la clave `_gdelt_windows` (lista) de `processed.json`. Se marcaron las 2 URLs editando `sources/processed.json` directamente. Fix pendiente en `scripts/` (requiere merge humano: `promote_wiki.yml` excluye `scripts/`): saltar claves cuyo valor no sea dict.
+- Artículos nuevos hoy en `sources/articles/`: 0 (último commit en sources: 2026-10-11 16:34 UTC, 2 artículos MIDA). Run de fetch de hoy aún no corre. Pendientes: 0 (59/59).

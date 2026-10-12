@@ -2,8 +2,8 @@
 title: Tecnología e Innovación en el Agro Panameño
 type: topic
 tags: [tecnologia, innovacion, agricultura-precision, agricultura-vertical, trazabilidad, iica, exportacion, politica-agropecuaria]
-last_updated: 2026-09-26
-article_count: 3
+last_updated: 2026-10-12
+article_count: 4
 sources:
   - "https://www.prensa.com/opinion/panama-de-la-agricultura-de-subsistencia-a-la-agricultura-de-precision-exportadora/"
   - "https://www.prensa.com/sociedad/agricultura-vertical-revoluciona-cultivo-en-panama-lechuga-en-30-dias-sin-sol-ni-tierra/"
@@ -38,6 +38,7 @@ Un debate recurrente en la política agropecuaria panameña es si el sector pued
 - [La Prensa, 2026 — De la agricultura de subsistencia a la agricultura de precisión exportadora](https://www.prensa.com/opinion/panama-de-la-agricultura-de-subsistencia-a-la-agricultura-de-precision-exportadora/)
 - [La Prensa, 2024 — Agricultura vertical revoluciona cultivo en Panamá](https://www.prensa.com/sociedad/agricultura-vertical-revoluciona-cultivo-en-panama-lechuga-en-30-dias-sin-sol-ni-tierra/)
 - [La Prensa, 2019 — El rol de la trazabilidad en la agricultura moderna](https://www.prensa.com/impresa/economia/rol-trazabilidad-agricultura-moderna_0_5358214179.html)
+- [MIDA, 2025-05-27 — MIDA promueve microorganismos eficientes en Chiriquí](../summaries/20250527_midagobpa_microorganismos-eficientes-chiriqui.md): promoción de bioinsumos para eficiencia y sostenibilidad.
 
 ## Ver también
 

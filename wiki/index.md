@@ -93,6 +93,8 @@ article_count: 0
 
 | Fecha | Fuente | Título | Resumen |
 |-------|--------|--------|---------|
+| 2025-05-27 | MIDA | [Microorganismos eficientes en Chiriquí](summaries/20250527_midagobpa_microorganismos-eficientes-chiriqui.md) | MIDA promueve bioinsumos para sostenibilidad |
+| 2026-02-25 | MIDA | [Personería jurídica a productores de Atalaya](summaries/20260225_midagobpa_personeria-juridica-productores-atalaya.md) | 14 productores CODIDAF, Veraguas |
 | 2023-09-15 | MIDA | [Producción arroz cae 18%](summaries/20230915_mida_produccion-arroz-panama-2023.md) | 230K TM vs 280K; El Niño + costos |
 | 2018-06-20 | La Prensa | [Crisis gusano cogollero 2018](summaries/20180620_laprensaeco_gusano-cogollero-crisis-maiz-2018.md) | B/. 15M pérdidas, 35K ha afectadas |
 | 2016-03-01 | TVN | [Sequía El Niño 2015-2016 Azuero](summaries/20160301_tvnnoticias_sequia-azuero-nino-2015-2016.md) | B/. 80M pérdidas, 15K bovinos muertos |
@@ -126,4 +128,4 @@ article_count: 0
 
 ---
 
-*Última actualización del índice: 2026-09-26*
+*Última actualización del índice: 2026-10-12*
