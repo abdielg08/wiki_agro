@@ -1006,3 +1006,7 @@ hoy. Último artículo con contenido genuinamente nuevo sigue siendo del
 ## [2026-10-12] diagnóstico | sesión 48 (08:16 UTC)
 - Pendientes: 0 (59/59). Sin ingesta, sin falsos positivos.
 - Fetch: último run #138 (2026-10-11 16:27 UTC, éxito, 2 artículos MIDA); el de hoy aún no corre. Ventanas GDELT: 85 (rango agotado, no bloqueo). Artículos nuevos hoy: 0. Bug de `mark_ingested` aún sin fix.
+
+## [2026-10-12] diagnóstico | sesión 49 (16:20 UTC)
+- Pendientes: 0 (59/59). Sin ingesta, sin falsos positivos.
+- Fetch: último run #138 (2026-10-11 16:27 UTC, éxito); el de hoy aún no corre a las 16:20 UTC. Ventanas GDELT: 85. Artículos nuevos hoy: 0. Bug de `mark_ingested` aún sin fix.
