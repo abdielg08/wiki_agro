@@ -4,6 +4,10 @@ type: overview
 last_updated: 2026-09-29 (sesión 11)
 ---
 
+> **Actualización 2026-10-12 (sesión de diagnóstico 48, 08:16 UTC)**: 0 pendientes (59/59 ingestados), sin ingesta ni falsos positivos.
+> Último fetch: #138 (2026-10-11 16:27 UTC, `schedule`, éxito, 2 artículos MIDA). El fetch de hoy aún no corre (programado ~16:00 UTC). Ventanas GDELT: 85. Artículos nuevos hoy (2026-10-12): 0.
+> Bug `mark_ingested` (`_gdelt_windows`) sigue pendiente de fix humano en `scripts/`.
+
 > **Actualización 2026-10-12 (sesión 47, 00:11 UTC)**: se ingestaron 2 artículos MIDA (descargados 2026-10-11 16:28 UTC por el fetch; solo extracto, sin texto completo). Pendientes: 0 (59/59). Sin falsos positivos.
 > Ventanas GDELT: 85. Artículos nuevos hoy (2026-10-12): 0. Se rompe la racha de "días sin artículos nuevos" (último ingreso: 2026-10-11).
 > Bug: `mark_ingested` falla por la clave `_gdelt_windows` (lista) en processed.json; marcado hecho a mano. Ver log.md.
