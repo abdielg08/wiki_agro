@@ -2,8 +2,8 @@
 title: Agua y Riego en el Agro Panameño
 type: topic
 tags: [agua, riego, sequia, gestion-hidrica, azuero, plan-mulino]
-last_updated: 2026-09-26
-article_count: 1
+last_updated: 2026-10-13
+article_count: 2
 sources:
   - "https://www.prensa.com/provincias/MIDA-presenta-plan-contingencia-verano_0_5419707981.html"
 related: [topics/cambio_climatico.md, topics/azuero.md, topics/politicas_agropecuarias.md, entities/mida.md]
@@ -20,6 +20,7 @@ El acceso a agua para riego y para consumo de ganado durante la temporada seca (
 - **Octubre de 2019**: el MIDA en Los Santos (Azuero) anunció la programación de un **plan de contingencia** para el verano siguiente, ilustrado con un abrevadero en El Arenal — indicio de un componente de abastecimiento hídrico para ganado [La Prensa, 2019-10-15](https://www.prensa.com/provincias/MIDA-presenta-plan-contingencia-verano_0_5419707981.html)
 - El texto disponible de esa nota se corta antes de detallar volumen de agua, presupuesto o comunidades beneficiadas por el plan
 - El Plan Nacional Agropecuario 2024-2029 contempla **25,000 hectáreas** nuevas de riego, con foco en Azuero (ver [Políticas Agropecuarias](politicas_agropecuarias.md) y [Cambio Climático](cambio_climatico.md))
+- 2025-08-11: MIDA Coclé y ACP inician reuniones con asociaciones y cooperativas de productores [MIDA, 2025-08-11](https://mida.gob.pa/2025/08/11/mida-y-la-acp-fortalecen-la-produccion-agricola-en-cocle/)
 
 ## Retos
 

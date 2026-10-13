@@ -2,8 +2,8 @@
 title: Precios y Mercados Agropecuarios en Panamá
 type: topic
 tags: [precios, mercados, importaciones, arroz, cebolla, volatilidad, mida]
-last_updated: 2026-09-25
-article_count: 2
+last_updated: 2026-10-13
+article_count: 3
 sources:
   - "https://www.prensa.com/economia/que-ocurre-con-el-arroz-en-panama-productores-temen-perdidas-en-la-cosecha-mientras-la-industria-justifica-las-importaciones/"
   - "https://www.prensa.com/economia/mida-confirma-la-llegada-de-20-mil-quintales-de-cebolla-importada/"
@@ -21,6 +21,7 @@ Los precios agropecuarios en Panamá enfrentan volatilidad estructural derivada 
 - **2025**: gremios de productores de arroz denuncian que importaciones masivas autorizadas durante la cosecha nacional provocaron caída de precios en finca; la industria molinera justifica las importaciones por necesidad de abastecimiento [La Prensa, 2025-07-24](https://www.prensa.com/economia/que-ocurre-con-el-arroz-en-panama-productores-temen-perdidas-en-la-cosecha-mientras-la-industria-justifica-las-importaciones/)
 - Estructuralmente, Panamá importa entre **20-30%** de su consumo de arroz [MIDA, 2023]
 - **Julio 2020**: el MIDA anunció la llegada de cebolla importada para normalizar el abastecimiento nacional; la fuente cita **20,000 quintales** (titular) y **10 contenedores** (cuerpo del texto) sin conciliar ambas cifras [La Prensa, 2020-07-31](https://www.prensa.com/economia/mida-confirma-la-llegada-de-20-mil-quintales-de-cebolla-importada/)
+- 2026-07-10: productores de guandú morado en Veraguas logran vender su cosecha con apoyo del MIDA regional [MIDA, 2026-07-10](https://mida.gob.pa/2026/07/10/productores-de-guandu-morado-en-veraguas-logran-la-venta-de-cosecha/)
 
 ## Tendencias (2015–2025)
 

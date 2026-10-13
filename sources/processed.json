@@ -721,7 +721,7 @@
     "title": "Productores de Café de Panamá Oeste se preparan para la zafra 2025",
     "date": "2024-09-30",
     "source": "mida.gob.pa",
-    "ingested": false
+    "ingested": true
   },
   "https://mida.gob.pa/2026/06/12/85651/": {
     "saved_at": "2026-10-12T20:03:44.753910",
@@ -729,7 +729,7 @@
     "title": "Arroz y peces en un mismo espacio: El innovador cultivo sin pesticidas del MIDA en Panamá Este",
     "date": "2026-06-12",
     "source": "mida.gob.pa",
-    "ingested": false
+    "ingested": true
   },
   "https://mida.gob.pa/2026/01/06/mida-cocle-actualiza-a-productores-sobre-produccion-de-arroz-del-ciclo-agricola-2025/": {
     "saved_at": "2026-10-12T20:03:44.754512",
@@ -737,7 +737,7 @@
     "title": "MIDA Coclé actualiza a productores sobre producción de arroz del ciclo agrícola 2025",
     "date": "2026-01-06",
     "source": "mida.gob.pa",
-    "ingested": false
+    "ingested": true
   },
   "https://mida.gob.pa/2025/08/11/mida-y-la-acp-fortalecen-la-produccion-agricola-en-cocle/": {
     "saved_at": "2026-10-12T20:03:44.755077",
@@ -745,7 +745,7 @@
     "title": "MIDA y la ACP fortalecen la producción agrícola en Coclé",
     "date": "2025-08-11",
     "source": "mida.gob.pa",
-    "ingested": false
+    "ingested": true
   },
   "https://mida.gob.pa/2026/07/10/productores-de-guandu-morado-en-veraguas-logran-la-venta-de-cosecha/": {
     "saved_at": "2026-10-12T20:03:44.755870",
@@ -753,7 +753,7 @@
     "title": "Productores de guandú morado en Veraguas logran la venta de cosecha",
     "date": "2026-07-10",
     "source": "mida.gob.pa",
-    "ingested": false
+    "ingested": true
   },
   "https://mida.gob.pa/2021/10/01/el-cafe-de-panama-mantiene-su-crecimiento-y-su-buen-sabor/": {
     "saved_at": "2026-10-12T20:03:44.756435",
