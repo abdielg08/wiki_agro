@@ -2,8 +2,8 @@
 title: MIDA — Ministerio de Desarrollo Agropecuario
 type: entity
 tags: [gobierno, ministerio, politica-agropecuaria, plan-mulino, semillas, fitosanitario, subsidios, transicion-gobierno, avicultura, presupuesto, ima, iica, cooperacion-internacional, hortalizas, gobernanza]
-last_updated: 2026-10-12
-article_count: 19
+last_updated: 2026-10-13
+article_count: 24
 sources:
   - "https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023"
   - "https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024"
@@ -96,6 +96,11 @@ El Ministerio de Desarrollo Agropecuario (MIDA) es la institución rectora del s
 ### Presupuesto y Subsidios (2020, 2022)
 - **2020**: de $3.3 millones solicitados por el MIDA para mejorar la productividad del sector, el MEF solo aprobó **$618 mil**; de $161 millones recomendados por el MEF para el MIDA, el titular de la fuente indica que los subsidios acaparan la mayor parte de esos fondos [La Prensa, 2020-08-27](https://www.prensa.com/impresa/economia/los-subsidios-acaparan-los-fondos-del-mida/)
 - **2022**: el MIDA y el IMA quedaron con **presupuestos reducidos** en la propuesta para 2023; el IMA esperaba aumentar las ferias de alimentos como parte de la mesa del diálogo [La Prensa, 2022-08-31](https://www.prensa.com/economia/el-mida-y-el-ima-quedan-con-presupuestos-reducidos-para-2023/)
+- 2026-07-10: productores de guandú morado en Veraguas logran vender su cosecha con apoyo del MIDA regional [MIDA, 2026-07-10](https://mida.gob.pa/2026/07/10/productores-de-guandu-morado-en-veraguas-logran-la-venta-de-cosecha/)
+- 2026-01-06: MIDA, Dirección Nacional de Agricultura e ISA informan a productores de Coclé sobre el ciclo arrocero 2025 [MIDA, 2026-01-06](https://mida.gob.pa/2026/01/06/mida-cocle-actualiza-a-productores-sobre-produccion-de-arroz-del-ciclo-agricola-2025/)
+- 2026-06-12: plan piloto del MIDA en Panamá Este combina arroz y cría de peces sin agroquímicos [MIDA, 2026-06-12](https://mida.gob.pa/2026/06/12/85651/)
+- 2025-08-11: MIDA Coclé y ACP inician reuniones con asociaciones y cooperativas de productores [MIDA, 2025-08-11](https://mida.gob.pa/2025/08/11/mida-y-la-acp-fortalecen-la-produccion-agricola-en-cocle/)
+- 2024-09-30: productores de café de Panamá Oeste analizan estrategias y desafíos de la zafra 2025 [MIDA, 2024-09-30](https://mida.gob.pa/2024/09/30/productores-de-cafe-de-panama-oeste-se-preparan-para-la-zafra-2025/)
 
 ## Programas Relevantes (2015–2025)
 - **Plan de Emergencia Arrocera** (2023): semillas + crédito ante sequía El Niño

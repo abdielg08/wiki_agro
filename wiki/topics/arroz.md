@@ -2,8 +2,8 @@
 title: Arroz en Panamá
 type: topic
 tags: [arroz, produccion, seguridad-alimentaria, sequia, precios, mida, idiap, importaciones, subsidios]
-last_updated: 2026-09-15
-article_count: 5
+last_updated: 2026-10-13
+article_count: 7
 sources:
   - "https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023"
   - "https://www.prensa.com/economia/que-ocurre-con-el-arroz-en-panama-productores-temen-perdidas-en-la-cosecha-mientras-la-industria-justifica-las-importaciones/"
@@ -31,6 +31,8 @@ El arroz es el alimento básico por excelencia de la dieta panameña y un cultiv
 - **2024**: productores de arroz de **Panamá Este y Darién** exigieron al MIDA el pago de compensaciones pendientes de 2023 [La Prensa, 2024-06-13](https://www.prensa.com/economia/productores-de-arroz-de-panama-este-y-darien-exigen-al-mida-el-pago-de-compensaciones/)
 - **2024**: lluvias intensas de fin de semana dañaron sembradíos de arroz en **Veraguas**, junto con maíz, pastizales y ganadería [La Prensa, 2024-11-07](https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/)
 - **2025**: gremios de productores denuncian **importaciones masivas** coincidiendo con la cosecha nacional, caída de precios en finca y eliminación de subsidios; la industria molinera justifica las importaciones por necesidad de abastecimiento [La Prensa, 2025-07-24](https://www.prensa.com/economia/que-ocurre-con-el-arroz-en-panama-productores-temen-perdidas-en-la-cosecha-mientras-la-industria-justifica-las-importaciones/)
+- 2026-01-06: MIDA, Dirección Nacional de Agricultura e ISA informan a productores de Coclé sobre el ciclo arrocero 2025 [MIDA, 2026-01-06](https://mida.gob.pa/2026/01/06/mida-cocle-actualiza-a-productores-sobre-produccion-de-arroz-del-ciclo-agricola-2025/)
+- 2026-06-12: plan piloto del MIDA en Panamá Este combina arroz y cría de peces sin agroquímicos [MIDA, 2026-06-12](https://mida.gob.pa/2026/06/12/85651/)
 
 ## Tendencias (2015–2025)
 

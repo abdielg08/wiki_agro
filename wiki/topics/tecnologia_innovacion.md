@@ -2,8 +2,8 @@
 title: Tecnología e Innovación en el Agro Panameño
 type: topic
 tags: [tecnologia, innovacion, agricultura-precision, agricultura-vertical, trazabilidad, iica, exportacion, politica-agropecuaria]
-last_updated: 2026-10-12
-article_count: 4
+last_updated: 2026-10-13
+article_count: 5
 sources:
   - "https://www.prensa.com/opinion/panama-de-la-agricultura-de-subsistencia-a-la-agricultura-de-precision-exportadora/"
   - "https://www.prensa.com/sociedad/agricultura-vertical-revoluciona-cultivo-en-panama-lechuga-en-30-dias-sin-sol-ni-tierra/"
@@ -22,6 +22,7 @@ Un debate recurrente en la política agropecuaria panameña es si el sector pued
 - **Febrero 2026**: columna de opinión sostiene que Panamá no superará la agricultura de subsistencia con subsidios permanentes ni políticas aisladas, y plantea la **agricultura de precisión exportadora** como salida estructural [La Prensa, opinión, 2026-02-24](https://www.prensa.com/opinion/panama-de-la-agricultura-de-subsistencia-a-la-agricultura-de-precision-exportadora/)
 - **Agosto 2024**: el IICA instaló en sus oficinas de Panamá un prototipo de **agricultura vertical en ambiente controlado** que produce lechuga en 30 días sin suelo ni luz solar, con el objetivo de demostrar la tecnología y sensibilizar a los actores del sector [La Prensa, 2024-08-28](https://www.prensa.com/sociedad/agricultura-vertical-revoluciona-cultivo-en-panama-lechuga-en-30-dias-sin-sol-ni-tierra/)
 - **Julio 2019**: una nota anterior ya planteaba la **trazabilidad de alimentos** como requisito creciente de los consumidores internacionales, señal temprana de la presión tecnológica hacia la agricultura de exportación; el texto disponible se corta al introducir el caso panameño, sin precisar el nivel de adopción [La Prensa, 2019-07-26](https://www.prensa.com/impresa/economia/rol-trazabilidad-agricultura-moderna_0_5358214179.html) (ver [Comercio Exterior](comercio_exterior.md))
+- 2026-06-12: plan piloto del MIDA en Panamá Este combina arroz y cría de peces sin agroquímicos [MIDA, 2026-06-12](https://mida.gob.pa/2026/06/12/85651/)
 
 ## Tendencias (2015–2025)
 
