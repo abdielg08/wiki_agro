@@ -1028,3 +1028,6 @@ hoy. Último artículo con contenido genuinamente nuevo sigue siendo del
 
 ## 2026-10-13 08:11
 INGEST: 1 artículos marcados como ingestados por sesión Claude Code
+
+## 2026-10-13 16:20
+DIAGNÓSTICO (sesión 52): Pendientes 0 (65/65). Sin falsos positivos. Último fetch #139 (2026-10-12 20:03 UTC, éxito); el de hoy aún no corre a las 16:20 UTC. Artículos nuevos hoy: 0. Ventanas GDELT: 86. Sin ingesta.
