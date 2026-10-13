@@ -763,5 +763,13 @@
     "source": "mida.gob.pa",
     "ingested": true,
     "ingested_at": "2026-10-13T08:11:30.955549"
+  },
+  "https://mida.gob.pa/2023/01/16/mida-rinde-informe-de-siembra-de-arroz-en-panama/": {
+    "saved_at": "2026-10-13T17:52:18.746038",
+    "path": "/home/runner/work/wiki_agro/wiki_agro/sources/articles/20230116_midagobpa_2023-01-16-mida-rinde-informe-de-siembra-de-arroz-en-panama.json",
+    "title": "MIDA rinde informe de siembra de arroz en Panamá",
+    "date": "2023-01-16",
+    "source": "mida.gob.pa",
+    "ingested": false
   }
 }
