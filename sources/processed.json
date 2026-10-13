@@ -761,6 +761,7 @@
     "title": "El café de Panamá mantiene su crecimiento y su buen sabor",
     "date": "2021-10-01",
     "source": "mida.gob.pa",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-10-13T08:11:30.955549"
   }
 }

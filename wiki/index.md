@@ -131,6 +131,8 @@ article_count: 0
 | 2019-10-11 | La Prensa | [Impulsan el desarrollo de agricultura familiar](summaries/20191011_prensacom_impulsan-desarrollo-agricultura-familiar.md) | 246,000 productores, 80% agricultura familiar |
 | 2019-07-26 | La Prensa | [El rol de la trazabilidad en la agricultura moderna](summaries/20190726_prensacom_rol-trazabilidad-agricultura-moderna.md) | Trazabilidad como requisito creciente del consumidor |
 
+| 2021-10-01 | MIDA | [El café de Panamá mantiene su crecimiento y su buen sabor](summaries/20211001_midagobpa_cafe-panama-crecimiento-buen-sabor.md) | historia y crecimiento del café; llegada del grano en el siglo XIX |
+
 ---
 
-*Última actualización del índice: 2026-10-12*
+*Última actualización del índice: 2026-10-13*

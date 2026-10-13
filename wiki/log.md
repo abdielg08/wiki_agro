@@ -1020,3 +1020,11 @@ hoy. Último artículo con contenido genuinamente nuevo sigue siendo del
   - `summaries/20240930_midagobpa_cafe-panama-oeste-zafra-2025.md` → topics: cafe_cacao; entity: mida.
 - Marcados editando `sources/processed.json` (bug `mark_ingested`/`_gdelt_windows` persiste; `mark-all-ingested` no usado). Pendientes: 1 (el 6º del lote, fuera del límite de 5), a procesar en la próxima sesión.
 - Entorno: faltaban dependencias Python (`pip install -r requirements.txt`).
+
+## [2026-10-13] ingest | sesión 51
+- Ingestado 1 artículo MIDA (100% agro Panamá, sin falsos positivos; solo extracto):
+  - `summaries/20211001_midagobpa_cafe-panama-crecimiento-buen-sabor.md` → topic: cafe_cacao; entity: mida.
+- Pendientes tras la sesión: 0. Fetch: sin artículos nuevos adicionales hoy. Entorno: se reinstalaron dependencias (`pip install -r requirements.txt`).
+
+## 2026-10-13 08:11
+INGEST: 1 artículos marcados como ingestados por sesión Claude Code

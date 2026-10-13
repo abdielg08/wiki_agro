@@ -155,3 +155,5 @@ El Ministerio de Desarrollo Agropecuario (MIDA) es la institución rectora del s
 - [Chiriquí](../topics/chirique.md)
 - [Agua y Riego](../topics/agua_riego.md)
 - [Azuero](../topics/azuero.md)
+
+- 2021-10-01: publicó nota sobre el crecimiento del café panameño ([resumen](../summaries/20211001_midagobpa_cafe-panama-crecimiento-buen-sabor.md)).

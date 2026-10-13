@@ -4,6 +4,8 @@ type: overview
 last_updated: 2026-09-29 (sesión 11)
 ---
 
+> **Actualización 2026-10-13 (sesión 51)**: se ingestó 1 artículo MIDA (café, extracto). Ingestados 65/65; pendientes: 0. Sin falsos positivos. Sin artículos nuevos adicionales hoy. Ventanas GDELT: 85. Bug `mark_ingested` sigue sin fix.
+
 > **Actualización 2026-10-13 (sesión 50)**: se ingestaron 5 artículos MIDA (extractos). Ingestados 64/65; pendientes: 1. Sin falsos positivos. Artículos nuevos hoy en `sources/articles/` (fetch 2026-10-12 20:03 UTC, 6 descargados). Ventanas GDELT: 85. Bug `mark_ingested` sigue sin fix.
 
 > **Actualización 2026-10-12 (sesión de diagnóstico 49, 16:20 UTC)**: 0 pendientes (59/59 ingestados), sin ingesta ni falsos positivos.
