@@ -1010,3 +1010,13 @@ hoy. Último artículo con contenido genuinamente nuevo sigue siendo del
 ## [2026-10-12] diagnóstico | sesión 49 (16:20 UTC)
 - Pendientes: 0 (59/59). Sin ingesta, sin falsos positivos.
 - Fetch: último run #138 (2026-10-11 16:27 UTC, éxito); el de hoy aún no corre a las 16:20 UTC. Ventanas GDELT: 85. Artículos nuevos hoy: 0. Bug de `mark_ingested` aún sin fix.
+
+## [2026-10-13] ingest | sesión 50
+- Ingestados 5 artículos MIDA (100% agro Panamá, sin falsos positivos; solo extracto, `full_text` nulo):
+  - `summaries/20260710_midagobpa_guandu-morado-veraguas-venta-cosecha.md` → topics: precios_mercados; entity: mida.
+  - `summaries/20260106_midagobpa_mida-cocle-produccion-arroz-ciclo-2025.md` → topics: arroz; entity: mida.
+  - `summaries/20260612_midagobpa_arroz-con-peces-panama-este.md` → topics: arroz, tecnologia_innovacion; entity: mida.
+  - `summaries/20250811_midagobpa_mida-acp-produccion-agricola-cocle.md` → topics: agua_riego; entity: mida.
+  - `summaries/20240930_midagobpa_cafe-panama-oeste-zafra-2025.md` → topics: cafe_cacao; entity: mida.
+- Marcados editando `sources/processed.json` (bug `mark_ingested`/`_gdelt_windows` persiste; `mark-all-ingested` no usado). Pendientes: 1 (el 6º del lote, fuera del límite de 5), a procesar en la próxima sesión.
+- Entorno: faltaban dependencias Python (`pip install -r requirements.txt`).

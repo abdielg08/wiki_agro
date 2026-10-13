@@ -2,8 +2,8 @@
 title: Café y Cacao en Panamá
 type: topic
 tags: [cafe, cacao, chiriqui, covid19, bioseguridad, cosecha]
-last_updated: 2026-09-25
-article_count: 1
+last_updated: 2026-10-13
+article_count: 2
 sources:
   - "https://www.prensa.com/provincias/fijan-medidas-para-prevenir-casos-de-la-covid-19-en-la-proxima-cosecha-de-cafe/"
 related: [topics/chirique.md]
@@ -22,6 +22,7 @@ El café de altura se cultiva principalmente en las tierras altas de la provinci
 - Se instalaron **comités de bioseguridad** en las fincas de café ante el riesgo de contagios de Covid-19
 - Se estableció **movimiento migratorio controlado** de trabajadores jornaleros que se desplazan estacionalmente a la cosecha
 - Fuente truncada: no se dispone del detalle completo de protocolos ni de las entidades coordinadoras
+- 2024-09-30: productores de café de Panamá Oeste analizan estrategias y desafíos de la zafra 2025 [MIDA, 2024-09-30](https://mida.gob.pa/2024/09/30/productores-de-cafe-de-panama-oeste-se-preparan-para-la-zafra-2025/)
 
 ## Tendencias (2015–2025)
 
