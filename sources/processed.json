@@ -770,6 +770,7 @@
     "title": "MIDA rinde informe de siembra de arroz en Panamá",
     "date": "2023-01-16",
     "source": "mida.gob.pa",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-10-14T00:11:19.405167"
   }
 }

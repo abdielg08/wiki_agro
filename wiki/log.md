@@ -1031,3 +1031,11 @@ INGEST: 1 artículos marcados como ingestados por sesión Claude Code
 
 ## 2026-10-13 16:20
 DIAGNÓSTICO (sesión 52): Pendientes 0 (65/65). Sin falsos positivos. Último fetch #139 (2026-10-12 20:03 UTC, éxito); el de hoy aún no corre a las 16:20 UTC. Artículos nuevos hoy: 0. Ventanas GDELT: 86. Sin ingesta.
+
+## [2026-10-14] ingest | sesión 53
+- Ingestado 1 artículo MIDA (100% agro Panamá, sin falsos positivos; solo extracto):
+  - `summaries/20230116_midagobpa_mida-informe-siembra-arroz-2023.md` → topic: arroz; entity: mida.
+- Pendientes tras la sesión: 0. Artículos nuevos hoy en `sources/`: 0 (el pull trajo el artículo de 2023-01-16 del fetch previo). Entorno: se reinstalaron dependencias (`pip install -r requirements.txt`).
+
+## 2026-10-14 00:11
+INGEST: 1 artículos marcados como ingestados por sesión Claude Code

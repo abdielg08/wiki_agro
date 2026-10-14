@@ -96,6 +96,7 @@ article_count: 0
 | 2026-07-10 | MIDA | [Productores de guandú morado en Veraguas logran la venta de cosecha](summaries/20260710_midagobpa_guandu-morado-veraguas-venta-cosecha.md) | productores de guandú morado en Veraguas logran vender su cosecha con apoyo del  |
 | 2026-01-06 | MIDA | [MIDA Coclé actualiza a productores sobre producción de arroz del ciclo agrícola 2025](summaries/20260106_midagobpa_mida-cocle-produccion-arroz-ciclo-2025.md) | MIDA, Dirección Nacional de Agricultura e ISA informan a productores de Coclé so |
 | 2026-06-12 | MIDA | [Arroz y peces en un mismo espacio: El innovador cultivo sin pesticidas del MIDA en Panamá Este](summaries/20260612_midagobpa_arroz-con-peces-panama-este.md) | plan piloto del MIDA en Panamá Este combina arroz y cría de peces sin agroquímic |
+| 2023-01-16 | MIDA | [MIDA rinde informe de siembra de arroz en Panamá](summaries/20230116_midagobpa_mida-informe-siembra-arroz-2023.md) | 85,591.4 ha de arroz sembradas, 95.10 % de la meta anual de 90,000 ha |
 | 2025-08-11 | MIDA | [MIDA y la ACP fortalecen la producción agrícola en Coclé](summaries/20250811_midagobpa_mida-acp-produccion-agricola-cocle.md) | MIDA Coclé y ACP inician reuniones con asociaciones y cooperativas de productore |
 | 2024-09-30 | MIDA | [Productores de Café de Panamá Oeste se preparan para la zafra 2025](summaries/20240930_midagobpa_cafe-panama-oeste-zafra-2025.md) | productores de café de Panamá Oeste analizan estrategias y desafíos de la zafra  |
 | 2025-05-27 | MIDA | [Microorganismos eficientes en Chiriquí](summaries/20250527_midagobpa_microorganismos-eficientes-chiriqui.md) | MIDA promueve bioinsumos para sostenibilidad |
@@ -135,4 +136,4 @@ article_count: 0
 
 ---
 
-*Última actualización del índice: 2026-10-13*
+*Última actualización del índice: 2026-10-14*

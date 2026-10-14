@@ -2,8 +2,8 @@
 title: MIDA — Ministerio de Desarrollo Agropecuario
 type: entity
 tags: [gobierno, ministerio, politica-agropecuaria, plan-mulino, semillas, fitosanitario, subsidios, transicion-gobierno, avicultura, presupuesto, ima, iica, cooperacion-internacional, hortalizas, gobernanza]
-last_updated: 2026-10-13
-article_count: 24
+last_updated: 2026-10-14
+article_count: 25
 sources:
   - "https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023"
   - "https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024"
@@ -157,3 +157,4 @@ El Ministerio de Desarrollo Agropecuario (MIDA) es la institución rectora del s
 - [Azuero](../topics/azuero.md)
 
 - 2021-10-01: publicó nota sobre el crecimiento del café panameño ([resumen](../summaries/20211001_midagobpa_cafe-panama-crecimiento-buen-sabor.md)).
+- 2023-01-16: informe de siembra de arroz, 85,591.4 ha (95.10 % de 90,000 ha) ([resumen](../summaries/20230116_midagobpa_mida-informe-siembra-arroz-2023.md)).
