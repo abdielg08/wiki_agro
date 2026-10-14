@@ -1039,3 +1039,8 @@ DIAGNÓSTICO (sesión 52): Pendientes 0 (65/65). Sin falsos positivos. Último f
 
 ## 2026-10-14 00:11
 INGEST: 1 artículos marcados como ingestados por sesión Claude Code
+
+## 2026-10-14 08:15 — Diagnóstico (sesión 54)
+- Pendientes: 0 (66/66 ingestados). Sin ingesta ni falsos positivos.
+- Artículos nuevos hoy (2026-10-14) en `sources/articles/`: 0. Último commit de fetch: 2026-10-13 17:57 UTC (1 artículo, ya ingestado). El fetch de hoy (~16:00 UTC) aún no corre.
+- Ventanas GDELT: 86. Bug `mark_ingested` sigue sin fix. Entorno: `pip install click` / `-r requirements.txt` necesario al inicio.
