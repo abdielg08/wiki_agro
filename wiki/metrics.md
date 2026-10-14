@@ -4,6 +4,8 @@ type: overview
 last_updated: 2026-09-29 (sesión 11)
 ---
 
+> **Actualización 2026-10-14 (sesión 55, 16:15 UTC)**: se ingestó 1 artículo MIDA (arroz/Chiriquí, extracto). Ingestados 67/67; pendientes: 0. Sin falsos positivos. Artículos nuevos hoy: 1 (fetch automático 2026-10-14 15:44 UTC, funcionando). Ventanas GDELT: 86. Bug `mark_ingested` sigue sin fix.
+
 > **Actualización 2026-10-14 (sesión de diagnóstico 54, 08:15 UTC)**: 0 pendientes (66/66 ingestados), sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 (último fetch 2026-10-13 17:57 UTC; el de hoy corre ~16:00 UTC). Ventanas GDELT: 86. Bug `mark_ingested` sigue sin fix.
 
 > **Actualización 2026-10-14 (sesión 53)**: se ingestó 1 artículo MIDA (arroz, extracto). Ingestados 66/66; pendientes: 0. Sin falsos positivos. Artículos nuevos hoy (2026-10-14): 0. Ventanas GDELT: 86. Bug `mark_ingested` sigue sin fix.

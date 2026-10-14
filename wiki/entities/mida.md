@@ -158,3 +158,4 @@ El Ministerio de Desarrollo Agropecuario (MIDA) es la institución rectora del s
 
 - 2021-10-01: publicó nota sobre el crecimiento del café panameño ([resumen](../summaries/20211001_midagobpa_cafe-panama-crecimiento-buen-sabor.md)).
 - 2023-01-16: informe de siembra de arroz, 85,591.4 ha (95.10 % de 90,000 ha) ([resumen](../summaries/20230116_midagobpa_mida-informe-siembra-arroz-2023.md)).
+- 2025-06-19: asistencia técnica a arroceros de Chiriquí, caso Lozada ([resumen](../summaries/wiki/summaries/20250619_midagobpa_asesoria-mida-exito-arrocero-lozada-chiriqui.md)).

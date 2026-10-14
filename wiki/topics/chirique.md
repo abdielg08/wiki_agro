@@ -2,8 +2,8 @@
 title: Chiriquí — Agro en la Principal Zona Agrícola de Panamá
 type: topic
 tags: [chiriqui, boquete, hortalizas, cafe, ganaderia, mida, cambio-climatico, covid19]
-last_updated: 2026-10-12
-article_count: 3
+last_updated: 2026-10-14
+article_count: 4
 sources:
   - "https://www.prensa.com/economia/boquete-mida-inicia-evaluacion-de-areas-afectadas-tras-las-lluvias/"
   - "https://www.prensa.com/provincias/fijan-medidas-para-prevenir-casos-de-la-covid-19-en-la-proxima-cosecha-de-cafe/"
@@ -18,6 +18,7 @@ Chiriquí es la principal provincia agrícola de Panamá, con producción divers
 
 ## Hechos Clave
 
+- **2025-06-19**: el MIDA destaca que su asistencia técnica contribuye al éxito de productores arroceros en Chiriquí (caso del productor Lozada; solo extracto, sin cifras) [MIDA, 2025-06-19](https://mida.gob.pa/2025/06/19/asesoria-del-mida-contribuye-al-exito-arrocero-del-productor-lozada-en-chiriqui/)
 - **Octubre 2025**: lluvias intensas afectaron Chiriquí, con impacto reportado en el distrito de **Boquete**; técnicos del MIDA se trasladaron a evaluar en campo las plantaciones agropecuarias afectadas [La Prensa, 2025-10-07](https://www.prensa.com/economia/boquete-mida-inicia-evaluacion-de-areas-afectadas-tras-las-lluvias/)
 - **Agosto 2020**: ante la pandemia de Covid-19, se instalaron comités de bioseguridad en las fincas de café de las tierras altas de Chiriquí y se estableció movimiento migratorio controlado de trabajadores jornaleros para la cosecha 2020-2021 [La Prensa, 2020-08-01](https://www.prensa.com/provincias/fijan-medidas-para-prevenir-casos-de-la-covid-19-en-la-proxima-cosecha-de-cafe/)
 

@@ -779,6 +779,7 @@
     "title": "Asesoría del MIDA contribuye al éxito arrocero del productor Lozada en Chiriquí",
     "date": "2025-06-19",
     "source": "mida.gob.pa",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-10-14T16:15:53.245628"
   }
 }

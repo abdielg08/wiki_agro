@@ -3,7 +3,7 @@ title: Arroz en Panamá
 type: topic
 tags: [arroz, produccion, seguridad-alimentaria, sequia, precios, mida, idiap, importaciones, subsidios]
 last_updated: 2026-10-14
-article_count: 8
+article_count: 9
 sources:
   - "https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023"
   - "https://www.prensa.com/economia/que-ocurre-con-el-arroz-en-panama-productores-temen-perdidas-en-la-cosecha-mientras-la-industria-justifica-las-importaciones/"
@@ -20,6 +20,7 @@ El arroz es el alimento básico por excelencia de la dieta panameña y un cultiv
 
 ## Hechos Clave
 
+- **2025-06-19**: el MIDA destaca que su asistencia técnica contribuye al éxito de productores arroceros en Chiriquí (caso del productor Lozada; solo extracto, sin cifras) [MIDA, 2025-06-19](https://mida.gob.pa/2025/06/19/asesoria-del-mida-contribuye-al-exito-arrocero-del-productor-lozada-en-chiriqui/)
 - **2023**: Producción cayó a **230,000 toneladas métricas** (vs. 280,000 en 2022), una caída del **18%**, por el fenómeno El Niño y altos costos de insumos [MIDA, 2023-09-15](https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023)
 - **2023**: Costo de producción subió de B/. 8.50 → **B/. 12.00 por quintal** (+41%) [MIDA, 2023]
 - **2023**: Precio al consumidor se incrementó un **22%** durante el año [MIDA, 2023]
@@ -61,6 +62,7 @@ El arroz es el alimento básico por excelencia de la dieta panameña y un cultiv
 
 ## Referencias
 
+- [MIDA, 2025-06-19 — Asesoría del MIDA y éxito arrocero en Chiriquí](https://mida.gob.pa/2025/06/19/asesoria-del-mida-contribuye-al-exito-arrocero-del-productor-lozada-en-chiriqui/)
 - [MIDA, 2023 — Producción de arroz cae 18%](https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023)
 - [TVN, 2016 — Sequía El Niño en Azuero](https://www.tvn-2.com/nacionales/sequia-azuero-el-nino-2015-2016)
 - [La Prensa, 2022 — Proyección de siembra ciclo 2022-2023](https://www.prensa.com/economia/panama-proyecta-sembrar-cerca-de-90-mil-hectareas-de-arroz-para-el-ciclo-2022-2023/)
