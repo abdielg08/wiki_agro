@@ -772,5 +772,13 @@
     "source": "mida.gob.pa",
     "ingested": true,
     "ingested_at": "2026-10-14T00:11:19.405167"
+  },
+  "https://mida.gob.pa/2025/06/19/asesoria-del-mida-contribuye-al-exito-arrocero-del-productor-lozada-en-chiriqui/": {
+    "saved_at": "2026-10-14T15:38:39.831220",
+    "path": "/home/runner/work/wiki_agro/wiki_agro/sources/articles/20250619_midagobpa_2025-06-19-asesoria-del-mida-contribuye-al-exito-arrocero-de.json",
+    "title": "Asesoría del MIDA contribuye al éxito arrocero del productor Lozada en Chiriquí",
+    "date": "2025-06-19",
+    "source": "mida.gob.pa",
+    "ingested": false
   }
 }
