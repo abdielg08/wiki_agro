@@ -4,6 +4,8 @@ type: overview
 last_updated: 2026-09-29 (sesión 11)
 ---
 
+> **Actualización 2026-10-15 (sesión de diagnóstico 58, 16:16 UTC)**: 0 pendientes (67/67 ingestados), sin ingesta ni falsos positivos. Artículos nuevos hoy (2026-10-15): 0. El fetch de Actions corrió hoy (15:32 UTC, 0 artículos nuevos). Ventanas GDELT: 87. Bug `mark_ingested` sigue sin fix.
+
 > **Actualización 2026-10-15 (sesión de diagnóstico 57, 08:15 UTC)**: 0 pendientes (67/67 ingestados), sin ingesta ni falsos positivos. Artículos nuevos hoy (2026-10-15): 0 (último commit en `sources/`: 2026-10-14 15:44 UTC; el fetch de hoy corre ~16:00 UTC). Ventanas GDELT: 86. Bug `mark_ingested` sigue sin fix.
 
 > **Actualización 2026-10-15 (sesión de diagnóstico 56)**: 0 pendientes (67/67 ingestados), sin ingesta ni falsos positivos. Artículos nuevos hoy (2026-10-15): 0. Último fetch: run #141 (2026-10-14 15:38 UTC, éxito, 1 artículo); el de hoy aún no corre (cron ~16:00 UTC). Ventanas GDELT: 86. Bug `mark_ingested` sigue sin fix.
