@@ -1056,3 +1056,7 @@ INGEST: 1 artículos marcados como ingestados por sesión Claude Code
 - Pendientes: 0 (67/67 ingestados). Sin ingesta ni falsos positivos.
 - Artículos nuevos hoy (2026-10-15) en `sources/articles/`: 0. Último fetch de Actions: run #141 (2026-10-14 15:38 UTC, success, 1 artículo, ya ingestado). El fetch de hoy aún no corre.
 - Ventanas GDELT: 86 (>45, rango de fechas agotado; sin cambios). Entorno: `python -m pip install -r requirements.txt` necesario al inicio.
+
+## 2026-10-15 — Diagnóstico (sesión 57, 08:15 UTC)
+- Pendientes: 0 (67/67). Sin ingesta ni falsos positivos.
+- Artículos nuevos hoy: 0. Último commit en `sources/`: 2026-10-14 15:44 UTC (fetch OK); el fetch de hoy aún no corre (~16:00 UTC). Ventanas GDELT: 86 (>45, rango agotado, sin cambios). Entorno: usar `/usr/bin/python3` tras `pip install -r requirements.txt`.
