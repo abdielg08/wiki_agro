@@ -1051,3 +1051,8 @@ INGEST: 1 artículos marcados como ingestados por sesión Claude Code
 ## [2026-10-14 16:15] ingest | sesión 55
 - Ingestado 1 artículo MIDA (100% agro Panamá, sin falsos positivos; solo extracto): `summaries/20250619_midagobpa_asesoria-mida-exito-arrocero-lozada-chiriqui.md` → topics: arroz, chirique; entity: mida.
 - Pendientes: 0 (67/67). Artículos nuevos hoy: 1 (fetch GitHub Actions 2026-10-14 15:44 UTC, OK). Ventanas GDELT: 86. Entorno: dependencias instaladas con `/usr/bin/python3` (el `python` por defecto no ve los paquetes).
+
+## 2026-10-15 — Diagnóstico (sesión 56)
+- Pendientes: 0 (67/67 ingestados). Sin ingesta ni falsos positivos.
+- Artículos nuevos hoy (2026-10-15) en `sources/articles/`: 0. Último fetch de Actions: run #141 (2026-10-14 15:38 UTC, success, 1 artículo, ya ingestado). El fetch de hoy aún no corre.
+- Ventanas GDELT: 86 (>45, rango de fechas agotado; sin cambios). Entorno: `python -m pip install -r requirements.txt` necesario al inicio.
