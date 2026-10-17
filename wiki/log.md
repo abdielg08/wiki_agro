@@ -1085,3 +1085,8 @@ INGEST: 1 artículos marcados como ingestados por sesión Claude Code
 - Pendientes: 0 (67/67). Sin ingesta ni falsos positivos.
 - Artículos nuevos hoy: 0. Run #143 de Actions (2026-10-16, éxito) no generó commit en `sources/`. Último con artículos: 2026-10-14 → 3 días sin nuevos: alerta del sistema activada.
 - Ventanas GDELT: 87 (>45, rango agotado); fuentes RSS activas sin contenido nuevo. Entorno: usar `/usr/bin/python3` tras `pip install -r requirements.txt`.
+
+## 2026-10-17 — Diagnóstico (sesión 63, 08:10 UTC)
+- Pendientes: 0 (67/67). Sin ingesta ni falsos positivos.
+- Artículos nuevos hoy: 0. Sin corridas nuevas de Actions desde run #143 (2026-10-16, éxito, 0 artículos); el fetch de hoy (~15-16 UTC) aún no corre. Último con artículos: 2026-10-14 → 3 días sin nuevos (alerta activa).
+- Ventanas GDELT: 87 (>45, rango agotado); RSS sin contenido nuevo. Entorno: `python -m pip install -r requirements.txt` necesario al inicio.
