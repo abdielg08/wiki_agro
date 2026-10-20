@@ -1125,3 +1125,8 @@ INGEST: 1 artículos marcados como ingestados por sesión Claude Code
 - Pendientes: 0 (67/67). Sin ingesta ni falsos positivos.
 - Artículos nuevos hoy: 0. Último commit en `sources/`: 2026-10-19 17:21 UTC (0 artículos; GitHub Actions corrió pero no halló contenido nuevo). Último con artículos: 2026-10-14 → 6 días sin nuevos (alerta activa).
 - Ventanas GDELT: 89 (>45, rango agotado); RSS (IICA, La Prensa) sin contenido nuevo. Requiere ampliar fuentes/rango de fetch. Entorno: `python -m pip install -r requirements.txt` necesario al inicio.
+
+## 2026-10-20 — Diagnóstico (sesión 71)
+- Pendientes: 0 (67/67). Sin ingesta ni falsos positivos.
+- Artículos nuevos hoy: 0. Último commit en `sources/`: 2026-10-19 17:21 UTC (0 artículos); sin commit de Actions hoy a las 08:10 UTC. Último con artículos: 2026-10-14 → 6 días sin nuevos (alerta activa).
+- Ventanas GDELT: 89 (>45, rango agotado); RSS sin contenido nuevo. Sin cambios respecto a la sesión 70.
