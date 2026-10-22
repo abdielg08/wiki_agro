@@ -1,8 +1,10 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-10-22 (sesión 77)
+last_updated: 2026-10-22 (sesión 78)
 ---
+
+> **Actualización 2026-10-22 (sesión de diagnóstico 78, 16:10 UTC)**: 0 pendientes (67/67 ingestados), sin ingesta ni falsos positivos. Artículos nuevos hoy (2026-10-22): 0. Último commit en `sources/`: 2026-10-21 15:51 UTC (`aeef88f`, 0 artículos); **Actions no ha commiteado hoy pasada la ventana habitual (~15:30 UTC)** — revisar el workflow. Último con artículos: 2026-10-14; **8 días sin nuevos — alerta activa**. Ventanas GDELT: 90 (agotado); RSS sin contenido nuevo.
 
 > **Actualización 2026-10-22 (sesión de diagnóstico 77, 08:10 UTC)**: 0 pendientes (67/67 ingestados), sin ingesta ni falsos positivos. Artículos nuevos hoy (2026-10-22): 0. Último commit en `sources/`: 2026-10-21 15:51 UTC (`aeef88f`, 0 artículos); Actions aún no corrió hoy (ventana habitual ~15:30 UTC). Último con artículos: 2026-10-14; **8 días sin nuevos — alerta activa**. Ventanas GDELT: 90 (agotado); RSS sin contenido nuevo.
 
