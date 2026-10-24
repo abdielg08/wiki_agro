@@ -1190,3 +1190,8 @@ INGEST: 1 artículos marcados como ingestados por sesión Claude Code
 - Pendientes: 0 (67/67). Sin ingesta ni falsos positivos.
 - Artículos nuevos hoy: 0. Último commit en `sources/`: `aeef88f` (2026-10-21 15:51 UTC); Actions no commiteó el 22, el 23 ni aún el 24 (sesión 08:10 UTC, antes de la ventana habitual). Último con artículos: 2026-10-14 → 10 días sin nuevos (alerta activa).
 - Ventanas GDELT: 90 (>45, rango agotado); RSS sin contenido nuevo. Requiere expansión del rango/fuentes.
+
+## 2026-10-24 — Diagnóstico (sesión 84)
+- Pendientes: 0 (67/67). Sin ingesta ni falsos positivos.
+- Artículos nuevos hoy: 0. GitHub Actions corrió hoy: commit `21fa398` (2026-10-24 14:16 UTC, 0 artículos nuevos); sin commits el 22 y 23. Último con artículos: 2026-10-14 → 10 días sin nuevos (alerta activa).
+- Ventanas GDELT: 91 (+1; >45, rango base agotado); RSS sin contenido nuevo. Requiere expansión del rango/fuentes.
