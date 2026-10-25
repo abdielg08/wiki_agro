@@ -93,6 +93,7 @@ article_count: 0
 
 | Fecha | Fuente | Título | Resumen |
 |-------|--------|--------|---------|
+| 2023-11-22 | MIDA | [Avanza la cosecha de arroz en Chiriquí](summaries/20231122_midagobpa_avanza-cosecha-arroz-chiriqui.md) | 19,313 ha de arroz sembradas en Chiriquí; avance de cosecha (solo extracto) |
 | 2025-06-19 | MIDA | [Asesoría del MIDA contribuye al éxito arrocero del productor Lozada en Chiriquí](summaries/20250619_midagobpa_asesoria-mida-exito-arrocero-lozada-chiriqui.md) | asistencia técnica del MIDA y éxito de arroceros en Chiriquí (solo extracto) |
 | 2026-07-10 | MIDA | [Productores de guandú morado en Veraguas logran la venta de cosecha](summaries/20260710_midagobpa_guandu-morado-veraguas-venta-cosecha.md) | productores de guandú morado en Veraguas logran vender su cosecha con apoyo del  |
 | 2026-01-06 | MIDA | [MIDA Coclé actualiza a productores sobre producción de arroz del ciclo agrícola 2025](summaries/20260106_midagobpa_mida-cocle-produccion-arroz-ciclo-2025.md) | MIDA, Dirección Nacional de Agricultura e ISA informan a productores de Coclé so |

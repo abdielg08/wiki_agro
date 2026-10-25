@@ -1,8 +1,10 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-10-25 (sesión 86)
+last_updated: 2026-10-25 (sesión 87)
 ---
+
+> **Actualización 2026-10-25 (sesión 87, ingesta)**: ingestado 1 artículo (MIDA, arroz en Chiriquí, 2023-11-22); 0 falsos positivos. Pendientes 0 (68/68). **Actions corrió hoy**: commit `5d06dcf` (14:48 UTC) con 1 artículo nuevo — días sin nuevos: 0 (alerta cerrada; hubo 11 días sin nuevos desde 2026-10-14). Ventanas GDELT: 92.
 
 > **Actualización 2026-10-25 (sesión de diagnóstico 86, 08:10 UTC)**: 0 pendientes (67/67 ingestados), sin ingesta ni falsos positivos. Artículos nuevos hoy (2026-10-25): 0. Último commit en `sources/`: `21fa398` (2026-10-24 14:16 UTC, "0 artículos nuevos descargados"); Actions aún sin corrida hoy (ventana habitual ~14-16 UTC). Último con artículos: 2026-10-14; **11 días sin nuevos — alerta activa**. Ventanas GDELT: 91 (>45, rango base agotado); RSS sin contenido nuevo.
 
@@ -579,6 +581,7 @@ fix de `scripts/` quedaría igual de atrapado en un PR sin mergear que el bug de
 | 2026-09-28 (sesión 9) | 0 | 0 | Routine automatizada de solo-diagnóstico (0 pendientes al iniciar, mismo día calendario que sesiones 7-8, disparada ~16:15 UTC). Dependencias de Python reinstaladas de nuevo (no persisten entre contenedores). Sin corridas nuevas de GitHub Actions desde run #124; ventanas GDELT sin cambio en 82; "Días sin artículos nuevos" se mantiene en 22. **Hallazgo nuevo**: esta sesión verificó después de la ventana habitual de retraso del cron (~15:30-15:49 UTC) sin encontrar corrida nueva — posible señal de que el disparador `schedule` dejó de dispararse hoy, pendiente de confirmar en la próxima sesión. **Bug de `mark_all_ingested` NO re-implementado** (undécima comprobación, siguiendo instrucción explícita de la sesión anterior): fix sigue ausente de `main`; ahora 10 PRs abiertos sin mergear (#313-#322, el #316 con el fix completo; #322 es el PR auto-creado de la sesión 8). Ninguno de los 10 PRs fue mergeado ni cerrado desde la sesión anterior. Acción manual requerida del usuario: mergear #316 (o #313/#314/#315) y cerrar los 9 restantes. |
 | 2026-09-29 (sesión 10) | 0 | 0 | Solo-diagnóstico (0 pendientes). Run #125 (2026-09-28 18:18 UTC, éxito, 0 artículos) confirma que el cron sigue disparando, con retraso de ~7h; ventanas GDELT 82→83; días sin artículos nuevos: 23. Fix de `mark_all_ingested` sigue sin mergear (#316); no reaplicado. |
 | 2026-09-29 (sesión 11) | 0 | 0 | Solo-diagnóstico (0 pendientes). Sin corridas nuevas desde run #125; ventanas GDELT 83 sin cambio; días sin artículos nuevos: 23. |
+| 2026-10-25 (sesión 87) | 1 | 0 | Ingesta de 1 artículo genuino (MIDA arroz Chiriquí, solo extracto). Actions corrió (5d06dcf, 1 nuevo); ventanas GDELT 92. |
 
 ---
 

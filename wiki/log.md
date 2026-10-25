@@ -1205,3 +1205,10 @@ INGEST: 1 artículos marcados como ingestados por sesión Claude Code
 - Pendientes: 0 (67/67). Sin ingesta ni falsos positivos.
 - Artículos nuevos hoy: 0. Último commit en `sources/`: `21fa398` (2026-10-24 14:16 UTC, 0 artículos nuevos); Actions aún no corre hoy (sesión 08:10 UTC). Último con artículos: 2026-10-14 → 11 días sin nuevos (alerta activa).
 - Ventanas GDELT: 91 (>45, rango base agotado); RSS sin contenido nuevo. Requiere expansión del rango/fuentes.
+
+## 2026-10-25 16:11
+INGEST: 1 artículos marcados como ingestados por sesión Claude Code
+
+## 2026-10-25 — Ingesta + diagnóstico (sesión 87)
+- Ingestado 1 artículo (0 falsos positivos): MIDA, 2023-11-22, "Avanza la cosecha de arroz en Chiriquí" (19,313 ha sembradas; `full_text` nulo, solo extracto). Resumen: `summaries/20231122_midagobpa_avanza-cosecha-arroz-chiriqui.md`. Actualizados: `topics/arroz.md`, `topics/chirique.md`. `index.md` actualizado.
+- Pendientes: 0 (68/68). GitHub Actions corrió hoy: commit `5d06dcf` (2026-10-25 14:48 UTC, 1 artículo nuevo) — fin de la racha de 11 días sin nuevos. Ventanas GDELT: 92 (>45, rango base agotado).

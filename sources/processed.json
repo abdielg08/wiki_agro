@@ -794,6 +794,7 @@
     "title": "Avanza la cosecha de arroz en Chiriquí",
     "date": "2023-11-22",
     "source": "mida.gob.pa",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-10-25T16:11:15.124516"
   }
 }
