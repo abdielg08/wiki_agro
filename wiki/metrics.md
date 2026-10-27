@@ -4,6 +4,8 @@ type: overview
 last_updated: 2026-10-27 (sesión 92)
 ---
 
+> **Actualización 2026-10-27 (sesión de diagnóstico 93, 16:12 UTC)**: 0 pendientes (68/68 ingestados), sin ingesta ni falsos positivos. Artículos nuevos hoy (2026-10-27): 0. **Actions run #154 corrió hoy** (16:06-16:13 UTC, éxito, event schedule) pero no generó commit en `sources/` (0 artículos; último commit con artículos: `5d06dcf`, 2026-10-25). Días sin nuevos: 2. Ventanas GDELT: 92 (>45, rango base agotado); RSS sin contenido nuevo.
+
 > **Actualización 2026-10-27 (sesión de diagnóstico 92, 08:10 UTC)**: 0 pendientes (68/68 ingestados), sin ingesta ni falsos positivos. Artículos nuevos hoy (2026-10-27): 0. Último commit en `sources/`: `5d06dcf` (2026-10-25 14:48 UTC, 1 artículo); sin commit de Actions el 2026-10-26 (ventana habitual ~14-16 UTC; hoy aún no corre). Días sin nuevos: 2. Ventanas GDELT: 92 (>45, rango base agotado); RSS sin contenido nuevo.
 
 > **Actualización 2026-10-27 (sesión de diagnóstico 91, 00:10 UTC)**: 0 pendientes (68/68 ingestados), sin ingesta ni falsos positivos. Artículos nuevos hoy (2026-10-27): 0. Último commit en `sources/`: `26ed010`/`5d06dcf` (2026-10-25); **Actions no generó commit el 2026-10-26** (sin corrida visible o corrida de 0 artículos). Días sin nuevos: 2 (último con artículos: 2026-10-25). Ventanas GDELT: 92 (>45, rango base agotado); RSS sin contenido nuevo.
