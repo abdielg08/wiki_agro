@@ -1236,3 +1236,6 @@ INGEST: 1 artículos marcados como ingestados por sesión Claude Code
 
 ## 2026-10-28 — Diagnóstico (sesión 95, 08:10 UTC)
 - Pendientes: 0 (68/68). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0. Último commit en `sources/`: `5d06dcf` (2026-10-25); Actions run #154 (10-27) sin artículos; run del 10-28 aún no corre. Días sin nuevos: 3 (umbral de falla). Ventanas GDELT: 92 (>45, rango base agotado); RSS sin contenido nuevo.
+
+## 2026-10-28 — Diagnóstico (sesión 96, 16:10 UTC)
+- Pendientes: 0 (68/68). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0. Último commit en `sources/`: `5d06dcf` (2026-10-25); Actions run #154 (10-27) sin artículos; run del 10-28 aún no corre. Días sin nuevos: 3 (umbral de falla). Ventanas GDELT: 92 (>45, rango base agotado); RSS sin contenido nuevo.
