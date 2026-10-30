@@ -1248,3 +1248,6 @@ INGEST: 1 artículos marcados como ingestados por sesión Claude Code
 
 ## 2026-10-29 — Diagnóstico (sesión 99)
 - Pendientes: 0 (68/68). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0. Sin cambios respecto a la sesión 98: último fetch de Actions `eb2531a` (2026-10-28 17:00 UTC, 0 artículos); último commit con artículos `5d06dcf` (2026-10-25). Días sin nuevos: 4 (umbral de falla superado). Ventanas GDELT: 93 (>45, rango base agotado); RSS sin contenido nuevo. Pendiente: expandir rango/fuentes de fetch.
+
+## 2026-10-30 — Diagnóstico (sesión 100)
+- Pendientes: 0 (68/68). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0. Fetch de Actions corrió el 10-29 17:19 UTC (`a7cb614`, 0 artículos). Último commit con artículos: `5d06dcf` (2026-10-25). Días sin nuevos: 5 (umbral de falla superado). Ventanas GDELT: 94 (>45, rango base agotado); RSS sin contenido nuevo. Pendiente: expandir rango/fuentes de fetch.
