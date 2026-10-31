@@ -806,6 +806,7 @@
     "title": "Ají trompito: la producción que impulsa la economía de un productor en Panamá Este",
     "date": "2026-09-21",
     "source": "mida.gob.pa",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-10-31T16:10:23.326824"
   }
 }

@@ -2,11 +2,12 @@
 title: Hortalizas en Panamá
 type: topic
 tags: [hortalizas, cebolla, lechuga, chirique, azuero, importaciones, tecnologia]
-last_updated: 2026-09-25
-article_count: 2
+last_updated: 2026-10-31
+article_count: 3
 sources:
   - "https://www.prensa.com/sociedad/agricultura-vertical-revoluciona-cultivo-en-panama-lechuga-en-30-dias-sin-sol-ni-tierra/"
   - "https://www.prensa.com/economia/mida-confirma-la-llegada-de-20-mil-quintales-de-cebolla-importada/"
+  - "https://mida.gob.pa/2026/09/21/aji-trompito-la-produccion-que-impulsa-la-economia-de-un-productor-en-panama-este/"
 related: [topics/precios_mercados.md, topics/tecnologia_innovacion.md, topics/chirique.md, entities/mida.md, entities/iica_panama.md]
 ---
 
@@ -20,6 +21,7 @@ El subsector de hortalizas en Panamá (tomate, cebolla, lechuga y tubérculos, c
 
 - **Julio 2020**: el MIDA anunció la llegada de un cargamento de cebolla importada para normalizar el abastecimiento nacional; la fuente reporta la cifra en dos unidades distintas sin conciliarlas — **20,000 quintales** (titular) y **10 contenedores** (cuerpo del texto) [La Prensa, 2020-07-31](https://www.prensa.com/economia/mida-confirma-la-llegada-de-20-mil-quintales-de-cebolla-importada/)
 - **Agosto 2024**: el IICA instaló en Panamá un prototipo de **agricultura vertical en ambiente controlado** que produce lechuga en 30 días sin suelo ni luz solar, buscando demostrar la tecnología y sensibilizar al sector [La Prensa, 2024-08-28](https://www.prensa.com/sociedad/agricultura-vertical-revoluciona-cultivo-en-panama-lechuga-en-30-dias-sin-sol-ni-tierra/)
+- **Septiembre 2026**: tras el acompañamiento técnico del MIDA, el productor Roberto Domínguez (Guacuco, Tortí, Panamá Este) impulsa su economía con la producción de ají trompito (solo extracto; sin cifras) [MIDA, 2026-09-21](https://mida.gob.pa/2026/09/21/aji-trompito-la-produccion-que-impulsa-la-economia-de-un-productor-en-panama-este/)
 
 ## Tendencias (2015–2025)
 
@@ -36,6 +38,7 @@ El subsector de hortalizas en Panamá (tomate, cebolla, lechuga y tubérculos, c
 
 - [La Prensa, 2020 — MIDA confirma la llegada de 20 mil quintales de cebolla importada](https://www.prensa.com/economia/mida-confirma-la-llegada-de-20-mil-quintales-de-cebolla-importada/)
 - [La Prensa, 2024 — Agricultura vertical revoluciona cultivo en Panamá](https://www.prensa.com/sociedad/agricultura-vertical-revoluciona-cultivo-en-panama-lechuga-en-30-dias-sin-sol-ni-tierra/)
+- [MIDA, 2026 — Ají trompito en Panamá Este](https://mida.gob.pa/2026/09/21/aji-trompito-la-produccion-que-impulsa-la-economia-de-un-productor-en-panama-este/)
 
 ## Ver también
 

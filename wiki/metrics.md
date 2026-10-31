@@ -1,8 +1,10 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-10-31 (sesión 104)
+last_updated: 2026-10-31 (sesión 105)
 ---
+
+> **Actualización 2026-10-31 (sesión 105, ingesta)**: ingestado 1 artículo (MIDA, ají trompito Panamá Este, 2026-09-21; solo extracto); 0 falsos positivos. Pendientes 0 (69/69). Actions descargó 1 artículo nuevo (commit `7212939`) — días sin nuevos: 0. Ventanas GDELT: 94.
 
 > **Actualización 2026-10-31 (sesión de diagnóstico 104, UTC)**: 0 pendientes (68/68 ingestados), sin ingesta ni falsos positivos. Artículos nuevos hoy (2026-10-31): 0. Sin Actions nuevo desde `a7cb614` (2026-10-29 17:19 UTC, 0 artículos); último commit con artículos `5d06dcf` (2026-10-25). Días sin nuevos: 6 (umbral de falla superado). Ventanas GDELT: 94 (>45, rango base agotado); RSS sin contenido nuevo. Pendiente: expandir rango/fuentes de fetch.
 
@@ -616,6 +618,7 @@ fix de `scripts/` quedaría igual de atrapado en un PR sin mergear que el bug de
 | 2026-09-29 (sesión 10) | 0 | 0 | Solo-diagnóstico (0 pendientes). Run #125 (2026-09-28 18:18 UTC, éxito, 0 artículos) confirma que el cron sigue disparando, con retraso de ~7h; ventanas GDELT 82→83; días sin artículos nuevos: 23. Fix de `mark_all_ingested` sigue sin mergear (#316); no reaplicado. |
 | 2026-09-29 (sesión 11) | 0 | 0 | Solo-diagnóstico (0 pendientes). Sin corridas nuevas desde run #125; ventanas GDELT 83 sin cambio; días sin artículos nuevos: 23. |
 | 2026-10-25 (sesión 87) | 1 | 0 | Ingesta de 1 artículo genuino (MIDA arroz Chiriquí, solo extracto). Actions corrió (5d06dcf, 1 nuevo); ventanas GDELT 92. |
+| 2026-10-31 (sesión 105) | 1 | 0 | Ingesta de 1 artículo genuino (MIDA ají trompito, solo extracto). Actions descargó 1 nuevo (7212939); ventanas GDELT 94. |
 
 ---
 

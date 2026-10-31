@@ -93,6 +93,7 @@ article_count: 0
 
 | Fecha | Fuente | Título | Resumen |
 |-------|--------|--------|---------|
+| 2026-09-21 | MIDA | [Ají trompito: la producción que impulsa la economía de un productor en Panamá Este](summaries/20260921_midagobpa_aji-trompito-panama-este.md) | acompañamiento técnico del MIDA a productor de ají trompito en Tortí (solo extracto) |
 | 2023-11-22 | MIDA | [Avanza la cosecha de arroz en Chiriquí](summaries/20231122_midagobpa_avanza-cosecha-arroz-chiriqui.md) | 19,313 ha de arroz sembradas en Chiriquí; avance de cosecha (solo extracto) |
 | 2025-06-19 | MIDA | [Asesoría del MIDA contribuye al éxito arrocero del productor Lozada en Chiriquí](summaries/20250619_midagobpa_asesoria-mida-exito-arrocero-lozada-chiriqui.md) | asistencia técnica del MIDA y éxito de arroceros en Chiriquí (solo extracto) |
 | 2026-07-10 | MIDA | [Productores de guandú morado en Veraguas logran la venta de cosecha](summaries/20260710_midagobpa_guandu-morado-veraguas-venta-cosecha.md) | productores de guandú morado en Veraguas logran vender su cosecha con apoyo del  |
@@ -138,4 +139,4 @@ article_count: 0
 
 ---
 
-*Última actualización del índice: 2026-10-14*
+*Última actualización del índice: 2026-10-31*
