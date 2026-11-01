@@ -4,6 +4,8 @@ type: overview
 last_updated: 2026-10-31 (sesión 105)
 ---
 
+> **Actualización 2026-11-01 (sesión de diagnóstico 106, UTC)**: 0 pendientes (69/69 ingestados), sin ingesta ni falsos positivos. Artículos nuevos hoy (2026-11-01): 0. Último fetch de Actions con artículos `7212939` (2026-10-31 16:00 UTC, 1 artículo); sin Actions nuevo desde entonces. Días sin nuevos: 0 (racha rota el 10-31; vigilar). Ventanas GDELT: 94 (>45, rango base agotado); RSS sin contenido nuevo.
+
 > **Actualización 2026-10-31 (sesión 105, ingesta)**: ingestado 1 artículo (MIDA, ají trompito Panamá Este, 2026-09-21; solo extracto); 0 falsos positivos. Pendientes 0 (69/69). Actions descargó 1 artículo nuevo (commit `7212939`) — días sin nuevos: 0. Ventanas GDELT: 94.
 
 > **Actualización 2026-10-31 (sesión de diagnóstico 104, UTC)**: 0 pendientes (68/68 ingestados), sin ingesta ni falsos positivos. Artículos nuevos hoy (2026-10-31): 0. Sin Actions nuevo desde `a7cb614` (2026-10-29 17:19 UTC, 0 artículos); último commit con artículos `5d06dcf` (2026-10-25). Días sin nuevos: 6 (umbral de falla superado). Ventanas GDELT: 94 (>45, rango base agotado); RSS sin contenido nuevo. Pendiente: expandir rango/fuentes de fetch.

@@ -1270,3 +1270,6 @@ INGEST: 1 artículos marcados como ingestados por sesión Claude Code
 ## 2026-10-31 — Ingesta + diagnóstico (sesión 105)
 - Ingestado 1 artículo (0 falsos positivos): MIDA, 2026-09-21, "Ají trompito: la producción que impulsa la economía de un productor en Panamá Este" (Tortí, Panamá Este; `full_text` nulo, solo extracto). Resumen: `summaries/20260921_midagobpa_aji-trompito-panama-este.md`. Actualizados: `topics/hortalizas.md`, `entities/mida.md`. `index.md` actualizado.
 - Pendientes: 0 (69/69). Llegó 1 artículo nuevo vía Actions (commit `7212939`, "1 artículos nuevos descargados") — fin de la racha sin nuevos. Ventanas GDELT: 94.
+
+## 2026-11-01 — Diagnóstico (sesión 106)
+- Pendientes: 0 (69/69). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0; último fetch con artículos `7212939` (2026-10-31). Días sin nuevos: 0 (<3, sin falla). Ventanas GDELT: 94 (>45, rango base agotado); RSS sin contenido nuevo. Pendiente: expandir rango/fuentes de fetch.
