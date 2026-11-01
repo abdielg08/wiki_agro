@@ -1276,3 +1276,6 @@ INGEST: 1 artículos marcados como ingestados por sesión Claude Code
 
 ## 2026-11-01 — Diagnóstico (sesión 107)
 - Pendientes: 0 (69/69). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0; sin Actions nuevo desde `7212939` (2026-10-31 16:00 UTC). Días sin nuevos: 0 (<3, sin falla). Ventanas GDELT: 94 (>45, rango base agotado). Pendiente: expandir rango/fuentes de fetch.
+
+## 2026-11-01 — Diagnóstico (sesión 108)
+- Pendientes: 0 (69/69). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0; sin Actions nuevo con artículos desde `7212939` (2026-10-31 16:00 UTC). Días sin nuevos: 0 (<3, sin falla). Ventanas GDELT: 94 (>45, rango base agotado). Pendiente: expandir rango/fuentes de fetch.

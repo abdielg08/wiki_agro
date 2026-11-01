@@ -4,6 +4,8 @@ type: overview
 last_updated: 2026-10-31 (sesión 105)
 ---
 
+> **Actualización 2026-11-01 (sesión de diagnóstico 108, UTC)**: 0 pendientes (69/69), sin ingesta ni falsos positivos. Artículos nuevos hoy (2026-11-01): 0. Sin commit de Actions con artículos desde `7212939` (2026-10-31). Días sin nuevos: 0 (<3). Ventanas GDELT: 94 (>45, rango base agotado); RSS sin contenido nuevo.
+
 > **Actualización 2026-11-01 (sesión de diagnóstico 107, UTC)**: 0 pendientes (69/69), sin ingesta ni falsos positivos. Artículos nuevos hoy (2026-11-01): 0. Sin commit de Actions desde `7212939` (2026-10-31 16:00 UTC, 1 artículo). Días sin nuevos: 0 (<3, sin falla). Ventanas GDELT: 94 (>45, rango base agotado); RSS sin contenido nuevo.
 
 > **Actualización 2026-11-01 (sesión de diagnóstico 106, UTC)**: 0 pendientes (69/69 ingestados), sin ingesta ni falsos positivos. Artículos nuevos hoy (2026-11-01): 0. Último fetch de Actions con artículos `7212939` (2026-10-31 16:00 UTC, 1 artículo); sin Actions nuevo desde entonces. Días sin nuevos: 0 (racha rota el 10-31; vigilar). Ventanas GDELT: 94 (>45, rango base agotado); RSS sin contenido nuevo.
