@@ -1297,3 +1297,6 @@ INGEST: 1 artículos marcados como ingestados por sesión Claude Code
 
 ## 2026-11-03 — Diagnóstico (sesión 114)
 - Pendientes: 0 (69/69). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0; último Actions `c4a3bee` (2026-11-02 20:41 UTC, 0 artículos); último con artículos `7212939` (2026-10-31). Días sin nuevos: 2-3 (falla a los 3). Ventanas GDELT: 97 (>45, rango base agotado); RSS sin contenido nuevo.
+
+## 2026-11-04 — Diagnóstico (sesión 115)
+- Pendientes: 0 (69/69). Sin ingesta ni falsos positivos. Artículos nuevos hoy (2026-11-04): 0. Sin commit de Actions desde `c4a3bee` (2026-11-02 20:41 UTC, 0 artículos); último con artículos `7212939` (2026-10-31). **Días sin nuevos: 4 → umbral de falla (3 días consecutivos) SUPERADO.** Ventanas GDELT: 97 (>45, rango base agotado); RSS sin contenido nuevo. Acción requerida: expandir rango/fuentes de fetch.
