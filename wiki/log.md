@@ -1351,3 +1351,6 @@ INGEST: 1 artículos marcados como ingestados por sesión Claude Code
 
 ## 2026-11-09 — Diagnóstico (sesión 132)
 - Pendientes: 0 (69/69). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0; sin artículos desde 2026-10-31 (último fetch de Actions 2026-11-08, 0 artículos). Días sin nuevos: 9 (umbral de falla superado, persiste). GDELT: 99 ventanas (rango agotado); RSS sin contenido nuevo. Acción requerida: expandir rango/fuentes de fetch. Nota: el entorno requirió `pip install -r requirements.txt` (faltaba `click`).
+
+## 2026-11-10 — Diagnóstico (sesión 133)
+- Pendientes: 0 (69/69). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0; sin artículos desde 2026-10-31 (último fetch de Actions 2026-11-09, 0 artículos). Días sin nuevos: 10 (umbral de falla superado, persiste). GDELT: 100 ventanas (rango agotado); RSS sin contenido nuevo. Acción requerida: expandir rango/fuentes de fetch.
