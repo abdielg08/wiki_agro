@@ -1,8 +1,10 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-11-10 (sesión 135)
+last_updated: 2026-11-11 (sesión 136)
 ---
+
+> **Actualización 2026-11-11 (sesión 136, 00:10 UTC)**: Pendientes: 0 (69/69). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 (el cron diario de hoy, 11:00 UTC, aún no ha corrido). Última corrida de Actions: run #168 (2026-11-10 18:22-18:30 UTC, éxito) — no generó commit: 0 artículos y 0 avance de ventanas GDELT (100→100). Último commit de Actions en `sources/`: `f82b2d2` (2026-11-09); último con artículos: 2026-10-31. **Días sin nuevos: 11 → umbral de falla SUPERADO (persiste).** El fetch corre bien; el problema es que no encuentra contenido: las últimas ventanas GDELT (`20260917_20261103/07/08`) están ancladas al presente, no al backfill 2015-2018. Acción requerida (humana, en `scripts/`/`config/`): corregir el cursor de `fetch_gdelt_historical()` y/o ampliar fuentes.
 
 > **Actualización 2026-11-10 (sesión 135)**: Sin cambios vs. sesión 134. Pendientes: 0 (69/69). Artículos nuevos hoy: 0; último commit de Actions `f82b2d2` (2026-11-09, 0 artículos), último con artículos 2026-10-31. Días sin nuevos: 10 (umbral superado). Ventanas GDELT: 100. Acción requerida: expandir rango/fuentes de fetch.
 

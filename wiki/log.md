@@ -1360,3 +1360,6 @@ INGEST: 1 artículos marcados como ingestados por sesión Claude Code
 
 ## 2026-11-10 — Diagnóstico (sesión 135)
 - Pendientes: 0 (69/69). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0; último fetch de Actions 2026-11-09 (0 artículos). Días sin nuevos: 10 (umbral superado, persiste). GDELT: 100 ventanas (rango agotado). Acción requerida: expandir rango/fuentes de fetch.
+
+## 2026-11-11 — Diagnóstico (sesión 136)
+- Pendientes: 0 (69/69). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 (cron de hoy aún no corre a las 00:10 UTC). Run #168 de Actions (2026-11-10 18:22 UTC) exitoso pero sin commit: 0 artículos, ventanas GDELT 100→100. Sin artículos desde 2026-10-31 → días sin nuevos: 11 (umbral superado, persiste). Las últimas ventanas GDELT (`20260917_2026110x`) apuntan al presente, no al backfill 2015-2018. Acción requerida: corregir cursor de `fetch_gdelt_historical()` / ampliar fuentes (cambio en `scripts/`, requiere merge humano). El entorno requirió `python -m pip install -r requirements.txt`.
