@@ -1363,3 +1363,6 @@ INGEST: 1 artículos marcados como ingestados por sesión Claude Code
 
 ## 2026-11-11 — Diagnóstico (sesión 136)
 - Pendientes: 0 (69/69). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 (cron de hoy aún no corre a las 00:10 UTC). Run #168 de Actions (2026-11-10 18:22 UTC) exitoso pero sin commit: 0 artículos, ventanas GDELT 100→100. Sin artículos desde 2026-10-31 → días sin nuevos: 11 (umbral superado, persiste). Las últimas ventanas GDELT (`20260917_2026110x`) apuntan al presente, no al backfill 2015-2018. Acción requerida: corregir cursor de `fetch_gdelt_historical()` / ampliar fuentes (cambio en `scripts/`, requiere merge humano). El entorno requirió `python -m pip install -r requirements.txt`.
+
+## 2026-11-11 — Diagnóstico (sesión 137)
+- Pendientes: 0 (69/69). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 (08:10 UTC; el cron diario de las 11:00 UTC aún no corre). Sin corridas de Actions desde el run #168 (2026-11-10 18:22 UTC, éxito, sin commit). Sin artículos desde 2026-10-31 → días sin nuevos: 11 (umbral superado, persiste). GDELT: 100 ventanas, sin cambio, ancladas al presente y no al backfill 2015-2018. Acción requerida: corregir cursor de `fetch_gdelt_historical()` / ampliar fuentes (cambio en `scripts/`, requiere merge humano). Nota de entorno: `python` apunta a 3.11 sin dependencias; usar `python3.13`.
