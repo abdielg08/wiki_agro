@@ -1,8 +1,10 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-11-12 (sesión 139)
+last_updated: 2026-11-13 (sesión 140)
 ---
+
+> **Actualización 2026-11-13 (sesión 140, 00:10 UTC)**: Pendientes: 0 (69/69). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 (el cron diario de hoy aún no ha corrido). El fetch de Actions SÍ corrió ayer: commit `11bb2f6` (2026-11-12 18:45 UTC, "0 artículos nuevos descargados") — 0 artículos, ventanas GDELT 100→101 (nueva: `20260917_20261111`, otra vez anclada al presente y no al backfill 2015-2018). Último commit con artículos: 2026-10-31. **Días sin nuevos: 13 → umbral de falla SUPERADO (persiste).** Acción requerida (humana, en `scripts/`/`config/`): corregir el cursor de `fetch_gdelt_historical()` y/o ampliar fuentes.
 
 > **Actualización 2026-11-12 (sesión 139, 16:10 UTC)**: Sin cambios vs. sesión 138. Pendientes: 0 (69/69). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 — el cron diario de hoy (nominal 11:00 UTC) aún no ha corrido; suele dispararse con retraso (~18-21 UTC). Última corrida de Actions sigue siendo el run #169 (2026-11-11 18:13 UTC, éxito, sin commit: 0 artículos). Ventanas GDELT: 100 (sin cambio). **Días sin nuevos: 12 → umbral de falla SUPERADO (persiste).** Acción requerida (humana, en `scripts/`/`config/`): corregir el cursor de `fetch_gdelt_historical()` y/o ampliar fuentes.
 
