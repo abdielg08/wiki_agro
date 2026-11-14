@@ -1,8 +1,10 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-11-13 (sesión 142)
+last_updated: 2026-11-14 (sesión 143)
 ---
+
+> **Actualización 2026-11-14 (sesión 143, UTC)**: Pendientes: 0 (69/69). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 — el cron diario de hoy aún no ha corrido (verificado vía `actions_list`: `total_count=171`). El fetch de ayer SÍ corrió: run #171 (2026-11-13 18:17-18:24 UTC, éxito) sin commit en `sources/` (0 artículos, ventanas GDELT sin cambio: 101). Último commit de Actions en `sources/`: `11bb2f6` (2026-11-12); último con artículos: 2026-10-31. **Días sin nuevos: 14 → umbral de falla SUPERADO (persiste).** Diagnóstico de la sesión 141 vigente (GDELT agotado 2017→hoy; 9 ventanas 2015-01-01 → 2017-03-29 fallan siempre). Acción requerida (humana): correr "Crawl Histórico" (`wiki_historical.yml`) para 2015-2016 y/o ampliar fuentes RSS.
 
 > **Actualización 2026-11-13 (sesión 142, 16:10 UTC)**: Sin cambios vs. sesión 141. Pendientes: 0 (69/69). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 — el cron diario de hoy aún no ha corrido (verificado vía `actions_list`: `total_count=170`, última corrida run #170 del 2026-11-12 18:38-18:45 UTC, éxito, commit `11bb2f6` con 0 artículos; el cron suele dispararse ~18-21 UTC). Ventanas GDELT: 101 (sin cambio). Último commit con artículos: 2026-10-31. **Días sin nuevos: 13 → umbral de falla SUPERADO (persiste).** Diagnóstico de la sesión 141 vigente: GDELT agotado 2017→hoy; las 9 ventanas 2015-01-01 → 2017-03-29 fallan siempre. Acción requerida (humana): correr "Crawl Histórico" (`wiki_historical.yml`) para 2015-2016 y/o ampliar fuentes RSS.
 
