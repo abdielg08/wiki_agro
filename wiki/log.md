@@ -1389,3 +1389,6 @@ INGEST: 1 artículos marcados como ingestados por sesión Claude Code
 
 ## 2026-11-14 — Diagnóstico (sesión 144)
 - Pendientes: 0 (69/69). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 (08:10 UTC; el cron diario aún no corre). Última corrida de Actions: run #171 (2026-11-13 18:17 UTC, éxito, sin commit: 0 artículos). Último commit en `sources/`: `11bb2f6` (2026-11-12). Sin artículos desde 2026-10-31 → días sin nuevos: 14 (umbral superado, persiste). GDELT: 101 ventanas, sin cambio. Diagnóstico de sesión 141 vigente; acción requerida (humana): correr "Crawl Histórico" para 2015-2016 y/o ampliar fuentes.
+
+## 2026-11-14 — Diagnóstico (sesión 145)
+- Pendientes: 0 (69/69). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 (16:10 UTC; el cron diario de hoy aún no corre, suele correr ~18:15 UTC). Última corrida de Actions: run #171 (2026-11-13 18:17 UTC, éxito, sin commit: 0 artículos). Último commit en `sources/`: `11bb2f6` (2026-11-12). Sin artículos desde 2026-10-31 → días sin nuevos: 14 (umbral superado, persiste). GDELT: 101 ventanas, sin cambio. Diagnóstico de sesión 141 vigente; acción requerida (humana): correr "Crawl Histórico" (`wiki_historical.yml`) para 2015-2016 y/o ampliar fuentes RSS.

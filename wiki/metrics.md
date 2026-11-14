@@ -1,8 +1,10 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-11-14 (sesión 144)
+last_updated: 2026-11-14 (sesión 145)
 ---
+
+> **Actualización 2026-11-14 (sesión 145, 16:10 UTC)**: Sin cambios vs. sesión 144. Pendientes: 0 (69/69). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 — el cron diario de hoy aún no ha corrido (verificado vía `actions_list`: `total_count=171`, última corrida run #171 del 2026-11-13, éxito, sin commit). Ventanas GDELT: 101 (sin cambio). Último commit en `sources/`: `11bb2f6` (2026-11-12); último con artículos: 2026-10-31. **Días sin nuevos: 14 → umbral de falla SUPERADO (persiste).** Acción requerida (humana): correr "Crawl Histórico" (`wiki_historical.yml`) para 2015-2016 y/o ampliar fuentes RSS.
 
 > **Actualización 2026-11-14 (sesión 144, 08:10 UTC)**: Sin cambios vs. sesión 143. Pendientes: 0 (69/69). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 — el cron diario de hoy aún no ha corrido (verificado vía `actions_list`: `total_count=171`, última corrida run #171 del 2026-11-13 18:17-18:24 UTC, éxito, sin commit). Ventanas GDELT: 101 (sin cambio). Último commit en `sources/`: `11bb2f6` (2026-11-12); último con artículos: 2026-10-31. **Días sin nuevos: 14 → umbral de falla SUPERADO (persiste).** Diagnóstico de la sesión 141 vigente. Acción requerida (humana): correr "Crawl Histórico" (`wiki_historical.yml`) para 2015-2016 y/o ampliar fuentes RSS.
 
