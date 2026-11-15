@@ -1,8 +1,10 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-11-15 (sesión 146)
+last_updated: 2026-11-15 (sesión 147)
 ---
+
+> **Actualización 2026-11-15 (sesión 147, 08:10 UTC)**: Sin cambios vs. sesión 146. Pendientes: 0 (69/69). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 — el cron diario de hoy aún no ha corrido (verificado vía `actions_list`: `total_count=172`, última corrida run #172 del 2026-11-14 16:47-16:54 UTC, éxito, sin commit). Ventanas GDELT: 101 (sin cambio). Último commit en `sources/`: `11bb2f6` (2026-11-12); último con artículos: 2026-10-31. **Días sin nuevos: 15 → umbral de falla SUPERADO (persiste).** Acción requerida (humana): correr "Crawl Histórico" (`wiki_historical.yml`) para 2015-2016 y/o ampliar fuentes RSS.
 
 > **Actualización 2026-11-15 (sesión 146, 00:10 UTC)**: Pendientes: 0 (69/69). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 — el cron diario de hoy aún no ha corrido (00:10 UTC). Verificado vía `actions_list`: `total_count=172`, run #172 (2026-11-14 16:47-16:54 UTC, éxito, **sin commit** → 0 artículos nuevos). Ventanas GDELT: 101 (sin cambio). Último commit en `sources/`: `11bb2f6` (2026-11-12); último con artículos: 2026-10-31. **Días sin nuevos: 15 → umbral de falla SUPERADO (persiste).** El fetch corre bien (no es fallo técnico); el rango GDELT/RSS no produce contenido nuevo. Acción requerida (humana): correr "Crawl Histórico" (`wiki_historical.yml`) para 2015-2016 y/o ampliar fuentes RSS.
 
@@ -703,6 +705,7 @@ fix de `scripts/` quedaría igual de atrapado en un PR sin mergear que el bug de
 | 2026-10-31 (sesión 105) | 1 | 0 | Ingesta de 1 artículo genuino (MIDA ají trompito, solo extracto). Actions descargó 1 nuevo (7212939); ventanas GDELT 94. |
 | 2026-11-14 (sesión 144) | 0 | 0 | Solo-diagnóstico. Cron de hoy aún no corre (último run #171, 2026-11-13, 0 artículos); ventanas GDELT 101; días sin artículos nuevos: 14 (umbral superado). |
 | 2026-11-15 (sesión 146) | 0 | 0 | Solo-diagnóstico. Run #172 (2026-11-14, éxito, 0 artículos); cron de hoy aún no corre; ventanas GDELT 101; días sin artículos nuevos: 15 (umbral superado). |
+| 2026-11-15 (sesión 147) | 0 | 0 | Solo-diagnóstico. Sin cambios vs. sesión 146 (último run #172, 0 artículos; cron de hoy aún no corre); ventanas GDELT 101; días sin artículos nuevos: 15 (umbral superado). |
 
 ---
 
