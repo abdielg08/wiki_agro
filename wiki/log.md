@@ -1411,3 +1411,6 @@ INGEST: 1 artículos marcados como ingestados por sesión Claude Code
 
 ## 2026-11-16 — Diagnóstico (sesión 150, 08:10 UTC)
 - Pendientes: 0 (70/70). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 — el cron diario de hoy aún no corre (suele dispararse ~16-19 UTC). Última corrida de Actions: run #173 (2026-11-15 17:29-17:37 UTC, éxito, commit `6e62a62` con 1 artículo, ingestado en sesión 149). Ventanas GDELT: 101. Días sin nuevos: 1 (bajo el umbral de 3). Sin acción requerida.
+
+## 2026-11-16 — Diagnóstico (sesión 151, 16:10 UTC)
+- Pendientes: 0 (70/70). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 — el cron diario de hoy aún no corre. Última corrida de "Fetch Diario": run #173 (2026-11-15 17:29-17:37 UTC, éxito, commit `6e62a62`, 1 artículo ya ingestado). Ventanas GDELT: 101. Días sin nuevos: 1 (bajo el umbral de 3). Sin acción requerida.
