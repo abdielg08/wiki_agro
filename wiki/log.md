@@ -1401,3 +1401,10 @@ INGEST: 1 artículos marcados como ingestados por sesión Claude Code
 
 ## 2026-11-15 — Diagnóstico (sesión 148)
 - Pendientes: 0 (69/69). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 (16:10 UTC; el cron diario de hoy aún no corre). Última corrida de Actions: run #172 (2026-11-14 16:47 UTC, éxito, sin commit: 0 artículos). Último commit en `sources/`: `11bb2f6` (2026-11-12). Sin artículos desde 2026-10-31 → días sin nuevos: 15 (umbral de 3 superado). Ventanas GDELT: 101. El fetch funciona técnicamente; el rango GDELT/RSS no produce contenido nuevo. Acción humana recomendada: ejecutar `wiki_historical.yml` (2015-2016) y/o ampliar fuentes RSS.
+
+## 2026-11-16 00:09
+INGEST: 1 artículos marcados como ingestados por sesión Claude Code
+
+## 2026-11-16 — Ingesta (sesión 149)
+- Pendientes al iniciar: 1 (69/70). Ingestado 1 artículo genuino sobre agro panameño: [MIDA impulsa el sector agropecuario en Panamá Oeste con asistencia técnica y capacitaciones](summaries/20250605_midagobpa_mida-asistencia-tecnica-panama-oeste.md) (MIDA, 2025-06-05; solo extracto, `full_text` nulo). Actualizado `entities/mida.md` (nueva sección "Extensión Agrícola Regional — Panamá Oeste"), `index.md`. Sin topics modificados (el extracto no aporta datos de rubros). Falsos positivos: 0.
+- Diagnóstico: Actions descargó 1 artículo nuevo (`6e62a62`, 2026-11-15 17:37 UTC) → racha de 15 días sin nuevos cerrada; días sin nuevos: 1. Artículos nuevos hoy: 0 (00:10 UTC, cron diario aún no corre). Ventanas GDELT: 101. Pendientes al final: 0 (70/70).

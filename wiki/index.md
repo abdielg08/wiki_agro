@@ -93,6 +93,7 @@ article_count: 0
 
 | Fecha | Fuente | Título | Resumen |
 |-------|--------|--------|---------|
+| 2025-06-05 | MIDA | [MIDA impulsa el sector agropecuario en Panamá Oeste con asistencia técnica y capacitaciones](summaries/20250605_midagobpa_mida-asistencia-tecnica-panama-oeste.md) | asistencia técnica y capacitaciones del MIDA a productores de Panamá Oeste (solo extracto) |
 | 2026-09-21 | MIDA | [Ají trompito: la producción que impulsa la economía de un productor en Panamá Este](summaries/20260921_midagobpa_aji-trompito-panama-este.md) | acompañamiento técnico del MIDA a productor de ají trompito en Tortí (solo extracto) |
 | 2023-11-22 | MIDA | [Avanza la cosecha de arroz en Chiriquí](summaries/20231122_midagobpa_avanza-cosecha-arroz-chiriqui.md) | 19,313 ha de arroz sembradas en Chiriquí; avance de cosecha (solo extracto) |
 | 2025-06-19 | MIDA | [Asesoría del MIDA contribuye al éxito arrocero del productor Lozada en Chiriquí](summaries/20250619_midagobpa_asesoria-mida-exito-arrocero-lozada-chiriqui.md) | asistencia técnica del MIDA y éxito de arroceros en Chiriquí (solo extracto) |

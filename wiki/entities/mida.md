@@ -2,8 +2,8 @@
 title: MIDA — Ministerio de Desarrollo Agropecuario
 type: entity
 tags: [gobierno, ministerio, politica-agropecuaria, plan-mulino, semillas, fitosanitario, subsidios, transicion-gobierno, avicultura, presupuesto, ima, iica, cooperacion-internacional, hortalizas, gobernanza]
-last_updated: 2026-10-31
-article_count: 26
+last_updated: 2026-11-16
+article_count: 27
 sources:
   - "https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023"
   - "https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024"
@@ -22,6 +22,7 @@ sources:
   - "https://www.prensa.com/economia/mida-confirma-la-llegada-de-20-mil-quintales-de-cebolla-importada/"
   - "https://www.prensa.com/economia/Ministro-Valderrama-irregularidades-planilla-Mida_0_5446705379.html"
   - "https://www.prensa.com/provincias/MIDA-presenta-plan-contingencia-verano_0_5419707981.html"
+  - "https://mida.gob.pa/2025/06/05/mida-impulsa-el-sector-agropecuario-en-panama-oeste-con-asistencia-tecnica-y-capacitaciones/"
 related: [entities/idiap.md, entities/bda.md, entities/iica_panama.md, topics/politicas_agropecuarias.md, topics/arroz.md, topics/subsidios_programas.md, topics/precios_mercados.md, topics/plagas_enfermedades.md, topics/avicultura.md, topics/hortalizas.md, topics/chirique.md, topics/agua_riego.md, topics/azuero.md]
 ---
 
@@ -90,6 +91,9 @@ El Ministerio de Desarrollo Agropecuario (MIDA) es la institución rectora del s
 ### Evaluación de Daños por Lluvias — Boquete, Chiriquí (2025)
 - Técnicos del MIDA se trasladaron a Boquete (Chiriquí) para evaluar en campo plantaciones agropecuarias afectadas por lluvias intensas [La Prensa, 2025-10-07](https://www.prensa.com/economia/boquete-mida-inicia-evaluacion-de-areas-afectadas-tras-las-lluvias/)
 
+### Extensión Agrícola Regional — Panamá Oeste (2025)
+- **2025-06-05**: la regional del MIDA en Panamá Oeste anunció iniciativas de asistencia técnica y capacitación a productores locales (solo extracto, sin cifras) [MIDA, 2025-06-05](https://mida.gob.pa/2025/06/05/mida-impulsa-el-sector-agropecuario-en-panama-oeste-con-asistencia-tecnica-y-capacitaciones/)
+
 ### Planes de Contingencia Estacionales (Azuero, desde 2019)
 - **Octubre 2019**: el MIDA en Los Santos programó un plan de contingencia para el verano siguiente, con indicios de abastecimiento de agua para ganado; fuente truncada, sin detalle de alcance o presupuesto [La Prensa, 2019-10-15](https://www.prensa.com/provincias/MIDA-presenta-plan-contingencia-verano_0_5419707981.html)
 
@@ -141,6 +145,7 @@ El Ministerio de Desarrollo Agropecuario (MIDA) es la institución rectora del s
 - [La Prensa, 2019 — MIDA presenta plan de contingencia para el verano](https://www.prensa.com/provincias/MIDA-presenta-plan-contingencia-verano_0_5419707981.html)
 - [MIDA, 2025-05-27 — Microorganismos eficientes en Chiriquí](../summaries/20250527_midagobpa_microorganismos-eficientes-chiriqui.md)
 - [MIDA, 2026-02-25 — Personería jurídica a productores de Atalaya](../summaries/20260225_midagobpa_personeria-juridica-productores-atalaya.md)
+- [MIDA, 2025-06-05 — Asistencia técnica y capacitaciones en Panamá Oeste](../summaries/20250605_midagobpa_mida-asistencia-tecnica-panama-oeste.md)
 
 ## Ver también
 - [IDIAP](idiap.md) — investigación agropecuaria
