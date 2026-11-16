@@ -821,6 +821,7 @@
     "title": "MIDA impulsa el sector agropecuario en Panamá Oeste con asistencia técnica y capacitaciones",
     "date": "2025-06-05",
     "source": "mida.gob.pa",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-11-16T00:09:31.288859"
   }
 }
