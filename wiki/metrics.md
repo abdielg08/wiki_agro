@@ -1,8 +1,10 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-11-17 (sesión 152)
+last_updated: 2026-11-17 (sesión 153)
 ---
+
+> **Actualización 2026-11-17 (sesión 153, 08:10 UTC)**: Pendientes: 0 (70/70). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 (08:10 UTC; el cron diario de hoy aún no corre — suele dispararse ~16-21 UTC). Verificado vía `actions_list`: última corrida "Fetch Diario" = run #174 (2026-11-16 20:44-20:52 UTC, éxito, commit `cab4c45`, 0 artículos). Ventanas GDELT: 102 (sin cambio). Último artículo nuevo: 2026-11-15 → días sin nuevos: 2 (bajo el umbral de 3; si el cron de hoy vuelve a traer 0, la sesión siguiente debe diagnosticar a fondo).
 
 > **Actualización 2026-11-17 (sesión 152, 00:10 UTC)**: Pendientes: 0 (70/70). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 (00:10 UTC; el cron diario de hoy aún no corre). El cron del 2026-11-16 SÍ corrió: commit `cab4c45` (2026-11-16 20:52 UTC, "0 artículos nuevos descargados", solo `processed.json`) — fetch operativo, ventanas GDELT 101→102. Último artículo nuevo: 2026-11-15 → días sin nuevos: 2 (bajo el umbral de 3).
 
@@ -721,6 +723,7 @@ fix de `scripts/` quedaría igual de atrapado en un PR sin mergear que el bug de
 | 2026-11-16 (sesión 150) | 0 | 0 | Solo-diagnóstico. Cron de hoy aún no corre (último run #173, 2026-11-15, 1 artículo ya ingestado); ventanas GDELT 101; días sin nuevos: 1. |
 | 2026-11-16 (sesión 151) | 0 | 0 | Solo-diagnóstico. Sin cambios vs. sesión 150; ventanas GDELT 101; días sin nuevos: 1. |
 | 2026-11-17 (sesión 152) | 0 | 0 | Solo-diagnóstico. Cron 2026-11-16 corrió (`cab4c45`, 0 artículos); ventanas GDELT 102; días sin nuevos: 2. |
+| 2026-11-17 (sesión 153) | 0 | 0 | Solo-diagnóstico. Cron de hoy aún no corre (último run #174, 2026-11-16, 0 artículos); ventanas GDELT 102; días sin nuevos: 2. |
 
 ---
 
