@@ -1,8 +1,10 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-11-17 (sesión 153)
+last_updated: 2026-11-17 (sesión 154)
 ---
+
+> **Actualización 2026-11-17 (sesión 154, 16:10 UTC)**: Pendientes: 0 (70/70). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 (16:10 UTC; el cron diario de hoy aún no corre — verificado vía `actions_list`: última corrida "Fetch Diario" = run #174, 2026-11-16 20:44-20:52 UTC, éxito, commit `cab4c45`, 0 artículos). Ventanas GDELT: 102 (sin cambio). Último artículo nuevo: 2026-11-15 → días sin nuevos: 2 (bajo el umbral de 3).
 
 > **Actualización 2026-11-17 (sesión 153, 08:10 UTC)**: Pendientes: 0 (70/70). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 (08:10 UTC; el cron diario de hoy aún no corre — suele dispararse ~16-21 UTC). Verificado vía `actions_list`: última corrida "Fetch Diario" = run #174 (2026-11-16 20:44-20:52 UTC, éxito, commit `cab4c45`, 0 artículos). Ventanas GDELT: 102 (sin cambio). Último artículo nuevo: 2026-11-15 → días sin nuevos: 2 (bajo el umbral de 3; si el cron de hoy vuelve a traer 0, la sesión siguiente debe diagnosticar a fondo).
 

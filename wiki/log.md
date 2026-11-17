@@ -1420,3 +1420,6 @@ INGEST: 1 artículos marcados como ingestados por sesión Claude Code
 
 ## 2026-11-17 — Diagnóstico (sesión 153, 08:10 UTC)
 - Pendientes: 0 (70/70). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 — el cron diario de hoy aún no corre. Última corrida de "Fetch Diario": run #174 (2026-11-16 20:44-20:52 UTC, éxito, commit `cab4c45`, 0 artículos nuevos). Ventanas GDELT: 102. Días sin nuevos: 2 (bajo el umbral de 3). Sin acción requerida; vigilar si el cron de hoy trae 0 (alcanzaría el umbral).
+
+## 2026-11-17 — Diagnóstico (sesión 154, 16:10 UTC)
+- Pendientes: 0 (70/70). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 — el cron diario de hoy aún no corre (verificado vía `actions_list`: última corrida "Fetch Diario" sigue siendo run #174, 2026-11-16 20:44-20:52 UTC, éxito, commit `cab4c45`, 0 artículos). Ventanas GDELT: 102 (sin cambio). Último artículo nuevo: 2026-11-15 → días sin nuevos: 2 (bajo el umbral de 3). Nota: el entorno de la sesión no traía `click` instalado; se resolvió con `python -m pip install -r requirements.txt`. Vigilar el cron de hoy: si trae 0, mañana se alcanza el umbral de 3 días.
