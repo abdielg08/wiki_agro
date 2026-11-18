@@ -1423,3 +1423,8 @@ INGEST: 1 artículos marcados como ingestados por sesión Claude Code
 
 ## 2026-11-17 — Diagnóstico (sesión 154, 16:10 UTC)
 - Pendientes: 0 (70/70). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 — el cron diario de hoy aún no corre (verificado vía `actions_list`: última corrida "Fetch Diario" sigue siendo run #174, 2026-11-16 20:44-20:52 UTC, éxito, commit `cab4c45`, 0 artículos). Ventanas GDELT: 102 (sin cambio). Último artículo nuevo: 2026-11-15 → días sin nuevos: 2 (bajo el umbral de 3). Nota: el entorno de la sesión no traía `click` instalado; se resolvió con `python -m pip install -r requirements.txt`. Vigilar el cron de hoy: si trae 0, mañana se alcanza el umbral de 3 días.
+
+## 2026-11-18 — Diagnóstico (sesión 155, 00:10 UTC)
+- Pendientes: 0 (70/70). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 (00:10 UTC; el cron de hoy aún no corre).
+- **Umbral alcanzado: 3 días sin artículos nuevos** (último: 2026-11-15). El cron del 2026-11-17 corrió (run #175, id 44159080267, 19:29-19:37 UTC, `success`) pero terminó sin commit ("ℹ Sin artículos nuevos", ni siquiera `processed.json`). Log del job (`get_job_logs`): RSS IICA y La Prensa → `GET blocked (403/429)`; DDG → 0 resultados nuevos; GDELT → "error de red" o `403/429` en las 10 ventanas intentadas (2015-01-01→2017-03-29 y 2026-09-17→2026-11-16). Ventanas GDELT: 102 (sin avance).
+- Diagnóstico: el workflow funciona; las fuentes externas bloquean/limitan las IPs de los runners de GitHub Actions. Acción humana recomendada: (1) más espaciado/backoff entre peticiones GDELT o menos ventanas por corrida; (2) fuentes RSS alternativas (MIDA, TVN, La Estrella); (3) re-ejecutar manualmente el fetch más tarde.
