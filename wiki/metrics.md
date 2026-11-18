@@ -1,8 +1,10 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-11-18 (sesión 155)
+last_updated: 2026-11-18 (sesión 156)
 ---
+
+> **Actualización 2026-11-18 (sesión 156, 08:10 UTC)**: Pendientes: 0 (70/70). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 (08:10 UTC; el cron de hoy aún no corre — verificado vía `actions_list`: `total_count=175`, última corrida run #175 del 2026-11-17, `success`, sin commit por bloqueo de fuentes). Ventanas GDELT: 102 (sin avance). Último artículo nuevo: 2026-11-15 → **días sin nuevos: 3 (umbral alcanzado, persiste)**. Diagnóstico de la sesión 155 sigue vigente: bloqueo/rate-limit (403/429) de RSS y GDELT desde los runners. Acción humana recomendada sin cambios.
 
 > **Actualización 2026-11-18 (sesión 155, 00:10 UTC)**: Pendientes: 0 (70/70). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 (00:10 UTC; cron de hoy aún no corre). El cron del 2026-11-17 SÍ corrió (run #175, id 44159080267, 19:29-19:37 UTC, `success`) pero **no hizo commit** ("ℹ Sin artículos nuevos"): según el log del job, **todas las fuentes fueron bloqueadas** — RSS IICA y La Prensa `403/429`; GDELT con "error de red"/`403/429` en las 10 ventanas intentadas (9 ventanas 2015-01-01→2017-03-29 pendientes + la ventana reciente 2026-09-17→2026-11-16); DDG sin resultados nuevos. Ventanas GDELT: 102 (sin avance). Último artículo nuevo: 2026-11-15 → **días sin nuevos: 3 (umbral alcanzado)**. Causa: bloqueo/rate-limit de las fuentes desde los runners de GitHub Actions, no fallo del workflow. Acción humana recomendada: añadir backoff/reintentos más espaciados para GDELT (o correr `wiki_historical.yml` en otro horario) y buscar fuentes RSS alternativas (MIDA, TVN, La Estrella).
 
@@ -730,6 +732,7 @@ fix de `scripts/` quedaría igual de atrapado en un PR sin mergear que el bug de
 | 2026-11-17 (sesión 153) | 0 | 0 | Solo-diagnóstico. Cron de hoy aún no corre (último run #174, 2026-11-16, 0 artículos); ventanas GDELT 102; días sin nuevos: 2. |
 | 2026-11-17 (sesión 154) | 0 | 0 | Solo-diagnóstico. Cron de hoy aún no corre; ventanas GDELT 102; días sin nuevos: 2. |
 | 2026-11-18 (sesión 155) | 0 | 0 | Solo-diagnóstico. Run #175 (2026-11-17) éxito pero sin commit: RSS y GDELT bloqueados (403/429 / error de red en todas las ventanas); ventanas GDELT 102; días sin nuevos: 3 (umbral alcanzado). |
+| 2026-11-18 (sesión 156) | 0 | 0 | Solo-diagnóstico. Cron de hoy aún no corre (último run #175, sin commit por bloqueo de fuentes); ventanas GDELT 102; días sin nuevos: 3 (umbral persiste). |
 
 ---
 
