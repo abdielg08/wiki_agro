@@ -1,8 +1,10 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-11-18 (sesión 157)
+last_updated: 2026-11-19 (sesión 158)
 ---
+
+> **Actualización 2026-11-19 (sesión 158, 08:10 UTC)**: Pendientes: 0 (70/70). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 (08:10 UTC; el cron de hoy aún no corre). El cron del 2026-11-18 SÍ corrió (run #176, id 44377817120, 19:11-19:18 UTC, `success`) e hizo commit `bffb300` ("0 artículos nuevos descargados", solo `processed.json`) — ventanas GDELT 102→103, pero 0 artículos. Último artículo nuevo: 2026-11-15 → **días sin nuevos: 4 (umbral superado)**. El workflow funciona; el problema sigue siendo la falta de resultados (bloqueo 403/429 de fuentes diagnosticado en sesión 155). Acción humana recomendada sin cambios: backoff/espaciado para GDELT y fuentes RSS alternativas (MIDA, TVN, La Estrella).
 
 > **Actualización 2026-11-18 (sesión 157, 16:10 UTC)**: Pendientes: 0 (70/70). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 (16:10 UTC; el cron de hoy aún no corre — verificado vía `actions_list`: `total_count=175`, último run #175 del 2026-11-17 19:29-19:37 UTC, `success`, sin commit por bloqueo de fuentes; las corridas recientes disparan ~19:30-20:45 UTC). Ventanas GDELT: 102 (sin avance). Último artículo nuevo: 2026-11-15 → **días sin nuevos: 3 (umbral alcanzado, persiste)**. Diagnóstico de la sesión 155 sigue vigente (bloqueo 403/429 de RSS y GDELT desde los runners). Acción humana recomendada sin cambios.
 
@@ -736,6 +738,7 @@ fix de `scripts/` quedaría igual de atrapado en un PR sin mergear que el bug de
 | 2026-11-18 (sesión 155) | 0 | 0 | Solo-diagnóstico. Run #175 (2026-11-17) éxito pero sin commit: RSS y GDELT bloqueados (403/429 / error de red en todas las ventanas); ventanas GDELT 102; días sin nuevos: 3 (umbral alcanzado). |
 | 2026-11-18 (sesión 156) | 0 | 0 | Solo-diagnóstico. Cron de hoy aún no corre (último run #175, sin commit por bloqueo de fuentes); ventanas GDELT 102; días sin nuevos: 3 (umbral persiste). |
 | 2026-11-18 (sesión 157) | 0 | 0 | Solo-diagnóstico (16:10 UTC). Cron de hoy aún no corre (último run #175, sin commit por bloqueo de fuentes); ventanas GDELT 102; días sin nuevos: 3 (umbral persiste). |
+| 2026-11-19 (sesión 158) | 0 | 0 | Solo-diagnóstico. Run #176 (2026-11-18, éxito, commit `bffb300`, 0 artículos); ventanas GDELT 103; días sin nuevos: 4 (umbral superado). |
 
 ---
 
