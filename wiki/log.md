@@ -1448,3 +1448,7 @@ INGEST: 1 artículos marcados como ingestados por sesión Claude Code
 
 ## 2026-11-20 — Diagnóstico (sesión 161, 08:10 UTC)
 - Pendientes: 0 (70/70). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 — el cron de hoy aún no corre (último run #177, 2026-11-19, `success`, sin commit en `sources/`). Ventanas GDELT: 103. Días sin nuevos: 5 (umbral superado, persiste). Causa de la sesión 155 (bloqueo 403/429 en runners) vigente; acción humana recomendada sin cambios.
+
+
+## 2026-11-20 — Diagnóstico (sesión 162, 16:10 UTC)
+- Pendientes: 0 (70/70). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 — el cron de hoy aún no corre (último run programado #177, 2026-11-19, `success`, sin commit en `sources/`). Ventanas GDELT: 103. Días sin nuevos: 5 (umbral superado, persiste). Causa de la sesión 155 (bloqueo 403/429) vigente; acción humana recomendada sin cambios.
