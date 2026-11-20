@@ -1,8 +1,10 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-11-20 (sesión 160)
+last_updated: 2026-11-20 (sesión 161)
 ---
+
+> **Actualización 2026-11-20 (sesión 161, 08:10 UTC)**: Pendientes: 0 (70/70). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 (08:10 UTC; el cron de hoy aún no corre — verificado vía `actions_list`: `total_count=264`, último run programado #177 del 2026-11-19 19:15-19:24 UTC, `success`, sin commit en `sources/`). Ventanas GDELT: 103 (sin cambio). Último artículo nuevo: 2026-11-15 → **días sin nuevos: 5 (umbral superado, persiste)**. Diagnóstico de la sesión 155 vigente (bloqueo 403/429 de RSS/GDELT desde los runners). Acción humana recomendada sin cambios.
 
 > **Actualización 2026-11-20 (sesión 160, 00:10 UTC)**: Pendientes: 0 (70/70). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 (00:10 UTC; el cron de hoy aún no corre). El cron del 2026-11-19 SÍ corrió (run #177, id 44596483578, 19:15-19:24 UTC, `success`) pero no generó commit en `sources/` (último commit de sources: 2026-11-18, `bffb300`) → 0 artículos nuevos. Ventanas GDELT: 103 (sin cambio). Último artículo nuevo: 2026-11-15 → **días sin nuevos: 5 (umbral superado, persiste)**. Diagnóstico de la sesión 155 vigente (bloqueo 403/429 de RSS/GDELT desde los runners). Acción humana recomendada sin cambios: backoff/espaciado para GDELT y fuentes RSS alternativas (MIDA, TVN, La Estrella).
 
