@@ -1440,3 +1440,7 @@ INGEST: 1 artículos marcados como ingestados por sesión Claude Code
 
 ## 2026-11-19 — Diagnóstico (sesión 159, 16:10 UTC)
 - Pendientes: 0 (70/70). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 — el cron diario de hoy aún no corre (verificado vía `actions_list`: `total_count=176`, último run #176 del 2026-11-18 19:11-19:18 UTC, `success`, commit `bffb300`, 0 artículos). Ventanas GDELT: 103 (sin cambio). Último artículo nuevo: 2026-11-15 → días sin nuevos: 4 (umbral de 3 superado, persiste). Causa diagnosticada en sesión 155 (bloqueo 403/429 de RSS/GDELT en runners) sigue vigente; acción humana recomendada sin cambios. Nota: `click` no venía instalado; se instaló con `python -m pip install -r requirements.txt`.
+
+
+## 2026-11-20 — Diagnóstico (sesión 160, 00:10 UTC)
+- Pendientes: 0 (70/70). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 — el cron de hoy aún no corre. El run #177 (2026-11-19 19:15-19:24 UTC, `success`) no produjo commit en `sources/`. Ventanas GDELT: 103 (sin cambio). Último artículo nuevo: 2026-11-15 → días sin nuevos: 5 (umbral de 3 superado, persiste). Causa de la sesión 155 (bloqueo 403/429 de RSS/GDELT en runners) sigue vigente; acción humana recomendada sin cambios. Nota: `click` no venía instalado; se instaló con `python3 -m pip install -r requirements.txt`.
