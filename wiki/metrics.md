@@ -1,8 +1,10 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-11-21 (sesión 163)
+last_updated: 2026-11-21 (sesión 164)
 ---
+
+> **Actualización 2026-11-21 (sesión 164)**: Pendientes: 0 (71/71). Sin ingesta ni falsos positivos. Artículos nuevos hoy en `sources/articles/`: 0 (71 totales, sin cambio; el último commit en `sources/` fue 2026-11-20, 1 artículo). Ventanas GDELT: 104. Estado de GitHub Actions no re-verificado en esta sesión. Diagnóstico de la sesión 155 vigente (bloqueo 403/429 de RSS/GDELT). Acción humana recomendada sin cambios.
 
 > **Actualización 2026-11-21 (sesión 163)**: **Ingesta: 1 artículo genuino** (MIDA, 2022-11-29 — reporte semanal de siembra de arroz, 82,895.7 ha; solo extracto). Falsos positivos: 0. Pendientes: 0 (71/71). Artículos nuevos hoy en `sources/articles/`: 0 (el artículo ingestado es un pendiente previo, ya descargado). No se verificó el estado de GitHub Actions en esta sesión; sin evidencia de cambios en el diagnóstico de la sesión 155 (bloqueo 403/429 de RSS/GDELT). Acción humana recomendada sin cambios.
 
