@@ -1452,3 +1452,10 @@ INGEST: 1 artículos marcados como ingestados por sesión Claude Code
 
 ## 2026-11-20 — Diagnóstico (sesión 162, 16:10 UTC)
 - Pendientes: 0 (70/70). Sin ingesta ni falsos positivos. Artículos nuevos hoy: 0 — el cron de hoy aún no corre (último run programado #177, 2026-11-19, `success`, sin commit en `sources/`). Ventanas GDELT: 103. Días sin nuevos: 5 (umbral superado, persiste). Causa de la sesión 155 (bloqueo 403/429) vigente; acción humana recomendada sin cambios.
+
+
+## 2026-11-21 — Ingesta (sesión 163)
+- Ingestado 1 artículo (pendiente): MIDA 2022-11-29, reporte semanal de siembra de arroz (82,895.7 ha; solo extracto). Resumen: `summaries/20221129_midagobpa_rinden-informe-siembra-arroz.md`; actualizado `topics/arroz.md`; `index.md` y `metrics.md` actualizados. Falsos positivos: 0. Pendientes: 0 (71/71). Nota: `click` no venía instalado; se instaló con `python -m pip install -r requirements.txt`. Diagnóstico de fuentes (sesión 155) sin cambios; acción humana recomendada vigente.
+
+## 2026-11-21 00:09
+INGEST: 1 artículos marcados como ingestados por sesión Claude Code

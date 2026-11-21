@@ -93,6 +93,7 @@ article_count: 0
 
 | Fecha | Fuente | Título | Resumen |
 |-------|--------|--------|---------|
+| 2022-11-29 | MIDA | [Rinden informe sobre la siembra de arroz en Panamá](summaries/20221129_midagobpa_rinden-informe-siembra-arroz.md) | siembra de arroz ronda 82,895.7 ha según reporte semanal MIDA (solo extracto) |
 | 2025-06-05 | MIDA | [MIDA impulsa el sector agropecuario en Panamá Oeste con asistencia técnica y capacitaciones](summaries/20250605_midagobpa_mida-asistencia-tecnica-panama-oeste.md) | asistencia técnica y capacitaciones del MIDA a productores de Panamá Oeste (solo extracto) |
 | 2026-09-21 | MIDA | [Ají trompito: la producción que impulsa la economía de un productor en Panamá Este](summaries/20260921_midagobpa_aji-trompito-panama-este.md) | acompañamiento técnico del MIDA a productor de ají trompito en Tortí (solo extracto) |
 | 2023-11-22 | MIDA | [Avanza la cosecha de arroz en Chiriquí](summaries/20231122_midagobpa_avanza-cosecha-arroz-chiriqui.md) | 19,313 ha de arroz sembradas en Chiriquí; avance de cosecha (solo extracto) |
@@ -140,4 +141,4 @@ article_count: 0
 
 ---
 
-*Última actualización del índice: 2026-10-31*
+*Última actualización del índice: 2026-11-21*
