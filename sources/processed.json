@@ -833,6 +833,7 @@
     "title": "Rinden informe sobre la siembra de arroz en Panamá",
     "date": "2022-11-29",
     "source": "mida.gob.pa",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-11-21T00:09:12.951986"
   }
 }
