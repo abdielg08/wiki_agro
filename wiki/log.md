@@ -1459,3 +1459,6 @@ INGEST: 1 artículos marcados como ingestados por sesión Claude Code
 
 ## 2026-11-21 00:09
 INGEST: 1 artículos marcados como ingestados por sesión Claude Code
+
+## 2026-11-21 — Diagnóstico (sesión 164)
+- Pendientes: 0 (71/71). Sin ingesta ni falsos positivos. 0 artículos nuevos hoy en `sources/articles/`; ventanas GDELT: 104. `click`/`rich` no estaban instalados; se instalaron con `python -m pip install -r requirements.txt`. Diagnóstico de la sesión 155 sin cambios (bloqueo 403/429 de RSS/GDELT); acción humana recomendada vigente.
