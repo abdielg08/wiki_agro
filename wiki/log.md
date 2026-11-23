@@ -1468,3 +1468,6 @@ INGEST: 1 artículos marcados como ingestados por sesión Claude Code
 
 ## 2026-11-22 — Diagnóstico (sesión 166)
 - Pendientes: 0 (71/71). Sin ingesta ni falsos positivos. 0 artículos nuevos hoy; ventanas GDELT: 104. Dependencias reinstaladas con `python3 -m pip install -r requirements.txt`. Diagnóstico de la sesión 155 sin cambios (bloqueo 403/429 de RSS/GDELT); acción humana recomendada vigente.
+
+## 2026-11-23 — Diagnóstico (sesión 167)
+- Pendientes: 0 (71/71). Sin ingesta ni falsos positivos. 0 artículos nuevos hoy; ventanas GDELT: 105 (+1). Fetch de Actions corrió 2026-11-22 (commit 9f9515c) con 0 artículos nuevos. Dependencias instaladas con `python3 -m pip install -r requirements.txt`. Diagnóstico de la sesión 155 sin cambios (bloqueo 403/429 de RSS/GDELT); acción humana recomendada vigente.
