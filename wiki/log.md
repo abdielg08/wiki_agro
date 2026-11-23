@@ -1474,3 +1474,6 @@ INGEST: 1 artículos marcados como ingestados por sesión Claude Code
 
 ## 2026-11-23 — Diagnóstico (sesión 168)
 - Pendientes: 0 (71/71). Sin ingesta ni falsos positivos. 0 artículos nuevos hoy; ventanas GDELT: 105 (sin cambio). Último commit en `sources/` 2026-11-22 (9f9515c, 0 artículos). Diagnóstico de la sesión 155 sin cambios (bloqueo 403/429 de RSS/GDELT); acción humana recomendada vigente.
+
+## 2026-11-23 — Diagnóstico (sesión 169)
+- Pendientes: 0 (71/71). Sin ingesta ni falsos positivos. 0 artículos nuevos hoy; ventanas GDELT: 105 (sin cambio). Actions: run #180 (2026-11-22) success con 0 artículos; run de hoy aún no programado a la hora de la sesión (16:09 UTC). Dependencias instaladas con `python -m pip install -r requirements.txt`. Diagnóstico de la sesión 155 sin cambios (bloqueo 403/429 de RSS/GDELT); acción humana recomendada vigente.
