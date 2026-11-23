@@ -836,5 +836,13 @@
     "source": "mida.gob.pa",
     "ingested": true,
     "ingested_at": "2026-11-21T00:09:12.951986"
+  },
+  "https://mida.gob.pa/2026/09/30/viceministro-del-mida-visita-finca-productora-de-cafe-robusta-en-colon/": {
+    "saved_at": "2026-11-23T22:19:39.662470",
+    "path": "/home/runner/work/wiki_agro/wiki_agro/sources/articles/20260930_midagobpa_2026-09-30-viceministro-del-mida-visita-finca-productora-de.json",
+    "title": "Viceministro del MIDA visita finca productora de café robusta en Colón",
+    "date": "2026-09-30",
+    "source": "mida.gob.pa",
+    "ingested": false
   }
 }
