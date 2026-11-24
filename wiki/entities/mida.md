@@ -2,8 +2,8 @@
 title: MIDA — Ministerio de Desarrollo Agropecuario
 type: entity
 tags: [gobierno, ministerio, politica-agropecuaria, plan-mulino, semillas, fitosanitario, subsidios, transicion-gobierno, avicultura, presupuesto, ima, iica, cooperacion-internacional, hortalizas, gobernanza]
-last_updated: 2026-11-16
-article_count: 27
+last_updated: 2026-11-24
+article_count: 28
 sources:
   - "https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023"
   - "https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024"
@@ -103,6 +103,7 @@ El Ministerio de Desarrollo Agropecuario (MIDA) es la institución rectora del s
 - 2026-09-21: acompañamiento técnico del MIDA a productor de ají trompito en Guacuco, Tortí (Panamá Este) [MIDA, 2026-09-21](https://mida.gob.pa/2026/09/21/aji-trompito-la-produccion-que-impulsa-la-economia-de-un-productor-en-panama-este/)
 - 2026-07-10: productores de guandú morado en Veraguas logran vender su cosecha con apoyo del MIDA regional [MIDA, 2026-07-10](https://mida.gob.pa/2026/07/10/productores-de-guandu-morado-en-veraguas-logran-la-venta-de-cosecha/)
 - 2026-01-06: MIDA, Dirección Nacional de Agricultura e ISA informan a productores de Coclé sobre el ciclo arrocero 2025 [MIDA, 2026-01-06](https://mida.gob.pa/2026/01/06/mida-cocle-actualiza-a-productores-sobre-produccion-de-arroz-del-ciclo-agricola-2025/)
+- 2026-09-30: el viceministro del MIDA visita el proyecto de café robusta de Anconia Hub en la Finca Las Canarias, Colón (solo extracto) [MIDA, 2026-09-30](https://mida.gob.pa/2026/09/30/viceministro-del-mida-visita-finca-productora-de-cafe-robusta-en-colon/)
 - 2026-06-12: plan piloto del MIDA en Panamá Este combina arroz y cría de peces sin agroquímicos [MIDA, 2026-06-12](https://mida.gob.pa/2026/06/12/85651/)
 - 2025-08-11: MIDA Coclé y ACP inician reuniones con asociaciones y cooperativas de productores [MIDA, 2025-08-11](https://mida.gob.pa/2025/08/11/mida-y-la-acp-fortalecen-la-produccion-agricola-en-cocle/)
 - 2024-09-30: productores de café de Panamá Oeste analizan estrategias y desafíos de la zafra 2025 [MIDA, 2024-09-30](https://mida.gob.pa/2024/09/30/productores-de-cafe-de-panama-oeste-se-preparan-para-la-zafra-2025/)

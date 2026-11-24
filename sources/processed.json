@@ -843,6 +843,7 @@
     "title": "Viceministro del MIDA visita finca productora de café robusta en Colón",
     "date": "2026-09-30",
     "source": "mida.gob.pa",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-11-24T00:09:57.605568"
   }
 }

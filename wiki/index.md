@@ -138,7 +138,8 @@ article_count: 0
 | 2019-07-26 | La Prensa | [El rol de la trazabilidad en la agricultura moderna](summaries/20190726_prensacom_rol-trazabilidad-agricultura-moderna.md) | Trazabilidad como requisito creciente del consumidor |
 
 | 2021-10-01 | MIDA | [El café de Panamá mantiene su crecimiento y su buen sabor](summaries/20211001_midagobpa_cafe-panama-crecimiento-buen-sabor.md) | historia y crecimiento del café; llegada del grano en el siglo XIX |
+| 2026-09-30 | MIDA | [Viceministro del MIDA visita finca productora de café robusta en Colón](summaries/20260930_midagobpa_viceministro-finca-cafe-robusta-colon.md) | proyecto de café robusta de Anconia Hub, Finca Las Canarias (Colón, >300 msnm) |
 
 ---
 
-*Última actualización del índice: 2026-11-21*
+*Última actualización del índice: 2026-11-24*

@@ -2,8 +2,8 @@
 title: Café y Cacao en Panamá
 type: topic
 tags: [cafe, cacao, chiriqui, covid19, bioseguridad, cosecha]
-last_updated: 2026-10-13
-article_count: 3
+last_updated: 2026-11-24
+article_count: 4
 sources:
   - "https://www.prensa.com/provincias/fijan-medidas-para-prevenir-casos-de-la-covid-19-en-la-proxima-cosecha-de-cafe/"
 related: [topics/chirique.md]
@@ -24,9 +24,11 @@ El café de altura se cultiva principalmente en las tierras altas de la provinci
 - Fuente truncada: no se dispone del detalle completo de protocolos ni de las entidades coordinadoras
 - 2024-09-30: productores de café de Panamá Oeste analizan estrategias y desafíos de la zafra 2025 [MIDA, 2024-09-30](https://mida.gob.pa/2024/09/30/productores-de-cafe-de-panama-oeste-se-preparan-para-la-zafra-2025/)
 - 2021-10-01: el MIDA destaca el crecimiento del café panameño y su historia; colonos europeos introdujeron el grano a inicios del siglo XIX (solo extracto) [MIDA, 2021-10-01](https://mida.gob.pa/2021/10/01/el-cafe-de-panama-mantiene-su-crecimiento-y-su-buen-sabor/)
+- 2026-09-30: el viceministro del MIDA visitó el proyecto de café **robusta** de Anconia Hub en la Finca Las Canarias (Colón, a más de 300 msnm), una apuesta por el robusta fuera de las tierras altas de Chiriquí (solo extracto) [MIDA, 2026-09-30](https://mida.gob.pa/2026/09/30/viceministro-del-mida-visita-finca-productora-de-cafe-robusta-en-colon/)
 
 ## Tendencias (2015–2025)
 
+- Aparece diversificación hacia café robusta en Colón (2026), distinta del arábica de altura de Chiriquí
 - La cosecha de café en Chiriquí depende de mano de obra migrante estacional, lo que la hace vulnerable a shocks sanitarios (Covid-19, 2020)
 
 ## Retos

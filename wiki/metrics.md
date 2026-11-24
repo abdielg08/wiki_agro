@@ -1,8 +1,10 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-11-23 (sesión 169)
+last_updated: 2026-11-24 (sesión 170)
 ---
+
+> **Actualización 2026-11-24 (sesión 170)**: **Ingesta: 1 artículo genuino** (MIDA, 2026-09-30 — viceministro visita proyecto de café robusta de Anconia Hub, Colón; solo extracto). Falsos positivos: 0. Pendientes: 0 (72/72). Artículos nuevos hoy en `sources/articles/`: 0 (el ingestado ya estaba descargado; último commit en `sources/` 4110534). Ventanas GDELT: 105 (sin cambio). Estado de GitHub Actions no re-verificado en esta sesión. Diagnóstico de la sesión 155 vigente (bloqueo 403/429 de RSS/GDELT); acción humana recomendada sin cambios.
 
 > **Actualización 2026-11-23 (sesión 169)**: Pendientes: 0 (71/71). Sin ingesta ni falsos positivos. Artículos nuevos hoy en `sources/articles/`: 0 (71 totales; último commit en `sources/` 2026-11-22, 9f9515c, 0 artículos). Ventanas GDELT: 105 (sin cambio). Verificado vía GitHub Actions API: run #180 (id 45053380460, 2026-11-22 18:08-18:15 UTC) conclusion=success; el run programado de hoy aún no corre (sesión a las 16:09 UTC; cron `0 11 * * *` pero los runs recientes arrancan con ~7 h de retraso, 17:50-18:55 UTC), por lo que 0 artículos hoy no indica fallo. Diagnóstico de la sesión 155 vigente (bloqueo 403/429 de RSS/GDELT); acción humana recomendada sin cambios.
 

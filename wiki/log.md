@@ -1477,3 +1477,9 @@ INGEST: 1 artículos marcados como ingestados por sesión Claude Code
 
 ## 2026-11-23 — Diagnóstico (sesión 169)
 - Pendientes: 0 (71/71). Sin ingesta ni falsos positivos. 0 artículos nuevos hoy; ventanas GDELT: 105 (sin cambio). Actions: run #180 (2026-11-22) success con 0 artículos; run de hoy aún no arrancó a las 16:09 UTC (cron 11:00 UTC; runs recientes arrancan con ~7 h de retraso). Dependencias instaladas con `python -m pip install -r requirements.txt`. Diagnóstico de la sesión 155 sin cambios (bloqueo 403/429 de RSS/GDELT); acción humana recomendada vigente.
+
+## 2026-11-24 00:09
+INGEST: 1 artículos marcados como ingestados por sesión Claude Code
+
+## 2026-11-24 — Ingesta (sesión 170)
+- Ingestado 1 artículo genuino (pendiente previo): MIDA 2026-09-30, viceministro visita proyecto de café robusta de Anconia Hub (Finca Las Canarias, Colón; solo extracto). Resumen: `summaries/20260930_midagobpa_viceministro-finca-cafe-robusta-colon.md`; actualizados `topics/cafe_cacao.md` y `entities/mida.md`. Falsos positivos: 0. Pendientes: 0 (72/72). Artículos nuevos hoy en `sources/articles/`: 0 (el ingestado ya estaba descargado); ventanas GDELT: 105 (sin cambio). Dependencias reinstaladas con `python3 -m pip install -r requirements.txt`. Diagnóstico de la sesión 155 vigente (bloqueo 403/429 de RSS/GDELT); acción humana recomendada sin cambios.
