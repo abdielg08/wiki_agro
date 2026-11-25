@@ -1,16 +1,10 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-11-25 (sesión 174)
+last_updated: 2026-11-25 (sesión 171)
 ---
 
-> **Actualización 2026-11-25 (sesión 174, 08:09 UTC)**: Pendientes: 0 (72/72). Sin ingesta ni falsos positivos. Artículos nuevos hoy en `sources/articles/`: 0 (último commit en `sources/` 4110534, 2026-11-23). Ventanas GDELT: 105 (sin cambio). Actions: último Fetch Diario #182 (id 45485989759, 2026-11-24 20:56-21:05 UTC) success sin commit en `sources/`; el run de hoy aún no corre (último run registrado: Promover Wiki #98, 2026-11-25 00:09 UTC). Días sin artículos nuevos: 2 (último 2026-11-23); umbral de 3 se alcanza si el run de hoy tampoco trae. Diagnóstico de la sesión 155 vigente (bloqueo 403/429 de RSS/GDELT).
-
-> **Actualización 2026-11-25 (sesión 173)**: Pendientes: 0 (72/72). Sin ingesta ni falsos positivos. Artículos nuevos hoy en `sources/articles/`: 0 (último commit en `sources/` 4110534, 2026-11-23). Ventanas GDELT: 105 (sin cambio). Actions: Fetch Diario run #182 (id 45485989759, 2026-11-24 20:56-21:05 UTC) success, pero no generó commit en `sources/` (sin artículos nuevos ni ventanas GDELT nuevas); el run de hoy aún no corre. Diagnóstico de la sesión 155 vigente (bloqueo 403/429 de RSS/GDELT).
-
-> **Actualización 2026-11-24 (sesión 172)**: Pendientes: 0 (72/72). Sin ingesta ni falsos positivos. Artículos nuevos hoy en `sources/articles/`: 0 (último commit en `sources/` 4110534, 2026-11-23). Ventanas GDELT: 105 (sin cambio). Actions: Fetch Diario run #181 (2026-11-23 22:18 UTC) success; el de hoy aún no corre (el último run, 08:10 UTC, fue Promover Wiki). Diagnóstico de la sesión 155 vigente.
-
-> **Actualización 2026-11-24 (sesión 171)**: Pendientes: 0 (72/72). Sin ingesta ni falsos positivos. Artículos nuevos hoy en `sources/articles/`: 0 (72 totales; último commit en `sources/` 4110534, 2026-11-23, 1 artículo ya ingestado en sesión 170). Ventanas GDELT: 105 (sin cambio). Verificado vía GitHub Actions API: run #181 (id 45278464537, 2026-11-23 22:18-22:24 UTC) success; el run de hoy aún no corre (los runs recientes arrancan con retraso de horas), por lo que 0 artículos hoy no indica fallo. Diagnóstico de la sesión 155 vigente; acción humana recomendada sin cambios.
+> **Actualización 2026-11-25 (sesión 171)**: Pendientes: 0 (72/72). Sin ingesta ni falsos positivos. Artículos nuevos hoy en `sources/articles/`: 0 (último commit en `sources/` 2026-11-23 22:24 UTC, 4110534, 1 artículo). Ventanas GDELT: 105 (sin cambio). `git pull origin main` falló con HTTP 503 (servicio de credenciales no disponible) en todos los reintentos y el MCP de GitHub tampoco conectó: no se pudo verificar si el run de Actions de hoy (cron 11:00 UTC, arranque habitual ~18:00 UTC) ya corrió; la sesión es a las 16:13 UTC, así que 0 artículos hoy no indica fallo por sí solo. Cifras basadas en el clon local (puede estar desactualizado). Diagnóstico de la sesión 155 vigente (bloqueo 403/429 de RSS/GDELT); acción humana recomendada sin cambios.
 
 > **Actualización 2026-11-24 (sesión 170)**: **Ingesta: 1 artículo genuino** (MIDA, 2026-09-30 — viceministro visita proyecto de café robusta de Anconia Hub, Colón; solo extracto). Falsos positivos: 0. Pendientes: 0 (72/72). Artículos nuevos hoy en `sources/articles/`: 0 (el ingestado ya estaba descargado; último commit en `sources/` 4110534). Ventanas GDELT: 105 (sin cambio). Estado de GitHub Actions no re-verificado en esta sesión. Diagnóstico de la sesión 155 vigente (bloqueo 403/429 de RSS/GDELT); acción humana recomendada sin cambios.
 
@@ -771,7 +765,6 @@ fix de `scripts/` quedaría igual de atrapado en un PR sin mergear que el bug de
 | 2026-11-18 (sesión 156) | 0 | 0 | Solo-diagnóstico. Cron de hoy aún no corre (último run #175, sin commit por bloqueo de fuentes); ventanas GDELT 102; días sin nuevos: 3 (umbral persiste). |
 | 2026-11-18 (sesión 157) | 0 | 0 | Solo-diagnóstico (16:10 UTC). Cron de hoy aún no corre (último run #175, sin commit por bloqueo de fuentes); ventanas GDELT 102; días sin nuevos: 3 (umbral persiste). |
 | 2026-11-19 (sesión 158) | 0 | 0 | Solo-diagnóstico. Run #176 (2026-11-18, éxito, commit `bffb300`, 0 artículos); ventanas GDELT 103; días sin nuevos: 4 (umbral superado). |
-| 2026-11-25 (sesión 174) | 0 | 0 | Solo-diagnóstico. Fetch #182 (2026-11-24) éxito sin commit; run de hoy aún no corre; ventanas GDELT 105; días sin nuevos: 2. |
 
 ---
 

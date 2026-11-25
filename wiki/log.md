@@ -1484,14 +1484,5 @@ INGEST: 1 artículos marcados como ingestados por sesión Claude Code
 ## 2026-11-24 — Ingesta (sesión 170)
 - Ingestado 1 artículo genuino (pendiente previo): MIDA 2026-09-30, viceministro visita proyecto de café robusta de Anconia Hub (Finca Las Canarias, Colón; solo extracto). Resumen: `summaries/20260930_midagobpa_viceministro-finca-cafe-robusta-colon.md`; actualizados `topics/cafe_cacao.md` y `entities/mida.md`. Falsos positivos: 0. Pendientes: 0 (72/72). Artículos nuevos hoy en `sources/articles/`: 0 (el ingestado ya estaba descargado); ventanas GDELT: 105 (sin cambio). Dependencias reinstaladas con `python3 -m pip install -r requirements.txt`. Diagnóstico de la sesión 155 vigente (bloqueo 403/429 de RSS/GDELT); acción humana recomendada sin cambios.
 
-## 2026-11-24 — Diagnóstico (sesión 171)
-- Pendientes: 0 (72/72). Sin ingesta ni falsos positivos. 0 artículos nuevos hoy; ventanas GDELT: 105. Actions: run #181 (2026-11-23 22:18 UTC) success; run de hoy aún no corre. Dependencias Python reinstaladas.
-
-## 2026-11-24 — Diagnóstico (sesión 172)
-- Pendientes: 0 (72/72). Sin ingesta ni falsos positivos. 0 artículos nuevos hoy; ventanas GDELT: 105. Actions: Fetch Diario #181 (2026-11-23 22:18 UTC) success; run de hoy aún no corre. Nota: `python` es 3.11 y las dependencias están en 3.13; usar `python3.13 wiki_agro.py`.
-
-## 2026-11-25 — Diagnóstico (sesión 173)
-- Pendientes: 0 (72/72). Sin ingesta ni falsos positivos. 0 artículos nuevos hoy; ventanas GDELT: 105 (sin cambio). Actions: Fetch Diario #182 (2026-11-24 20:56 UTC) success pero sin commit en `sources/` (0 artículos, sin avance de ventanas); run de hoy aún no corre. Tercer día sin artículos nuevos en `sources/articles/` se alcanzaría si el run de hoy tampoco trae (último: 2026-11-23). Diagnóstico de la sesión 155 vigente.
-
-## 2026-11-25 — Diagnóstico (sesión 174)
-- Pendientes: 0 (72/72). Sin ingesta ni falsos positivos. 0 artículos nuevos hoy; ventanas GDELT: 105 (sin cambio). Actions: Fetch Diario #182 (2026-11-24 20:56 UTC) success sin commit en `sources/`; run de hoy aún no corre (08:09 UTC). Días sin artículos nuevos: 2 (último 2026-11-23). Diagnóstico de la sesión 155 vigente.
+## 2026-11-25 — Diagnóstico (sesión 171)
+- Pendientes: 0 (72/72). Sin ingesta ni falsos positivos. 0 artículos nuevos hoy; ventanas GDELT: 105 (sin cambio). Último commit en `sources/` 2026-11-23 (4110534, 1 artículo). `git pull`/`fetch` de origin devolvió HTTP 503 en todos los reintentos y el MCP de GitHub no conectó, por lo que no se verificó el run de Actions de hoy (16:13 UTC, antes del arranque habitual ~18:00 UTC). Dependencias instaladas con `python -m pip install -r requirements.txt`. Diagnóstico de la sesión 155 vigente (bloqueo 403/429 de RSS/GDELT); acción humana recomendada sin cambios.
