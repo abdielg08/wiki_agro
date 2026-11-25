@@ -1,8 +1,10 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-11-24 (sesión 172)
+last_updated: 2026-11-25 (sesión 173)
 ---
+
+> **Actualización 2026-11-25 (sesión 173)**: Pendientes: 0 (72/72). Sin ingesta ni falsos positivos. Artículos nuevos hoy en `sources/articles/`: 0 (último commit en `sources/` 4110534, 2026-11-23). Ventanas GDELT: 105 (sin cambio). Actions: Fetch Diario run #182 (id 45485989759, 2026-11-24 20:56-21:05 UTC) success, pero no generó commit en `sources/` (sin artículos nuevos ni ventanas GDELT nuevas); el run de hoy aún no corre. Diagnóstico de la sesión 155 vigente (bloqueo 403/429 de RSS/GDELT).
 
 > **Actualización 2026-11-24 (sesión 172)**: Pendientes: 0 (72/72). Sin ingesta ni falsos positivos. Artículos nuevos hoy en `sources/articles/`: 0 (último commit en `sources/` 4110534, 2026-11-23). Ventanas GDELT: 105 (sin cambio). Actions: Fetch Diario run #181 (2026-11-23 22:18 UTC) success; el de hoy aún no corre (el último run, 08:10 UTC, fue Promover Wiki). Diagnóstico de la sesión 155 vigente.
 
