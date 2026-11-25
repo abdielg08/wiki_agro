@@ -1489,3 +1489,6 @@ INGEST: 1 artículos marcados como ingestados por sesión Claude Code
 
 ## 2026-11-24 — Diagnóstico (sesión 172)
 - Pendientes: 0 (72/72). Sin ingesta ni falsos positivos. 0 artículos nuevos hoy; ventanas GDELT: 105. Actions: Fetch Diario #181 (2026-11-23 22:18 UTC) success; run de hoy aún no corre. Nota: `python` es 3.11 y las dependencias están en 3.13; usar `python3.13 wiki_agro.py`.
+
+## 2026-11-25 — Diagnóstico (sesión 173)
+- Pendientes: 0 (72/72). Sin ingesta ni falsos positivos. 0 artículos nuevos hoy; ventanas GDELT: 105 (sin cambio). Actions: Fetch Diario #182 (2026-11-24 20:56 UTC) success pero sin commit en `sources/` (0 artículos, sin avance de ventanas); run de hoy aún no corre. Tercer día sin artículos nuevos en `sources/articles/` se alcanzaría si el run de hoy tampoco trae (último: 2026-11-23). Diagnóstico de la sesión 155 vigente.
