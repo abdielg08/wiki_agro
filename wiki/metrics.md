@@ -1,8 +1,10 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-11-25 (sesión 175)
+last_updated: 2026-11-26 (sesión 176)
 ---
+
+> **Actualización 2026-11-26 (sesión 176, 00:09 UTC)**: Pendientes: 0 (72/72). Sin ingesta ni falsos positivos. Artículos nuevos hoy en `sources/articles/`: 0 (el run de Actions de hoy aún no corre). El Fetch Diario del 2026-11-25 sí corrió: commit 8c8a5d5 (20:25 UTC) con 0 artículos nuevos; ventanas GDELT: 106 (+1). Días completos sin artículos nuevos: 2 (último con contenido 2026-11-23); el umbral de 3 se alcanza si el run de hoy tampoco trae. Diagnóstico de la sesión 155 vigente (bloqueo 403/429 de RSS/GDELT).
 
 > **Actualización 2026-11-25 (sesión 175)**: Pendientes: 0 (72/72). Sin ingesta ni falsos positivos. Artículos nuevos hoy en `sources/articles/`: 0 (último commit en `sources/` 2026-11-23 22:24 UTC, 4110534, 1 artículo). Ventanas GDELT: 105 (sin cambio). `git pull origin main` falló con HTTP 503 (servicio de credenciales no disponible) en todos los reintentos y el MCP de GitHub tampoco conectó: no se pudo verificar si el run de Actions de hoy (cron 11:00 UTC, arranque habitual ~18:00 UTC) ya corrió; la sesión es a las 16:13 UTC, así que 0 artículos hoy no indica fallo por sí solo. Cifras basadas en el clon local (puede estar desactualizado). Diagnóstico de la sesión 155 vigente (bloqueo 403/429 de RSS/GDELT); acción humana recomendada sin cambios.
 
