@@ -1507,3 +1507,6 @@ INGEST: 1 artículos marcados como ingestados por sesión Claude Code
 
 ## 2026-11-26 — Diagnóstico (sesión 178, 16:10 UTC)
 - Pendientes: 0 (72/72). Sin ingesta ni falsos positivos. 0 artículos nuevos hoy; ventanas GDELT: 106 (sin cambio). Actions (verificado vía `actions_list`, schedule total_count=183): último Fetch Diario #183 (id 45693635495, 2026-11-25 20:18-20:25 UTC, success, commit 8c8a5d5 con 0 artículos); run de hoy aún no corre (cron 11:00 UTC, arranque habitual ~18:00-22:00 UTC). Días completos sin artículos nuevos: 2 (último con contenido 2026-11-23); umbral de 3 se alcanza si el run de hoy tampoco trae. Diagnóstico de la sesión 155 vigente (bloqueo 403/429 de RSS/GDELT).
+
+## 2026-11-27 — Diagnóstico (sesión 179, 00:09 UTC)
+- Pendientes: 0 (72/72). Sin ingesta ni falsos positivos. 0 artículos nuevos hoy (el run de hoy aún no corre). Actions: Fetch Diario #184 (id 45887202240, 2026-11-26 19:55-20:02 UTC) success, commit 9c40397 con 0 artículos; ventanas GDELT 106→107. Días completos sin artículos nuevos: 3 (último con contenido 2026-11-23) — **umbral de fallo de 3 días alcanzado**. Diagnóstico de la sesión 155 vigente (bloqueo 403/429 de RSS/GDELT); acción humana recomendada: revisar/ampliar fuentes.

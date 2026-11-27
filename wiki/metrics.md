@@ -1,8 +1,10 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-11-26 (sesión 178)
+last_updated: 2026-11-27 (sesión 179)
 ---
+
+> **Actualización 2026-11-27 (sesión 179, 00:09 UTC)**: Pendientes: 0 (72/72). Sin ingesta ni falsos positivos. Artículos nuevos hoy en `sources/articles/`: 0 (el Fetch Diario de hoy aún no corre — cron 11:00 UTC, arranque habitual ~18:00-22:00 UTC). Fetch Diario #184 (id 45887202240, 2026-11-26 19:55-20:02 UTC, success) corrió con commit 9c40397 "0 artículos nuevos"; ventanas GDELT 106→107. **Días completos sin artículos nuevos: 3** (2026-11-24, -25, -26; último con contenido 2026-11-23) — **umbral de fallo de 3 días alcanzado**. Diagnóstico de la sesión 155 vigente (bloqueo 403/429 de RSS/GDELT); se requiere acción humana para ampliar/desbloquear fuentes.
 
 > **Actualización 2026-11-26 (sesión 178, 16:10 UTC)**: Pendientes: 0 (72/72). Sin ingesta ni falsos positivos. Artículos nuevos hoy en `sources/articles/`: 0 (el Fetch Diario de hoy aún no corre — verificado vía `actions_list`: schedule total_count=183, último #183, id 45693635495, 2026-11-25 20:18-20:25 UTC, success, commit 8c8a5d5 con 0 artículos). Ventanas GDELT: 106 (sin cambio). Días completos sin artículos nuevos: 2 (último con contenido 2026-11-23); el umbral de 3 se alcanza si el run de hoy tampoco trae. Diagnóstico de la sesión 155 vigente (bloqueo 403/429 de RSS/GDELT).
 
@@ -780,6 +782,7 @@ fix de `scripts/` quedaría igual de atrapado en un PR sin mergear que el bug de
 | 2026-11-18 (sesión 157) | 0 | 0 | Solo-diagnóstico (16:10 UTC). Cron de hoy aún no corre (último run #175, sin commit por bloqueo de fuentes); ventanas GDELT 102; días sin nuevos: 3 (umbral persiste). |
 | 2026-11-19 (sesión 158) | 0 | 0 | Solo-diagnóstico. Run #176 (2026-11-18, éxito, commit `bffb300`, 0 artículos); ventanas GDELT 103; días sin nuevos: 4 (umbral superado). |
 | 2026-11-25 (sesión 174) | 0 | 0 | Solo-diagnóstico. Fetch #182 (2026-11-24) éxito sin commit; run de hoy aún no corre; ventanas GDELT 105; días sin nuevos: 2. |
+| 2026-11-27 (sesión 179) | 0 | 0 | Solo-diagnóstico. Run #184 (2026-11-26, éxito, commit `9c40397`, 0 artículos); ventanas GDELT 107; días sin nuevos: 3 (umbral alcanzado). |
 
 ---
 
