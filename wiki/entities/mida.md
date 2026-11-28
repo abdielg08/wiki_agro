@@ -2,8 +2,8 @@
 title: MIDA — Ministerio de Desarrollo Agropecuario
 type: entity
 tags: [gobierno, ministerio, politica-agropecuaria, plan-mulino, semillas, fitosanitario, subsidios, transicion-gobierno, avicultura, presupuesto, ima, iica, cooperacion-internacional, hortalizas, gobernanza]
-last_updated: 2026-11-24
-article_count: 28
+last_updated: 2026-11-28
+article_count: 29
 sources:
   - "https://www.mida.gob.pa/noticias/produccion-arroz-panama-2023"
   - "https://www.mida.gob.pa/noticias/plan-agropecuario-gobierno-mulino-2024"
@@ -100,6 +100,7 @@ El Ministerio de Desarrollo Agropecuario (MIDA) es la institución rectora del s
 ### Presupuesto y Subsidios (2020, 2022)
 - **2020**: de $3.3 millones solicitados por el MIDA para mejorar la productividad del sector, el MEF solo aprobó **$618 mil**; de $161 millones recomendados por el MEF para el MIDA, el titular de la fuente indica que los subsidios acaparan la mayor parte de esos fondos [La Prensa, 2020-08-27](https://www.prensa.com/impresa/economia/los-subsidios-acaparan-los-fondos-del-mida/)
 - **2022**: el MIDA y el IMA quedaron con **presupuestos reducidos** en la propuesta para 2023; el IMA esperaba aumentar las ferias de alimentos como parte de la mesa del diálogo [La Prensa, 2022-08-31](https://www.prensa.com/economia/el-mida-y-el-ima-quedan-con-presupuestos-reducidos-para-2023/)
+- 2026-11-25: jornada del MIDA en Coclé sobre extensión agropecuaria, monitoreo de cultivos y acciones preventivas ante la temporada seca (solo extracto) [MIDA, 2026-11-25](https://mida.gob.pa/2026/11/25/fortalecimiento-de-la-extension-agropecuaria-y-acciones-ante-la-temporada-seca-marcan-jornada-del-mida-en-cocle/)
 - 2026-09-21: acompañamiento técnico del MIDA a productor de ají trompito en Guacuco, Tortí (Panamá Este) [MIDA, 2026-09-21](https://mida.gob.pa/2026/09/21/aji-trompito-la-produccion-que-impulsa-la-economia-de-un-productor-en-panama-este/)
 - 2026-07-10: productores de guandú morado en Veraguas logran vender su cosecha con apoyo del MIDA regional [MIDA, 2026-07-10](https://mida.gob.pa/2026/07/10/productores-de-guandu-morado-en-veraguas-logran-la-venta-de-cosecha/)
 - 2026-01-06: MIDA, Dirección Nacional de Agricultura e ISA informan a productores de Coclé sobre el ciclo arrocero 2025 [MIDA, 2026-01-06](https://mida.gob.pa/2026/01/06/mida-cocle-actualiza-a-productores-sobre-produccion-de-arroz-del-ciclo-agricola-2025/)
@@ -147,6 +148,7 @@ El Ministerio de Desarrollo Agropecuario (MIDA) es la institución rectora del s
 - [MIDA, 2025-05-27 — Microorganismos eficientes en Chiriquí](../summaries/20250527_midagobpa_microorganismos-eficientes-chiriqui.md)
 - [MIDA, 2026-02-25 — Personería jurídica a productores de Atalaya](../summaries/20260225_midagobpa_personeria-juridica-productores-atalaya.md)
 - [MIDA, 2025-06-05 — Asistencia técnica y capacitaciones en Panamá Oeste](../summaries/20250605_midagobpa_mida-asistencia-tecnica-panama-oeste.md)
+- [MIDA, 2026-11-25 — Extensión agropecuaria y temporada seca en Coclé](../summaries/20261125_midagobpa_extension-agropecuaria-temporada-seca-cocle.md)
 
 ## Ver también
 - [IDIAP](idiap.md) — investigación agropecuaria

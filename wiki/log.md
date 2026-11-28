@@ -1516,3 +1516,9 @@ INGEST: 1 artículos marcados como ingestados por sesión Claude Code
 
 ## 2026-11-27 — Diagnóstico (sesión 181, 16:09 UTC)
 - Pendientes: 0 (72/72). Sin ingesta ni falsos positivos. 0 artículos nuevos hoy; ventanas GDELT: 107 (sin cambio). Actions (verificado vía `actions_list`, schedule total_count=184): último Fetch Diario #184 (id 45887202240, 2026-11-26 19:55-20:02 UTC, success, commit 9c40397 con 0 artículos); run de hoy aún no corre (cron 11:00 UTC, arranque habitual ~18:00-22:00 UTC). Días completos sin artículos nuevos: 3 (último con contenido 2026-11-23) — **umbral de fallo alcanzado**. Diagnóstico de la sesión 155 vigente (bloqueo 403/429 de RSS/GDELT); acción humana recomendada: revisar/ampliar fuentes.
+
+## 2026-11-28 08:10
+INGEST: 1 artículos marcados como ingestados por sesión Claude Code
+
+## 2026-11-28 — Ingesta (sesión 182, 08:10 UTC)
+- Ingestado 1 artículo genuino (0 falsos positivos): MIDA, 2026-11-25, "Fortalecimiento de la extensión agropecuaria y acciones ante la temporada seca marcan jornada del MIDA en Coclé" (solo extracto, `full_text` nulo). Resumen: `summaries/20261125_midagobpa_extension-agropecuaria-temporada-seca-cocle.md`. Actualizados: `topics/cambio_climatico.md`, `entities/mida.md`, `index.md`. Pendientes: 0 (73/73). Fetch Diario del 2026-11-27 corrió (commit 30fc79d, 19:51 UTC, 1 artículo nuevo) — se rompe la racha de días sin artículos (último con contenido: 2026-11-27). Artículos nuevos hoy: 0 (el run de hoy aún no corre; cron 11:00 UTC, arranque habitual ~18:00-22:00 UTC). Ventanas GDELT: 108 (+1). Dependencias instaladas con `python -m pip install click rich` (faltaban en el entorno). Diagnóstico de la sesión 155 (bloqueo 403/429 de RSS/GDELT) parcialmente vigente: el volumen sigue muy bajo (~1 artículo/run).

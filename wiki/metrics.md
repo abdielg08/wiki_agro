@@ -1,8 +1,10 @@
 ---
 title: "Dashboard de Métricas — Wiki Agropecuario"
 type: overview
-last_updated: 2026-11-27 (sesión 181)
+last_updated: 2026-11-28 (sesión 182)
 ---
+
+> **Actualización 2026-11-28 (sesión 182, 08:10 UTC)**: **Ingesta: 1 artículo genuino** (MIDA, 2026-11-25 — extensión agropecuaria y acciones ante la temporada seca en Coclé; solo extracto). Falsos positivos: 0. Pendientes: 0 (73/73). Artículos nuevos hoy en `sources/articles/`: 0 (el Fetch Diario de hoy aún no corre; cron 11:00 UTC). El Fetch del 2026-11-27 sí trajo 1 artículo (commit 30fc79d, 19:51 UTC) → **días sin artículos nuevos: 0** (racha de 3 días rota). Ventanas GDELT: 108 (+1). Volumen sigue muy bajo (~1 artículo/run); diagnóstico de la sesión 155 (bloqueo 403/429 de RSS/GDELT) parcialmente vigente.
 
 > **Actualización 2026-11-27 (sesión 181, 16:09 UTC)**: Pendientes: 0 (72/72). Sin ingesta ni falsos positivos. Artículos nuevos hoy en `sources/articles/`: 0 (el Fetch Diario de hoy aún no corre — verificado vía `actions_list`: schedule total_count=184, último #184, id 45887202240, 2026-11-26 19:55-20:02 UTC, success, commit 9c40397 con 0 artículos). Ventanas GDELT: 107 (sin cambio). Días completos sin artículos nuevos: 3 (último con contenido 2026-11-23) — **umbral de fallo alcanzado**. Diagnóstico de la sesión 155 vigente (bloqueo 403/429 de RSS/GDELT); acción humana recomendada: revisar/ampliar fuentes.
 

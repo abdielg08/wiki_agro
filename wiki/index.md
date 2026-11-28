@@ -139,6 +139,7 @@ article_count: 0
 
 | 2021-10-01 | MIDA | [El café de Panamá mantiene su crecimiento y su buen sabor](summaries/20211001_midagobpa_cafe-panama-crecimiento-buen-sabor.md) | historia y crecimiento del café; llegada del grano en el siglo XIX |
 | 2026-09-30 | MIDA | [Viceministro del MIDA visita finca productora de café robusta en Colón](summaries/20260930_midagobpa_viceministro-finca-cafe-robusta-colon.md) | proyecto de café robusta de Anconia Hub, Finca Las Canarias (Colón, >300 msnm) |
+| 2026-11-25 | MIDA | [Fortalecimiento de la extensión agropecuaria y acciones ante la temporada seca marcan jornada del MIDA en Coclé](summaries/20261125_midagobpa_extension-agropecuaria-temporada-seca-cocle.md) | extensión, monitoreo de cultivos y prevención ante la temporada seca en Coclé (solo extracto) |
 
 ---
 
