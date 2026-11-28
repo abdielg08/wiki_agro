@@ -2,14 +2,15 @@
 title: Cambio Climático e Impacto en el Agro Panameño
 type: topic
 tags: [cambio-climatico, sequia, el-nino, la-nina, inundaciones, adaptacion, resiliencia, azuero, veraguas, chiriqui, ganaderia]
-last_updated: 2026-09-26
-article_count: 5
+last_updated: 2026-11-28
+article_count: 6
 sources:
   - "https://www.tvn-2.com/nacionales/sequia-azuero-el-nino-2015-2016"
   - "https://www.prensa.com/economia/evaluan-perdidas-en-produccion-de-arroz-maiz-y-ganaderia-por-las-inundaciones/"
   - "https://www.prensa.com/economia/boquete-mida-inicia-evaluacion-de-areas-afectadas-tras-las-lluvias/"
   - "https://www.prensa.com/provincias/MIDA-presenta-plan-contingencia-verano_0_5419707981.html"
   - "https://www.prensa.com/opinion/Horizonte-agropecuario_0_5380711932.html"
+  - "https://mida.gob.pa/2026/11/25/fortalecimiento-de-la-extension-agropecuaria-y-acciones-ante-la-temporada-seca-marcan-jornada-del-mida-en-cocle/"
 related: [topics/agua_riego.md, topics/seguridad_alimentaria.md, topics/arroz.md, topics/maiz.md, topics/chirique.md, topics/ganaderia_bovina.md, topics/plagas_enfermedades.md, entities/mida.md, entities/idiap.md]
 ---
 
@@ -73,6 +74,9 @@ El cambio climático es uno de los principales retos del agro panameño. El Niñ
 - **IDIAP**: variedad de arroz tolerante a sequía IDIAP-Esperanza (desde 2020)
 - **MIDA**: planes de contingencia estacionales por provincia (documentados desde 2019 en Azuero) y plan piloto de cosecha de agua en Azuero (desde 2016)
 
+### Preparación ante la temporada seca 2026-2027 — Coclé
+- **2026-11-25**: el MIDA realizó en Coclé una jornada de extensión agropecuaria, monitoreo de cultivos y acciones preventivas ante la temporada seca (solo extracto, sin cifras) [MIDA, 2026-11-25](https://mida.gob.pa/2026/11/25/fortalecimiento-de-la-extension-agropecuaria-y-acciones-ante-la-temporada-seca-marcan-jornada-del-mida-en-cocle/)
+
 ## Referencias
 
 - [TVN, 2016 — Sequía El Niño 2015-2016 en Azuero](https://www.tvn-2.com/nacionales/sequia-azuero-el-nino-2015-2016)
@@ -81,6 +85,7 @@ El cambio climático es uno de los principales retos del agro panameño. El Niñ
 - [La Prensa, 2025 — Boquete: Mida evalúa áreas afectadas tras lluvias](https://www.prensa.com/economia/boquete-mida-inicia-evaluacion-de-areas-afectadas-tras-las-lluvias/)
 - [La Prensa, opinión, 2019 — Horizonte agropecuario (sequía Panamá Este/Darién)](https://www.prensa.com/opinion/Horizonte-agropecuario_0_5380711932.html)
 - [La Prensa, 2019 — MIDA presenta plan de contingencia para el verano](https://www.prensa.com/provincias/MIDA-presenta-plan-contingencia-verano_0_5419707981.html)
+- [MIDA, 2026-11-25 — Extensión agropecuaria y temporada seca en Coclé](../summaries/20261125_midagobpa_extension-agropecuaria-temporada-seca-cocle.md)
 
 ## Ver también
 - [Arroz en Panamá](arroz.md)

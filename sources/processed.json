@@ -855,6 +855,7 @@
     "title": "Fortalecimiento de la extensión agropecuaria y acciones ante la temporada seca marcan jornada del MIDA en Coclé",
     "date": "2026-11-25",
     "source": "mida.gob.pa",
-    "ingested": false
+    "ingested": true,
+    "ingested_at": "2026-11-28T08:10:01.959558"
   }
 }
